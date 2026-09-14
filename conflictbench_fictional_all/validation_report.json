@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "questions": 30,
+  "documents": 360,
+  "documents_per_question": 12,
+  "roles_per_question": {
+    "gold": 1,
+    "conflict": 8,
+    "noise": 3
+  },
+  "answer_types": {
+    "numeric": 18,
+    "date": 3,
+    "entity": 3,
+    "categorical": 3,
+    "boolean": 3
+  },
+  "inherited_original_duplicate_groups": 15,
+  "new_duplicate_groups": 0,
+  "checks": [
+    "contiguous question IDs",
+    "exact document count",
+    "no duplicate content among newly generated documents",
+    "one gold, eight conflicts, and three noise documents per question",
+    "gold document mapping consistency",
+    "gold answer present in every gold document",
+    "manifest-supported answer present in every claim-bearing document"
+  ],
+  "notes": [
+    "The original Q001-Q015 Easy pack is preserved byte-for-byte.",
+    "It contains 15 inherited duplicate groups because each original question reuses identical noise-document text three times."
+  ]
+}

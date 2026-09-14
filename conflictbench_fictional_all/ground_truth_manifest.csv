@@ -1,0 +1,361 @@
+question_id,question,answer_type,gold_answer,document,role,variant,answer_supported
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_01.md,conflict,wrong_scope,"5,900 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_02.md,conflict,secondary,"5,900 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_03.md,noise,noise,
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_04.md,noise,noise,
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_05.md,noise,noise,
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_06.md,conflict,secondary,"9,100 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_07.md,conflict,draft,"5,900 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_08.md,conflict,stale,"5,900 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_09.md,conflict,stale,"8,250 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_10.md,gold,active_authoritative,"7,430 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_11.md,conflict,secondary,"5,900 Quens"
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric,"7,430 Quens",Q001_source_12.md,conflict,draft,"6,700 Quens"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_01.md,gold,active_authoritative,"184,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_02.md,conflict,secondary,"150,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_03.md,conflict,stale,"150,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_04.md,conflict,wrong_scope,"150,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_05.md,conflict,draft,"150,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_06.md,noise,noise,
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_07.md,conflict,stale,"200,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_08.md,conflict,draft,"172,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_09.md,noise,noise,
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_10.md,conflict,secondary,"225,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_11.md,conflict,secondary,"150,000 calls"
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric,"184,000 calls",Q002_source_12.md,noise,noise,
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_01.md,conflict,stale,9 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_02.md,conflict,draft,12 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_03.md,conflict,draft,7 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_04.md,conflict,secondary,7 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_05.md,conflict,secondary,7 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_06.md,noise,noise,
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_07.md,gold,active_authoritative,11 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_08.md,noise,noise,
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_09.md,conflict,secondary,15 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_10.md,conflict,stale,7 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_11.md,conflict,wrong_scope,7 years
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric,11 years,Q003_source_12.md,noise,noise,
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_01.md,conflict,stale,60 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_02.md,conflict,wrong_scope,60 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_03.md,conflict,secondary,60 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_04.md,noise,noise,
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_05.md,noise,noise,
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_06.md,conflict,secondary,90 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_07.md,conflict,draft,45 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_08.md,gold,active_authoritative,42 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_09.md,noise,noise,
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_10.md,conflict,secondary,60 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_11.md,conflict,draft,60 minutes
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric,42 minutes,Q004_source_12.md,conflict,stale,30 minutes
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_01.md,conflict,secondary,2.5 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_02.md,conflict,draft,3.1 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_03.md,conflict,wrong_scope,2.5 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_04.md,noise,noise,
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_05.md,conflict,secondary,5.0 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_06.md,conflict,draft,2.5 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_07.md,conflict,stale,2.5 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_08.md,gold,active_authoritative,3.8 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_09.md,noise,noise,
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_10.md,conflict,secondary,2.5 million Luma
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_11.md,noise,noise,
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric,3.8 million Luma,Q005_source_12.md,conflict,stale,4.2 million Luma
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_01.md,conflict,draft,30 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_02.md,conflict,stale,24 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_03.md,conflict,secondary,18 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_04.md,conflict,wrong_scope,18 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_05.md,conflict,secondary,18 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_06.md,noise,noise,
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_07.md,conflict,secondary,36 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_08.md,conflict,draft,18 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_09.md,noise,noise,
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_10.md,noise,noise,
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_11.md,gold,active_authoritative,26 hours
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric,26 hours,Q006_source_12.md,conflict,stale,18 hours
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_01.md,noise,noise,
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_02.md,noise,noise,
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_03.md,conflict,stale,-20°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_04.md,conflict,secondary,-20°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_05.md,gold,active_authoritative,-47°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_06.md,conflict,stale,-35°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_07.md,conflict,wrong_scope,-20°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_08.md,noise,noise,
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_09.md,conflict,draft,-50°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_10.md,conflict,secondary,-20°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_11.md,conflict,draft,-20°C
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric,-47°C,Q007_source_12.md,conflict,secondary,-60°C
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_01.md,conflict,draft,15.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_02.md,conflict,stale,10.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_03.md,noise,noise,
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_04.md,noise,noise,
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_05.md,conflict,stale,12.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_06.md,conflict,secondary,10.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_07.md,gold,active_authoritative,13.6%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_08.md,conflict,wrong_scope,10.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_09.md,conflict,draft,10.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_10.md,noise,noise,
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_11.md,conflict,secondary,10.0%
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric,13.6%,Q008_source_12.md,conflict,secondary,17.5%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_01.md,conflict,secondary,1.00%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_02.md,conflict,secondary,1.25%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_03.md,noise,noise,
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_04.md,noise,noise,
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_05.md,conflict,stale,0.50%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_06.md,conflict,draft,1.00%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_07.md,conflict,stale,1.00%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_08.md,conflict,secondary,1.00%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_09.md,conflict,draft,0.85%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_10.md,conflict,wrong_scope,1.00%
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_11.md,noise,noise,
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric,0.72%,Q009_source_12.md,gold,active_authoritative,0.72%
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_01.md,conflict,draft,"1,600 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_02.md,noise,noise,
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_03.md,conflict,secondary,"2,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_04.md,conflict,secondary,"1,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_05.md,noise,noise,
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_06.md,conflict,stale,"1,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_07.md,conflict,draft,"1,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_08.md,gold,active_authoritative,"1,480 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_09.md,conflict,wrong_scope,"1,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_10.md,conflict,secondary,"1,000 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_11.md,conflict,stale,"1,250 cases"
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric,"1,480 cases",Q010_source_12.md,noise,noise,
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_01.md,conflict,secondary,30 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_02.md,conflict,secondary,45 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_03.md,conflict,stale,15 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_04.md,noise,noise,
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_05.md,conflict,secondary,30 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_06.md,conflict,draft,30 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_07.md,conflict,draft,20 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_08.md,noise,noise,
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_09.md,conflict,stale,30 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_10.md,conflict,wrong_scope,30 minutes
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_11.md,noise,noise,
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric,17 minutes,Q011_source_12.md,gold,active_authoritative,17 minutes
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_01.md,noise,noise,
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_02.md,conflict,stale,20 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_03.md,gold,active_authoritative,23 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_04.md,noise,noise,
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_05.md,conflict,secondary,32 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_06.md,conflict,wrong_scope,16 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_07.md,noise,noise,
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_08.md,conflict,secondary,16 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_09.md,conflict,stale,16 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_10.md,conflict,secondary,16 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_11.md,conflict,draft,25 inspection points
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric,23 inspection points,Q012_source_12.md,conflict,draft,16 inspection points
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_01.md,conflict,stale,25 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_02.md,conflict,draft,40 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_03.md,conflict,secondary,25 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_04.md,noise,noise,
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_05.md,conflict,wrong_scope,25 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_06.md,conflict,secondary,25 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_07.md,noise,noise,
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_08.md,conflict,secondary,50 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_09.md,noise,noise,
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_10.md,conflict,stale,30 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_11.md,conflict,draft,25 kilometers
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric,38 kilometers,Q013_source_12.md,gold,active_authoritative,38 kilometers
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_01.md,conflict,wrong_scope,5.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_02.md,conflict,stale,5.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_03.md,conflict,secondary,5.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_04.md,conflict,draft,4.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_05.md,noise,noise,
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_06.md,noise,noise,
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_07.md,noise,noise,
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_08.md,conflict,secondary,6.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_09.md,conflict,secondary,5.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_10.md,conflict,stale,2.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_11.md,conflict,draft,5.0°C
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric,3.4°C,Q014_source_12.md,gold,active_authoritative,3.4°C
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_01.md,conflict,wrong_scope,every 30 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_02.md,conflict,secondary,every 30 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_03.md,noise,noise,
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_04.md,noise,noise,
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_05.md,noise,noise,
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_06.md,conflict,draft,every 30 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_07.md,conflict,stale,every 30 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_08.md,conflict,secondary,every 30 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_09.md,conflict,secondary,every 45 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_10.md,conflict,draft,every 21 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_11.md,gold,active_authoritative,every 19 days
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric,every 19 days,Q015_source_12.md,conflict,stale,every 14 days
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_01.md,conflict,archived,10 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_02.md,conflict,draft,10 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_03.md,conflict,secondary,10 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_04.md,gold,active_authoritative,14 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_05.md,conflict,wrong_scope,10 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_06.md,conflict,superseded,12 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_07.md,conflict,faq,12 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_08.md,conflict,planning,18 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_09.md,conflict,training,18 sessions
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_10.md,noise,noise_1,
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_11.md,noise,noise_2,
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric,14 sessions,Q016_source_12.md,noise,noise_3,
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_01.md,conflict,archived,"2,048 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_02.md,conflict,draft,"2,048 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_03.md,conflict,secondary,"2,048 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_04.md,conflict,wrong_scope,"2,048 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_05.md,conflict,superseded,"4,096 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_06.md,conflict,faq,"4,096 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_07.md,conflict,planning,"1,536 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_08.md,conflict,training,"1,536 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_09.md,gold,active_authoritative,"3,072 bits"
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_10.md,noise,noise_1,
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_11.md,noise,noise_2,
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric,"3,072 bits",Q017_source_12.md,noise,noise_3,
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_01.md,conflict,archived,30 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_02.md,gold,active_authoritative,38 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_03.md,conflict,draft,30 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_04.md,conflict,secondary,30 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_05.md,conflict,wrong_scope,30 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_06.md,conflict,superseded,45 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_07.md,conflict,faq,45 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_08.md,conflict,planning,24 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_09.md,conflict,training,24 minutes
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_10.md,noise,noise_1,
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_11.md,noise,noise_2,
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric,38 minutes,Q018_source_12.md,noise,noise_3,
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_01.md,conflict,archived,"October 31, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_02.md,conflict,draft,"October 31, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_03.md,conflict,secondary,"October 31, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_04.md,conflict,wrong_scope,"October 31, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_05.md,conflict,superseded,"September 30, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_06.md,conflict,faq,"September 30, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_07.md,conflict,planning,"November 15, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_08.md,conflict,training,"November 15, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_09.md,noise,noise_1,
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_10.md,noise,noise_2,
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_11.md,gold,active_authoritative,"October 12, 2026"
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date,"October 12, 2026",Q019_source_12.md,noise,noise_3,
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_01.md,conflict,archived,"December 2, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_02.md,conflict,draft,"December 2, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_03.md,conflict,secondary,"December 2, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_04.md,conflict,wrong_scope,"December 2, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_05.md,conflict,superseded,"November 4, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_06.md,gold,active_authoritative,"November 18, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_07.md,conflict,faq,"November 4, 2026"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_08.md,conflict,planning,"January 13, 2027"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_09.md,conflict,training,"January 13, 2027"
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_10.md,noise,noise_1,
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_11.md,noise,noise_2,
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date,"November 18, 2026",Q020_source_12.md,noise,noise_3,
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_01.md,gold,active_authoritative,"January 7, 2027"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_02.md,conflict,archived,"December 1, 2026"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_03.md,conflict,draft,"December 1, 2026"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_04.md,conflict,secondary,"December 1, 2026"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_05.md,conflict,wrong_scope,"December 1, 2026"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_06.md,conflict,superseded,"February 1, 2027"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_07.md,conflict,faq,"February 1, 2027"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_08.md,conflict,planning,"March 15, 2027"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_09.md,conflict,training,"March 15, 2027"
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_10.md,noise,noise_1,
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_11.md,noise,noise_2,
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date,"January 7, 2027",Q021_source_12.md,noise,noise_3,
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_01.md,conflict,archived,Release Engineering Team
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_02.md,conflict,draft,Release Engineering Team
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_03.md,conflict,secondary,Release Engineering Team
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_04.md,conflict,wrong_scope,Release Engineering Team
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_05.md,conflict,superseded,Security Operations Board
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_06.md,conflict,faq,Security Operations Board
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_07.md,conflict,planning,Product Delivery Office
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_08.md,gold,active_authoritative,Platform Reliability Council
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_09.md,conflict,training,Product Delivery Office
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_10.md,noise,noise_1,
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_11.md,noise,noise_2,
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity,Platform Reliability Council,Q022_source_12.md,noise,noise_3,
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_01.md,conflict,archived,Laboratory Operations Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_02.md,conflict,draft,Laboratory Operations Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_03.md,gold,active_authoritative,Biosafety Compliance Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_04.md,conflict,secondary,Laboratory Operations Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_05.md,conflict,wrong_scope,Laboratory Operations Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_06.md,conflict,superseded,Clinical Programs Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_07.md,conflict,faq,Clinical Programs Office
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_08.md,conflict,planning,Facilities Safety Team
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_09.md,conflict,training,Facilities Safety Team
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_10.md,noise,noise_1,
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_11.md,noise,noise_2,
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity,Biosafety Compliance Office,Q023_source_12.md,noise,noise_3,
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_01.md,conflict,archived,Network Operations Center
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_02.md,conflict,draft,Network Operations Center
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_03.md,conflict,secondary,Network Operations Center
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_04.md,conflict,wrong_scope,Network Operations Center
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_05.md,conflict,superseded,Customer Reliability Team
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_06.md,conflict,faq,Customer Reliability Team
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_07.md,conflict,planning,Infrastructure Audit Office
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_08.md,conflict,training,Infrastructure Audit Office
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_09.md,noise,noise_1,
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_10.md,noise,noise_2,
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_11.md,noise,noise_3,
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity,Critical Incident Review Board,Q024_source_12.md,gold,active_authoritative,Critical Incident Review Board
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_01.md,conflict,archived,AES-128-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_02.md,conflict,draft,AES-128-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_03.md,conflict,secondary,AES-128-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_04.md,conflict,wrong_scope,AES-128-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_05.md,gold,active_authoritative,AES-256-GCM
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_06.md,conflict,superseded,ChaCha20-Poly1305
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_07.md,conflict,faq,ChaCha20-Poly1305
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_08.md,conflict,planning,AES-256-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_09.md,conflict,training,AES-256-CBC
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_10.md,noise,noise_1,
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_11.md,noise,noise_2,
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical,AES-256-GCM,Q025_source_12.md,noise,noise_3,
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_01.md,conflict,archived,Archive-Blue
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_02.md,conflict,draft,Archive-Blue
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_03.md,conflict,secondary,Archive-Blue
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_04.md,conflict,wrong_scope,Archive-Blue
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_05.md,conflict,superseded,Vault-Gold
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_06.md,conflict,faq,Vault-Gold
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_07.md,conflict,planning,Standard-Cold
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_08.md,conflict,training,Standard-Cold
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_09.md,noise,noise_1,
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_10.md,gold,active_authoritative,Glacier-Red
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_11.md,noise,noise_2,
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical,Glacier-Red,Q026_source_12.md,noise,noise_3,
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_01.md,conflict,archived,Confidential-High
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_02.md,conflict,draft,Confidential-High
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_03.md,conflict,secondary,Confidential-High
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_04.md,conflict,wrong_scope,Confidential-High
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_05.md,conflict,superseded,Internal-Sensitive
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_06.md,conflict,faq,Internal-Sensitive
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_07.md,gold,active_authoritative,Restricted-Critical
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_08.md,conflict,planning,Restricted-Standard
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_09.md,conflict,training,Restricted-Standard
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_10.md,noise,noise_1,
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_11.md,noise,noise_2,
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical,Restricted-Critical,Q027_source_12.md,noise,noise_3,
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_01.md,conflict,archived,Yes
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_02.md,conflict,draft,Yes
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_03.md,conflict,secondary,Yes
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_04.md,gold,active_authoritative,No
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_05.md,conflict,wrong_scope,Yes
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_06.md,conflict,superseded,Only with manager approval
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_07.md,conflict,faq,Only with manager approval
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_08.md,conflict,planning,Only during travel
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_09.md,conflict,training,Only during travel
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_10.md,noise,noise_1,
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_11.md,noise,noise_2,
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean,No,Q028_source_12.md,noise,noise_3,
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_01.md,conflict,archived,No
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_02.md,conflict,draft,No
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_03.md,conflict,secondary,No
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_04.md,conflict,wrong_scope,No
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_05.md,conflict,superseded,Only for external releases
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_06.md,conflict,faq,Only for external releases
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_07.md,conflict,planning,Only after an incident
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_08.md,conflict,training,Only after an incident
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_09.md,gold,active_authoritative,Yes
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_10.md,noise,noise_1,
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_11.md,noise,noise_2,
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean,Yes,Q029_source_12.md,noise,noise_3,
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_01.md,conflict,archived,Yes
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_02.md,gold,active_authoritative,No
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_03.md,conflict,draft,Yes
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_04.md,conflict,secondary,Yes
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_05.md,conflict,wrong_scope,Yes
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_06.md,conflict,superseded,Only in development
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_07.md,conflict,faq,Only in development
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_08.md,conflict,planning,Only with product-owner approval
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_09.md,conflict,training,Only with product-owner approval
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_10.md,noise,noise_1,
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_11.md,noise,noise_2,
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean,No,Q030_source_12.md,noise,noise_3,

@@ -1,0 +1,31 @@
+question_id,question,answer_type
+Q001,What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?,numeric
+Q002,What is the maximum monthly API quota for Enterprise-X tenants at Nexora Systems?,numeric
+Q003,How long must Tier-3 diagnostic records be retained at Arclume Health?,numeric
+Q004,What is the response-time SLA for Platinum-2 factory incidents at Solvane Robotics?,numeric
+Q005,What is the collateral threshold for Class-M counterparties at Brinex Capital?,numeric
+Q006,What is the maximum idle dwell time for Route-Z cargo at Caventra Logistics?,numeric
+Q007,At what temperature must Kappa-7 samples be stored at Orlith Bio?,numeric
+Q008,What reserve margin is required for Sector-R microgrids at Ternova Energy?,numeric
+Q009,What is the maximum defect rate allowed for Q4-certified suppliers at Meridian Forge?,numeric
+Q010,What minimum audit sample size is required for Vela-class models at Asteron Labs?,numeric
+Q011,After how many minutes must a P1-Silver network fault be escalated at Quoralis Telecom?,numeric
+Q012,How many inspection points are required for Delta-9 batches at Heliox Materials?,numeric
+Q013,What is the maximum unmanned operating radius for Echo-4 vehicles at Sereva Mobility?,numeric
+Q014,What is the maximum transit temperature for Cobalt-line products at Noventra Foods?,numeric
+Q015,How often must Omega-tier credentials be rotated at Elystrum Security?,numeric
+Q016,What is the maximum number of concurrent privileged sessions allowed for Helix-9 administrative workspaces at Vaelora Cloud?,numeric
+Q017,What minimum encryption-key length is required for Cinder-X telemetry archives at Bravion Aerospace?,numeric
+Q018,What cooling-off interval is required after sterilizing Batch-N4 vessels at Caldris Pharma?,numeric
+Q019,On what date are Aurora-class emissions reports due at Norwyn Transit?,date
+Q020,On what date must the annual disaster-recovery exercise for Atlas-Blue systems occur at Peloris Bank?,date
+Q021,When does the revised Sentinel-R access standard take effect at Quantara Research?,date
+Q022,Which body has final approval authority for Zephyr-2 production releases at Avenor Systems?,entity
+Q023,Which office may grant quarantine waivers for Delta-R specimens at Miravel Bio?,entity
+Q024,Which group owns the final investigation of P0-Crimson incidents at Rethora Networks?,entity
+Q025,Which encryption profile is required for Nimbus-4 customer backups at Sorellian Data?,categorical
+Q026,Which storage tier must hold Borealis-7 forensic snapshots at Trivex Security?,categorical
+Q027,What risk classification applies to Lattice-K payment events at Umbralis Finance?,categorical
+Q028,May Ardent-5 contractors export classified case records to personal devices at Loxen Legal?,boolean
+Q029,Is approval from two independent reviewers mandatory for Nova-Prime releases at Tyveris AI?,boolean
+Q030,Can an offline Orion-Lite model bypass red-team review at Cevora Analytics?,boolean
