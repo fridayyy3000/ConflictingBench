@@ -23,9 +23,11 @@ Corvic or client
 Modules:
 
 - `main.py`: routes, auth, per-corpus RAG cache
-- `corpus_store.py`: corpus metadata + document persistence (GCS/local)
-- `document_parser.py`: normalization for `.md`, `.txt`, `.pdf`, `.docx`
-- `gov_rag_gemini.py`: existing GOV-RAG core ranking/reasoning
+- `pipeline/corpus_store.py`: corpus metadata + document persistence (GCS/local)
+- `pipeline/document_parser.py`: normalization for `.md`, `.txt`, `.pdf`, `.docx`
+- `pipeline/gov_rag_gemini.py`: existing GOV-RAG core ranking/reasoning
+- `pipeline/chunker.py`: overlapping chunk creation for long documents
+- `pipeline/rate_limit.py`: in-memory public demo API rate limiting
 
 ## Persistence Model
 

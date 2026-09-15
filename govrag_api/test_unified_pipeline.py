@@ -1,6 +1,6 @@
 """Regression tests for the unified GOV-RAG pipeline (chunking + conflict detection).
 
-Exercises the full stack (main.py -> gov_rag_gemini.py -> corpus_store.py) through
+Exercises the full stack (main.py -> pipeline/gov_rag_gemini.py -> pipeline/corpus_store.py) through
 the public /demo/corpora/* API against a locally running server.
 
 Run the API first:

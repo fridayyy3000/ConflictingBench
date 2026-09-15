@@ -14,16 +14,40 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from corpus_store import CorpusNotFoundError, CorpusStore, CorpusStoreError, DocumentNotFoundError
-from document_parser import (
-    DocumentParseError,
-    make_normalized_filename,
-    parse_document_bytes,
-    sanitize_filename,
-    validate_extension,
-)
-from gov_rag_gemini import GovRAGGemini
-from rate_limit import RateLimiter
+try:
+    from pipeline.corpus_store import (
+        CorpusNotFoundError,
+        CorpusStore,
+        CorpusStoreError,
+        DocumentNotFoundError,
+    )
+    from pipeline.document_parser import (
+        DocumentParseError,
+        make_normalized_filename,
+        parse_document_bytes,
+        sanitize_filename,
+        validate_extension,
+    )
+    from pipeline.gov_rag_gemini import GovRAGGemini
+    from pipeline.rate_limit import RateLimiter
+except ModuleNotFoundError as exc:
+    if exc.name != "pipeline":
+        raise
+    from .pipeline.corpus_store import (
+        CorpusNotFoundError,
+        CorpusStore,
+        CorpusStoreError,
+        DocumentNotFoundError,
+    )
+    from .pipeline.document_parser import (
+        DocumentParseError,
+        make_normalized_filename,
+        parse_document_bytes,
+        sanitize_filename,
+        validate_extension,
+    )
+    from .pipeline.gov_rag_gemini import GovRAGGemini
+    from .pipeline.rate_limit import RateLimiter
 
 
 # ============================================================

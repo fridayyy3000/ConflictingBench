@@ -21,7 +21,15 @@ from typing import Dict, List, Optional
 
 import numpy as np
 
-from chunker import chunk_text
+try:
+    from pipeline.chunker import chunk_text
+except ModuleNotFoundError as exc:
+    if exc.name != "pipeline":
+        raise
+    try:
+        from .chunker import chunk_text
+    except ImportError:
+        from chunker import chunk_text
 
 # Import Vertex AI (for project-based authentication)
 try:
@@ -1220,14 +1228,14 @@ if __name__ == "__main__":
         doc_dir = sys.argv[1]
         project_id = sys.argv[2] if len(sys.argv) > 2 else None
     else:
-        print("Usage: python gov_rag_gemini.py <document_directory> [project_id]")
+        print("Usage: python pipeline/gov_rag_gemini.py <document_directory> [project_id]")
         print("\nExample with Vertex AI:")
         print("  export GOOGLE_CLOUD_PROJECT='your-project-id'")
         print("  gcloud auth application-default login")
-        print("  python gov_rag_gemini.py conflictbench_fictional_full/packs/easy")
+        print("  python pipeline/gov_rag_gemini.py conflictbench_fictional_full/packs/easy")
         print("\nOr with AI Studio:")
         print("  export GOOGLE_API_KEY='your-api-key'")
-        print("  python gov_rag_gemini.py conflictbench_fictional_full/packs/easy")
+        print("  python pipeline/gov_rag_gemini.py conflictbench_fictional_full/packs/easy")
         sys.exit(1)
     
     interactive_mode(doc_dir, project_id=project_id)

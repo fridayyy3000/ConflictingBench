@@ -61,7 +61,8 @@ curl http://localhost:8000/health
 ## 📁 Files
 
 - **main.py** - FastAPI application
-- **gov_rag_gemini.py** - Core GOV-RAG implementation
+- **pipeline/gov_rag_gemini.py** - Core GOV-RAG implementation
+- **pipeline/** - RAG pipeline, parsing, storage, chunking, and rate-limit helpers
 - **requirements.txt** - Python dependencies
 - **run.sh** - Quick start script
 - **test_api.py** - API test suite

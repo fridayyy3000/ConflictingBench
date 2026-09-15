@@ -7,7 +7,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
-COPY gov_rag_gemini.py main.py corpus_store.py document_parser.py rate_limit.py chunker.py ./
+COPY main.py ./
+COPY pipeline/ ./pipeline/
 COPY easy/ ./easy/
 COPY static/ ./static/
 

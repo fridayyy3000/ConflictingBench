@@ -1,0 +1,13 @@
+
+Initializing GOV-RAG with Gemini embeddings...
+✓ Using Vertex AI
+  Project: project-79920195-9e86-44ea-8c9
+  Region: us-central1
+  Model: text-embedding-004
+  Auth: gcloud credentials
+
+Initializing Gemini generator for final resolution...
+✓ Using Vertex AI for generation
+  Model: gemini-2.5-pro
+Loaded 360 documents
+Creating embeddings for 360 chunks across 360 documents...
