@@ -63,6 +63,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEMO_DOCUMENTS_DIR = os.path.join(BASE_DIR, "easy")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 GOVRAG_BUCKET = os.getenv("GOVRAG_BUCKET", "").strip() or None
+PERSISTED_INDEX_FORMAT_VERSION = 2
 
 # Server-controlled Vertex AI target for the public browser API; never client-supplied.
 DEMO_PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "project-79920195-9e86-44ea-8c9")
@@ -313,8 +314,18 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                 corpus_updated_at = metadata.get("updated_at")
                 index_updated_at = index_meta.get("corpus_updated_at")
                 index_model = index_meta.get("embedding_model")
+                index_version = index_meta.get("index_format_version")
+                has_scope_embeddings = all(
+                    row.get("scope_embedding") is not None
+                    for row in persisted.get("chunks", [])
+                )
 
-                if index_updated_at == corpus_updated_at and index_model == VERTEX_AI_MODEL:
+                if (
+                    index_updated_at == corpus_updated_at
+                    and index_model == VERTEX_AI_MODEL
+                    and index_version == PERSISTED_INDEX_FORMAT_VERSION
+                    and has_scope_embeddings
+                ):
                     rag = GovRAGGemini.from_persisted_index(
                         persisted["chunks"],
                         project_id=request.project_id,
@@ -346,6 +357,18 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                         f"index_model={index_model} "
                         f"current_model={VERTEX_AI_MODEL}"
                     )
+                elif index_version != PERSISTED_INDEX_FORMAT_VERSION:
+                    print(
+                        "govrag_persisted_index_invalid=index_format_changed "
+                        f"corpus_id={corpus_id} "
+                        f"index_format_version={index_version} "
+                        f"current_format_version={PERSISTED_INDEX_FORMAT_VERSION}"
+                    )
+                elif not has_scope_embeddings:
+                    print(
+                        "govrag_persisted_index_invalid=missing_scope_embeddings "
+                        f"corpus_id={corpus_id}"
+                    )
             except CorpusStoreError:
                 pass
 
@@ -362,7 +385,7 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
             corpus_id,
             rag.to_persisted_index_rows(),
             {
-                "index_format_version": 1,
+                "index_format_version": PERSISTED_INDEX_FORMAT_VERSION,
                 "created_at": datetime.now(timezone.utc).isoformat(),
                 "corpus_id": corpus_id,
                 "corpus_updated_at": ready_meta.get("updated_at"),

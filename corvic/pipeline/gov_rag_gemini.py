@@ -180,7 +180,9 @@ class Chunk:
     chunk_index: int
     chunk_id: str
     text: str
+    scope_text: Optional[str] = None
     embedding: Optional[np.ndarray] = None
+    scope_embedding: Optional[np.ndarray] = None
 
 
 @dataclass
@@ -947,24 +949,23 @@ def semantic_retrieve(question, chunks, embedder, k=INITIAL_RETRIEVAL_K):
     return scored[:k], q_embedding
 
 
-def get_scope_score(question, document_text, embedder, q_embedding):
-    """Score scope match using embeddings."""
-    doc_sents = sentences(document_text)[:8]
-    
-    if not doc_sents:
+def first_8_sentence_scope_text(document_text):
+    """Return the scope text used for reranking: first 8 sentences of a chunk."""
+    return " ".join(sentences(document_text)[:8])
+
+
+def get_scope_score(chunk, q_embedding):
+    """Score scope match using the chunk's persisted scope embedding."""
+    if chunk.scope_embedding is None:
         return 0.0
-    
-    embeddings = embedder.encode(doc_sents, task_type="RETRIEVAL_DOCUMENT")
-    scores = [cosine_similarity(q_embedding, e) for e in embeddings]
-    
-    return max(scores)
+    return cosine_similarity(q_embedding, chunk.scope_embedding)
 
 
 # ============================================================
 # CANDIDATE BUILDING (same logic, different embedder)
 # ============================================================
 
-def build_candidates(question, retrieved, q_embedding, embedder, doc_meta):
+def build_candidates(question, retrieved, q_embedding, doc_meta):
     """Build ranking candidates from retrieved chunks.
 
     Governance metadata (status/doc_type/authority) is looked up per
@@ -979,7 +980,7 @@ def build_candidates(question, retrieved, q_embedding, embedder, doc_meta):
     for semantic, chunk in retrieved:
         meta = doc_meta.get(chunk.filename, default_meta)
         auth = normalize_authority(meta.authority_raw)
-        scope = get_scope_score(question, chunk.text, embedder, q_embedding)
+        scope = get_scope_score(chunk, q_embedding)
         claim, claim_sentence = extract_claim(question, chunk.text)
         
         candidate = Candidate(
@@ -1102,6 +1103,29 @@ class GovRAGGemini:
         
         for chunk, embedding in zip(self.chunks, embeddings):
             chunk.embedding = embedding
+
+        # Scope embeddings are used during reranking. Persisting them keeps
+        # query-time retrieval to one query embedding plus local vector math.
+        print(f"Creating scope embeddings for {len(self.chunks)} chunks...")
+        scope_texts = [first_8_sentence_scope_text(c.text) for c in self.chunks]
+        non_empty_scope_items = [(idx, text) for idx, text in enumerate(scope_texts) if text]
+        scope_embeddings_by_index = {}
+
+        if non_empty_scope_items:
+            scope_embeddings = self.embedder.encode(
+                [text for _, text in non_empty_scope_items],
+                task_type="RETRIEVAL_DOCUMENT",
+            )
+            scope_embeddings_by_index = {
+                idx: embedding for (idx, _), embedding in zip(non_empty_scope_items, scope_embeddings)
+            }
+
+        for idx, chunk in enumerate(self.chunks):
+            chunk.scope_text = scope_texts[idx]
+            chunk.scope_embedding = scope_embeddings_by_index.get(
+                idx,
+                np.zeros_like(chunk.embedding),
+            )
         
         print("Ready.")
 
@@ -1116,6 +1140,10 @@ class GovRAGGemini:
             embedding = chunk.embedding
             if hasattr(embedding, "tolist"):
                 embedding = embedding.tolist()
+            scope_embedding = chunk.scope_embedding
+            if hasattr(scope_embedding, "tolist"):
+                scope_embedding = scope_embedding.tolist()
+            scope_text = chunk.scope_text if chunk.scope_text is not None else first_8_sentence_scope_text(chunk.text)
 
             rows.append({
                 "chunk_id": chunk.chunk_id,
@@ -1123,11 +1151,12 @@ class GovRAGGemini:
                 "filename": chunk.filename,
                 "document_id": chunk.document_id,
                 "text": chunk.text,
-                "scope_text": chunk.text,
+                "scope_text": scope_text,
                 "status": meta.status,
                 "doc_type": meta.doc_type,
                 "authority_raw": float(meta.authority_raw),
                 "embedding": list(embedding or []),
+                "scope_embedding": list(scope_embedding or []),
             })
         return rows
 
@@ -1161,6 +1190,11 @@ class GovRAGGemini:
             embedding = row.get("embedding") or []
             if hasattr(embedding, "tolist"):
                 embedding = embedding.tolist()
+            scope_embedding = row.get("scope_embedding")
+            if scope_embedding is None:
+                raise ValueError("Persisted index row missing scope_embedding")
+            if hasattr(scope_embedding, "tolist"):
+                scope_embedding = scope_embedding.tolist()
 
             filename = row["filename"]
             obj.chunks.append(
@@ -1170,7 +1204,9 @@ class GovRAGGemini:
                     chunk_index=int(row.get("chunk_index", 0)),
                     chunk_id=row.get("chunk_id") or f"{filename}::chunk-{row.get('chunk_index', 0)}",
                     text=row.get("text") or row.get("scope_text") or "",
+                    scope_text=row.get("scope_text"),
                     embedding=np.asarray(embedding, dtype=float),
+                    scope_embedding=np.asarray(scope_embedding, dtype=float),
                 )
             )
             obj.doc_meta[filename] = DocumentMeta(
@@ -1206,7 +1242,7 @@ class GovRAGGemini:
         )
         
         # 2. Authority + scope extraction
-        candidates = build_candidates(question, retrieved, q_embedding, self.embedder, self.doc_meta)
+        candidates = build_candidates(question, retrieved, q_embedding, self.doc_meta)
         
         # 3. Conflict diversification (claim-bearing chunks capped per claim;
         #    ordinary no-claim evidence is not collapsed to a single chunk).
