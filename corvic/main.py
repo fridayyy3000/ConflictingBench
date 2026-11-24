@@ -3,15 +3,20 @@
 from __future__ import annotations
 
 import glob
+import io
+import json
 import os
+import re
 import threading
+import time
 import uuid
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Dict, List, Optional
 
-from fastapi import FastAPI, File, Header, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, Header, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -29,7 +34,17 @@ try:
         sanitize_filename,
         validate_extension,
     )
-    from pipeline.gov_rag_gemini import GovRAGGemini, VERTEX_AI_MODEL
+    from pipeline.gov_rag_gemini import (
+        DocumentMeta,
+        GovRAGGemini,
+        VERTEX_AI_MODEL,
+        authority_score,
+        detect_doc_type,
+        detect_status,
+        normalize_claim,
+    )
+    from pipeline.evidence_locator import locate_chunks, locate_quote
+    from pipeline.providers import LocalEmbedder, OpenAICompatGenerator
     from pipeline.rate_limit import RateLimiter
 except ModuleNotFoundError as exc:
     if exc.name != "pipeline":
@@ -47,7 +62,17 @@ except ModuleNotFoundError as exc:
         sanitize_filename,
         validate_extension,
     )
-    from .pipeline.gov_rag_gemini import GovRAGGemini, VERTEX_AI_MODEL
+    from .pipeline.gov_rag_gemini import (
+        DocumentMeta,
+        GovRAGGemini,
+        VERTEX_AI_MODEL,
+        authority_score,
+        detect_doc_type,
+        detect_status,
+        normalize_claim,
+    )
+    from .pipeline.evidence_locator import locate_chunks, locate_quote
+    from .pipeline.providers import LocalEmbedder, OpenAICompatGenerator
     from .pipeline.rate_limit import RateLimiter
 
 
@@ -55,11 +80,29 @@ except ModuleNotFoundError as exc:
 # CONFIG
 # ============================================================
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def _load_env_file(path: str) -> None:
+    """Minimal KEY=VALUE loader for corvic/.env (never prints values)."""
+    try:
+        lines = Path(path).read_text().splitlines()
+    except OSError:
+        return
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+_load_env_file(os.path.join(BASE_DIR, ".env"))
+
 API_SECRET = os.getenv("GOVRAG_API_SECRET")
 MAX_FILE_SIZE_MB = int(os.getenv("GOVRAG_MAX_FILE_SIZE_MB", "20"))
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEMO_DOCUMENTS_DIR = os.path.join(BASE_DIR, "easy")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 GOVRAG_BUCKET = os.getenv("GOVRAG_BUCKET", "").strip() or None
@@ -68,6 +111,28 @@ PERSISTED_INDEX_FORMAT_VERSION = 3
 # Server-controlled Vertex AI target for the public browser API; never client-supplied.
 DEMO_PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "project-79920195-9e86-44ea-8c9")
 DEMO_REGION = os.getenv("VERTEX_AI_REGION", "us-central1")
+
+# ---- Pipeline configuration (the paper's "Variant 3" is the default) --------
+# GOVRAG_PROVIDER=nvidia: local bge embeddings + any OpenAI-compatible chat
+# endpoint (NVIDIA hosted Nemotron by default). GOVRAG_PROVIDER=gemini keeps the
+# original Vertex AI path.
+GOVRAG_PROVIDER = os.getenv("GOVRAG_PROVIDER", "nvidia" if (os.getenv("NVIDIA_API_KEY") or os.getenv("OPENAI_API_KEY")) else "gemini").lower()
+GOVRAG_RETRIEVAL = os.getenv("GOVRAG_RETRIEVAL", "hybrid")           # hybrid | dense
+GOVRAG_POLICY = os.getenv("GOVRAG_POLICY", "answer_and_flag")        # answer_and_flag | strict
+GENERATION_MODEL = os.getenv("NEMOTRON_MODEL", "nvidia/nemotron-3.5-super-vl-120b-a12b")
+EMBED_MODEL = os.getenv("GOVRAG_EMBED_MODEL", "BAAI/bge-small-en-v1.5")
+GOVRAG_BASE_URL = os.getenv("DOCUINSIGHT_BASE_URL") or os.getenv("GOVRAG_BASE_URL") or None
+assert GOVRAG_RETRIEVAL in ("hybrid", "dense"), GOVRAG_RETRIEVAL
+assert GOVRAG_POLICY in ("answer_and_flag", "strict"), GOVRAG_POLICY
+
+STATUS_OPTIONS = ["active_authoritative", "active", "draft", "superseded", "archived", "unknown"]
+DOC_TYPE_OPTIONS = [
+    "policy", "contract", "guidance", "memo", "report", "faq", "technical_document",
+    "documentation", "research_paper", "secondary_summary", "unknown",
+]
+# Authority adjustments applied when a user overrides a document's status.
+STATUS_AUTHORITY_FLOOR = {"active_authoritative": 10.0, "active": 6.0}
+STATUS_AUTHORITY_CEILING = {"draft": -3.0, "superseded": -6.0, "archived": -6.0}
 
 DEMO_CORPUS_TTL_HOURS = float(os.getenv("DEMO_CORPUS_TTL_HOURS", "24"))
 MAX_DEMO_DOCUMENTS = int(os.getenv("GOVRAG_MAX_DEMO_DOCUMENTS", "500"))
@@ -141,6 +206,14 @@ class DemoCorpusCreateRequest(BaseModel):
 
 class DemoQueryRequest(BaseModel):
     question: str = Field(..., max_length=MAX_QUESTION_LENGTH)
+    context: Optional[CaseContext] = None
+    top_k: int = Field(8, ge=1, le=12)
+
+
+class DocumentOverrideRequest(BaseModel):
+    status_override: Optional[str] = None
+    doc_type_override: Optional[str] = None
+    clear: bool = False
 
 
 class SourceInfo(BaseModel):
@@ -178,6 +251,25 @@ class CitationInfo(BaseModel):
     quote: str
     treatment: str
     explanation: str = ""
+    # Character spans of the verified quote (one per ellipsis segment).
+    passage_spans: List[List[int]] = Field(default_factory=list)
+    document_spans: List[List[int]] = Field(default_factory=list)
+    role: str = "support"  # support | dissent | context
+
+
+class CorroborationEntry(BaseModel):
+    value: str
+    documents: List[str]
+    document_ids: List[str]
+    count: int
+    committed: bool
+
+
+class ResolutionInfo(BaseModel):
+    rule: str  # governance | corroboration | consistency | tie | single_source | none
+    summary: str
+    committed_values: List[str] = Field(default_factory=list)
+    corroboration: List[CorroborationEntry] = Field(default_factory=list)
 
 
 class QueryResponse(BaseModel):
@@ -195,6 +287,12 @@ class QueryResponse(BaseModel):
     citations: List[CitationInfo] = Field(default_factory=list)
     missing_information: List[str] = Field(default_factory=list)
     clarification_question: Optional[str] = None
+    short_answers: List[str] = Field(default_factory=list)
+    decision_label: str = "insufficient_evidence"  # adds answered_with_dissent
+    resolution: Optional[ResolutionInfo] = None
+    latency_s: Optional[float] = None
+    model: Optional[str] = None
+    pipeline: Dict[str, str] = Field(default_factory=dict)
 
 
 class CorpusQueryResponse(QueryResponse):
@@ -216,6 +314,55 @@ rag_instance_metadata: Dict[str, Dict] = {}
 
 cache_lock = threading.Lock()
 corpus_locks: Dict[str, threading.Lock] = {}
+
+# Document text cache for the reader pane: (corpus_id, document_id) -> text.
+document_text_cache: Dict[str, str] = {}
+
+
+class _LockedEmbedder:
+    """Serialize encode() calls; the sentence-transformers model is not thread-safe."""
+
+    def __init__(self, inner):
+        self.inner = inner
+        self.model_name = getattr(inner, "model_name", EMBED_MODEL)
+        self._lock = threading.Lock()
+
+    def encode(self, texts, task_type="RETRIEVAL_DOCUMENT"):
+        with self._lock:
+            return self.inner.encode(texts, task_type=task_type)
+
+
+_shared_embedder = None
+_shared_generator = None
+_provider_lock = threading.Lock()
+
+
+def get_providers():
+    """Return (embedder, generator) for the configured provider, or (None, None) for Gemini."""
+    global _shared_embedder, _shared_generator
+    if GOVRAG_PROVIDER != "nvidia":
+        return None, None
+    with _provider_lock:
+        if _shared_embedder is None:
+            _shared_embedder = _LockedEmbedder(LocalEmbedder(model_name=EMBED_MODEL))
+        if _shared_generator is None:
+            generator_kwargs = {"base_url": GOVRAG_BASE_URL} if GOVRAG_BASE_URL else {}
+            _shared_generator = OpenAICompatGenerator(model=GENERATION_MODEL, **generator_kwargs)
+    return _shared_embedder, _shared_generator
+
+
+def embedding_model_name() -> str:
+    return EMBED_MODEL if GOVRAG_PROVIDER == "nvidia" else VERTEX_AI_MODEL
+
+
+def pipeline_description() -> Dict[str, str]:
+    return {
+        "provider": GOVRAG_PROVIDER,
+        "generation_model": GENERATION_MODEL if GOVRAG_PROVIDER == "nvidia" else "gemini-2.5-pro",
+        "embedding_model": embedding_model_name(),
+        "retrieval": GOVRAG_RETRIEVAL,
+        "policy": GOVRAG_POLICY,
+    }
 
 
 # ============================================================
@@ -250,7 +397,7 @@ def build_cache_key(corpus_id: str, request: QueryRequest) -> str:
 def persisted_index_is_current(index_metadata: Dict, corpus_updated_at: Optional[str], rows: List[Dict]) -> bool:
     return (
         index_metadata.get("corpus_updated_at") == corpus_updated_at
-        and index_metadata.get("embedding_model") == VERTEX_AI_MODEL
+        and index_metadata.get("embedding_model") == embedding_model_name()
         and index_metadata.get("index_format_version") == PERSISTED_INDEX_FORMAT_VERSION
         and bool(rows)
         and all(row.get("scope_embedding") is not None for row in rows)
@@ -316,11 +463,14 @@ def get_demo_rag_instance(request: QueryRequest) -> GovRAGGemini:
         print("Initializing demo GOV-RAG...")
         print(f"Documents: {DEMO_DOCUMENTS_DIR}")
 
+        embedder, generator = get_providers()
         demo_rag_instance = GovRAGGemini(
             doc_dir=DEMO_DOCUMENTS_DIR,
             project_id=request.project_id,
             region=request.region,
             use_llm=request.use_llm,
+            embedder=embedder,
+            generator=generator,
         )
         demo_rag_config = config
         print("Demo GOV-RAG initialized.")
@@ -368,12 +518,16 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                 has_scope_embeddings = all(row.get("scope_embedding") is not None for row in rows)
 
                 if persisted_index_is_current(index_meta, corpus_updated_at, rows):
+                    embedder, generator = get_providers()
                     rag = GovRAGGemini.from_persisted_index(
                         persisted["chunks"],
                         project_id=request.project_id,
                         region=request.region,
                         use_llm=request.use_llm,
+                        embedder=embedder,
+                        generator=generator,
                     )
+                    apply_governance_overrides(rag, metadata)
                     cache_meta = {
                         "filename_map": index_meta.get("filename_map", {}),
                         "local_dir": None,
@@ -392,12 +546,12 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                         f"index_updated_at={index_updated_at} "
                         f"corpus_updated_at={corpus_updated_at}"
                     )
-                elif index_model != VERTEX_AI_MODEL:
+                elif index_model != embedding_model_name():
                     print(
                         "govrag_persisted_index_invalid=embedding_model_changed "
                         f"corpus_id={corpus_id} "
                         f"index_model={index_model} "
-                        f"current_model={VERTEX_AI_MODEL}"
+                        f"current_model={embedding_model_name()}"
                     )
                 elif index_version != PERSISTED_INDEX_FORMAT_VERSION:
                     print(
@@ -425,12 +579,16 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                 pass
 
         materialized = corpus_store.materialize_corpus(corpus_id)
+        embedder, generator = get_providers()
         rag = GovRAGGemini(
             doc_dir=materialized["local_dir"],
             project_id=request.project_id,
             region=request.region,
             use_llm=request.use_llm,
+            embedder=embedder,
+            generator=generator,
         )
+        apply_governance_overrides(rag, metadata)
 
         ready_meta = corpus_store.mark_ready(corpus_id)
         corpus_store.write_corpus_index(
@@ -442,7 +600,7 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                 "corpus_id": corpus_id,
                 "corpus_updated_at": ready_meta.get("updated_at"),
                 "document_count": ready_meta.get("document_count", 0),
-                "embedding_model": VERTEX_AI_MODEL,
+                "embedding_model": embedding_model_name(),
                 "filename_map": materialized["filename_map"],
             },
         )
@@ -459,7 +617,135 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
         return rag, cache_meta
 
 
-def format_result(question: str, result: dict, top_k: int = 8, filename_map: Optional[Dict[str, str]] = None):
+def apply_governance_overrides(rag: GovRAGGemini, metadata: Dict) -> None:
+    """Replace inferred status/type with the user's overrides for this corpus.
+
+    doc_meta is keyed by the normalized filename the pipeline loaded. Authority is
+    nudged so an override actually changes ranking, not only the label shown to
+    the model.
+    """
+    for doc in metadata.get("documents", []):
+        status_override = doc.get("status_override")
+        type_override = doc.get("doc_type_override")
+        if not status_override and not type_override:
+            continue
+        key = doc.get("normalized_filename")
+        current = rag.doc_meta.get(key) or DocumentMeta(status="unknown", doc_type="unknown", authority_raw=0.0)
+        status = status_override or current.status
+        authority = current.authority_raw
+        if status_override in STATUS_AUTHORITY_FLOOR:
+            authority = max(authority, STATUS_AUTHORITY_FLOOR[status_override])
+        if status_override in STATUS_AUTHORITY_CEILING:
+            authority = min(authority, STATUS_AUTHORITY_CEILING[status_override])
+        # The evidence block shows "Inferred status: ..."; mark reviewer decisions
+        # so the model weighs them above cues it reads in the text itself.
+        rag.doc_meta[key] = DocumentMeta(
+            status=f"{status} (set by reviewer)" if status_override else status,
+            doc_type=f"{type_override} (set by reviewer)" if type_override else current.doc_type,
+            authority_raw=authority,
+        )
+
+
+def get_document_text(corpus_id: Optional[str], document_id: str, rag: Optional[GovRAGGemini] = None) -> Optional[str]:
+    """Full normalized text of a document, from the store (cached) or from the loaded chunks."""
+    if corpus_id:
+        key = f"{corpus_id}|{document_id}"
+        text = document_text_cache.get(key)
+        if text is None:
+            try:
+                text = corpus_store.read_document_text(corpus_id, document_id)
+            except CorpusStoreError:
+                text = None
+            if text is not None:
+                document_text_cache[key] = text
+        if text is not None:
+            return text
+    if rag is not None:
+        for doc in getattr(rag, "documents", []) or []:
+            if doc.filename == document_id or getattr(doc, "document_id", None) == document_id:
+                return doc.text
+    return None
+
+
+def _norm_value(value: str) -> str:
+    return normalize_claim(value) if value else ""
+
+
+def build_resolution(result: dict, candidates: List[dict], citations: List[dict], filename_map: Dict[str, str]) -> ResolutionInfo:
+    """Summarize how the disagreement was (or was not) resolved.
+
+    Corroboration counts distinct documents per numeric claim value among the
+    evidence the model saw. The rule is inferred from decision, treatments and
+    governance signals; it is a reading aid, not a model output.
+    """
+    decision = result.get("decision", "insufficient_evidence")
+    committed = [str(v) for v in (result.get("short_answers") or []) if str(v).strip()]
+    committed_norm = {_norm_value(v) for v in committed}
+
+    by_claim: Dict[str, Dict] = {}
+    for cand in candidates:
+        claim = cand.get("claim")
+        key = _norm_value(str(claim)) if claim is not None else "NO_CLAIM"
+        if key == "NO_CLAIM" or not key:
+            continue
+        if re.fullmatch(r"(19|20)\d\d", key):
+            continue  # bare years are dates, not competing values
+        entry = by_claim.setdefault(key, {"value": str(claim), "documents": [], "document_ids": []})
+        name = filename_map.get(cand.get("filename", ""), cand.get("filename", ""))
+        doc_id = str(cand.get("document_id") or cand.get("filename") or "")
+        if doc_id not in entry["document_ids"]:
+            entry["documents"].append(name)
+            entry["document_ids"].append(doc_id)
+
+    def is_committed(key: str, value: str) -> bool:
+        if key in committed_norm:
+            return True
+        return any(key and (key in c or c in key) for c in committed_norm if c)
+
+    # Only values the model engaged with: committed ones, or ones found in a
+    # cited document. Other numeric claims among the retrieved chunks are noise
+    # from unrelated passages in large collections.
+    cited_doc_ids = {str(c.get("document_id") or c.get("filename") or "") for c in citations}
+    corroboration = sorted(
+        (
+            CorroborationEntry(
+                value=e["value"], documents=e["documents"], document_ids=e["document_ids"],
+                count=len(e["document_ids"]), committed=is_committed(k, e["value"]),
+            )
+            for k, e in by_claim.items()
+            if is_committed(k, e["value"]) or (set(e["document_ids"]) & cited_doc_ids)
+        ),
+        key=lambda e: (not e.committed, -e.count, e.value),
+    )
+
+    treatments = {c.get("treatment") for c in citations}
+    governing = [c for c in citations if c.get("treatment") == "governing"]
+    dissent = [c for c in citations if c.get("treatment") in ("conflicting", "superseded", "different_scope")]
+    cited_committed = [e for e in corroboration if e.committed]
+    cited_other = [e for e in corroboration if not e.committed]
+
+    if decision == "unresolved_conflict":
+        rule, summary = "tie", "Competing values are equally supported; the system did not choose."
+    elif decision in ("insufficient_evidence", "needs_information"):
+        rule, summary = "none", "No value was committed."
+    elif not result.get("conflict_detected") and not dissent:
+        rule = "single_source" if len({c.get("document_id") for c in citations}) <= 1 else "consistency"
+        summary = "The cited evidence agrees." if rule == "consistency" else "Answered from one source; no disagreement found."
+    elif "superseded" in treatments or any(
+        (c.get("status") or "").startswith("active") for c in candidates if c.get("filename") in {g.get("filename") for g in governing}
+    ):
+        rule, summary = "governance", "An active or authoritative document outranks the dissenting one."
+    elif cited_committed and cited_other and max(e.count for e in cited_committed) > max(e.count for e in cited_other):
+        top, other = max(e.count for e in cited_committed), max(e.count for e in cited_other)
+        rule, summary = "corroboration", f"The committed value is backed by {top} independent document{'s' if top != 1 else ''} against {other}."
+    else:
+        rule, summary = "consistency", "The committed value is the one consistent with the surrounding evidence; the dissent is flagged."
+
+    return ResolutionInfo(rule=rule, summary=summary, committed_values=committed, corroboration=corroboration)
+
+
+def format_result(question: str, result: dict, top_k: int = 8, filename_map: Optional[Dict[str, str]] = None,
+                  corpus_id: Optional[str] = None, rag: Optional[GovRAGGemini] = None, latency_s: Optional[float] = None):
     """Map chunk-level evidence and verified citations to the public response."""
     filename_map = filename_map or {}
     selected_source_raw = result.get("source")
@@ -501,17 +787,31 @@ def format_result(question: str, result: dict, top_k: int = 8, filename_map: Opt
     for citation in result.get("citations", []):
         raw_filename = citation.get("filename", "")
         display_filename = filename_map.get(raw_filename, raw_filename)
+        document_id = str(citation.get("document_id") or raw_filename)
+        passage = citation.get("passage", "") or ""
+        quote = citation["quote"]
+        treatment = citation.get("treatment", "supporting")
+        passage_spans = [list(span) for span in locate_quote(quote, passage)]
+        document_spans: List[List[int]] = []
+        document_text = get_document_text(corpus_id, document_id, rag)
+        if document_text:
+            document_spans = [list(span) for span in locate_quote(quote, document_text)]
+        role = "dissent" if treatment in ("conflicting", "superseded", "different_scope") else (
+            "context" if treatment == "uncertain" else "support")
         citations.append(CitationInfo(
             chunk_id=citation["chunk_id"],
-            document_id=str(citation.get("document_id") or raw_filename),
+            document_id=document_id,
             filename=display_filename,
             page_start=citation.get("page_start"),
             page_end=citation.get("page_end"),
             section=citation.get("section"),
-            passage=citation.get("passage", ""),
-            quote=citation["quote"],
-            treatment=citation.get("treatment", "supporting"),
+            passage=passage,
+            quote=quote,
+            treatment=treatment,
             explanation=citation.get("explanation", ""),
+            passage_spans=passage_spans,
+            document_spans=document_spans,
+            role=role,
         ))
 
     if conflict_detected:
@@ -524,6 +824,11 @@ def format_result(question: str, result: dict, top_k: int = 8, filename_map: Opt
     else:
         num_conflicts = 0
 
+    decision = result.get("decision", "insufficient_evidence")
+    has_dissent = any(c.role == "dissent" for c in citations)
+    decision_label = "answered_with_dissent" if decision == "answered" and (conflict_detected or has_dissent) else decision
+    resolution = build_resolution(result, ordered_candidates, result.get("citations", []), filename_map)
+
     return QueryResponse(
         question=question,
         answer=result.get("answer"),
@@ -534,11 +839,17 @@ def format_result(question: str, result: dict, top_k: int = 8, filename_map: Opt
         num_conflicts=num_conflicts,
         top_sources=top_sources,
         retrieval_mode=result.get("retrieval_mode"),
-        decision=result.get("decision", "insufficient_evidence"),
+        decision=decision,
         explanation=result.get("explanation", result.get("reason", "")) or "",
         citations=citations,
         missing_information=result.get("missing_information", []),
         clarification_question=result.get("clarification_question"),
+        short_answers=[str(v) for v in (result.get("short_answers") or [])],
+        decision_label=decision_label,
+        resolution=resolution,
+        latency_s=round(latency_s, 2) if latency_s is not None else None,
+        model=pipeline_description()["generation_model"],
+        pipeline=pipeline_description(),
     )
 
 
@@ -549,8 +860,9 @@ def run_demo_query(request: QueryRequest) -> QueryResponse:
 
     rag = get_demo_rag_instance(request)
     context = request.context.model_dump(exclude_none=True) if request.context else None
-    result = rag.query(question, context=context)
-    return format_result(question, result, request.top_k)
+    started = time.perf_counter()
+    result = rag.query(question, context=context, retrieval=GOVRAG_RETRIEVAL, policy=GOVRAG_POLICY)
+    return format_result(question, result, request.top_k, rag=rag, latency_s=time.perf_counter() - started)
 
 
 def run_corpus_query(corpus_id: str, request: QueryRequest) -> CorpusQueryResponse:
@@ -560,8 +872,12 @@ def run_corpus_query(corpus_id: str, request: QueryRequest) -> CorpusQueryRespon
 
     rag, cache_meta = ensure_corpus_rag(corpus_id, request, force_reindex=False)
     context = request.context.model_dump(exclude_none=True) if request.context else None
-    result = rag.query(question, context=context)
-    formatted = format_result(question, result, request.top_k, filename_map=cache_meta.get("filename_map", {}))
+    started = time.perf_counter()
+    result = rag.query(question, context=context, retrieval=GOVRAG_RETRIEVAL, policy=GOVRAG_POLICY)
+    formatted = format_result(
+        question, result, request.top_k, filename_map=cache_meta.get("filename_map", {}),
+        corpus_id=corpus_id, rag=rag, latency_s=time.perf_counter() - started,
+    )
 
     return CorpusQueryResponse(corpus_id=corpus_id, **formatted.model_dump())
 
@@ -610,6 +926,9 @@ async def health():
         "demo_rag_initialized": demo_rag_instance is not None,
         "corpus_backend": "gcs" if GOVRAG_BUCKET else "local",
         "govrag_bucket": GOVRAG_BUCKET,
+        "pipeline": pipeline_description(),
+        "status_options": STATUS_OPTIONS,
+        "doc_type_options": DOC_TYPE_OPTIONS,
     }
 
 
@@ -658,8 +977,8 @@ async def batch_query(
             clean_question = question.strip()
             if not clean_question:
                 continue
-            result = rag.query(clean_question)
-            results.append(format_result(clean_question, result, 8))
+            result = rag.query(clean_question, retrieval=GOVRAG_RETRIEVAL, policy=GOVRAG_POLICY)
+            results.append(format_result(clean_question, result, 8, rag=rag))
 
         return results
     except HTTPException:
@@ -734,15 +1053,48 @@ async def get_corpus(corpus_id: str, x_api_key: Optional[str] = Header(default=N
         raise map_store_error(exc)
 
 
+CONTENT_TYPES = {
+    ".pdf": "application/pdf",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".md": "text/markdown; charset=utf-8",
+    ".txt": "text/plain; charset=utf-8",
+}
+
+
+def sanitize_relative_path(path: Optional[str], fallback: str) -> str:
+    """Keep a folder upload's relative path, safe for display and storage keys."""
+    if not path:
+        return fallback
+    parts = [p for p in path.replace("\\", "/").split("/") if p and p not in (".", "..")]
+    parts = [re_sub_unsafe(p) for p in parts]
+    parts = [p for p in parts if p]
+    return "/".join(parts) if parts else fallback
+
+
+def re_sub_unsafe(part: str) -> str:
+    import re
+    return re.sub(r"[^A-Za-z0-9._ -]", "_", part).strip()
+
+
+def infer_governance(text: str) -> Dict[str, object]:
+    return {
+        "inferred_status": detect_status(text),
+        "inferred_doc_type": detect_doc_type(text),
+        "inferred_authority_raw": float(authority_score(text)),
+    }
+
+
 async def handle_document_uploads(
     corpus_id: str,
     files: List[UploadFile],
     max_files: Optional[int] = None,
     max_total_size_bytes: Optional[int] = None,
+    relative_paths: Optional[List[str]] = None,
 ) -> Dict:
     """Shared upload path for both the protected /corpora and public /demo/corpora APIs."""
     if not files:
         raise HTTPException(status_code=400, detail="No files uploaded")
+    relative_paths = relative_paths or []
 
     existing_docs = corpus_store.list_documents(corpus_id)
     if max_files is not None and len(existing_docs) + len(files) > max_files:
@@ -752,9 +1104,12 @@ async def handle_document_uploads(
     pending_docs = []
     uploaded = []
 
-    for upload in files:
+    for position, upload in enumerate(files):
         safe_filename = sanitize_filename(upload.filename or "")
         extension = validate_extension(safe_filename)
+        relative_path = sanitize_relative_path(
+            relative_paths[position] if position < len(relative_paths) else None, safe_filename
+        )
         content = await upload.read()
         size_bytes = len(content)
 
@@ -780,6 +1135,7 @@ async def handle_document_uploads(
         document_id = str(uuid.uuid4())
         _, normalized_filename = make_normalized_filename(safe_filename, document_id)
 
+        governance = infer_governance(normalized_text)
         pending_docs.append({
             "document_id": document_id,
             "original_filename": safe_filename,
@@ -787,11 +1143,22 @@ async def handle_document_uploads(
             "file_type": extension,
             "size_bytes": size_bytes,
             "normalized_text": normalized_text,
+            "relative_path": relative_path,
+            "original_bytes": content,
+            "content_type": CONTENT_TYPES.get(extension, "application/octet-stream"),
+            **governance,
         })
         uploaded.append({
             "document_id": document_id,
-            "filename": safe_filename,
+            "filename": relative_path,
+            "original_filename": safe_filename,
+            "relative_path": relative_path,
+            "file_type": extension,
+            "size_bytes": size_bytes,
             "status": "uploaded",
+            **governance,
+            "status_override": None,
+            "doc_type_override": None,
         })
 
     # Single metadata.json write for the whole batch (GCS rate-limits per-object
@@ -971,6 +1338,7 @@ async def upload_demo_documents(
     corpus_id: str,
     http_request: Request,
     files: List[UploadFile] = File(...),
+    paths: Optional[List[str]] = Form(default=None),
 ):
     enforce_demo_rate_limit(http_request)
     get_demo_corpus_or_404(corpus_id)
@@ -981,6 +1349,7 @@ async def upload_demo_documents(
             files,
             max_files=MAX_DEMO_DOCUMENTS,
             max_total_size_bytes=MAX_DEMO_CORPUS_BYTES,
+            relative_paths=paths,
         )
     except HTTPException:
         raise
@@ -1017,6 +1386,7 @@ def load_example_documents(corpus_id: str) -> Dict:
         document_id = str(uuid.uuid4())
         _, normalized_filename = make_normalized_filename(original_filename, document_id)
 
+        governance = infer_governance(text)
         pending_docs.append({
             "document_id": document_id,
             "original_filename": original_filename,
@@ -1024,11 +1394,22 @@ def load_example_documents(corpus_id: str) -> Dict:
             "file_type": ".md",
             "size_bytes": size_bytes,
             "normalized_text": text,
+            "relative_path": f"example/{original_filename}",
+            "original_bytes": text.encode("utf-8"),
+            "content_type": CONTENT_TYPES[".md"],
+            **governance,
         })
         uploaded.append({
             "document_id": document_id,
-            "filename": original_filename,
+            "filename": f"example/{original_filename}",
+            "original_filename": original_filename,
+            "relative_path": f"example/{original_filename}",
+            "file_type": ".md",
+            "size_bytes": size_bytes,
             "status": "uploaded",
+            **governance,
+            "status_override": None,
+            "doc_type_override": None,
         })
 
     # Single metadata.json write for all 180 files (see handle_document_uploads).
@@ -1067,19 +1448,128 @@ async def list_demo_documents(corpus_id: str, http_request: Request):
         return {
             "corpus_id": corpus_id,
             "document_count": len(documents),
-            "documents": [
-                {
-                    "document_id": d.get("document_id"),
-                    "filename": d.get("original_filename"),
-                    "file_type": d.get("file_type"),
-                    "uploaded_at": d.get("uploaded_at"),
-                    "size_bytes": d.get("size_bytes"),
-                }
-                for d in documents
-            ],
+            "documents": [public_document_view(d) for d in documents],
         }
     except Exception as exc:
         raise map_store_error(exc)
+
+
+def public_document_view(d: Dict) -> Dict:
+    return {
+        "document_id": d.get("document_id"),
+        "filename": d.get("relative_path") or d.get("original_filename"),
+        "original_filename": d.get("original_filename"),
+        "relative_path": d.get("relative_path") or d.get("original_filename"),
+        "file_type": d.get("file_type"),
+        "uploaded_at": d.get("uploaded_at"),
+        "size_bytes": d.get("size_bytes"),
+        "inferred_status": d.get("inferred_status", "unknown"),
+        "inferred_doc_type": d.get("inferred_doc_type", "unknown"),
+        "status_override": d.get("status_override"),
+        "doc_type_override": d.get("doc_type_override"),
+        "has_original": bool(d.get("original_path")),
+    }
+
+
+@app.patch("/demo/corpora/{corpus_id}/documents/{document_id}")
+async def override_demo_document(corpus_id: str, document_id: str, payload: DocumentOverrideRequest, http_request: Request):
+    """Set or clear the user's governance overrides for one document."""
+    enforce_demo_rate_limit(http_request)
+    get_demo_corpus_or_404(corpus_id)
+    if payload.status_override is not None and payload.status_override not in STATUS_OPTIONS:
+        raise HTTPException(status_code=400, detail=f"status_override must be one of {STATUS_OPTIONS}")
+    if payload.doc_type_override is not None and payload.doc_type_override not in DOC_TYPE_OPTIONS:
+        raise HTTPException(status_code=400, detail=f"doc_type_override must be one of {DOC_TYPE_OPTIONS}")
+    fields: Dict = {}
+    if payload.clear:
+        fields = {"status_override": None, "doc_type_override": None}
+    else:
+        if "status_override" in payload.model_fields_set:
+            fields["status_override"] = payload.status_override
+        if "doc_type_override" in payload.model_fields_set:
+            fields["doc_type_override"] = payload.doc_type_override
+    if not fields:
+        raise HTTPException(status_code=400, detail="Nothing to update")
+    try:
+        doc = corpus_store.update_document(corpus_id, document_id, fields)
+        invalidate_corpus_cache(corpus_id)
+        return public_document_view(doc)
+    except Exception as exc:
+        raise map_store_error(exc)
+
+
+@app.delete("/demo/corpora/{corpus_id}/documents/{document_id}")
+async def delete_demo_document(corpus_id: str, document_id: str, http_request: Request):
+    enforce_demo_rate_limit(http_request)
+    get_demo_corpus_or_404(corpus_id)
+    try:
+        metadata = corpus_store.delete_document(corpus_id, document_id)
+        invalidate_corpus_cache(corpus_id)
+        document_text_cache.pop(f"{corpus_id}|{document_id}", None)
+        return {"corpus_id": corpus_id, "document_id": document_id, "status": "deleted",
+                "document_count": metadata.get("document_count", 0)}
+    except Exception as exc:
+        raise map_store_error(exc)
+
+
+@app.get("/demo/corpora/{corpus_id}/documents/{document_id}/text")
+async def demo_document_text(corpus_id: str, document_id: str, http_request: Request):
+    """Full normalized text plus chunk spans, for the reader pane."""
+    enforce_demo_rate_limit(http_request)
+    get_demo_corpus_or_404(corpus_id)
+    try:
+        doc = corpus_store.get_document(corpus_id, document_id)
+        text = get_document_text(corpus_id, document_id) or ""
+    except Exception as exc:
+        raise map_store_error(exc)
+
+    chunks: List[Dict] = []
+    with cache_lock:
+        instances = [rag for key, rag in rag_instances.items() if key.startswith(f"{corpus_id}|")]
+    if instances:
+        rag = instances[0]
+        chunks = [
+            {"chunk_id": c.chunk_id, "chunk_index": c.chunk_index, "text": c.text,
+             "page_start": c.page_start, "page_end": c.page_end, "section": c.section}
+            for c in rag.chunks if c.document_id == document_id
+        ]
+        chunks = [{k: v for k, v in c.items() if k != "text"} for c in locate_chunks(chunks, text)]
+    pages = []
+    if "\f" in text:
+        offset = 0
+        for number, page_text in enumerate(text.split("\f"), start=1):
+            pages.append({"page": number, "start": offset, "end": offset + len(page_text)})
+            offset += len(page_text) + 1
+    return {
+        **public_document_view(doc),
+        "text": text,
+        "chunks": chunks,
+        "pages": pages,
+    }
+
+
+@app.get("/demo/corpora/{corpus_id}/documents/{document_id}/original")
+async def demo_document_original(corpus_id: str, document_id: str, http_request: Request, format: Optional[str] = None):
+    """The file as uploaded (PDF, Markdown, text) or, for Word files with
+    ``?format=html``, an HTML rendering for in-browser display."""
+    enforce_demo_rate_limit(http_request)
+    get_demo_corpus_or_404(corpus_id)
+    try:
+        doc = corpus_store.get_document(corpus_id, document_id)
+        data = corpus_store.read_original(corpus_id, document_id)
+    except Exception as exc:
+        raise map_store_error(exc)
+    file_type = doc.get("file_type", "")
+    if file_type == ".docx" and format == "html":
+        try:
+            import mammoth
+        except ImportError as exc:
+            raise HTTPException(status_code=501, detail="Word rendering needs the 'mammoth' package") from exc
+        html = mammoth.convert_to_html(io.BytesIO(data)).value
+        return HTMLResponse(content=html)
+    media_type = CONTENT_TYPES.get(file_type, "application/octet-stream")
+    headers = {"Content-Disposition": f"inline; filename=\"{doc.get('original_filename', 'document')}\""}
+    return Response(content=data, media_type=media_type, headers=headers)
 
 
 @app.delete("/demo/corpora/{corpus_id}")
@@ -1110,7 +1600,8 @@ async def query_demo_corpus(
         project_id=DEMO_PROJECT_ID,
         region=DEMO_REGION,
         use_llm=True,
-        top_k=8,
+        top_k=payload.top_k,
+        context=payload.context,
     )
 
     try:

@@ -118,6 +118,16 @@ Local fallback (when `GOVRAG_BUCKET` is unset):
 - `GOVRAG_MAX_QUESTION_LENGTH` (optional; default `2000`)
 - `GOVRAG_DEMO_RATE_LIMIT_PER_MINUTE` (optional; default `30`, per-IP, in-memory)
 
+Pipeline configuration (the paper's "Variant 3" is the default):
+
+- `GOVRAG_PROVIDER` (`nvidia` when `NVIDIA_API_KEY`/`OPENAI_API_KEY` is set, else `gemini`):
+  `nvidia` = local `BAAI/bge-small-en-v1.5` embeddings + an OpenAI-compatible chat endpoint
+- `NVIDIA_API_KEY` (read from `corvic/.env` if present; never commit it)
+- `NEMOTRON_MODEL` (default `nvidia/nemotron-3.5-super-vl-120b-a12b`)
+- `DOCUINSIGHT_BASE_URL` / `GOVRAG_BASE_URL` (optional; any OpenAI-compatible endpoint, e.g. a local vLLM)
+- `GOVRAG_RETRIEVAL` (`hybrid` default | `dense`) and `GOVRAG_POLICY` (`answer_and_flag` default | `strict`)
+- `GOVRAG_EMBED_MODEL`, `EMBED_DEVICE` (`cpu` | `mps` | `cuda`)
+
 ## Local Run
 
 ```bash
@@ -185,9 +195,20 @@ POST   /demo/corpora                      -> create a session corpus, returns co
 POST   /demo/corpora/{corpus_id}/documents -> upload files (multipart, multiple)
 POST   /demo/corpora/{corpus_id}/query     -> auto-indexes if needed, returns GOV-RAG result
 GET    /demo/corpora/{corpus_id}
-GET    /demo/corpora/{corpus_id}/documents
+GET    /demo/corpora/{corpus_id}/documents  -> includes inferred status/type and overrides
+PATCH  /demo/corpora/{corpus_id}/documents/{document_id}          -> {status_override, doc_type_override, clear}
+DELETE /demo/corpora/{corpus_id}/documents/{document_id}
+GET    /demo/corpora/{corpus_id}/documents/{document_id}/text     -> normalized text + chunk/page spans (reader pane)
+GET    /demo/corpora/{corpus_id}/documents/{document_id}/original -> the uploaded file; `?format=html` renders .docx
 DELETE /demo/corpora/{corpus_id}
 ```
+
+Uploads accept an optional repeated `paths` form field (one per file) carrying the
+relative path inside an uploaded folder; it becomes the document's display name.
+Query responses carry, per citation, the verified quote's character spans in the chunk
+(`passage_spans`) and in the full document (`document_spans`), a `role`
+(support | dissent | context), plus `decision_label` (adds `answered_with_dissent`) and a
+`resolution` block (rule, summary, corroboration counts per competing value).
 
 Security properties:
 
