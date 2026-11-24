@@ -1,0 +1,83 @@
+{
+  "source_details": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/conflicts_nvidia_closedbook_details_20261120_224055.csv",
+  "dataset": "conflicts",
+  "tag": "conflicts_nvidia_closedbook",
+  "stamp": "20261120_224055",
+  "judge_model": "z-ai/glm-5.3-flash",
+  "n": 458,
+  "n_labelled": 458,
+  "n_unlabelled": 0,
+  "FC": 58.08,
+  "PC": 14.85,
+  "Inc": 27.07,
+  "mean_judge_latency_s": 20.73,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 75.65,
+      "PC": 11.3,
+      "Inc": 13.04
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "n_labelled": 5,
+      "FC": 100.0,
+      "PC": 0.0,
+      "Inc": 0.0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "n_labelled": 62,
+      "FC": 48.39,
+      "PC": 9.68,
+      "Inc": 41.94
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 34.78,
+      "PC": 28.7,
+      "Inc": 36.52
+    },
+    "No conflict": {
+      "n": 161,
+      "n_labelled": 161,
+      "FC": 64.6,
+      "PC": 9.94,
+      "Inc": 25.47
+    }
+  },
+  "by_reference": {
+    "no_reference": {
+      "n": 221,
+      "n_labelled": 221,
+      "FC": 54.3,
+      "PC": 19.91,
+      "Inc": 25.79
+    },
+    "with_reference": {
+      "n": 237,
+      "n_labelled": 237,
+      "FC": 61.6,
+      "PC": 10.13,
+      "Inc": 28.27
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 412,
+      "n_labelled": 412,
+      "FC": 64.32,
+      "PC": 16.02,
+      "Inc": 19.66
+    },
+    "insufficient_evidence": {
+      "n": 46,
+      "n_labelled": 46,
+      "FC": 2.17,
+      "PC": 4.35,
+      "Inc": 93.48
+    }
+  }
+}

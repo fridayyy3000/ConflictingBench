@@ -1,0 +1,45 @@
+{
+  "total": 500,
+  "decisions": {
+    "insufficient_evidence": 191,
+    "answered": 309
+  },
+  "decision_match_rate": 61.8,
+  "validation_errors": 0,
+  "repairs_used": 1,
+  "items_with_dropped_citations": 0,
+  "mean_latency_s": 20.76,
+  "set_em": 8.6,
+  "set_em_ci95": [
+    6.2,
+    11.0
+  ],
+  "strict_set_em": 8.4,
+  "set_em_by_num_gold": {
+    "1": 26.0,
+    "2": 7.0,
+    "3": 1.5
+  },
+  "set_em_single_gold": 26.0,
+  "set_em_single_gold_n": 100,
+  "any_gold_in_answer": 37.2,
+  "misinfo_in_answer_rate": 3.6,
+  "gold_doc_in_context": 0.0,
+  "cited_doc_precision": null,
+  "items_citing_misinfo": 0,
+  "selected_label": {
+    "none": 500
+  },
+  "dataset": "ramdocs",
+  "mode": "closedbook",
+  "provider": "nvidia",
+  "generation_model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "If the question is ambiguous because several distinct entities share the same name, give the correct answer for each entity and list each one in short_answers.",
+  "details_csv": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/ramdocs_nvidia_closedbook_details_20261120_171839.csv",
+  "run_log": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/ramdocs_nvidia_closedbook_run_20261120_171839.log"
+}

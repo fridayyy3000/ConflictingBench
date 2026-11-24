@@ -1,0 +1,100 @@
+{
+  "total": 458,
+  "decisions": {
+    "answered": 429,
+    "insufficient_evidence": 8,
+    "unresolved_conflict": 16,
+    "needs_information": 5
+  },
+  "decision_match_rate": 73.8,
+  "validation_errors": 0,
+  "repairs_used": 121,
+  "items_with_dropped_citations": 11,
+  "mean_latency_s": 50.74,
+  "decision_match_ci95": [
+    69.9,
+    77.7
+  ],
+  "answer_correct": 77.22,
+  "answer_correct_n": 237,
+  "judge_adherent": null,
+  "judge_adherent_ci95": null,
+  "judge_n": 0,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "decision_match": 95.65,
+      "decisions": {
+        "answered": 110,
+        "unresolved_conflict": 3,
+        "needs_information": 2
+      },
+      "answer_correct": 71.43,
+      "answer_correct_n": 7,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "decision_match": 100.0,
+      "decisions": {
+        "answered": 5
+      },
+      "answer_correct": 80.0,
+      "answer_correct_n": 5,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "decision_match": 93.55,
+      "decisions": {
+        "answered": 58,
+        "insufficient_evidence": 1,
+        "needs_information": 2,
+        "unresolved_conflict": 1
+      },
+      "answer_correct": 61.29,
+      "answer_correct_n": 62,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "decision_match": 10.43,
+      "decisions": {
+        "answered": 103,
+        "unresolved_conflict": 12
+      },
+      "answer_correct": 50.0,
+      "answer_correct_n": 2,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "No conflict": {
+      "n": 161,
+      "decision_match": 95.03,
+      "decisions": {
+        "insufficient_evidence": 7,
+        "answered": 153,
+        "needs_information": 1
+      },
+      "answer_correct": 83.85,
+      "answer_correct_n": 161,
+      "judge_adherent": null,
+      "judge_n": 0
+    }
+  },
+  "dataset": "conflicts",
+  "mode": "hybrid",
+  "provider": "nvidia",
+  "generation_model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "",
+  "details_csv": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/conflicts_nvidia_hybrid_details_20261121_051419.csv",
+  "run_log": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/conflicts_nvidia_hybrid_run_20261121_051419.log"
+}

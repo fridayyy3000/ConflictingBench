@@ -22,14 +22,14 @@ from typing import Dict, List, Optional
 import numpy as np
 
 try:
-    from pipeline.chunker import chunk_text
+    from pipeline.chunker import chunk_text_with_locations
 except ModuleNotFoundError as exc:
     if exc.name != "pipeline":
         raise
     try:
-        from .chunker import chunk_text
+        from .chunker import chunk_text_with_locations
     except ImportError:
-        from chunker import chunk_text
+        from chunker import chunk_text_with_locations
 
 # Import Vertex AI (for project-based authentication)
 try:
@@ -65,77 +65,184 @@ GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY", None)
 # SYSTEM PROMPT FOR FINAL EVIDENCE RESOLUTION
 # ============================================================
 
-SYSTEM_PROMPT = """You are GOV-RAG, a unified evidence-grounded question-answering system.
+SYSTEM_PROMPT = """You answer questions using only the supplied evidence passages and optional case context.
+Read full passages, including conditions and exceptions. Never infer organizational authority
+as verified fact: status, document type, authority scores, and scope similarity are inferred
+signals only; scope similarity is not proof of applicability. Never invent precedence.
 
-You always run the SAME pipeline: retrieve relevant evidence, then reason over it to
-produce an answer. You do not have two separate modes. Instead, you naturally behave
-like ordinary evidence-grounded QA when the evidence agrees (or when only one source
-is relevant), and you apply stronger governance reasoning only when the evidence
-genuinely disagrees on the answer to the same question.
+Choose exactly one decision:
+- answered: evidence supports a direct answer, including its conditions and exceptions.
+- unresolved_conflict: applicable evidence disagrees and documented precedence does not resolve it.
+- needs_information: relevant rules exist, but essential facts about this case are missing.
+- insufficient_evidence: retrieved passages do not support an answer.
 
-You must answer the user's question using ONLY the retrieved evidence provided to you.
+Do not force a winner between equally applicable conflicting passages. Distinguish different
+scope, explicitly superseded material, supporting context, and uncertain applicability. A
+document saying it "supersedes" earlier documents is not itself superseded.
 
-STEP 1: Determine whether the evidence actually conflicts.
-
-Conflict means there are genuinely incompatible answers to the SAME question
-(e.g. "0.72% vs 0.90%", "30 days vs 60 days", "Version 4 required vs Version 3
-required").
-
-Do NOT mark conflict_detected=true just because multiple documents or multiple
-chunks were retrieved, multiple chunks come from the same or different files, or
-the evidence discusses different aspects of the topic without disagreeing.
-
-If only one relevant source/answer exists, or all relevant evidence agrees,
-set conflict_detected=false.
-
-STEP 2: Answer accordingly.
-
-IF THE EVIDENCE DOES NOT CONFLICT (ordinary QA):
-- Answer directly and concisely using the supplied evidence passages.
-- Identify the single strongest supporting source.
-- Do not require or invent authority/governance/policy reasoning - most ordinary
-  documents (research papers, technical docs, manuals, etc.) have no governance
-  metadata at all, and that is normal and expected.
-- Do not invent information that is not in the supplied evidence.
-- Only say the answer cannot be determined if the supplied relevant evidence
-  genuinely does not contain the answer. Read the full passage text, not just
-  any extracted "claim" field, before concluding evidence is insufficient.
-- conflict_detected must be false.
-
-IF THE EVIDENCE GENUINELY CONFLICTS, resolve it using, in order of importance:
-
-1. Exact scope: prefer documents/passages that apply to the exact entity,
-   category, tier, product, model, incident class, or policy scope asked about.
-2. Authority: prefer active governing policies, official standards, and
-   authoritative primary documents over FAQs, summaries, training guides,
-   reference cards, planning briefs, compliance digests, or other secondary
-   materials.
-3. Current status: prefer active/current documents over archived, superseded,
-   obsolete, historical, or draft documents.
-4. Supersession: if one document explicitly supersedes or replaces another,
-   prefer the superseding document.
-5. Directness: prefer a passage that directly states the requirement over one
-   that merely summarizes or refers to another source.
-6. Evidence frequency is NOT authority: multiple secondary documents repeating
-   the same value do not outweigh one clearly authoritative governing document.
-
-Do not use prior knowledge or world knowledge. Do not assume the first
-retrieved passage is correct. Reason from the actual passage text, not only
-from any extracted "claim" field (extracted claims can be wrong for things
-like "Q4", "Tier-3", or section numbers - ignore them if the passage text
-says otherwise).
-
-Return JSON only in this format:
-
+Return JSON only:
 {
-  "answer": "<concise answer - just the value, not a full sentence>",
-  "selected_source": "<filename>",
-  "reason": "<brief explanation of why this evidence supports the answer, or why this source governs if there was a conflict>",
-  "conflict_detected": true,
+  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
+  "answer": "Readable answer with all important conditions and exceptions.",
+  "short_answers": ["each distinct final answer as a short span; for an unresolved conflict, each competing answer"],
+  "citations": [
+    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
+     "treatment": "governing|supporting|superseded|different_scope|conflicting|uncertain",
+     "explanation": "brief plain-language treatment"}
+  ],
+  "explanation": "Brief explanation of this decision.",
+  "missing_information": [],
+  "clarification_question": null,
+  "selected_source": null,
+  "conflict_detected": false,
+  "confidence": "high|medium|low"
+}
+For unresolved conflicts, cite each materially competing passage and explain its treatment;
+selected_source must be null. For needs_information, list the missing facts and ask a useful
+clarification question. Use an empty citation list if evidence cannot support any citation.
+When the decision is answered, selected_source must be the filename of the governing passage the
+answer is taken from (never null). selected_source must exactly match a supplied filename and
+appear in citations. Numeric claim metadata is a search aid, never a citation or proof."""
+
+# GOV-RAG "answer-and-flag" conflict policy. Same governance reasoning as
+# SYSTEM_PROMPT, but when applicable passages disagree and no governance signal
+# (status, supersession, scope) separates them, the model commits to the
+# better-corroborated value and flags the dissent instead of abstaining.
+# ``unresolved_conflict`` is reserved for genuine ties.
+SYSTEM_PROMPT_ANSWER_AND_FLAG = """You answer questions using only the supplied evidence passages and optional case context.
+Read full passages, including conditions and exceptions. Never infer organizational authority
+as verified fact: status, document type, authority scores, and scope similarity are inferred
+signals only; scope similarity is not proof of applicability. Never invent precedence.
+
+Choose exactly one decision:
+- answered: evidence supports a direct answer, including its conditions and exceptions.
+- unresolved_conflict: applicable passages disagree AND the competing values are equally
+  supported (see the tie rule below).
+- needs_information: relevant rules exist, but essential facts about this case are missing.
+- insufficient_evidence: retrieved passages do not support an answer.
+
+Resolving disagreement, in order:
+1. Governance: a passage that is explicitly superseded, out of scope, or supporting context
+   does not compete. A document saying it "supersedes" earlier documents is not itself superseded.
+2. Corroboration: among the passages that do compete, prefer the value supported by more
+   independent documents (different filenames). Treat the "Corroboration" summary, when
+   supplied, as a count aid only; verify it against the passages.
+3. Consistency: prefer the value that agrees with the other facts in the evidence (dates,
+   places, names, totals) and that comes from a more specific, internally consistent passage.
+4. Tie rule: only if the competing values are supported by the same number of independent
+   documents and steps 1 and 3 do not separate them, choose unresolved_conflict.
+
+When you commit under step 2 or 3, the decision is answered, conflict_detected is true, the
+dissenting passage is cited with treatment "conflicting", and the explanation names the
+rejected value and why it lost. short_answers must contain only the committed answer(s), never
+the rejected value. If the question is ambiguous because several distinct entities share the
+same name, give the correct answer for each entity; that is not a conflict.
+
+Return JSON only:
+{
+  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
+  "answer": "Readable answer with all important conditions and exceptions; mention flagged dissent briefly.",
+  "short_answers": ["each distinct final answer as a short span; for an unresolved conflict, each competing answer"],
+  "citations": [
+    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
+     "treatment": "governing|supporting|superseded|different_scope|conflicting|uncertain",
+     "explanation": "brief plain-language treatment"}
+  ],
+  "explanation": "Brief explanation of this decision, including how any conflict was resolved.",
+  "missing_information": [],
+  "clarification_question": null,
+  "selected_source": null,
+  "conflict_detected": false,
+  "confidence": "high|medium|low"
+}
+For unresolved conflicts, cite each materially competing passage and explain its treatment;
+selected_source must be null. For needs_information, list the missing facts and ask a useful
+clarification question. Use an empty citation list if evidence cannot support any citation.
+When the decision is answered, selected_source must be the filename of the governing passage the
+answer is taken from (never null). selected_source must exactly match a supplied filename and
+appear in citations. Numeric claim metadata is a search aid, never a citation or proof."""
+
+# Plain evidence-grounded RAG prompt used by the ``baseline`` mode. Same output
+# schema so results are directly comparable, but no governance guidance: the
+# model is simply asked to answer from the retrieved passages.
+BASELINE_SYSTEM_PROMPT = """You answer questions using only the supplied evidence passages and optional case context.
+Read the passages and answer the question as directly as you can from them. If the passages
+disagree, use your best judgment about which answer the evidence supports.
+
+Return JSON only:
+{
+  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
+  "answer": "Readable answer.",
+  "short_answers": ["each distinct final answer as a short span"],
+  "citations": [
+    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
+     "treatment": "supporting|conflicting",
+     "explanation": "brief plain-language note"}
+  ],
+  "explanation": "Brief explanation of this answer.",
+  "missing_information": [],
+  "clarification_question": null,
+  "selected_source": "filename of the passage the answer is taken from, or null",
+  "conflict_detected": false,
+  "confidence": "high|medium|low"
+}
+Use "answered" whenever the passages support an answer. When the decision is answered,
+selected_source must be the filename of the passage the answer is taken from (never null); it must
+exactly match a supplied filename and must also appear in citations."""
+
+# Closed-book control (``closedbook`` mode): no retrieved passages at all. A
+# targeted few-shot chain-of-thought prompt whose worked examples match the
+# task format (single answer, several answers when a name is ambiguous, and an
+# honest "unknown"), so the control is a fair test of parametric knowledge.
+CLOSED_BOOK_SYSTEM_PROMPT = """You answer questions from your own knowledge. No documents are provided.
+Think step by step first: identify what the question refers to, recall what you know, check whether the
+name could refer to several distinct things, and decide how confident you are. Then give the answer.
+
+Rules:
+- If the question is ambiguous because several distinct entities share the same name, give the correct answer
+  for each entity and list each one in short_answers with the entity in parentheses.
+- If you do not know, say so: set decision to "insufficient_evidence" and leave short_answers empty.
+  Do not guess a specific value you cannot recall.
+- short_answers holds each distinct final answer as a short span (a name, a number, a date, a phrase).
+
+Return the reasoning, then JSON only:
+{
+  "reasoning": "step-by-step thinking",
+  "decision": "answered|insufficient_evidence",
+  "answer": "Readable answer.",
+  "short_answers": ["short span", "..."],
   "confidence": "high|medium|low"
 }
 
-IMPORTANT: For the "answer" field, provide ONLY the concise value (e.g., "7,430 Quens" or "26 hours" or "13.6%" or a short phrase), NOT a full sentence. Do not include phrases like "The answer is" or repeat the question."""
+Example 1
+Question: Who wrote the novel Pride and Prejudice?
+{
+  "reasoning": "Pride and Prejudice is an English novel first published in 1813. Its author is Jane Austen. The title is not shared by another well-known work, so there is one answer.",
+  "decision": "answered",
+  "answer": "Pride and Prejudice was written by Jane Austen and published in 1813.",
+  "short_answers": ["Jane Austen"],
+  "confidence": "high"
+}
+
+Example 2
+Question: What is the population of Georgia?
+{
+  "reasoning": "Georgia names two distinct places: the U.S. state and the country in the Caucasus. The question does not say which, so both answers are needed. The state had about 10.7 million residents in the 2020 census; the country has roughly 3.7 million people.",
+  "decision": "answered",
+  "answer": "The name is ambiguous. The U.S. state of Georgia had about 10.7 million residents in the 2020 census, while the country of Georgia has roughly 3.7 million people.",
+  "short_answers": ["about 10.7 million (U.S. state of Georgia, 2020 census)", "about 3.7 million (country of Georgia)"],
+  "confidence": "medium"
+}
+
+Example 3
+Question: In what year was the Mill Creek covered bridge in Ashtabula County last repainted?
+{
+  "reasoning": "This asks for a specific maintenance date for a small local structure. I have no reliable knowledge of it and guessing a year would likely be wrong.",
+  "decision": "insufficient_evidence",
+  "answer": "I do not know when that bridge was last repainted.",
+  "short_answers": [],
+  "confidence": "low"
+}"""
 
 INITIAL_RETRIEVAL_K = 30
 FINAL_CONTEXT_K = 8
@@ -144,6 +251,23 @@ FINAL_CONTEXT_K = 8
 W_SEMANTIC = 0.30
 W_AUTHORITY = 0.50
 W_SCOPE = 0.20
+
+# Relevance gate. Authority and scope bonuses only apply to chunks whose
+# semantic similarity is within this margin of the most relevant retrieved
+# chunk, fading linearly to zero at the margin. Without it, an authoritative
+# document about an unrelated topic (similarity 0.57 vs 0.82 for the relevant
+# ones) outranked every relevant passage purely on its authority score and
+# filled most of the context window. Set to None to disable (pure additive).
+RELEVANCE_GATE_MARGIN = 0.10
+
+
+def relevance_gate(semantic, best_semantic, margin=None):
+    """Return a 0..1 multiplier for authority/scope bonuses."""
+    margin = RELEVANCE_GATE_MARGIN if margin is None else margin
+    if not margin or margin <= 0:
+        return 1.0
+    gate = (semantic - (best_semantic - margin)) / margin
+    return max(0.0, min(1.0, gate))
 
 
 # ============================================================
@@ -170,6 +294,12 @@ class Candidate:
     doc_type: str
     final_score: float = 0.0
     chunk_index: Optional[int] = None
+    document_id: Optional[str] = None
+    chunk_id: Optional[str] = None
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    section: Optional[str] = None
+    relevance_gate: float = 1.0
 
 
 @dataclass
@@ -183,6 +313,9 @@ class Chunk:
     scope_text: Optional[str] = None
     embedding: Optional[np.ndarray] = None
     scope_embedding: Optional[np.ndarray] = None
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    section: Optional[str] = None
 
 
 @dataclass
@@ -191,6 +324,407 @@ class DocumentMeta:
     status: str
     doc_type: str
     authority_raw: float
+
+
+DECISIONS = {"answered", "unresolved_conflict", "needs_information", "insufficient_evidence"}
+CITATION_TREATMENTS = {
+    "governing", "supporting", "superseded", "different_scope", "conflicting", "uncertain",
+}
+
+
+def format_location(page_start=None, page_end=None, section=None):
+    parts = []
+    if page_start is not None:
+        parts.append(f"page {page_start}" if page_start == page_end else f"pages {page_start}-{page_end}")
+    if section:
+        parts.append(f"section {section}")
+    return ", ".join(parts) or "chunk reference only"
+
+
+def generation_failure(reason):
+    """A visible failure result. ``validation_error`` marks that this came from
+    the pipeline rejecting the model's output, not from the model deciding the
+    evidence was insufficient, so evaluations can tell the two apart."""
+    return {
+        "decision": "insufficient_evidence",
+        "answer": "No answer could be safely generated from the retrieved evidence.",
+        "citations": [],
+        "reason": reason,
+        "explanation": reason,
+        "missing_information": [],
+        "clarification_question": None,
+        "selected_source": None,
+        "conflict_detected": False,
+        "confidence": "low",
+        "validation_error": True,
+    }
+
+
+# Characters that models routinely drop or alter when quoting Markdown
+# passages: emphasis markers, code ticks, heading/quote markers, and
+# typographic quotes/dashes. Quote verification compares both sides after
+# removing or unifying them, so a verbatim quote of "**7,430 Quens**" that
+# comes back as "7,430 Quens" still verifies.
+_QUOTE_STRIP = re.compile(r"[*_`#>\[\]]")
+_QUOTE_UNIFY = {
+    "‘": "'", "’": "'", "“": '"', "”": '"',
+    "–": "-", "—": "-", "…": "...", " ": " ",
+}
+
+
+def _normalized_quote(text):
+    text = text or ""
+    for src, dst in _QUOTE_UNIFY.items():
+        text = text.replace(src, dst)
+    text = _QUOTE_STRIP.sub("", text)
+    text = " ".join(text.split()).casefold()
+    # Models often wrap the quote in quotation marks or trailing ellipses.
+    return text.strip(" \"'.")
+
+
+def quote_matches(quote, text):
+    """True if ``quote`` is a verbatim span of ``text`` after normalisation.
+
+    Models often shorten a long passage by joining two or more non-adjacent
+    spans with an ellipsis ("A ... B"). Each span is then verified separately
+    and must appear in the passage in the same order.
+    """
+    q = _normalized_quote(quote)
+    t = _normalized_quote(text)
+    if not q:
+        return False
+    if q in t:
+        return True
+    segments = [seg.strip(" \"'.,;:") for seg in q.split("...")]
+    segments = [seg for seg in segments if seg]
+    if len(segments) < 2:
+        return False
+    pos = 0
+    for seg in segments:
+        idx = t.find(seg, pos)
+        if idx < 0:
+            return False
+        pos = idx + len(seg)
+    return True
+
+
+def run_generation(complete, system_prompt, user_prompt, candidates, max_repairs=1):
+    """Run a chat completion, validate it, and give the model one chance to
+    repair a rejected output.
+
+    ``complete(system_prompt, user_prompt) -> str`` is the provider call. On a
+    validator rejection the rejection reason is appended to the prompt and the
+    model is asked for corrected JSON. The returned result carries
+    ``repair_attempts`` (0 or 1) and, for a final rejection, ``validation_error``.
+    """
+    feedback = ""
+    for attempt in range(max_repairs + 1):
+        response_text = complete(system_prompt, user_prompt + feedback)
+        parsed = parse_json_response(response_text)
+        if parsed is None:
+            print("ERROR: JSON parsing failed")
+            print(f"Full response ({len(response_text)} chars):")
+            print(response_text)
+            validated = generation_failure("Generation returned invalid JSON; no answer was selected.")
+        else:
+            validated = validate_generation_result(parsed, candidates)
+        validated["repair_attempts"] = attempt
+        if not validated.get("validation_error"):
+            return validated
+        if attempt == max_repairs:
+            # Last resort: keep the answer but drop the citations that could
+            # not be verified, rather than discarding a well-formed answer over
+            # one bad quote. The number dropped is recorded for reporting.
+            if parsed is not None:
+                salvaged = validate_generation_result(parsed, candidates, drop_unverifiable=True)
+                if not salvaged.get("validation_error"):
+                    salvaged["repair_attempts"] = attempt
+                    print(f"SALVAGED: dropped {salvaged.get('dropped_citations', 0)} unverifiable citation(s)")
+                    return salvaged
+            return validated
+        print(f"REPAIR: asking the model to fix a rejected output ({validated['reason']})")
+        feedback = (
+            "\n\nYour previous JSON response was rejected for this reason: "
+            f"{validated['reason']} "
+            "Return the complete corrected JSON only. Every citation quote must be copied "
+            "verbatim from the Content of the passage whose Chunk ID you cite, every "
+            "treatment must be one of the allowed values, and selected_source must be a "
+            "cited filename."
+        )
+    return validated
+
+
+def format_evidence(candidates, include_signals=True):
+    """Format candidates as numbered evidence blocks.
+
+    ``include_signals=False`` omits the inferred status/type/authority/scope
+    lines so a plain-RAG baseline sees only the passages themselves.
+    """
+    parts = []
+
+    for i, c in enumerate(candidates, 1):
+        chunk_label = f" (chunk {c.chunk_index + 1})" if c.chunk_index is not None else ""
+        text = c.text if len(c.text) <= 6000 else c.text[:6000] + "..."
+        signal_lines = ""
+        if include_signals:
+            signal_lines = (
+                f"Inferred status: {c.status}\n"
+                f"Inferred type: {c.doc_type}\n"
+                f"Inferred authority signal: {c.authority_score:.3f}\n"
+                f"Scope similarity (not proof of applicability): {c.scope_score:.3f}\n"
+            )
+        parts.append(f"""Evidence {i}{chunk_label}:
+Chunk ID: {c.chunk_id}
+Document ID: {c.document_id}
+Filename: {c.filename}
+{signal_lines}Location: {format_location(c.page_start, c.page_end, c.section)}
+
+Content:
+{text}
+
+{'-'*80}
+""")
+
+    return "\n".join(parts)
+
+
+def corroboration_summary(candidates):
+    """Count, per extracted numeric claim, how many distinct documents carry it.
+
+    A cheap, deterministic corroboration aid for the answer-and-flag policy:
+    only claim-bearing (numeric) passages are counted, by filename, so the model
+    can see e.g. "3,559: 2 documents; 10,000: 1 document". Returns "" when no
+    claim appears in more than one competing form.
+    """
+    by_claim = defaultdict(set)
+    for c in candidates:
+        key = normalize_claim(c.claim)
+        if key != "NO_CLAIM":
+            by_claim[key].add(c.filename)
+    if len(by_claim) < 2:
+        return ""
+    lines = sorted(((len(fs), claim) for claim, fs in by_claim.items()), reverse=True)
+    return "Corroboration (numeric claims, distinct documents; count aid only):\n" + "\n".join(
+        f"- {claim}: {n} document{'s' if n != 1 else ''}" for n, claim in lines
+    )
+
+
+def build_user_prompt(question, candidates, context=None, include_signals=True, corroboration=False):
+    """Build the user turn sent to the generator (shared across providers)."""
+    evidence_text = format_evidence(candidates, include_signals=include_signals)
+    return f"""Question: {question}
+
+Case context (user-provided, potentially incomplete):
+{json.dumps(context or {}, ensure_ascii=True)}
+
+Retrieved Evidence:
+
+{evidence_text}
+{(corroboration_summary(candidates) + chr(10) + chr(10)) if corroboration else ""}Analyze the evidence and provide your answer in JSON format."""
+
+
+def parse_json_response(response_text):
+    """Parse a JSON object out of a model response; returns None on failure.
+
+    Tolerates markdown code fences and leading/trailing prose by falling back
+    to the outermost ``{...}`` span.
+    """
+    text = (response_text or "").strip()
+    if text.startswith("```json"):
+        text = text[7:]
+    if text.startswith("```"):
+        text = text[3:]
+    if text.endswith("```"):
+        text = text[:-3]
+    text = text.strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        start, end = text.find("{"), text.rfind("}")
+        if start == -1 or end <= start:
+            return None
+        try:
+            return json.loads(text[start:end + 1])
+        except json.JSONDecodeError:
+            pass
+        # Last resort: lenient repair (missing quotes/commas, truncated tail).
+        # Anything it invents is still subject to citation validation.
+        try:
+            from json_repair import repair_json
+            repaired = repair_json(text[start:], return_objects=True)
+        except Exception:  # noqa: BLE001 - optional dependency / repair failure
+            return None
+        if isinstance(repaired, dict) and repaired.get("decision"):
+            print("WARNING: model JSON was malformed and was repaired leniently")
+            return repaired
+        return None
+
+
+def validate_generation_result(result, candidates, drop_unverifiable=False):
+    """Reject generated citations and source names not grounded in retrieval.
+
+    On rejection the raw model output is logged so that failures can be
+    diagnosed from the run log instead of being silently coerced into
+    ``insufficient_evidence``. With ``drop_unverifiable=True`` unverifiable
+    citations are removed instead of rejecting the whole result; the count is
+    returned as ``dropped_citations``.
+    """
+    validated = _validate_generation_result(result, candidates, drop_unverifiable=drop_unverifiable)
+    if validated.get("validation_error"):
+        try:
+            raw = json.dumps(result, ensure_ascii=False)
+        except (TypeError, ValueError):
+            raw = repr(result)
+        print(f"VALIDATION REJECTED: {validated['reason']}")
+        print(f"Raw model output ({len(raw)} chars): {raw[:4000]}")
+    return validated
+
+
+def _validate_generation_result(result, candidates, drop_unverifiable=False):
+    if not isinstance(result, dict):
+        return generation_failure("Generation returned an invalid structured result.")
+
+    decision = result.get("decision")
+    if decision not in DECISIONS:
+        return generation_failure("Generation returned an unsupported decision.")
+
+    candidates_by_id = {candidate.chunk_id: candidate for candidate in candidates}
+    # Models often cite the document id or filename instead of the full
+    # "<doc>:chunk:<n>" id. Accept those when they resolve to exactly one
+    # retrieved chunk; ambiguous or unknown ids are still rejected.
+    by_alias = defaultdict(list)
+    for candidate in candidates:
+        for alias in {candidate.document_id, candidate.filename,
+                      (candidate.filename or "").rsplit(".", 1)[0]}:
+            if alias:
+                by_alias[alias].append(candidate)
+    for alias, matches in by_alias.items():
+        if alias not in candidates_by_id and len(matches) == 1:
+            candidates_by_id[alias] = matches[0]
+    citations = result.get("citations", [])
+    if not isinstance(citations, list):
+        return generation_failure("Generation returned an invalid citation list.")
+
+    verified_citations = []
+    problems = []
+    dropped = 0
+    for position, citation in enumerate(citations, 1):
+        if not isinstance(citation, dict):
+            return generation_failure("Generation returned a malformed citation.")
+        chunk_id = citation.get("chunk_id")
+        candidate = candidates_by_id.get(chunk_id)
+        quote = citation.get("quote")
+        problem = None
+        if candidate is None:
+            problem = f"citation {position} cites chunk_id {chunk_id!r}, which is not among the retrieved passages"
+        elif not isinstance(quote, str) or not quote.strip():
+            problem = f"citation {position} ({chunk_id}) has an empty quote"
+        elif not quote_matches(quote, candidate.text):
+            snippet = " ".join(quote.split())
+            if len(snippet) > 120:
+                snippet = snippet[:117] + "..."
+            problem = (
+                f"citation {position} ({chunk_id}) quote is not verbatim from that passage: \"{snippet}\""
+            )
+        if problem:
+            if drop_unverifiable:
+                dropped += 1
+                continue
+            problems.append(problem)
+            continue
+        treatment = citation.get("treatment", "supporting")
+        if treatment not in CITATION_TREATMENTS:
+            return generation_failure("Generation returned an unsupported evidence treatment.")
+        verified_citations.append({
+            "chunk_id": candidate.chunk_id,
+            "document_id": candidate.document_id,
+            "filename": candidate.filename,
+            "page_start": candidate.page_start,
+            "page_end": candidate.page_end,
+            "section": candidate.section,
+            "passage": candidate.text,
+            "quote": quote,
+            "treatment": treatment,
+            "explanation": str(citation.get("explanation") or ""),
+        })
+
+    if problems:
+        return generation_failure(
+            "Generation cited evidence that was not retrieved or quoted text that does not match: "
+            + "; ".join(problems)
+            + "."
+        )
+    if decision in {"answered", "unresolved_conflict", "needs_information"} and not verified_citations:
+        return generation_failure("Generation did not provide a verifiable evidence citation.")
+    if decision == "unresolved_conflict" and not any(
+        citation["treatment"] == "conflicting" for citation in verified_citations
+    ):
+        return generation_failure("Unresolved evidence was not identified as conflicting.")
+
+    selected_source = result.get("selected_source")
+    cited_filenames = {citation["filename"] for citation in verified_citations}
+    if selected_source is not None and selected_source not in cited_filenames:
+        if drop_unverifiable and dropped:
+            selected_source = None
+        else:
+            return generation_failure("Generation selected a source that was not cited.")
+    if decision == "answered" and selected_source is None:
+        # Some models answer and cite a single governing (or sole supporting)
+        # passage but leave selected_source null. Derive it from the citations
+        # when, and only when, that choice is unambiguous.
+        governing = {c["filename"] for c in verified_citations if c["treatment"] == "governing"}
+        supporting = {c["filename"] for c in verified_citations if c["treatment"] == "supporting"}
+        if len(governing) == 1:
+            selected_source = next(iter(governing))
+        elif not governing and len(supporting) == 1:
+            selected_source = next(iter(supporting))
+    if decision == "unresolved_conflict":
+        selected_source = None
+
+    missing = result.get("missing_information") or []
+    if not isinstance(missing, list) or not all(isinstance(item, str) for item in missing):
+        return generation_failure("Generation returned malformed missing-information details.")
+    clarification = result.get("clarification_question")
+    if clarification is not None and not isinstance(clarification, str):
+        return generation_failure("Generation returned a malformed clarification question.")
+    if decision == "needs_information" and (not missing or not clarification or not clarification.strip()):
+        return generation_failure(
+            "Generation identified missing case facts without listing them and asking a clarification question."
+        )
+
+    answer = result.get("answer")
+    if not isinstance(answer, str) or not answer.strip():
+        return generation_failure("Generation returned no readable answer.")
+    if decision == "insufficient_evidence":
+        answer = "The retrieved evidence does not support a reliable answer."
+        selected_source = None
+
+    explanation = result.get("explanation") or result.get("reason") or ""
+    confidence = result.get("confidence", "unknown")
+    if confidence not in {"high", "medium", "low"}:
+        confidence = "unknown"
+    short_answers = result.get("short_answers") or []
+    if not isinstance(short_answers, list):
+        short_answers = [short_answers]
+    short_answers = [str(s).strip() for s in short_answers if str(s).strip()]
+    if decision == "insufficient_evidence":
+        short_answers = []
+
+    return {
+        "decision": decision,
+        "answer": answer.strip(),
+        "short_answers": short_answers,
+        "citations": verified_citations,
+        "reason": str(explanation),
+        "explanation": str(explanation),
+        "missing_information": missing,
+        "clarification_question": clarification,
+        "selected_source": selected_source,
+        "conflict_detected": bool(result.get("conflict_detected"))
+        or decision == "unresolved_conflict",
+        "confidence": confidence,
+        "dropped_citations": dropped,
+    }
 
 
 # ============================================================
@@ -376,148 +910,83 @@ class GeminiGenerator:
         else:
             raise ValueError("No authentication configured for generation")
     
-    def generate(self, question, candidates):
+    def _vertex_model(self, system_prompt):
+        """Return a Vertex model bound to ``system_prompt`` (cached per prompt)."""
+        if system_prompt == SYSTEM_PROMPT:
+            return self.model
+        cache = getattr(self, "_prompt_models", None)
+        if cache is None:
+            cache = self._prompt_models = {}
+        if system_prompt not in cache:
+            from vertexai.generative_models import GenerativeModel
+            cache[system_prompt] = GenerativeModel(
+                VERTEX_AI_GENERATION_MODEL, system_instruction=[system_prompt]
+            )
+        return cache[system_prompt]
+
+    def generate(self, question, candidates, context=None, baseline=False):
         """
-        Generate final answer using Gemini.
-        
+        Generate a structured decision and verify citations against retrieved chunks.
+
         Args:
             question: User's question
             candidates: List of Candidate objects (top K documents)
-        
+            context: optional case facts
+            baseline: use the plain-RAG prompt without governance signals
+
         Returns:
-            dict with answer, selected_source, reason, conflict_detected, confidence
+            A validated decision object or a transparent insufficient-evidence result.
         """
-        # Format retrieved documents
-        evidence_text = self._format_evidence(candidates)
-        
-        # Create prompt
-        user_prompt = f"""Question: {question}
+        system_prompt = BASELINE_SYSTEM_PROMPT if baseline else SYSTEM_PROMPT
+        user_prompt = build_user_prompt(
+            question, candidates, context=context, include_signals=not baseline
+        )
 
-Retrieved Evidence:
-
-{evidence_text}
-
-Analyze the evidence and provide your answer in JSON format."""
-        
         try:
-            if self.use_vertex:
-                # Vertex AI - system instruction already set in model init
-                response = self.model.generate_content(
-                    [user_prompt],
-                    generation_config={
-                        "temperature": 0.0,
-                        "max_output_tokens": 2048,
-                        "candidate_count": 1,
-                    }
-                )
-                # Extract full response text from Vertex AI
-                try:
-                    response_text = response.candidates[0].content.parts[0].text
-                except (IndexError, AttributeError):
-                    response_text = response.text
-            else:
-                # AI Studio
-                import google.generativeai as genai
-                
-                model = genai.GenerativeModel(
-                    model_name="gemini-2.5-pro",
-                    system_instruction=SYSTEM_PROMPT
-                )
-                response = model.generate_content(
-                    user_prompt,
-                    generation_config=genai.GenerationConfig(
-                        temperature=0.0,
-                        max_output_tokens=2048,
-                    )
-                )
-                response_text = response.text
-            
-            # Parse JSON response
-            # Remove markdown code blocks if present
-            response_text = response_text.strip()
-            if response_text.startswith("```json"):
-                response_text = response_text[7:]
-            if response_text.startswith("```"):
-                response_text = response_text[3:]
-            if response_text.endswith("```"):
-                response_text = response_text[:-3]
-            response_text = response_text.strip()
-            
-            result = json.loads(response_text)
-            return result
-            
-        except json.JSONDecodeError as e:
-            print(f"ERROR: JSON parsing failed: {e}")
-            print(f"Full response ({len(response_text) if 'response_text' in locals() else 0} chars):")
-            print(response_text if 'response_text' in locals() else 'N/A')
-            print("\nAttempting to extract answer from partial response...")
-            
-            # Try to extract answer from partial JSON
-            if 'response_text' in locals() and 'answer' in response_text:
-                import re
-                answer_match = re.search(r'"answer"\s*:\s*"([^"]+)"', response_text)
-                source_match = re.search(r'"selected_source"\s*:\s*"([^"]+)"', response_text)
-                
-                if answer_match:
-                    return {
-                        "answer": answer_match.group(1),
-                        "selected_source": source_match.group(1) if source_match else candidates[0].filename,
-                        "reason": "Extracted from partial LLM response",
-                        "conflict_detected": True,
-                        "confidence": "medium"
-                    }
-            
-            # Fallback to rule-based resolution
-            return self._fallback_resolution(question, candidates)
-            
+            return run_generation(self._complete, system_prompt, user_prompt, candidates)
         except Exception as e:
             print(f"ERROR: Gemini generation failed: {e}")
-            print(f"Response text: {response_text if 'response_text' in locals() else 'N/A'}")
-            # Fallback to rule-based resolution
             return self._fallback_resolution(question, candidates)
+
+    def _complete(self, system_prompt, user_prompt):
+        """One chat completion; returns the raw response text."""
+        if self.use_vertex:
+            response = self._vertex_model(system_prompt).generate_content(
+                [user_prompt],
+                generation_config={
+                    "temperature": 0.0,
+                    "max_output_tokens": 4096,
+                    "candidate_count": 1,
+                }
+            )
+            try:
+                return response.candidates[0].content.parts[0].text
+            except (IndexError, AttributeError):
+                return response.text
+
+        # AI Studio
+        import google.generativeai as genai
+
+        model = genai.GenerativeModel(
+            model_name="gemini-2.5-pro",
+            system_instruction=system_prompt
+        )
+        response = model.generate_content(
+            user_prompt,
+            generation_config=genai.GenerationConfig(
+                temperature=0.0,
+                max_output_tokens=4096,
+            )
+        )
+        return response.text
     
     def _format_evidence(self, candidates):
-        """Format candidates as numbered evidence blocks."""
-        parts = []
-        
-        for i, c in enumerate(candidates, 1):
-            chunk_label = f" (chunk {c.chunk_index + 1})" if c.chunk_index is not None else ""
-            text = c.text if len(c.text) <= 6000 else c.text[:6000] + "..."
-            parts.append(f"""Document {i}{chunk_label}:
-Filename: {c.filename}
-Status: {c.status}
-Type: {c.doc_type}
-Authority Score: {c.authority_score:.3f}
-Scope Score: {c.scope_score:.3f}
+        """Kept for backward compatibility; see module-level ``format_evidence``."""
+        return format_evidence(candidates, include_signals=True)
 
-Content:
-{text}
-
-{'-'*80}
-""")
-        
-        return "\n".join(parts)
-    
     def _fallback_resolution(self, question, candidates):
-        """Rule-based fallback if LLM fails."""
-        if not candidates:
-            return {
-                "answer": "Unable to determine",
-                "selected_source": None,
-                "reason": "No evidence retrieved",
-                "conflict_detected": False,
-                "confidence": "low"
-            }
-        
-        winner = candidates[0]  # Already sorted by final_score
-        
-        return {
-            "answer": winner.claim or "Unable to determine",
-            "selected_source": winner.filename,
-            "reason": f"Highest authority score ({winner.authority_score:.3f})",
-            "conflict_detected": len(set(c.claim for c in candidates if c.claim)) > 1,
-            "confidence": "medium"
-        }
+        """Return a visible failure rather than selecting a heuristic winner."""
+        return generation_failure("Generation failed; no answer was selected.")
 
 
 # ============================================================
@@ -554,14 +1023,20 @@ def build_chunks(documents: List[Document]) -> List[Chunk]:
     """Split each document into retrieval-unit chunks (short docs -> 1 chunk)."""
     chunks = []
     for doc in documents:
-        pieces = chunk_text(doc.text)
+        pieces = chunk_text_with_locations(doc.text)
+        document_id = doc.filename.rsplit("__", 1)[-1]
+        if document_id.lower().endswith(".md"):
+            document_id = document_id[:-3]
         for idx, piece in enumerate(pieces):
             chunks.append(Chunk(
                 filename=doc.filename,
-                document_id=doc.filename,
+                document_id=document_id,
                 chunk_index=idx,
-                chunk_id=f"{doc.filename}::chunk{idx}",
-                text=piece,
+                chunk_id=f"{document_id}:chunk:{idx}",
+                text=piece.text,
+                page_start=piece.page_start,
+                page_end=piece.page_end,
+                section=piece.section,
             ))
     return chunks
 
@@ -677,7 +1152,7 @@ def detect_status(text: str):
     if structured and "authoritative" in structured:
         return "active_authoritative"
 
-    if any(x in full for x in ["superseded by", "supersedes all previous", "withdrawn", "no longer valid"]):
+    if any(x in full for x in ["superseded by", "withdrawn", "no longer valid"]):
         return "superseded"
     if structured and "supersed" in structured:
         return "superseded"
@@ -949,6 +1424,43 @@ def semantic_retrieve(question, chunks, embedder, k=INITIAL_RETRIEVAL_K):
     return scored[:k], q_embedding
 
 
+_BM25_TOKEN = re.compile(r"\w+")
+
+
+def hybrid_retrieve(question, chunks, embedder, k=INITIAL_RETRIEVAL_K, rrf_k=60):
+    """Hybrid retrieval control: BM25 and dense rankings fused with reciprocal
+    rank fusion (``1/(rrf_k + rank)``, summed over the two rankers).
+
+    Returns ``(retrieved, q_embedding, fused)`` where ``retrieved`` is the
+    fused top-k as ``(cosine_score, chunk)`` pairs so downstream code sees the
+    same shape as ``semantic_retrieve``, and ``fused`` maps chunk_id to its
+    fusion score for use as the final ranking score.
+    """
+    from rank_bm25 import BM25Okapi
+
+    q_embedding = embedder.encode([question], task_type="RETRIEVAL_QUERY")[0]
+    dense = sorted(
+        ((cosine_similarity(q_embedding, c.embedding), c) for c in chunks),
+        key=lambda x: x[0], reverse=True,
+    )
+    cosine_by_id = {c.chunk_id: score for score, c in dense}
+
+    tokenised = [_BM25_TOKEN.findall(c.text.lower()) for c in chunks]
+    bm25 = BM25Okapi(tokenised)
+    bm25_scores = bm25.get_scores(_BM25_TOKEN.findall(question.lower()))
+    lexical = sorted(zip(bm25_scores, chunks), key=lambda x: x[0], reverse=True)
+
+    fused = {}
+    for ranking in (dense, lexical):
+        for rank, (_, chunk) in enumerate(ranking, start=1):
+            fused[chunk.chunk_id] = fused.get(chunk.chunk_id, 0.0) + 1.0 / (rrf_k + rank)
+
+    by_id = {c.chunk_id: c for c in chunks}
+    top = sorted(fused.items(), key=lambda x: x[1], reverse=True)[:k]
+    retrieved = [(cosine_by_id[cid], by_id[cid]) for cid, _ in top]
+    return retrieved, q_embedding, fused
+
+
 def first_8_sentence_scope_text(document_text):
     """Return the scope text used for reranking: first 8 sentences of a chunk."""
     return " ".join(sentences(document_text)[:8])
@@ -976,13 +1488,15 @@ def build_candidates(question, retrieved, q_embedding, doc_meta):
     """
     candidates = []
     default_meta = DocumentMeta(status="unknown", doc_type="unknown", authority_raw=0.0)
-    
+    best_semantic = max((semantic for semantic, _ in retrieved), default=0.0)
+
     for semantic, chunk in retrieved:
         meta = doc_meta.get(chunk.filename, default_meta)
         auth = normalize_authority(meta.authority_raw)
         scope = get_scope_score(chunk, q_embedding)
         claim, claim_sentence = extract_claim(question, chunk.text)
-        
+        gate = relevance_gate(semantic, best_semantic)
+
         candidate = Candidate(
             filename=chunk.filename,
             text=chunk.text,
@@ -994,12 +1508,22 @@ def build_candidates(question, retrieved, q_embedding, doc_meta):
             status=meta.status,
             doc_type=meta.doc_type,
             chunk_index=chunk.chunk_index,
+            document_id=chunk.document_id,
+            chunk_id=chunk.chunk_id,
+            page_start=chunk.page_start,
+            page_end=chunk.page_end,
+            section=chunk.section,
+            relevance_gate=gate,
         )
-        
+
+        # Authority and scope can only reorder chunks that are comparably
+        # relevant; they cannot lift an off-topic chunk above on-topic ones.
         candidate.final_score = (
             W_SEMANTIC * candidate.semantic_score +
-            W_AUTHORITY * candidate.authority_score +
-            W_SCOPE * candidate.scope_score
+            gate * (
+                W_AUTHORITY * candidate.authority_score +
+                W_SCOPE * candidate.scope_score
+            )
         )
         
         candidates.append(candidate)
@@ -1008,18 +1532,22 @@ def build_candidates(question, retrieved, q_embedding, doc_meta):
 
 
 def diversify_conflicts(candidates, max_per_claim=1, max_no_claim=None):
-    """Prevent conflict crowding for genuine claims, without discarding
-    ordinary evidence that has no extractable claim.
+    """Reduce duplicate claim passages without collapsing distinct conditions.
 
-    Real numeric/answer claims are still capped at max_per_claim per distinct
-    claim (this is what prevents conflict crowding in ConflictBench-style
-    corpora). Chunks with no extractable claim (the common case for ordinary
-    documents like research papers) are grouped under "NO_CLAIM" and are
-    NOT collapsed to a single chunk, since multiple different relevant
-    passages from the same or different files are all valid evidence for
-    normal QA - collapsing them would break long-document retrieval.
+    Claim-bearing candidates are grouped by both the extracted number and full
+    normalized passage, so exceptions remain independently reviewable. Chunks
+    without a numeric claim are retained up to their separate context limit.
     """
-    groups = group_by_claim(candidates)
+    groups = defaultdict(list)
+    for candidate in candidates:
+        claim_key = normalize_claim(candidate.claim)
+        if claim_key == "NO_CLAIM":
+            groups[claim_key].append(candidate)
+            continue
+        # A repeated number can appear with a materially different condition
+        # or exception; keep those as independent evidence groups.
+        passage_key = " ".join(candidate.text.lower().split())
+        groups[(claim_key, passage_key)].append(candidate)
     diversified = []
     
     for claim, docs in groups.items():
@@ -1067,30 +1595,49 @@ def print_conflict_table(candidates):
 # ============================================================
 
 class GovRAGGemini:
-    def __init__(self, doc_dir, project_id=None, region=None, api_key=None, use_llm=True):
+    def __init__(
+        self,
+        doc_dir,
+        project_id=None,
+        region=None,
+        api_key=None,
+        use_llm=True,
+        embedder=None,
+        generator=None,
+        documents=None,
+    ):
         """Initialize GOV-RAG with Gemini embeddings and optional LLM generation.
-        
+
         Args:
             doc_dir: Path to document directory
             project_id: GCP project ID for Vertex AI
             region: GCP region (default: us-central1)
             api_key: API key for AI Studio (fallback)
-            use_llm: If True, use Gemini for final answer generation (default: True)
+            use_llm: If True, use an LLM for final answer generation (default: True)
+            embedder: optional drop-in embedder (e.g. ``providers.LocalEmbedder``);
+                defaults to ``GeminiEmbedder``
+            generator: optional drop-in generator (e.g.
+                ``providers.OpenAICompatGenerator``); defaults to ``GeminiGenerator``
         """
-        
-        print("\nInitializing GOV-RAG with Gemini embeddings...")
-        
+
+        print("\nInitializing GOV-RAG...")
+
         self.use_llm = use_llm
-        self.embedder = GeminiEmbedder(project_id=project_id, region=region, api_key=api_key)
-        
+        self.embedder = embedder or GeminiEmbedder(project_id=project_id, region=region, api_key=api_key)
+
         # Initialize generator if using LLM
-        if self.use_llm:
+        if not self.use_llm:
+            self.generator = None
+        elif generator is not None:
+            self.generator = generator
+        else:
             print("\nInitializing Gemini generator for final resolution...")
             self.generator = GeminiGenerator(project_id=project_id, region=region, api_key=api_key)
-        else:
-            self.generator = None
         
-        self.documents = load_documents(doc_dir)
+        # Documents may be supplied in memory (``documents=[Document(...)]``),
+        # e.g. for per-question corpora from external benchmarks; otherwise
+        # they are loaded from ``doc_dir``.
+        self.documents = list(documents) if documents is not None else load_documents(doc_dir)
         self.doc_meta = build_document_meta(self.documents)
         self.chunks = build_chunks(self.documents)
         
@@ -1151,6 +1698,9 @@ class GovRAGGemini:
                 "filename": chunk.filename,
                 "document_id": chunk.document_id,
                 "text": chunk.text,
+                "page_start": chunk.page_start,
+                "page_end": chunk.page_end,
+                "section": chunk.section,
                 "scope_text": scope_text,
                 "status": meta.status,
                 "doc_type": meta.doc_type,
@@ -1207,6 +1757,9 @@ class GovRAGGemini:
                     scope_text=row.get("scope_text"),
                     embedding=np.asarray(embedding, dtype=float),
                     scope_embedding=np.asarray(scope_embedding, dtype=float),
+                    page_start=row.get("page_start"),
+                    page_end=row.get("page_end"),
+                    section=row.get("section"),
                 )
             )
             obj.doc_meta[filename] = DocumentMeta(
@@ -1218,12 +1771,17 @@ class GovRAGGemini:
         print(f"Ready from persisted index with {len(obj.chunks)} chunks.")
         return obj
     
-    def query(self, question):
+    def query(self, question, context=None, mode="govrag", retrieval="dense", policy="strict"):
         """Query the unified GOV-RAG pipeline (chunk retrieval + governance-aware
         reranking + conflict-aware Gemini reasoning). The same pipeline runs
         every time; when evidence agrees or has no governance metadata, it
         naturally reduces to ordinary evidence-grounded semantic RAG.
-        
+
+        ``mode="baseline"`` runs a plain-RAG control for evaluation: the same
+        semantic retrieval, but the top-K chunks are taken by semantic score
+        alone (no authority/scope reranking, no claim diversification) and the
+        generator is given only the passages, with no governance guidance.
+
         Pipeline:
         1. Question
         2. Broad semantic retrieval over chunks (top ~30)
@@ -1237,78 +1795,127 @@ class GovRAGGemini:
         """
         
         # 1. Broad semantic retrieval over chunks
-        retrieved, q_embedding = semantic_retrieve(
-            question, self.chunks, self.embedder, INITIAL_RETRIEVAL_K
-        )
+        context = {
+            key: value for key, value in (context or {}).items()
+            if value is not None and str(value).strip()
+        }
+        context_text = " ".join(f"{key}: {value}" for key, value in context.items())
+        retrieval_query = f"{question}\nCase context: {context_text}" if context_text else question
+
+        if mode == "closedbook":
+            # Direct few-shot CoT control: no retrieval, no passages.
+            if not (self.use_llm and self.generator and hasattr(self.generator, "closed_book")):
+                failed = generation_failure("Closed-book mode needs a generator with closed_book().")
+                return {**failed, "source": None, "method": "none",
+                        "retrieval_mode": "closed_book", "candidates": []}
+            print("\n" + "=" * 80 + "\nFINAL RESOLUTION: closed-book few-shot CoT (no retrieval)\n" + "=" * 80)
+            llm_result = self.generator.closed_book(question, context=context)
+            return {
+                "answer": llm_result.get("answer"),
+                "source": None,
+                "decision": llm_result.get("decision", "insufficient_evidence"),
+                "citations": [],
+                "missing_information": [],
+                "clarification_question": None,
+                "explanation": llm_result.get("explanation", ""),
+                "reason": llm_result.get("reason"),
+                "conflict_detected": False,
+                "confidence": llm_result.get("confidence", "medium"),
+                "short_answers": llm_result.get("short_answers", []),
+                "validation_error": bool(llm_result.get("validation_error", False)),
+                "repair_attempts": int(llm_result.get("repair_attempts", 0)),
+                "dropped_citations": 0,
+                "method": "llm",
+                "retrieval_mode": "closed_book",
+                "candidates": [],
+            }
+
+        fused_scores = None
+        # ``retrieval="hybrid"`` gives GOV-RAG the same BM25+dense RRF first stage
+        # as the hybrid control; governance reranking still runs on top of it.
+        if mode == "hybrid" or (mode == "govrag" and retrieval == "hybrid"):
+            retrieved, q_embedding, fused_scores = hybrid_retrieve(
+                retrieval_query, self.chunks, self.embedder, INITIAL_RETRIEVAL_K
+            )
+        else:
+            retrieved, q_embedding = semantic_retrieve(
+                retrieval_query, self.chunks, self.embedder, INITIAL_RETRIEVAL_K
+            )
         
         # 2. Authority + scope extraction
         candidates = build_candidates(question, retrieved, q_embedding, self.doc_meta)
-        
-        # 3. Conflict diversification (claim-bearing chunks capped per claim;
-        #    ordinary no-claim evidence is not collapsed to a single chunk).
-        diversified = diversify_conflicts(candidates, max_per_claim=1, max_no_claim=FINAL_CONTEXT_K)
-        diversified = diversified[:FINAL_CONTEXT_K]
-        
+
+        baseline = mode in ("baseline", "hybrid")
+        retrieval_mode = {"baseline": "baseline_semantic", "hybrid": "baseline_hybrid_rrf"}.get(mode, "unified_govrag")
+        if mode == "govrag":
+            retrieval_mode = f"unified_govrag_{retrieval}_{policy}"
+        if baseline:
+            # Plain RAG controls: rank by retrieval score only (cosine, or the
+            # BM25+dense fusion score in hybrid mode), keep top-K.
+            for candidate in candidates:
+                if fused_scores is not None:
+                    candidate.final_score = fused_scores.get(candidate.chunk_id, 0.0)
+                else:
+                    candidate.final_score = candidate.semantic_score
+            diversified = sorted(candidates, key=lambda c: c.final_score, reverse=True)
+            diversified = diversified[:FINAL_CONTEXT_K]
+        else:
+            # 3. Conflict diversification (claim-bearing chunks capped per claim;
+            #    ordinary no-claim evidence is not collapsed to a single chunk).
+            diversified = diversify_conflicts(candidates, max_per_claim=1, max_no_claim=FINAL_CONTEXT_K)
+            diversified = diversified[:FINAL_CONTEXT_K]
+
         print_conflict_table(diversified)
-        
+
         if not diversified:
+            result = generation_failure("No relevant evidence was retrieved.")
             return {
-                "answer": None,
+                **result,
                 "source": None,
-                "message": "No usable evidence retrieved.",
                 "method": "none",
-                "retrieval_mode": "unified_govrag",
+                "retrieval_mode": retrieval_mode,
+                "candidates": [],
             }
-        
-        distinct_sources = {c.filename for c in diversified}
-        
+
         # 4. Final resolution: LLM or rule-based
         if self.use_llm and self.generator:
             print("\n" + "="*80)
-            print("FINAL RESOLUTION: Gemini 2.5 Pro")
+            print(f"FINAL RESOLUTION: {'plain RAG baseline' if baseline else 'GOV-RAG'} generation")
             print("="*80)
-            
-            llm_result = self.generator.generate(question, diversified)
-            
-            conflict_detected = llm_result.get("conflict_detected", False)
-            if len(distinct_sources) <= 1:
-                # Deterministic backstop: a single relevant source can never be
-                # a genuine conflict, regardless of what the LLM guessed.
-                conflict_detected = False
-            
+
+            gen_kwargs = {"policy": policy} if (not baseline and policy != "strict") else {}
+            llm_result = self.generator.generate(
+                question, diversified, context=context, baseline=baseline, **gen_kwargs
+            )
+
             return {
                 "answer": llm_result.get("answer"),
                 "source": llm_result.get("selected_source"),
+                "decision": llm_result.get("decision", "insufficient_evidence"),
+                "citations": llm_result.get("citations", []),
+                "missing_information": llm_result.get("missing_information", []),
+                "clarification_question": llm_result.get("clarification_question"),
+                "explanation": llm_result.get("explanation", ""),
                 "reason": llm_result.get("reason"),
-                "conflict_detected": conflict_detected,
+                "conflict_detected": llm_result.get("conflict_detected", False),
                 "confidence": llm_result.get("confidence", "medium"),
+                "short_answers": llm_result.get("short_answers", []),
+                "validation_error": bool(llm_result.get("validation_error", False)),
+                "repair_attempts": int(llm_result.get("repair_attempts", 0)),
+                "dropped_citations": int(llm_result.get("dropped_citations", 0) or 0),
                 "method": "llm",
-                "retrieval_mode": "unified_govrag",
+                "retrieval_mode": retrieval_mode,
                 "candidates": [asdict(x) for x in diversified]
             }
         else:
-            # Rule-based fallback
-            winner = authority_resolve(diversified)
-            
-            if winner is None:
-                return {
-                    "answer": None,
-                    "source": None,
-                    "message": "No usable evidence retrieved.",
-                    "method": "rule-based",
-                    "retrieval_mode": "unified_govrag",
-                }
-            
+            failed = generation_failure(
+                "Generation is disabled; retrieved evidence is shown without selecting an answer."
+            )
             return {
-                "answer": winner.claim,
-                "source": winner.filename,
-                "supporting_sentence": winner.claim_sentence,
-                "status": winner.status,
-                "document_type": winner.doc_type,
-                "score": winner.final_score,
-                "method": "rule-based",
-                "retrieval_mode": "unified_govrag",
-                "conflict_detected": len(distinct_sources) > 1 and len(set(c.claim for c in diversified if c.claim)) > 1,
+                **failed,
+                "source": None,
+                "method": "generation_disabled",
+                "retrieval_mode": retrieval_mode,
                 "candidates": [asdict(x) for x in diversified]
             }
 

@@ -1,0 +1,62 @@
+{
+  "source_details": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/ramdocs_nvidia_llamaindex_k2_details_20261121_154210.csv",
+  "dataset": "ramdocs",
+  "tag": "ramdocs_nvidia_llamaindex_k2",
+  "stamp": "20261121_154210",
+  "judge_model": "z-ai/glm-5.3-flash",
+  "n": 500,
+  "n_labelled": 498,
+  "n_unlabelled": 2,
+  "FC": 27.31,
+  "PC": 47.19,
+  "Inc": 25.5,
+  "mean_judge_latency_s": 391.29,
+  "by_num_gold": {
+    "gold_1": {
+      "n": 100,
+      "n_labelled": 100,
+      "FC": 48.0,
+      "PC": 27.0,
+      "Inc": 25.0
+    },
+    "gold_2": {
+      "n": 200,
+      "n_labelled": 199,
+      "FC": 40.7,
+      "PC": 36.18,
+      "Inc": 23.12
+    },
+    "gold_3": {
+      "n": 200,
+      "n_labelled": 199,
+      "FC": 3.52,
+      "PC": 68.34,
+      "Inc": 28.14
+    }
+  },
+  "by_misinfo": {
+    "no_misinfo": {
+      "n": 194,
+      "n_labelled": 193,
+      "FC": 41.45,
+      "PC": 55.96,
+      "Inc": 2.59
+    },
+    "with_misinfo": {
+      "n": 306,
+      "n_labelled": 305,
+      "FC": 18.36,
+      "PC": 41.64,
+      "Inc": 40.0
+    }
+  },
+  "by_decision": {
+    "free_text": {
+      "n": 500,
+      "n_labelled": 498,
+      "FC": 27.31,
+      "PC": 47.19,
+      "Inc": 25.5
+    }
+  }
+}

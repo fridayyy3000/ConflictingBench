@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+# downloaded benchmark data (untrusted; re-download with the harness)
+data/
+# per-run console output and transport logs (large; metrics/details/checkpoints are committed)
+results_external/*.log
+results_external/*.out
+results_external/*.err
+results_external/*.nohup
+results_gemini/*.log

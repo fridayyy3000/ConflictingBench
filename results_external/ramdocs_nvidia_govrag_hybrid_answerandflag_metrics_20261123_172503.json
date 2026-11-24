@@ -1,0 +1,51 @@
+{
+  "total": 500,
+  "decisions": {
+    "answered": 455,
+    "unresolved_conflict": 36,
+    "insufficient_evidence": 9
+  },
+  "decision_match_rate": 91.0,
+  "validation_errors": 0,
+  "repairs_used": 97,
+  "items_with_dropped_citations": 5,
+  "mean_latency_s": 37.36,
+  "set_em": 45.6,
+  "set_em_ci95": [
+    41.6,
+    49.6
+  ],
+  "strict_set_em": 36.0,
+  "set_em_by_num_gold": {
+    "1": 65.0,
+    "2": 50.0,
+    "3": 31.5
+  },
+  "set_em_single_gold": 65.0,
+  "set_em_single_gold_n": 100,
+  "any_gold_in_answer": 93.0,
+  "misinfo_in_answer_rate": 23.8,
+  "gold_doc_in_context": 99.4,
+  "cited_doc_precision": 79.67,
+  "items_citing_misinfo": 191,
+  "selected_label": {
+    "correct": 418,
+    "none": 47,
+    "noise": 16,
+    "misinfo": 19
+  },
+  "dataset": "ramdocs",
+  "mode": "govrag",
+  "provider": "nvidia",
+  "generation_model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "If the question is ambiguous because several distinct entities share the same name, give the correct answer for each entity and list each one in short_answers.",
+  "govrag_retrieval": "hybrid",
+  "govrag_policy": "answer_and_flag",
+  "details_csv": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/ramdocs_nvidia_govrag_hybrid_answerandflag_details_20261123_172503.csv",
+  "run_log": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/ramdocs_nvidia_govrag_hybrid_answerandflag_run_20261123_172503.log"
+}

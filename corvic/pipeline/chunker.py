@@ -8,7 +8,7 @@ unchanged when a document already fits within the target size.
 from __future__ import annotations
 
 import re
-from typing import List
+from typing import List, NamedTuple, Optional
 
 # Word count is used as a cheap proxy for token count (~0.75 words/token is
 # typical for English, so this comfortably targets the requested 800-1200
@@ -16,6 +16,13 @@ from typing import List
 TARGET_CHUNK_WORDS = 900
 OVERLAP_WORDS = 150
 MIN_CHUNK_WORDS = 50
+
+
+class ChunkSegment(NamedTuple):
+    text: str
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    section: Optional[str] = None
 
 
 def _split_paragraphs(text: str) -> List[str]:
@@ -87,3 +94,32 @@ def chunk_text(
         chunks.pop()
 
     return chunks
+
+
+def chunk_text_with_locations(text: str) -> List[ChunkSegment]:
+    """Chunk normalized text and attach only locations explicitly available."""
+    if "\f" in text:
+        segments = []
+        for page_number, page_text in enumerate(text.split("\f"), start=1):
+            page_chunks = chunk_text(page_text)
+            for page_chunk in page_chunks:
+                segments.append(ChunkSegment(
+                    text=page_chunk,
+                    page_start=page_number,
+                    page_end=page_number,
+                    section=_section_for_text(page_chunk),
+                ))
+        return segments
+
+    return [
+        ChunkSegment(text=chunk, section=_section_for_text(chunk))
+        for chunk in chunk_text(text)
+    ]
+
+
+def _section_for_text(text: str) -> Optional[str]:
+    for line in text.splitlines():
+        match = re.match(r"^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$", line)
+        if match:
+            return match.group(1).strip()
+    return None
