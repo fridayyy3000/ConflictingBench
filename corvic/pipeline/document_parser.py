@@ -54,11 +54,18 @@ def parse_document_bytes(content: bytes, extension: str) -> str:
         pages = []
         for page in reader.pages:
             pages.append(page.extract_text() or "")
-        return "\n\n".join(pages).strip()
+        return "\n\f\n".join(pages).strip()
 
     if extension == ".docx":
         doc = DocxDocument(io.BytesIO(content))
-        paragraphs = [p.text for p in doc.paragraphs if p.text and p.text.strip()]
+        paragraphs = []
+        for paragraph in doc.paragraphs:
+            if not paragraph.text or not paragraph.text.strip():
+                continue
+            if paragraph.style and paragraph.style.name.startswith("Heading"):
+                paragraphs.append(f"## {paragraph.text.strip()}")
+            else:
+                paragraphs.append(paragraph.text.strip())
         return "\n\n".join(paragraphs).strip()
 
     raise DocumentParseError(f"Parser not implemented for extension '{extension}'")

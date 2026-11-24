@@ -1,0 +1,89 @@
+{
+  "total": 458,
+  "decisions": {
+    "free_text": 458
+  },
+  "decision_match_rate": 0.0,
+  "validation_errors": 0,
+  "repairs_used": 0,
+  "items_with_dropped_citations": 0,
+  "mean_latency_s": 22.05,
+  "decision_match_ci95": [
+    0.0,
+    0.0
+  ],
+  "answer_correct": 78.06,
+  "answer_correct_n": 237,
+  "judge_adherent": null,
+  "judge_adherent_ci95": null,
+  "judge_n": 0,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "decision_match": 0.0,
+      "decisions": {
+        "free_text": 115
+      },
+      "answer_correct": 85.71,
+      "answer_correct_n": 7,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "decision_match": 0.0,
+      "decisions": {
+        "free_text": 5
+      },
+      "answer_correct": 80.0,
+      "answer_correct_n": 5,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "decision_match": 0.0,
+      "decisions": {
+        "free_text": 62
+      },
+      "answer_correct": 67.74,
+      "answer_correct_n": 62,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "decision_match": 0.0,
+      "decisions": {
+        "free_text": 115
+      },
+      "answer_correct": 100.0,
+      "answer_correct_n": 2,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "No conflict": {
+      "n": 161,
+      "decision_match": 0.0,
+      "decisions": {
+        "free_text": 161
+      },
+      "answer_correct": 81.37,
+      "answer_correct_n": 161,
+      "judge_adherent": null,
+      "judge_n": 0
+    }
+  },
+  "dataset": "conflicts",
+  "mode": "rankify",
+  "provider": "nvidia",
+  "generation_model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "",
+  "details_csv": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/conflicts_nvidia_rankify_details_20261122_175224.csv",
+  "run_log": "/Users/gauravnajpande/Documents/Conflicting_documents/results_external/conflicts_nvidia_rankify_run_20261122_175224.log"
+}

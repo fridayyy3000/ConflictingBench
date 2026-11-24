@@ -1,0 +1,25 @@
+{
+  "provider": "nvidia",
+  "mode": "baseline",
+  "generation_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "total": 30,
+  "answer_correct": 17,
+  "answer_accuracy": 56.67,
+  "gold_selected": 17,
+  "gold_selection_rate": 56.67,
+  "gold_in_context": 21,
+  "gold_in_context_rate": 70.0,
+  "decisions": {
+    "answered": 17,
+    "insufficient_evidence": 11,
+    "unresolved_conflict": 2
+  },
+  "selected_document_roles": {
+    "gold": 17,
+    "none": 13
+  },
+  "mean_latency_s": 26.94,
+  "details_csv": "/Users/gauravnajpande/Documents/Conflicting_documents/results_gemini/conflictbench_all_nvidia_baseline_details_20261113_151422.csv",
+  "run_log": "/Users/gauravnajpande/Documents/Conflicting_documents/results_gemini/conflictbench_all_nvidia_baseline_run_20261113_151422.log"
+}
