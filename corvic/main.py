@@ -28,6 +28,7 @@ try:
         DocumentNotFoundError,
     )
     from pipeline.document_parser import (
+        SUPPORTED_EXTENSIONS,
         DocumentParseError,
         make_normalized_filename,
         parse_document_bytes,
@@ -56,6 +57,7 @@ except ModuleNotFoundError as exc:
         DocumentNotFoundError,
     )
     from .pipeline.document_parser import (
+        SUPPORTED_EXTENSIONS,
         DocumentParseError,
         make_normalized_filename,
         parse_document_bytes,
@@ -102,6 +104,15 @@ _load_env_file(os.path.join(BASE_DIR, ".env"))
 API_SECRET = os.getenv("GOVRAG_API_SECRET")
 MAX_FILE_SIZE_MB = int(os.getenv("GOVRAG_MAX_FILE_SIZE_MB", "20"))
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
+
+# Server-side folder connector: a folder path typed in the UI is indexed in place.
+# It must sit under one of these roots (comma-separated). Default: the home
+# directory of the account running the server. Set to "" to disable the connector.
+_ROOTS_ENV = os.getenv("DOCUINSIGHT_ALLOWED_ROOTS", "~")
+ALLOWED_SOURCE_ROOTS = [
+    os.path.realpath(os.path.expanduser(root.strip()))
+    for root in _ROOTS_ENV.split(",") if root.strip()
+]
 
 DEMO_DOCUMENTS_DIR = os.path.join(BASE_DIR, "easy")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
@@ -214,6 +225,11 @@ class DocumentOverrideRequest(BaseModel):
     status_override: Optional[str] = None
     doc_type_override: Optional[str] = None
     clear: bool = False
+
+
+class FolderSourceRequest(BaseModel):
+    path: str = Field(..., min_length=1, max_length=4096)
+    label: Optional[str] = Field(default=None, max_length=200)
 
 
 class SourceInfo(BaseModel):
@@ -911,6 +927,15 @@ async def root():
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
+@app.middleware("http")
+async def no_cache_for_frontend(request: Request, call_next):
+    """The demo UI changes often; make browsers revalidate its HTML, script and styles."""
+    response = await call_next(request)
+    if request.url.path == "/app" or request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 @app.get("/app")
 async def serve_frontend():
     return FileResponse(os.path.join(STATIC_DIR, "app.html"))
@@ -929,6 +954,7 @@ async def health():
         "pipeline": pipeline_description(),
         "status_options": STATUS_OPTIONS,
         "doc_type_options": DOC_TYPE_OPTIONS,
+        "folder_connector": {"enabled": bool(ALLOWED_SOURCE_ROOTS), "roots": ALLOWED_SOURCE_ROOTS},
     }
 
 
@@ -1350,6 +1376,172 @@ async def upload_demo_documents(
             max_files=MAX_DEMO_DOCUMENTS,
             max_total_size_bytes=MAX_DEMO_CORPUS_BYTES,
             relative_paths=paths,
+        )
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise map_store_error(exc)
+
+
+def resolve_source_folder(raw_path: str) -> str:
+    """Resolve a user-typed folder path and check it sits under an allowed root."""
+    if not ALLOWED_SOURCE_ROOTS:
+        raise HTTPException(status_code=403, detail="The server folder connector is disabled (DOCUINSIGHT_ALLOWED_ROOTS is empty)")
+    candidate = os.path.realpath(os.path.expanduser(raw_path.strip()))
+    if not os.path.isdir(candidate):
+        raise HTTPException(status_code=400, detail=f"Not a folder on the server: {raw_path}")
+    if not any(candidate == root or candidate.startswith(root + os.sep) for root in ALLOWED_SOURCE_ROOTS):
+        raise HTTPException(
+            status_code=403,
+            detail=f"Folder is outside the allowed roots ({', '.join(ALLOWED_SOURCE_ROOTS)})",
+        )
+    return candidate
+
+
+def walk_source_folder(folder: str) -> List[str]:
+    """Supported files under ``folder``, sorted; hidden entries and symlinks are skipped."""
+    found: List[str] = []
+    for current, dirnames, filenames in os.walk(folder, followlinks=False):
+        dirnames[:] = sorted(d for d in dirnames if not d.startswith(".") and not os.path.islink(os.path.join(current, d)))
+        for name in sorted(filenames):
+            full = os.path.join(current, name)
+            if name.startswith(".") or os.path.islink(full):
+                continue
+            if os.path.splitext(name)[1].lower() in SUPPORTED_EXTENSIONS:
+                found.append(full)
+    return found
+
+
+def index_server_folder(
+    corpus_id: str,
+    raw_path: str,
+    label: Optional[str] = None,
+    max_files: Optional[int] = None,
+    max_total_size_bytes: Optional[int] = None,
+) -> Dict:
+    """Index every supported file under a folder on the server, keeping its structure.
+
+    Files that cannot be used (too large, empty, unparseable) are reported in
+    ``skipped`` instead of failing the whole folder.
+    """
+    folder = resolve_source_folder(raw_path)
+    paths = walk_source_folder(folder)
+    if not paths:
+        raise HTTPException(status_code=400, detail=f"No PDF, Word, text or Markdown files found under {raw_path}")
+
+    source_label = sanitize_relative_path(label, "") or re_sub_unsafe(os.path.basename(folder.rstrip(os.sep))) or "folder"
+
+    existing_docs = corpus_store.list_documents(corpus_id)
+    if max_files is not None and len(existing_docs) + len(paths) > max_files:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Folder holds {len(paths)} files; the collection is limited to {max_files} in total",
+        )
+
+    running_total = sum(d.get("size_bytes", 0) for d in existing_docs)
+    pending_docs = []
+    uploaded = []
+    skipped = []
+
+    for full_path in paths:
+        rel = os.path.relpath(full_path, folder)
+        relative_path = sanitize_relative_path(f"{source_label}/{rel}", os.path.basename(full_path))
+        safe_filename = sanitize_filename(os.path.basename(full_path))
+        try:
+            extension = validate_extension(safe_filename)
+            size_bytes = os.path.getsize(full_path)
+            if size_bytes == 0:
+                raise ValueError("file is empty")
+            if size_bytes > MAX_FILE_SIZE_BYTES:
+                raise ValueError(f"larger than {MAX_FILE_SIZE_MB} MB")
+            if max_total_size_bytes is not None and running_total + size_bytes > max_total_size_bytes:
+                raise ValueError(f"collection would exceed {max_total_size_bytes // (1024 * 1024)} MB")
+            with open(full_path, "rb") as handle:
+                content = handle.read()
+            normalized_text = parse_document_bytes(content=content, extension=extension)
+            if not normalized_text.strip():
+                raise ValueError("no extractable text")
+        except HTTPException as exc:
+            skipped.append({"path": rel, "reason": str(exc.detail)})
+            continue
+        except Exception as exc:
+            skipped.append({"path": rel, "reason": str(exc)})
+            continue
+
+        running_total += size_bytes
+        document_id = str(uuid.uuid4())
+        _, normalized_filename = make_normalized_filename(safe_filename, document_id)
+        governance = infer_governance(normalized_text)
+        pending_docs.append({
+            "document_id": document_id,
+            "original_filename": safe_filename,
+            "normalized_filename": normalized_filename,
+            "file_type": extension,
+            "size_bytes": size_bytes,
+            "normalized_text": normalized_text,
+            "relative_path": relative_path,
+            "original_bytes": content,
+            "content_type": CONTENT_TYPES.get(extension, "application/octet-stream"),
+            **governance,
+        })
+        uploaded.append({
+            "document_id": document_id,
+            "filename": relative_path,
+            "original_filename": safe_filename,
+            "relative_path": relative_path,
+            "file_type": extension,
+            "size_bytes": size_bytes,
+            "status": "uploaded",
+            **governance,
+            "status_override": None,
+            "doc_type_override": None,
+        })
+
+    if not pending_docs:
+        reasons = "; ".join(f"{s['path']}: {s['reason']}" for s in skipped[:5])
+        raise HTTPException(status_code=400, detail=f"No usable files under {raw_path} ({reasons})")
+
+    metadata = corpus_store.add_documents_bulk(corpus_id, pending_docs)
+    invalidate_corpus_cache(corpus_id)
+
+    return {
+        "corpus_id": corpus_id,
+        "source": {"type": "folder", "path": folder, "label": source_label, "files_found": len(paths)},
+        "uploaded": uploaded,
+        "skipped": skipped,
+        "document_count": metadata.get("document_count", 0),
+        "requires_reindex": True,
+        "status": metadata.get("status"),
+    }
+
+
+@app.post("/corpora/{corpus_id}/sources/folder")
+async def add_folder_source(
+    corpus_id: str,
+    payload: FolderSourceRequest,
+    x_api_key: Optional[str] = Header(default=None),
+):
+    require_api_key(x_api_key)
+    validate_corpus_id(corpus_id)
+    try:
+        return index_server_folder(corpus_id, payload.path, payload.label)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise map_store_error(exc)
+
+
+@app.post("/demo/corpora/{corpus_id}/sources/folder")
+async def add_demo_folder_source(corpus_id: str, payload: FolderSourceRequest, http_request: Request):
+    enforce_demo_rate_limit(http_request)
+    get_demo_corpus_or_404(corpus_id)
+    try:
+        return index_server_folder(
+            corpus_id,
+            payload.path,
+            payload.label,
+            max_files=MAX_DEMO_DOCUMENTS,
+            max_total_size_bytes=MAX_DEMO_CORPUS_BYTES,
         )
     except HTTPException:
         raise

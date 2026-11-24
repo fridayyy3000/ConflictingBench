@@ -32,6 +32,7 @@
     "error-banner", "new-collection-btn", "pipeline-chip", "create-collection-card", "create-collection-form",
     "collection-name-input", "workspace", "collection-name-display", "collection-meta",
     "document-count", "dropzone", "browse-btn", "browse-folder-btn", "file-input", "folder-input", "load-example-btn",
+    "folder-source-form", "folder-path-input", "folder-source-btn", "folder-source-hint",
     "upload-status", "documents-empty", "document-tree-wrap", "document-tree", "question-input", "resolve-btn",
     "resolve-hint", "submitted-context", "results", "decision-badge", "export-btn", "result-answer",
     "result-confidence", "short-answers", "result-explanation", "missing-information", "missing-list",
@@ -163,6 +164,14 @@
       const model = (p.generation_model || "").split("/").pop();
       el.pipelineChip.textContent = `${model} · ${p.retrieval === "hybrid" ? "BM25 + dense" : "dense"} retrieval · ${p.policy === "answer_and_flag" ? "answer and flag" : "refuse on conflict"}`;
       el.pipelineChip.title = `Provider ${p.provider}; embeddings ${p.embedding_model}`;
+      const connector = health.folder_connector || {};
+      el.folderSourceForm.classList.toggle("hidden", connector.enabled === false);
+      if (connector.enabled !== false) {
+        const roots = connector.roots || [];
+        el.folderSourceHint.textContent = roots.length
+          ? `PDF, Word, text and Markdown files under ${roots.join(", ")}. Hidden files and links are skipped.`
+          : "PDF, Word, text and Markdown files. Hidden files and links are skipped.";
+      }
     } catch (error) {
       el.pipelineChip.textContent = "";
     }
@@ -400,6 +409,36 @@
     }
     for (const entry of entries) await walk(entry, "");
     return { files, paths };
+  }
+
+  async function indexServerFolder(event) {
+    event.preventDefault();
+    const path = el.folderPathInput.value.trim();
+    if (!path) { el.folderPathInput.focus(); return; }
+    showLoading(`Indexing ${path}…`);
+    el.folderSourceBtn.disabled = true;
+    try {
+      const response = await apiFetch(corpusPath("/sources/folder"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ path }),
+      });
+      (response.uploaded || []).forEach((doc) => state.documents.push(doc));
+      renderCollection();
+      const skipped = response.skipped || [];
+      const label = response.source && response.source.label ? response.source.label : path;
+      let message = `Indexed ${response.uploaded.length} file(s) from ${label}. Total: ${response.document_count}.`;
+      if (skipped.length) {
+        message += ` Skipped ${skipped.length}: ${skipped.slice(0, 3).map((item) => `${item.path} (${item.reason})`).join("; ")}${skipped.length > 3 ? "…" : ""}`;
+      }
+      showUploadStatus(message, skipped.length ? "error" : "success");
+      el.folderPathInput.value = "";
+    } catch (error) {
+      showUploadStatus(error.message, "error");
+    } finally {
+      el.folderSourceBtn.disabled = false;
+      hideLoading();
+    }
   }
 
   async function loadExampleDataset() {
@@ -1142,6 +1181,7 @@
   el.fileInput.addEventListener("change", (event) => { uploadFiles(event.target.files); event.target.value = ""; });
   el.folderInput.addEventListener("change", (event) => { uploadFiles(event.target.files); event.target.value = ""; });
   el.loadExampleBtn.addEventListener("click", loadExampleDataset);
+  el.folderSourceForm.addEventListener("submit", indexServerFolder);
   ["dragover", "dragenter"].forEach((eventName) => el.dropzone.addEventListener(eventName, (event) => {
     event.preventDefault();
     el.dropzone.classList.add("dropzone--active");

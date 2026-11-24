@@ -79,6 +79,12 @@ label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 650; }
 .dropzone p { margin: 0 0 12px; font-size: 14px; }
 .dropzone__actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .dropzone small { margin-top: 10px; color: var(--muted); font-size: 11px; }
+.source-form { margin: 16px 0 4px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.source-form__head .eyebrow { margin-bottom: 2px; }
+.source-form__head .muted { margin: 0 0 10px; font-size: 12px; }
+.source-form__row { display: flex; gap: 8px; flex-wrap: wrap; }
+.source-form__row .input { flex: 1 1 260px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.source-form small { display: block; margin-top: 8px; font-size: 11px; }
 .example-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 16px 0; font-size: 12px; }
 .text-button { padding: 0; color: var(--green); background: none; border: 0; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .upload-status { margin: 12px 0; padding: 10px 12px; border-radius: 9px; font-size: 13px; }

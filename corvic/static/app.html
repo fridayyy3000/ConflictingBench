@@ -63,6 +63,18 @@
               <input id="folder-input" type="file" multiple webkitdirectory directory class="hidden" />
               <small>PDF, Word, text or Markdown · up to 500 files · 500 MB total</small>
             </div>
+            <form id="folder-source-form" class="source-form">
+              <div class="source-form__head">
+                <p class="eyebrow">Or connect a folder on the server</p>
+                <p class="muted">Point at a folder the server can read: a mounted share, an export, a knowledge-base dump. Files are indexed in place and the folder structure becomes the document path.</p>
+              </div>
+              <div class="source-form__row">
+                <label class="sr-only" for="folder-path-input">Folder path on the server</label>
+                <input id="folder-path-input" class="input" type="text" placeholder="/path/to/policies" maxlength="4096" autocomplete="off" spellcheck="false" />
+                <button id="folder-source-btn" class="button button--secondary" type="submit">Index folder</button>
+              </div>
+              <small id="folder-source-hint" class="muted"></small>
+            </form>
             <div class="example-row">
               <button id="load-example-btn" class="text-button" type="button">Load the example dataset</button>
               <span class="muted">180 sample policies with intentional conflicts</span>

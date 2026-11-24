@@ -127,6 +127,7 @@ Pipeline configuration (the paper's "Variant 3" is the default):
 - `DOCUINSIGHT_BASE_URL` / `GOVRAG_BASE_URL` (optional; any OpenAI-compatible endpoint, e.g. a local vLLM)
 - `GOVRAG_RETRIEVAL` (`hybrid` default | `dense`) and `GOVRAG_POLICY` (`answer_and_flag` default | `strict`)
 - `GOVRAG_EMBED_MODEL`, `EMBED_DEVICE` (`cpu` | `mps` | `cuda`)
+- `DOCUINSIGHT_ALLOWED_ROOTS` (optional; comma-separated roots the server folder connector may index, default `~`; empty disables it)
 
 ## Local Run
 
@@ -193,6 +194,7 @@ protected `/corpora` API — no logic is duplicated.
 ```
 POST   /demo/corpora                      -> create a session corpus, returns corpus_id
 POST   /demo/corpora/{corpus_id}/documents -> upload files (multipart, multiple)
+POST   /demo/corpora/{corpus_id}/sources/folder -> {path, label?} index a folder on the server in place
 POST   /demo/corpora/{corpus_id}/query     -> auto-indexes if needed, returns GOV-RAG result
 GET    /demo/corpora/{corpus_id}
 GET    /demo/corpora/{corpus_id}/documents  -> includes inferred status/type and overrides
@@ -205,6 +207,17 @@ DELETE /demo/corpora/{corpus_id}
 
 Uploads accept an optional repeated `paths` form field (one per file) carrying the
 relative path inside an uploaded folder; it becomes the document's display name.
+
+The folder connector (`/sources/folder`, also under the protected `/corpora` API)
+walks a folder the server can read (a mounted share, an export, a knowledge-base
+dump), indexes every PDF, Word, text or Markdown file in place and keeps the folder
+structure as the document path, so citations and the reader work on it exactly as on
+uploads. Hidden entries and symlinks are skipped; files that are empty, too large or
+unparseable are listed in `skipped` instead of failing the folder. The path must sit
+under one of `DOCUINSIGHT_ALLOWED_ROOTS` (comma-separated; default the server
+account's home directory; set it to "" to disable the connector). `/health` reports
+the connector state under `folder_connector`. A small demo folder lives in
+`../demo_folders/acme_policies`.
 Query responses carry, per citation, the verified quote's character spans in the chunk
 (`passage_spans`) and in the full document (`document_spans`), a `role`
 (support | dissent | context), plus `decision_label` (adds `answered_with_dissent`) and a
