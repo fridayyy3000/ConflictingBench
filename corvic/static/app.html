@@ -3,170 +3,148 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DocuInsight — Intelligent answers grounded in your documents</title>
+  <meta name="theme-color" content="#f5f7f5" />
+  <title>DocuInsight — Evidence workspace</title>
   <link rel="stylesheet" href="/static/app.css" />
 </head>
 <body>
-  <div id="error-banner" class="error-banner hidden" role="alert"></div>
-
   <header class="app-header">
-    <div class="app-header__inner">
-      <div class="brand">
-        <div class="brand__mark">DI</div>
-        <div>
-          <h1 class="brand__name">DocuInsight</h1>
-          <p class="brand__subtitle">Intelligent answers grounded in your documents</p>
-        </div>
-      </div>
-      <button id="new-collection-btn" class="btn btn--ghost hidden" type="button">New Collection</button>
-    </div>
+    <a class="brand" href="/app" aria-label="DocuInsight home">
+      <span class="brand__mark" aria-hidden="true">D</span>
+      <span><strong>DocuInsight</strong><small>Evidence workspace</small></span>
+    </a>
+    <button id="new-collection-btn" class="button button--quiet hidden" type="button">New collection</button>
   </header>
 
   <main class="app-main">
-    <p class="app-intro">
-      Upload your documents and ask questions across them. DocuInsight retrieves the most
-      relevant evidence and resolves conflicting sources when needed.
-    </p>
+    <section class="intro">
+      <p class="eyebrow">Decisions, grounded in your documents</p>
+      <h1>Make the evidence easy to inspect.</h1>
+      <p>Bring together policies, guidance, and reference material. Ask a question and review the evidence, conditions, and conflicts behind the response.</p>
+    </section>
 
-    <!-- Step 1: Create Collection -->
-    <section id="create-collection-card" class="card">
-      <h2 class="card__title">Create a collection</h2>
-      <p class="card__hint">Give your document set a name to get started.</p>
-      <form id="create-collection-form" class="form-row">
-        <input
-          id="collection-name-input"
-          class="text-input"
-          type="text"
-          placeholder="e.g. Supplier Policy Bulletins"
-          maxlength="200"
-          required
-        />
-        <button class="btn btn--primary" type="submit">Create Collection</button>
+    <div id="error-banner" class="error-banner hidden" role="alert" aria-live="assertive"></div>
+    <section id="create-collection-card" class="panel setup-panel">
+      <div>
+        <p class="eyebrow">Start a workspace</p>
+        <h2>Create a collection</h2>
+        <p class="muted">A private, temporary place for the documents you want to compare.</p>
+      </div>
+      <form id="create-collection-form" class="create-form">
+        <label class="sr-only" for="collection-name-input">Collection name</label>
+        <input id="collection-name-input" class="input" type="text" placeholder="e.g. Supplier policy review" maxlength="200" required />
+        <button class="button button--primary" type="submit">Create collection</button>
       </form>
     </section>
 
-    <!-- Step 2 + 3: Collection workspace -->
-    <section id="workspace" class="workspace hidden">
-      <section class="card">
-        <div class="card__header-row">
+    <section id="workspace" class="workspace hidden" aria-label="Collection workspace">
+      <section class="panel collection-panel">
+        <div class="section-heading">
           <div>
-            <h2 class="card__title" id="collection-name-display">Collection</h2>
-            <p class="card__hint" id="collection-meta"></p>
+            <p class="eyebrow">Your collection</p>
+            <h2 id="collection-name-display">Collection</h2>
+            <p id="collection-meta" class="muted"></p>
           </div>
+          <span id="document-count" class="count-pill">0 documents</span>
         </div>
-
         <div id="dropzone" class="dropzone">
-          <p class="dropzone__text">Drag &amp; drop files here, or</p>
-          <button id="browse-btn" class="btn btn--secondary" type="button">Browse files</button>
+          <span class="dropzone__icon" aria-hidden="true">↑</span>
+          <p><strong>Drop documents here</strong><br /><span class="muted">or choose files from your device</span></p>
+          <button id="browse-btn" class="button button--secondary" type="button">Browse files</button>
           <input id="file-input" type="file" multiple accept=".pdf,.docx,.txt,.md" class="hidden" />
-          <p class="dropzone__types">Supported: .pdf, .docx, .txt, .md (up to 500 files, 500 MB total)</p>
+          <small>PDF, DOCX, TXT, or Markdown · up to 500 files · 500 MB total</small>
         </div>
-
-        <div class="example-dataset-row">
-          <button id="load-example-btn" class="btn btn--ghost" type="button">Load Example Dataset</button>
-          <p class="card__hint card__hint--inline">Loads 180 sample policy documents with intentional conflicts.</p>
+        <div class="example-row">
+          <button id="load-example-btn" class="text-button" type="button">Load the example dataset</button>
+          <span class="muted">180 sample policies with intentional conflicts</span>
         </div>
-
-        <div id="upload-status" class="upload-status hidden"></div>
-
-        <ul id="document-list" class="document-list"></ul>
+        <div id="upload-status" class="upload-status hidden" role="status" aria-live="polite"></div>
+        <div id="documents-empty" class="empty-note">No documents yet. Upload files or load the example dataset to get started.</div>
+        <ul id="document-list" class="document-list" aria-label="Uploaded documents"></ul>
       </section>
 
-      <section class="card">
-        <h2 class="card__title">Ask a question</h2>
-        <textarea
-          id="question-input"
-          class="question-input"
-          placeholder="e.g. What defect rate currently applies to Q4-certified suppliers?"
-          maxlength="2000"
-          rows="4"
-        ></textarea>
-        <div class="form-row form-row--end">
-          <button id="resolve-btn" class="btn btn--primary" type="button" disabled>Resolve</button>
+      <section class="panel question-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Ask your collection</p>
+            <h2>Describe the decision or question</h2>
+            <p class="muted">Case context is optional. Add what you know; leave unknown details blank.</p>
+          </div>
         </div>
-        <p id="resolve-hint" class="card__hint">Upload at least one document to enable resolving.</p>
+        <label for="question-input">Question</label>
+        <textarea id="question-input" class="input question-input" placeholder="e.g. Which defect-rate limit applies to this supplier?" maxlength="2000" rows="3"></textarea>
+        <details class="context-details">
+          <summary>Add case context <span>Optional</span></summary>
+          <div class="context-grid">
+            <div><label for="context-date">Relevant date</label><input id="context-date" class="input" type="date" /></div>
+            <div><label for="context-location">Location / region</label><input id="context-location" class="input" type="text" placeholder="e.g. Ontario" maxlength="160" /></div>
+            <div><label for="context-category">Employee category</label><input id="context-category" class="input" type="text" placeholder="e.g. hourly, contractor" maxlength="160" /></div>
+            <div class="context-grid__wide"><label for="context-circumstances">Additional circumstances</label><textarea id="context-circumstances" class="input" rows="2" maxlength="1200" placeholder="Relevant facts, exceptions, or details about this case"></textarea></div>
+          </div>
+        </details>
+        <div class="question-actions">
+          <p id="resolve-hint" class="muted">Upload at least one document to enable a question.</p>
+          <button id="resolve-btn" class="button button--primary" type="button" disabled>Review evidence <span aria-hidden="true">→</span></button>
+        </div>
+        <p id="submitted-context" class="submitted-context hidden" aria-live="polite"></p>
       </section>
 
-      <section id="results" class="results hidden">
-        <div class="card answer-card">
-          <div class="answer-card__top">
-            <div>
-              <p class="answer-card__label">Final Answer</p>
-              <p id="result-answer" class="answer-card__value"></p>
-            </div>
-            <div id="result-confidence-badge" class="badge"></div>
-          </div>
-
-          <!-- Shown only when conflict_detected == true -->
-          <div id="conflict-fields" class="answer-grid hidden">
-            <div>
-              <p class="answer-grid__label">Governing Source</p>
-              <p id="result-conflict-source" class="answer-grid__value"></p>
-            </div>
-            <div>
-              <p class="answer-grid__label">Conflict Detected</p>
-              <p id="result-conflict" class="answer-grid__value"></p>
-            </div>
-            <div>
-              <p class="answer-grid__label">Number of Conflicts</p>
-              <p id="result-num-conflicts" class="answer-grid__value"></p>
-            </div>
-          </div>
-
-          <!-- Shown only when conflict_detected == false -->
-          <div id="simple-fields" class="answer-grid hidden">
-            <div>
-              <p class="answer-grid__label">Source</p>
-              <p id="result-simple-source" class="answer-grid__value"></p>
-            </div>
-          </div>
-
-          <div id="result-no-conflict" class="no-conflict-note hidden">
-            No conflicting evidence detected.
-          </div>
-
-          <div class="answer-reason">
-            <p id="reason-label" class="answer-grid__label">Why this answer is supported</p>
-            <p id="result-reason" class="answer-reason__text"></p>
-          </div>
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="result-header">
+          <div><p class="eyebrow">Evidence review</p><h2>Your result</h2></div>
+          <span id="decision-badge" class="decision-badge"></span>
         </div>
-
-        <div id="evidence-section-conflict" class="card hidden">
-          <h2 class="card__title">Competing evidence</h2>
-          <div class="table-scroll">
-            <table id="evidence-table" class="evidence-table">
-              <thead>
-                <tr>
-                  <th>Source</th>
-                  <th>Claim</th>
-                  <th>Status</th>
-                  <th>Document Type</th>
-                  <th>Semantic</th>
-                  <th>Authority</th>
-                  <th>Scope</th>
-                  <th>Final</th>
-                  <th>Selected</th>
-                  <th>Supporting Sentence</th>
-                </tr>
-              </thead>
-              <tbody id="evidence-table-body"></tbody>
-            </table>
+        <article class="panel answer-panel">
+          <div class="answer-panel__heading">
+            <div><p class="eyebrow">Answer</p><p id="result-answer" class="answer-text"></p></div>
+            <p id="result-confidence" class="confidence-label"></p>
           </div>
-        </div>
+          <p id="result-explanation" class="result-explanation"></p>
+          <div id="missing-information" class="missing-panel hidden">
+            <h3>What is still needed</h3>
+            <ul id="missing-list"></ul>
+            <p id="clarification-question"></p>
+          </div>
+          <div id="citation-list" class="citation-list"></div>
+        </article>
 
-        <div id="evidence-section-simple" class="card hidden">
-          <h2 class="card__title">Supporting evidence</h2>
-          <ul id="simple-evidence-list" class="document-list"></ul>
+        <div class="comparison-grid">
+          <section class="panel">
+            <div class="section-heading section-heading--compact">
+              <div><p class="eyebrow">Evidence cited</p><h3>Governing and supporting</h3></div>
+            </div>
+            <div id="governing-evidence" class="evidence-stack"></div>
+            <p id="no-governing-evidence" class="empty-note hidden">No evidence was cited as governing. Review the competing material before deciding.</p>
+          </section>
+          <section class="panel">
+            <div class="section-heading section-heading--compact">
+              <div><p class="eyebrow">Compare carefully</p><h3>Competing and related evidence</h3></div>
+            </div>
+            <div id="competing-evidence" class="evidence-stack"></div>
+            <p id="no-competing-evidence" class="empty-note hidden">No competing passages were identified in the returned evidence.</p>
+          </section>
         </div>
+        <details class="panel technical-details">
+          <summary>Technical details <span>Scores and inferred metadata</span></summary>
+          <p class="muted technical-warning">Scores are retrieval signals, not proof of applicability. Status and document type are inferred, not independently verified.</p>
+          <div id="technical-evidence" class="technical-list"></div>
+        </details>
       </section>
     </section>
   </main>
 
-  <div id="loading-overlay" class="loading-overlay hidden">
-    <div class="spinner"></div>
-    <p id="loading-message">Working…</p>
-  </div>
+  <dialog id="evidence-dialog" class="evidence-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-header">
+      <div><p class="eyebrow">Source passage</p><h2 id="dialog-title">Evidence</h2></div>
+      <button id="close-evidence" class="button button--quiet" type="button" aria-label="Close evidence panel">Close</button>
+    </div>
+    <p id="dialog-location" class="muted"></p>
+    <div id="dialog-passage" class="passage-text"></div>
+  </dialog>
 
+  <div id="loading-overlay" class="loading-overlay hidden" role="status" aria-live="assertive" aria-busy="true">
+    <div class="spinner" aria-hidden="true"></div><p id="loading-message">Working…</p>
+  </div>
   <script src="/static/app.js"></script>
 </body>
 </html>

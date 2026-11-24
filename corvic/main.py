@@ -63,7 +63,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEMO_DOCUMENTS_DIR = os.path.join(BASE_DIR, "easy")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 GOVRAG_BUCKET = os.getenv("GOVRAG_BUCKET", "").strip() or None
-PERSISTED_INDEX_FORMAT_VERSION = 2
+PERSISTED_INDEX_FORMAT_VERSION = 3
 
 # Server-controlled Vertex AI target for the public browser API; never client-supplied.
 DEMO_PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "project-79920195-9e86-44ea-8c9")
@@ -109,12 +109,20 @@ app.add_middleware(
 # REQUEST / RESPONSE MODELS
 # ============================================================
 
+class CaseContext(BaseModel):
+    relevant_date: Optional[str] = None
+    location: Optional[str] = None
+    employee_category: Optional[str] = None
+    circumstances: Optional[str] = None
+
+
 class QueryRequest(BaseModel):
     question: str
     project_id: str = "project-79920195-9e86-44ea-8c9"
     region: str = "us-central1"
     use_llm: bool = True
     top_k: int = 8
+    context: Optional[CaseContext] = None
 
 
 class CorpusCreateRequest(BaseModel):
@@ -137,15 +145,39 @@ class DemoQueryRequest(BaseModel):
 
 class SourceInfo(BaseModel):
     filename: str
+    original_filename: str
+    document_id: str
+    chunk_id: str
+    passage: str
     claim: Optional[str] = None
     status: str
+    status_inferred: bool = True
     document_type: str
+    document_type_inferred: bool = True
     semantic_score: float
     authority_score: float
+    authority_score_inferred: bool = True
     scope_score: float
+    scope_score_kind: str = "similarity"
     final_score: float
     supporting_sentence: Optional[str] = None
     selected: bool = False
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    section: Optional[str] = None
+
+
+class CitationInfo(BaseModel):
+    chunk_id: str
+    document_id: str
+    filename: str
+    page_start: Optional[int] = None
+    page_end: Optional[int] = None
+    section: Optional[str] = None
+    passage: str
+    quote: str
+    treatment: str
+    explanation: str = ""
 
 
 class QueryResponse(BaseModel):
@@ -158,6 +190,11 @@ class QueryResponse(BaseModel):
     num_conflicts: int
     top_sources: List[SourceInfo]
     retrieval_mode: Optional[str] = None
+    decision: str = "insufficient_evidence"
+    explanation: str = ""
+    citations: List[CitationInfo] = Field(default_factory=list)
+    missing_information: List[str] = Field(default_factory=list)
+    clarification_question: Optional[str] = None
 
 
 class CorpusQueryResponse(QueryResponse):
@@ -208,6 +245,18 @@ def get_corpus_lock(corpus_id: str) -> threading.Lock:
 
 def build_cache_key(corpus_id: str, request: QueryRequest) -> str:
     return f"{corpus_id}|{request.project_id}|{request.region}|{int(request.use_llm)}"
+
+
+def persisted_index_is_current(index_metadata: Dict, corpus_updated_at: Optional[str], rows: List[Dict]) -> bool:
+    return (
+        index_metadata.get("corpus_updated_at") == corpus_updated_at
+        and index_metadata.get("embedding_model") == VERTEX_AI_MODEL
+        and index_metadata.get("index_format_version") == PERSISTED_INDEX_FORMAT_VERSION
+        and bool(rows)
+        and all(row.get("scope_embedding") is not None for row in rows)
+        and all(row.get("chunk_id") and row.get("document_id") for row in rows)
+        and all("page_start" in row and "page_end" in row and "section" in row for row in rows)
+    )
 
 
 def invalidate_corpus_cache(corpus_id: str) -> None:
@@ -315,17 +364,10 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                 index_updated_at = index_meta.get("corpus_updated_at")
                 index_model = index_meta.get("embedding_model")
                 index_version = index_meta.get("index_format_version")
-                has_scope_embeddings = all(
-                    row.get("scope_embedding") is not None
-                    for row in persisted.get("chunks", [])
-                )
+                rows = persisted.get("chunks", [])
+                has_scope_embeddings = all(row.get("scope_embedding") is not None for row in rows)
 
-                if (
-                    index_updated_at == corpus_updated_at
-                    and index_model == VERTEX_AI_MODEL
-                    and index_version == PERSISTED_INDEX_FORMAT_VERSION
-                    and has_scope_embeddings
-                ):
+                if persisted_index_is_current(index_meta, corpus_updated_at, rows):
                     rag = GovRAGGemini.from_persisted_index(
                         persisted["chunks"],
                         project_id=request.project_id,
@@ -369,6 +411,16 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
                         "govrag_persisted_index_invalid=missing_scope_embeddings "
                         f"corpus_id={corpus_id}"
                     )
+                elif not all(row.get("chunk_id") and row.get("document_id") for row in rows):
+                    print(
+                        "govrag_persisted_index_invalid=missing_chunk_identity "
+                        f"corpus_id={corpus_id}"
+                    )
+                else:
+                    print(
+                        "govrag_persisted_index_invalid=missing_locations "
+                        f"corpus_id={corpus_id}"
+                    )
             except CorpusStoreError:
                 pass
 
@@ -408,37 +460,28 @@ def ensure_corpus_rag(corpus_id: str, request: QueryRequest, force_reindex: bool
 
 
 def format_result(question: str, result: dict, top_k: int = 8, filename_map: Optional[Dict[str, str]] = None):
-    """Map GovRAGGemini's internal chunk-level candidates to the public API shape.
-
-    Retrieval operates over chunks internally, so multiple candidates can share
-    the same source file; dedupe to one row per source (keeping its strongest
-    chunk) so the UI doesn't show repeated identical-looking rows for one PDF.
-    """
+    """Map chunk-level evidence and verified citations to the public response."""
     filename_map = filename_map or {}
     selected_source_raw = result.get("source")
     selected_source = filename_map.get(selected_source_raw, selected_source_raw)
     conflict_detected = result.get("conflict_detected", False)
-
     candidates = result.get("candidates", [])
-
-    # Keep only the highest-scoring candidate per source filename.
-    best_by_file: Dict[str, dict] = {}
-    for src in candidates:
-        raw_filename = src.get("filename", "")
-        current_best = best_by_file.get(raw_filename)
-        if current_best is None or src.get("final_score", 0.0) > current_best.get("final_score", 0.0):
-            best_by_file[raw_filename] = src
-
-    deduped = sorted(best_by_file.values(), key=lambda c: c.get("final_score", 0.0), reverse=True)
+    ordered_candidates = sorted(
+        candidates, key=lambda candidate: candidate.get("final_score", 0.0), reverse=True
+    )
 
     top_sources = []
-    for src in deduped[:top_k]:
+    for src in ordered_candidates[:top_k]:
         raw_filename = src.get("filename", "")
         display_filename = filename_map.get(raw_filename, raw_filename)
-
+        chunk_index = src.get("chunk_index", 0)
         top_sources.append(
             SourceInfo(
                 filename=display_filename,
+                original_filename=display_filename,
+                document_id=str(src.get("document_id") or raw_filename),
+                chunk_id=str(src.get("chunk_id") or f"{raw_filename}:chunk:{chunk_index}"),
+                passage=str(src.get("text") or ""),
                 claim=src.get("claim"),
                 status=src.get("status", "unknown"),
                 document_type=src.get("doc_type", "unknown"),
@@ -447,18 +490,34 @@ def format_result(question: str, result: dict, top_k: int = 8, filename_map: Opt
                 scope_score=float(src.get("scope_score", 0.0)),
                 final_score=float(src.get("final_score", 0.0)),
                 supporting_sentence=src.get("claim_sentence"),
-                selected=(raw_filename == selected_source_raw),
+                selected=bool(selected_source_raw and raw_filename == selected_source_raw),
+                page_start=src.get("page_start"),
+                page_end=src.get("page_end"),
+                section=src.get("section"),
             )
         )
 
+    citations = []
+    for citation in result.get("citations", []):
+        raw_filename = citation.get("filename", "")
+        display_filename = filename_map.get(raw_filename, raw_filename)
+        citations.append(CitationInfo(
+            chunk_id=citation["chunk_id"],
+            document_id=str(citation.get("document_id") or raw_filename),
+            filename=display_filename,
+            page_start=citation.get("page_start"),
+            page_end=citation.get("page_end"),
+            section=citation.get("section"),
+            passage=citation.get("passage", ""),
+            quote=citation["quote"],
+            treatment=citation.get("treatment", "supporting"),
+            explanation=citation.get("explanation", ""),
+        ))
+
     if conflict_detected:
-        # Claim extraction is auxiliary metadata; only count distinct claims
-        # among deduped sources when the pipeline actually flagged a conflict,
-        # so incidental non-conflicting extracted numbers never show as "3
-        # conflicts" on ordinary QA.
         claims = {
             str(src.get("claim")).strip()
-            for src in deduped
+            for src in ordered_candidates
             if src.get("claim") is not None
         }
         num_conflicts = max(len(claims) - 1, 0)
@@ -469,12 +528,17 @@ def format_result(question: str, result: dict, top_k: int = 8, filename_map: Opt
         question=question,
         answer=result.get("answer"),
         selected_source=selected_source,
-        reason=result.get("reason", ""),
+        reason=result.get("reason", result.get("explanation", "")) or "",
         conflict_detected=conflict_detected,
         confidence=result.get("confidence", "unknown"),
         num_conflicts=num_conflicts,
         top_sources=top_sources,
         retrieval_mode=result.get("retrieval_mode"),
+        decision=result.get("decision", "insufficient_evidence"),
+        explanation=result.get("explanation", result.get("reason", "")) or "",
+        citations=citations,
+        missing_information=result.get("missing_information", []),
+        clarification_question=result.get("clarification_question"),
     )
 
 
@@ -484,7 +548,8 @@ def run_demo_query(request: QueryRequest) -> QueryResponse:
         raise HTTPException(status_code=400, detail="Question cannot be empty")
 
     rag = get_demo_rag_instance(request)
-    result = rag.query(question)
+    context = request.context.model_dump(exclude_none=True) if request.context else None
+    result = rag.query(question, context=context)
     return format_result(question, result, request.top_k)
 
 
@@ -494,7 +559,8 @@ def run_corpus_query(corpus_id: str, request: QueryRequest) -> CorpusQueryRespon
         raise HTTPException(status_code=400, detail="Question cannot be empty")
 
     rag, cache_meta = ensure_corpus_rag(corpus_id, request, force_reindex=False)
-    result = rag.query(question)
+    context = request.context.model_dump(exclude_none=True) if request.context else None
+    result = rag.query(question, context=context)
     formatted = format_result(question, result, request.top_k, filename_map=cache_meta.get("filename_map", {}))
 
     return CorpusQueryResponse(corpus_id=corpus_id, **formatted.model_dump())

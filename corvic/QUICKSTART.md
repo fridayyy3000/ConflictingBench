@@ -1,76 +1,47 @@
-# GOV-RAG API - Quick Reference
+# DocuInsight Quick Start
 
-## 🚀 Quick Start
+## Run locally
 
 ```bash
-# 1. Install dependencies (one time)
-pip install -r requirements.txt
-
-# 2. Authenticate with GCP (one time)
+cd corvic
+python -m pip install -r requirements.txt
+export GOOGLE_CLOUD_PROJECT="your-gcp-project"
+export VERTEX_AI_REGION="us-central1"
 gcloud auth application-default login
-gcloud auth application-default set-quota-project project-79920195-9e86-44ea-8c9
-
-# 3. Start the API
-./run.sh
+python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-## 📡 API Endpoints
+Open [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app). Upload a collection
+or load the example dataset, enter a question, and optionally add case context.
+The first query may create a persisted embedding index; Gemini generation and
+embedding operations can incur cloud charges.
 
-**Base URL**: `http://localhost:8000`
+To preview UI states without creating a collection or calling the API, use
+`/app?fixture=answered`, `/app?fixture=unresolved_conflict`,
+`/app?fixture=needs_information`, or `/app?fixture=insufficient_evidence`. The
+page labels these as local UI fixtures.
 
-### Health Check
+## Offline tests
+
 ```bash
-curl http://localhost:8000/health
+python -m pytest -q test_inspectable_evidence.py
 ```
 
-### Query
+This focused suite uses mocked generation and embeddings and makes no live
+Google Cloud or Gemini calls. Do not run workflow/evaluation scripts when
+avoiding paid inference.
+
+## Compatibility API
+
+Existing clients can continue sending only a question:
+
 ```bash
-curl -X POST http://localhost:8000/query \
+curl -X POST http://127.0.0.1:8000/demo_query \
   -H "Content-Type: application/json" \
-  -d '{
-    "question": "What is the annual reimbursement ceiling for Tier-B employees at Velora Dynamics?"
-  }'
+  -d '{"question":"What does the policy say?"}'
 ```
 
-### Batch Query
-```bash
-curl -X POST "http://localhost:8000/batch_query" \
-  -H "Content-Type: application/json" \
-  -d '["Question 1?", "Question 2?"]'
-```
-
-## 🧪 Testing
-
-```bash
-# Run test suite
-python test_api.py
-
-# Or test manually
-curl http://localhost:8000/health
-```
-
-## 🐛 Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Import errors | `pip install -r requirements.txt` |
-| GCP auth errors | `gcloud auth application-default set-quota-project project-79920195-9e86-44ea-8c9` |
-| Port in use | Change port in `main.py` or use `--port 8001` |
-| Module not found | Make sure you're in the `govrag_api/` directory |
-
-## 📁 Files
-
-- **main.py** - FastAPI application
-- **pipeline/gov_rag_gemini.py** - Core GOV-RAG implementation
-- **pipeline/** - RAG pipeline, parsing, storage, chunking, and rate-limit helpers
-- **requirements.txt** - Python dependencies
-- **run.sh** - Quick start script
-- **test_api.py** - API test suite
-- **easy/** - Document corpus (90 files)
-
-## ✅ Status
-
-- **Accuracy**: 100% on ConflictBench easy pack
-- **Documents**: 90 fictional government documents (15 questions × 6 docs)
-- **Model**: Gemini 2.5 Pro (Vertex AI)
-- **Embeddings**: text-embedding-004
+To provide optional case details, send `context` with any of `relevant_date`,
+`location`, `employee_category`, or `circumstances`. The response keeps legacy
+fields and adds a decision, verified chunk citations, full passages, and any
+missing information or clarification question.

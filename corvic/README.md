@@ -1,8 +1,8 @@
-# GOV-RAG API
+# DocuInsight / GOV-RAG
 
 FastAPI service for authority-aware conflicting-document retrieval and resolution.
 
-The service now supports two modes:
+The application supports two modes:
 
 - Fixed demo corpus: bundled `easy/` (existing `/query` and `/demo_query` behavior)
 - Dynamic corpora: create/upload/index/query your own collections under `/corpora/*`
@@ -17,8 +17,8 @@ Corvic or client
 -> semantic retrieval
 -> authority + scope + status reranking
 -> conflict diversification
--> Gemini 2.5 Pro final reasoning
--> answer + governing source + competing evidence
+-> Gemini structured decision and citation validation
+-> answer, verified chunk citations, competing evidence, and decision explanation
 
 Modules:
 
@@ -28,6 +28,55 @@ Modules:
 - `pipeline/gov_rag_gemini.py`: existing GOV-RAG core ranking/reasoning
 - `pipeline/chunker.py`: overlapping chunk creation for long documents
 - `pipeline/rate_limit.py`: in-memory public demo API rate limiting
+
+## Evidence and decisions
+
+Responses keep the original legacy fields (`answer`, `selected_source`, `reason`,
+`conflict_detected`, `confidence`, `num_conflicts`, and `top_sources`) and add:
+
+- `decision`: `answered`, `unresolved_conflict`, `needs_information`, or
+  `insufficient_evidence`
+- `citations`: verified chunk IDs, exact quoted text, source locations, and
+  source treatment (`governing`, `supporting`, `superseded`, `different_scope`,
+  `conflicting`, or `uncertain`)
+- `explanation`, `missing_information`, and `clarification_question`
+- Chunk-level `top_sources`, including full passage, stable document/chunk IDs,
+  original filename, page/section when available, inferred status/type, and
+  retrieval component scores. Multiple chunks from the same document are kept.
+
+Numeric `claim` and `supporting_sentence` values are auxiliary retrieval
+metadata, not citations to the generated answer. The API validates every
+returned citation ID and quote against the retrieved passages. Invalid output
+is returned as a visible `insufficient_evidence` result without a selected
+source. `selected_source` remains nullable for legacy clients and unresolved
+conflicts.
+
+Status, type, and authority are text-inferred signals, not verified
+organizational facts. Scope score is a similarity measure, not proof that a
+source applies. Evidence is not silently discarded just because it comes from
+the same document, and unresolved sources are not assigned an invented winner.
+
+PDF page text is stored with explicit page boundaries so page locations survive
+chunking and persisted indexes. Markdown headings and DOCX heading styles are
+used as section labels where available; other chunks still have stable chunk
+references. Persisted indexes use format version 3. Older versions do not have
+reliable location metadata and are rejected for controlled reindexing on the
+next query/index operation.
+
+Query bodies remain compatible with question-only clients. Optional case facts
+can be supplied in `context`:
+
+```json
+{
+  "question": "Which leave rule applies?",
+  "context": {
+    "relevant_date": "2026-10-31",
+    "location": "Ontario",
+    "employee_category": "hourly",
+    "circumstances": "The employee is returning from approved leave."
+  }
+}
+```
 
 ## Persistence Model
 
@@ -64,15 +113,15 @@ Local fallback (when `GOVRAG_BUCKET` is unset):
 - `GOVRAG_MAX_FILE_SIZE_MB` (optional; default `20`)
 - `GOVRAG_ALLOWED_ORIGINS` (optional; comma-separated CORS origins for the browser demo API, default `https://app.corvic.ai`)
 - `DEMO_CORPUS_TTL_HOURS` (optional; default `24` — demo corpora auto-expire)
-- `GOVRAG_MAX_DEMO_FILES` (optional; default `10`)
-- `GOVRAG_MAX_DEMO_TOTAL_SIZE_MB` (optional; default `100`)
+- `GOVRAG_MAX_DEMO_DOCUMENTS` (optional; default `500`)
+- `GOVRAG_MAX_DEMO_CORPUS_MB` (optional; default `500`)
 - `GOVRAG_MAX_QUESTION_LENGTH` (optional; default `2000`)
 - `GOVRAG_DEMO_RATE_LIMIT_PER_MINUTE` (optional; default `30`, per-IP, in-memory)
 
 ## Local Run
 
 ```bash
-cd govrag_api
+cd corvic
 pip install -r requirements.txt
 gcloud auth application-default login
 export GOOGLE_CLOUD_PROJECT="project-79920195-9e86-44ea-8c9"
@@ -81,14 +130,20 @@ export GOVRAG_API_SECRET="$(openssl rand -hex 32)"
 # Optional for GCS persistence
 # export GOVRAG_BUCKET="your-bucket"
 
-python main.py
+python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 or:
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+Open [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app). The first query
+for an unindexed collection creates embeddings; answer generation also calls
+Gemini when enabled. Those live query operations can incur cloud charges.
+Offline tests below mock embeddings and generation and do not call Google
+services.
 
 ## Endpoints
 
@@ -118,7 +173,7 @@ Supported upload file types:
 - `.pdf`
 - `.docx`
 
-## Public Browser Demo API (Corvic Web App)
+## Public Browser Demo API (DocuInsight)
 
 The Corvic browser app cannot securely hold `GOVRAG_API_SECRET`, so a separate
 **unauthenticated** set of routes exists specifically for short-lived, browser-driven
@@ -143,8 +198,8 @@ Security properties:
 - Demo corpora expire after `DEMO_CORPUS_TTL_HOURS` (default 24h); expired corpora are
   cleaned up opportunistically when a new demo corpus is created, and are treated as
   `404 Not Found` even if not yet swept.
-- Uploads are capped at `GOVRAG_MAX_DEMO_FILES` files, `GOVRAG_MAX_FILE_SIZE_MB` per
-  file, and `GOVRAG_MAX_DEMO_TOTAL_SIZE_MB` per corpus.
+- Uploads are capped at `GOVRAG_MAX_DEMO_DOCUMENTS` files,
+  `GOVRAG_MAX_FILE_SIZE_MB` per file, and `GOVRAG_MAX_DEMO_CORPUS_MB` per corpus.
 - Questions are capped at `GOVRAG_MAX_QUESTION_LENGTH` characters.
 - Per-IP in-memory rate limiting (`GOVRAG_DEMO_RATE_LIMIT_PER_MINUTE`) applies to all
   `/demo/corpora/*` routes. This is single-process and resets on redeploy — fine for a
@@ -170,9 +225,15 @@ curl -sS -X POST "$URL/demo/corpora/$CORPUS_ID/query" \
   -d '{"question":"What defect rate currently applies to Q4-certified suppliers?"}'
 ```
 
-The response gives the Corvic Web App everything needed to render: `answer`,
-`selected_source`, `reason`, `conflict_detected`, `confidence`, `num_conflicts`, and
-`top_sources` (competing evidence).
+The response gives the DocuInsight UI the legacy fields plus a structured
+decision, verified citations, full passages, missing case information, and
+source treatment details.
+
+UI-only states can be previewed without a collection or API call by opening
+`/app?fixture=answered`, `/app?fixture=unresolved_conflict`,
+`/app?fixture=needs_information`, or `/app?fixture=insufficient_evidence`. Each
+preview is explicitly labeled as a local UI fixture and is not part of the
+answer path.
 
 ## cURL Examples
 
@@ -233,6 +294,17 @@ curl -sS -X POST "$URL/corpora/$CORPUS_ID/query" \
 
 ## Test Scripts
 
+Focused, offline tests for structured decisions, citation verification,
+locations, and index-version handling:
+
+```bash
+python -m pytest -q test_inspectable_evidence.py
+```
+
+These tests do not invoke Gemini, Vertex AI, or any live endpoint. Existing
+workflow scripts below may perform live inference; run them only when that is
+intended.
+
 API smoke test:
 
 ```bash
@@ -253,7 +325,9 @@ Public browser demo API test (no API key):
 python test_demo_workflow.py
 ```
 
-For faster local test (no Gemini call on `/demo_query`):
+`--skip-demo-query` skips that script's demo answer call, but other workflow
+steps can still build embeddings and reach Google services; it is not an
+offline test:
 
 ```bash
 python test_corpus_workflow.py --skip-demo-query
@@ -262,7 +336,7 @@ python test_corpus_workflow.py --skip-demo-query
 ## Cloud Run Deployment
 
 ```bash
-cd ~/Documents/Conflicting_documents/govrag_api
+cd ~/Documents/Conflicting_documents/corvic
 gcloud config set project project-79920195-9e86-44ea-8c9
 
 gcloud services enable run.googleapis.com cloudbuild.googleapis.com \
