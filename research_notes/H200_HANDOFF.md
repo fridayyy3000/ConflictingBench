@@ -22,9 +22,9 @@ is answer containment over 458 items.
 
 | Row (run tag suffix) | RAMDocs set-EM | RAMDocs misinfo-in-answer | CONFLICTS containment |
 |---|---|---|---|
-| govrag_hybrid_answerandflag (system) | 45.6 | 23.8 | running overnight 23→24 Nov |
-| govrag_dense_answerandflag | 43.6 | 23.0 | running overnight |
-| govrag_hybrid_strict | 37.6 | 36.6 | running overnight |
+| govrag_hybrid_answerandflag (system) | 45.6 | 23.8 | 74.7 (8 unresolved, 1 invalid) |
+| govrag_dense_answerandflag | 43.6 | 23.0 | 74.3 (10 unresolved, 0 invalid) |
+| govrag_hybrid_strict | 37.6 | 36.6 | 76.0 (81 unresolved; containment counts refusals that mention the gold value) |
 | govrag (strict, dense) | 38.2 | 35.0 | 71.7 |
 | hybrid (BM25+dense RAG control) | 41.6 | 26.2 | 77.2 |
 | baseline (vanilla dense RAG) | 41.4 | 26.0 | see metrics json |
@@ -118,12 +118,13 @@ Judge sanity check (do this before trusting the table): the summary json of each
 rankings should match; a large disagreement on one method means the new judge reads
 abstentions or hedges differently and needs a prompt look before the table is used.
 
-## Timeline for the overnight CONFLICTS runs
+## CONFLICTS variant runs: done (24 Nov 2026, 14:30)
 
-The Mac is running, in order, hybrid_answerandflag → hybrid_strict → dense_answerandflag on
-CONFLICTS, three workers plus a retry pass each, about two hours per variant, ending near
-01:00 on 24 Nov. The Mac session commits and pushes their metrics/details/checkpoints in the
-morning. On the H200: `git pull` before judging those three rows.
+All three variant rows finished on the Mac with no retry warnings and are committed with
+their metrics, details CSVs and checkpoints. The self-contained H200 folder (`h200/`,
+assembled by `h200/make_bundle.sh` into `h200_bundle/`, copied to
+`/mnt/data1/gnajpand/conflictbench_h200/`) carries the newest details CSV of every row; re-run
+the bundle script and the rsync after any new run.
 
 ## Parked (not needed for the table; the user's call)
 
