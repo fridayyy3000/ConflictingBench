@@ -625,15 +625,33 @@ files on the test split.}
 \bottomrule
 \end{tabular}
 \caption{Judge-scored results under three generators. Each cell is the share
-of answers the judge graded \emph{fully correct} (FC, higher is better) and
-\emph{incorrect} (Inc, lower is better); the remainder is partially correct.
-RAMDocs: 500 questions, a fully correct answer lists every gold answer and no
-planted wrong value. CONFLICTS: 458 questions, graded against the behaviour
-the dataset requires for the question's conflict type. Retrieval, prompts and
-decoding are identical within a column group; only the generator changes
-across groups. Best FC and best Inc per column in bold. \todo{Numbers are the
-full set; switch to \texttt{make\_tables.py --split test} once the dev-split
-ids arrive, and fill the \sysname{} row from the type-conditioned run.}}
+of answers an LLM judge (gpt-oss-120b) graded \emph{fully correct} (FC,
+higher is better) and \emph{incorrect} (Inc, lower is better); the remainder
+is partially correct. RAMDocs: 500 questions whose documents mix ambiguity,
+noise and planted misinformation; fully correct means every gold answer and
+no planted value. CONFLICTS: 458 questions over real web results, graded
+against the behaviour the question's conflict type requires.
+\textbf{Rows.} \sysname{}: hybrid retrieval, governance scoring, conflict
+diversification and the answer-and-flag policy (commit on factual conflicts,
+present both sides on opinion conflicts, flag the dissent).
+\emph{Ablations} remove one design choice at a time: \emph{v1} is the same
+policy before the opinion rule, committing on every conflict; \emph{dense
+retrieval} replaces the BM25+dense hybrid with dense only;
+\emph{refuse-on-conflict} declines to answer whenever governance does not
+settle a disagreement (the original strict system).
+\emph{Controls} use the same embedder and generator with no conflict
+handling: \emph{Hybrid RAG} and \emph{Vanilla RAG} feed the top retrieved
+chunks to a plain answer prompt; \emph{Direct CoT} answers from the model's
+own knowledge with a step-by-step prompt and no documents.
+\emph{Off-the-shelf frameworks} run their default pipelines on the same
+documents and generator: \emph{LlamaIndex} with its default top-$k$ of 2 and
+with $k{=}8$ to match our context size; \emph{Rankify} with its monoT5
+reranker over all passages. Retrieval, prompts and decoding are identical
+within a column group; only the generator changes across groups. Best FC and
+best Inc per column in bold. \todo{Numbers are the full set; switch to
+\texttt{make\_tables.py --split test} once the dev-split ids arrive, and fill
+the \sysname{} row from the type-conditioned run. Shorten this caption before
+submission.}}
 \label{tab:main}
 \end{table*}
 
