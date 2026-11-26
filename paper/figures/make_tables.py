@@ -29,11 +29,11 @@ DATASETS = ["ramdocs", "conflicts"]
 # (tag, label, group).  The first tag that exists for the system row is used.
 SYSTEM_TAGS = ["govrag_hybrid_answerandflaga"]
 ROWS = [
-    ("__system__", r"\textbf{\sysname{}} (hybrid retrieval, answer-and-flag)", None),
-    ("govrag_hybrid_answerandflag", "answer-and-flag, commit on every conflict (v1)", "Ablations"),
-    ("govrag_dense_answerandflag", "dense retrieval, answer-and-flag (v1)", "Ablations"),
-    ("govrag_hybrid_strict", "hybrid retrieval, refuse-on-conflict", "Ablations"),
-    ("govrag", "dense retrieval, refuse-on-conflict", "Ablations"),
+    ("__system__", r"\textbf{\sysname{}} (hybrid, answer-and-flag)", None),
+    ("govrag_hybrid_answerandflag", "v1: commit on every conflict", "Ablations"),
+    ("govrag_dense_answerandflag", "v1 with dense retrieval", "Ablations"),
+    ("govrag_hybrid_strict", "refuse-on-conflict, hybrid retrieval", "Ablations"),
+    ("govrag", "refuse-on-conflict, dense retrieval", "Ablations"),
     ("hybrid", "Hybrid RAG", "Controls (same retriever and generator, no policy)"),
     ("baseline", "Vanilla RAG (dense retrieval)", "Controls (same retriever and generator, no policy)"),
     ("closedbook", "Direct CoT (no retrieval)", "Controls (same retriever and generator, no policy)"),

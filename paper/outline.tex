@@ -610,20 +610,23 @@ files on the test split.}
 % ---------------- Table 1: accuracy across three generators ----------
 \begin{table*}[t]
 \centering
-\small
-\setlength{\tabcolsep}{5pt}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+% resizebox is a hard guarantee against overflowing \textwidth; at the
+% current content it scales by ~1.0, so the font stays footnotesize.
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}l cc cc cc@{}}
 \toprule
  & \multicolumn{2}{c}{\genA} & \multicolumn{2}{c}{\genB} & \multicolumn{2}{c}{\genC} \\
 \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
  & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS \\
- & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$
- & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$
- & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$ \\
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$ \\
 \midrule
 \input{tables/table_main}
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{Judge-scored results under three generators. Each cell is the share
 of answers an LLM judge (gpt-oss-120b) graded \emph{fully correct} (FC,
 higher is better) and \emph{incorrect} (Inc, lower is better); the remainder
@@ -658,8 +661,9 @@ submission.}}
 % ---------------- Table 2: behaviour under the main generator -----------
 \begin{table*}[t]
 \centering
-\small
-\setlength{\tabcolsep}{5pt}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}l cc cc cc@{}}
 \toprule
  & \multicolumn{2}{c}{refused} & \multicolumn{2}{c}{invalid outputs} & \multicolumn{2}{c}{latency (s)} \\
@@ -669,19 +673,19 @@ submission.}}
 \midrule
 \textbf{\sysname{}}                        & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
 \addlinespace[2pt]
-\quad answer-and-flag, commit on every conflict (v1) &  45 &  30 & 0 &  1 & 37 & 57 \\
-\quad dense retrieval, answer-and-flag (v1) &  45 &  35 & 1 &  0 & 51 & 75 \\
-\quad hybrid retrieval, refuse-on-conflict &  96 & 122 & 0 &  2 & 54 & 65 \\
-\quad dense retrieval, refuse-on-conflict  &  99 & 155 & 0 & 39 & 33 & 40 \\
+\quad v1: commit on every conflict         &  45 &  30 & 0 &  1 & 37 & 57 \\
+\quad v1 with dense retrieval              &  45 &  35 & 1 &  0 & 51 & 75 \\
+\quad refuse-on-conflict, hybrid retrieval &  96 & 122 & 0 &  2 & 54 & 65 \\
+\quad refuse-on-conflict, dense retrieval  &  99 & 155 & 0 & 39 & 33 & 40 \\
 \addlinespace[2pt]
-\quad hybrid RAG                           &  44 &  29 & 1 &  0 & 25 & 51 \\
-\quad dense RAG                            &  39 & 114 & 5 & 88 & 31 & 41 \\
-\quad closed-book                          & 191 &  46 & 0 &  0 & 21 & 40 \\
+\quad Hybrid RAG                           &  44 &  29 & 1 &  0 & 25 & 51 \\
+\quad Vanilla RAG (dense retrieval)        &  39 & 114 & 5 & 88 & 31 & 41 \\
+\quad Direct CoT (no retrieval)            & 191 &  46 & 0 &  0 & 21 & 40 \\
 \addlinespace[2pt]
 \quad LlamaIndex, $k{=}2$ / $k{=}8$        & -- & -- & -- & -- & 55 / 12 & 4 / 128 \\
 \quad Rankify                              & -- & -- & -- & -- & 45 & 22 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{Behaviour behind the headline, main generator (\genA).
 \emph{Refused}: unresolved-conflict, insufficient-evidence and
 needs-information decisions. \emph{Invalid outputs}: responses that still
