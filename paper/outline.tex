@@ -80,18 +80,22 @@
     \draw (0.5,1.05) -- (0.5,1.75);                      % centre tine
   \end{tikzpicture}}%
 }
+% The mark sits on its own centred line of the author block, so it does not
+% pull the affiliation text off centre. \logoheight sets its size.
+\newlength{\logoheight}\setlength{\logoheight}{3.2ex}
 \newcommand{\forksup}{%
   \IfFileExists{figures/Arizona-State-Sun-Devils-logo.png}%
-    {\raisebox{-0.3ex}{\includegraphics[height=1.8ex]{Arizona-State-Sun-Devils-logo.png}}}%
+    {\includegraphics[height=\logoheight]{Arizona-State-Sun-Devils-logo.png}}%
     {\IfFileExists{figures/asu_pitchfork.png}%
-      {\raisebox{-0.25ex}{\includegraphics[height=1.6ex]{asu_pitchfork.png}}}%
-      {\forksupdrawn}}%
+      {\includegraphics[height=\logoheight]{asu_pitchfork.png}}%
+      {\scalebox{1.8}{\forksupdrawn}}}%
 }
 
 \title{\sysname: Conflict-Aware Question Answering\\that Answers and Flags the Dissent}
 
-\author{Gaurav Najpande \qquad Vivek Gupta \\
-        \forksup\ Arizona State University \\
+\author{Gaurav Najpande \qquad Vivek Gupta \\[2pt]
+        \forksup \\[1pt]
+        Arizona State University \\
         \texttt{\{gnajpand, vgupt140\}@asu.edu}}
 
 \begin{document}
