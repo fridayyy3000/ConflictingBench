@@ -82,7 +82,7 @@
 }
 % The mark sits on its own centred line of the author block, so it does not
 % pull the affiliation text off centre. \logoheight sets its size.
-\newlength{\logoheight}\setlength{\logoheight}{0.85cm}
+\newlength{\logoheight}\setlength{\logoheight}{2.9ex}   % about 1.5x the text height
 \newcommand{\forksup}{%
   \IfFileExists{figures/Arizona-State-Sun-Devils-logo.png}%
     {\includegraphics[height=\logoheight]{Arizona-State-Sun-Devils-logo.png}}%
@@ -93,9 +93,11 @@
 
 \title{\sysname: Conflict-Aware Question Answering\\that Answers and Flags the Dissent}
 
+% logo inline, vertically centred on the text, small gap before the name
+\newcommand{\asuaffil}{\raisebox{-0.3\height}{\forksup}\hspace{0.45em}Arizona State University}
+
 \author{Gaurav Najpande \qquad Vivek Gupta \\
-        \forksup \\
-        Arizona State University \\
+        \asuaffil \\
         \texttt{\{gnajpand, vgupt140\}@asu.edu}}
 
 \begin{document}
