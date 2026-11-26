@@ -57,8 +57,8 @@
 \newcommand{\tbd}{\textcolor{red}{--}}   % number not yet available
 % ---- the three generator models (column groups of Table 1) ---------
 \newcommand{\genA}{Nemotron 3.5 Super}
-\newcommand{\genB}{\todo{model B}}
-\newcommand{\genC}{\todo{model C}}
+\newcommand{\genB}{Qwen 3.8 27B}
+\newcommand{\genC}{Gemma 4 31B}
 
 % ---- colours shared by the diagram and the UI ------------------------
 \definecolor{support}{HTML}{1F7A4D}   % committed answer / supporting evidence
@@ -561,28 +561,40 @@ if space is short.}
   \item \textbf{Generators.} \genA, \genB, \genC; local bge-small embeddings;
         identical prompts and decoding within a column group. \todo{temperature,
         max tokens, endpoints.}
-  \item \textbf{Systems.} \sysname{} (hybrid, answer-and-flag); ablations:
-        dense + answer-and-flag, hybrid + refuse-on-conflict, dense +
-        refuse-on-conflict (the original strict system); controls: hybrid RAG
-        and dense RAG with the same retriever and no policy, closed-book;
-        off-the-shelf: LlamaIndex ($k{=}2,8$), Rankify, Open WebUI.
+  \item \textbf{Systems.} \sysname{} (hybrid retrieval, answer-and-flag with
+        the type-conditioned resolution of Section~\ref{sec:policy});
+        ablations: the same policy committing on every conflict (v1), dense
+        retrieval with answer-and-flag, and hybrid or dense retrieval with
+        refuse-on-conflict (the latter is the original strict system);
+        controls: hybrid RAG and dense RAG with the same retriever and no
+        policy, and closed-book; off-the-shelf: LlamaIndex ($k{=}2,8$) and
+        Rankify, each with the same embedder and generator.
   \item \textbf{LLM judge.} Three-way grading (fully correct / partially
-        correct / incorrect, SentryLine convention) by one open-weight judge
-        outside the generators' families (\todo{Qwen3-32B or gpt-oss-120b},
-        self-hosted with vLLM); every row judged once. Sanity check: agreement
-        with an earlier GLM judge on six rows, and with gold on a labelled
-        subset. \todo{numbers from compare\_with\_glm.py.}
+        correct / incorrect, the convention of \citealp{kumar-etal-2026-sentryline})
+        by gpt-oss-120b, an open-weight judge outside all three generators'
+        model families, self-hosted with vLLM at temperature~0; every row
+        judged once with the protocol of Appendix~\ref{app:judge}. Sanity
+        check: agreement with an earlier GLM-5.3-Flash judge on the Nemotron
+        rows. \todo{numbers from compare\_with\_glm.py.}
+  \item \textbf{Development split.} Policy variants were compared on a seeded
+        sample of 100 questions per benchmark (seed 2026) under one decision
+        rule fixed before each run; the variant reported as \sysname{} is the
+        one that passed. All numbers in the tables are on the remaining
+        questions (400 RAMDocs, 358 CONFLICTS) for every system, baselines
+        included; full-set numbers are in Appendix~\ref{app:auto}.
+        \todo{tables still show the full set until the dev ids arrive.}
 \end{itemize}
 
 \subsection{Results}
 Table~\ref{tab:main} is the headline: every system under each generator,
-one accuracy number per benchmark. Table~\ref{tab:behaviour} explains the
-headline for the main generator: how often each system commits to a wrong
-value, how often it refuses, and what it costs.
-Figure~\ref{fig:tradeoff} shows the same trade-off in one picture;
-Figure~\ref{fig:decisions} the decision mix; Figure~\ref{fig:slices} where the
-gain comes from. \todo{once the judge has run, add Table 3 with FC / PC / Inc
-per generator and move the headline to FC.}
+the share of fully correct and of incorrect answers per benchmark as graded
+by the judge. Table~\ref{tab:behaviour} explains the headline for the main
+generator: how often each system commits to a wrong value, how often it
+refuses, and what it costs. Figure~\ref{fig:tradeoff} shows the same
+trade-off in one picture; Figure~\ref{fig:decisions} the decision mix;
+Figure~\ref{fig:slices} where the gain comes from. \todo{Table 2 and the
+figures are still the automatic Nemotron numbers; regenerate from the judge
+files on the test split.}
 
 % ---------------- Table 1: accuracy across three generators ----------
 \begin{table*}[t]
@@ -594,35 +606,23 @@ per generator and move the headline to FC.}
  & \multicolumn{2}{c}{\genA} & \multicolumn{2}{c}{\genB} & \multicolumn{2}{c}{\genC} \\
 \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
  & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS \\
- & set-EM & contain. & set-EM & contain. & set-EM & contain. \\
+ & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$
+ & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$
+ & FC$\uparrow$ / Inc$\downarrow$ & FC$\uparrow$ / Inc$\downarrow$ \\
 \midrule
-\textbf{\sysname{}} (hybrid retrieval, answer-and-flag)
-                                  & \textbf{45.6} & 74.7 & \tbd & \tbd & \tbd & \tbd \\
-\addlinespace[2pt]
-\multicolumn{7}{@{}l}{\emph{Ablations}} \\
-\quad dense retrieval, answer-and-flag     & 43.6 & 74.3 & \tbd & \tbd & \tbd & \tbd \\
-\quad hybrid retrieval, refuse-on-conflict & 37.6 & 76.0 & \tbd & \tbd & \tbd & \tbd \\
-\quad dense retrieval, refuse-on-conflict  & 38.2 & 71.7 & \tbd & \tbd & \tbd & \tbd \\
-\addlinespace[2pt]
-\multicolumn{7}{@{}l}{\emph{Controls (same retriever and generator, no policy)}} \\
-\quad hybrid RAG                           & 41.6 & 77.2 & \tbd & \tbd & \tbd & \tbd \\
-\quad dense RAG                            & 41.4 & 65.4 & \tbd & \tbd & \tbd & \tbd \\
-\quad closed-book                          &  8.6 & 58.2 & \tbd & \tbd & \tbd & \tbd \\
-\addlinespace[2pt]
-\multicolumn{7}{@{}l}{\emph{Off-the-shelf frameworks}} \\
-\quad LlamaIndex, $k{=}2$                  & 23.8 & 62.9 & \tbd & \tbd & \tbd & \tbd \\
-\quad LlamaIndex, $k{=}8$                  & 39.6 & 74.7 & \tbd & \tbd & \tbd & \tbd \\
-\quad Rankify                              & 42.8 & \textbf{78.1} & \tbd & \tbd & \tbd & \tbd \\
-\quad Open WebUI$^\dagger$                 & 40.3 & --   & \tbd & \tbd & \tbd & \tbd \\
+\input{tables/table_main}
 \bottomrule
 \end{tabular}
-\caption{Accuracy under three generators. RAMDocs (500 questions): set exact
-match over the gold answer set. CONFLICTS (458 questions): answer containment.
-Retrieval, prompts and decoding are identical within a column group; only the
-generator changes across groups. Best per column in bold.
-$^\dagger$462 of 500 RAMDocs items. \todo{fill \genB{} and \genC{}. Decide
-whether Rankify's containment counts as a fair comparison (it returns free
-text, no decision).}}
+\caption{Judge-scored results under three generators. Each cell is the share
+of answers the judge graded \emph{fully correct} (FC, higher is better) and
+\emph{incorrect} (Inc, lower is better); the remainder is partially correct.
+RAMDocs: 500 questions, a fully correct answer lists every gold answer and no
+planted wrong value. CONFLICTS: 458 questions, graded against the behaviour
+the dataset requires for the question's conflict type. Retrieval, prompts and
+decoding are identical within a column group; only the generator changes
+across groups. Best FC and best Inc per column in bold. \todo{Numbers are the
+full set; switch to \texttt{make\_tables.py --split test} once the dev-split
+ids arrive, and fill the \sysname{} row from the type-conditioned run.}}
 \label{tab:main}
 \end{table*}
 
@@ -650,7 +650,6 @@ text, no decision).}}
 \addlinespace[2pt]
 \quad LlamaIndex, $k{=}2$ / $k{=}8$        & 34.4 / 37.8 & -- & -- & -- & -- & 55 / 12 & 4 / 128 \\
 \quad Rankify                              & 28.6 & -- & -- & -- & -- & 45 & 22 \\
-\quad Open WebUI$^\dagger$                 & 42.6 & -- & -- & -- & -- & 23 & -- \\
 \bottomrule
 \end{tabular}
 \caption{What the headline hides, main generator (\genA). \emph{Misinfo in
@@ -961,6 +960,40 @@ Your previous JSON response was rejected for this reason: <validator reason> Ret
 \todo{Pseudo-code of governance $\rightarrow$ corroboration $\rightarrow$
 consistency $\rightarrow$ tie, and how corroboration counts are computed
 (distinct documents, committed or cited values only, bare years excluded).}
+\section{Automatic metrics and full-set results}
+\label{app:auto}
+Table~\ref{tab:auto} reports the automatic metrics that do not need a judge:
+on RAMDocs, strict set exact match over the gold answer set and the share of
+answers that present a planted wrong value; on CONFLICTS, containment of the
+reference answer for the items that have one. They are reported for
+completeness and for comparison with prior work; the judge-based numbers in
+Table~\ref{tab:main} are the paper's headline because containment credits
+hedged and partial answers.
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+ & \multicolumn{2}{c}{\genA} & \multicolumn{2}{c}{\genB} & \multicolumn{2}{c}{\genC} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS \\
+ & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$
+ & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$
+ & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$ \\
+\midrule
+\input{tables/table_auto}
+\bottomrule
+\end{tabular}
+\caption{Automatic metrics, same systems and generators as Table~\ref{tab:main}.
+\emph{set-EM}: the answer set equals the gold set. \emph{misinfo}: a planted
+wrong value appears in the answer (closed-book is lowest only because it
+rarely answers). \emph{contain.}: the reference answer string appears in the
+response. Best per column in bold.}
+\label{tab:auto}
+\end{table*}
+
 \section{Results by conflict type}
 \begin{figure}[h]
   \centering
