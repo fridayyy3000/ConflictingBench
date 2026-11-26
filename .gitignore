@@ -12,3 +12,4 @@ results_external/*.nohup
 results_gemini/*.log
 # self-contained H200 folder assembled by h200/make_bundle.sh (copied by rsync, not committed)
 h200_bundle/
+paper/DocResolve_overleaf.zip
