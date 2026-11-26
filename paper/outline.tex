@@ -209,11 +209,17 @@ the document.
 Enterprise document collections carry authority, status and recency cues
 that open-domain retrieval ignores; prior work weights sources by estimated
 reliability \citep{rarag2024} or by trust propagated from human feedback
-\citep{trustprop2026}. We infer status, document type and authority from
-the document text, apply them only to chunks that are already relevant, and
-let a reviewer correct them. Off-the-shelf stacks such as LlamaIndex
-\citep{llamaindex} and Rankify \citep{rankify2026}, which we use as
-baselines, treat the corpus as internally consistent.
+\citep{trustprop2026}. Closest to our setting is SentryLine
+\citep{kumar-etal-2026-sentryline}, which answers clinical questions over
+versioned guideline documents with inline citations and detects drift
+between versions; there the documents come from one authority and the
+question is which version applies, whereas here the sources are many and
+disagree, and the question is which one should win. We infer status,
+document type and authority from the document text, apply them only to
+chunks that are already relevant, and let a reviewer correct them.
+Off-the-shelf stacks such as LlamaIndex \citep{llamaindex} and Rankify
+\citep{rankify2026}, which we use as baselines, treat the corpus as
+internally consistent.
 
 % ==================================================================
 \section{System Architecture}
@@ -286,7 +292,11 @@ or a knowledge-base export. PDF, Word, plain text and Markdown are parsed
 into paragraph- and sentence-aligned chunks that keep their character
 offsets and, for PDFs, their page, so that any cited sentence can later be
 located in the original file. The folder path becomes part of the document
-identifier shown in every citation.
+identifier shown in every citation. Tables inside documents are read as
+text in document order; query-independent table normalisation
+\citep{najpande-etal-2026-quiett} and structure-aware context pruning for
+tables \citep{titiya-etal-2026-captr} are complementary and not applied
+here.
 
 Retrieval is hybrid. A BM25 ranking \citep{robertson2009bm25} and a dense
 ranking over bge-small embeddings \citep{xiao2023bge} are fused with
