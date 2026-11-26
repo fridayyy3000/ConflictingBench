@@ -1,0 +1,69 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_gemma4-31b_closedbook_details_20261126_043349.csv",
+  "dataset": "ramdocs",
+  "tag": "ramdocs_gemma4-31b_closedbook",
+  "stamp": "20261126_043349",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 500,
+  "n_labelled": 500,
+  "n_unlabelled": 0,
+  "FC": 4.0,
+  "PC": 10.2,
+  "Inc": 85.8,
+  "mean_judge_latency_s": 2.04,
+  "by_num_gold": {
+    "gold_1": {
+      "n": 100,
+      "n_labelled": 100,
+      "FC": 6.0,
+      "PC": 3.0,
+      "Inc": 91.0
+    },
+    "gold_2": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 5.5,
+      "PC": 11.0,
+      "Inc": 83.5
+    },
+    "gold_3": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 1.5,
+      "PC": 13.0,
+      "Inc": 85.5
+    }
+  },
+  "by_misinfo": {
+    "no_misinfo": {
+      "n": 194,
+      "n_labelled": 194,
+      "FC": 5.67,
+      "PC": 12.37,
+      "Inc": 81.96
+    },
+    "with_misinfo": {
+      "n": 306,
+      "n_labelled": 306,
+      "FC": 2.94,
+      "PC": 8.82,
+      "Inc": 88.24
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 286,
+      "n_labelled": 286,
+      "FC": 6.99,
+      "PC": 17.48,
+      "Inc": 75.52
+    },
+    "insufficient_evidence": {
+      "n": 214,
+      "n_labelled": 214,
+      "FC": 0.0,
+      "PC": 0.47,
+      "Inc": 99.53
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "total": 500,
+  "decisions": {
+    "free_text": 500
+  },
+  "decision_match_rate": 0.0,
+  "validation_errors": 0,
+  "repairs_used": 0,
+  "items_with_dropped_citations": 0,
+  "mean_latency_s": 1.18,
+  "set_em": 35.2,
+  "set_em_ci95": [
+    31.0,
+    39.2
+  ],
+  "strict_set_em": 35.2,
+  "set_em_by_num_gold": {
+    "1": 68.0,
+    "2": 33.5,
+    "3": 20.5
+  },
+  "set_em_single_gold": 68.0,
+  "set_em_single_gold_n": 100,
+  "any_gold_in_answer": 88.0,
+  "misinfo_in_answer_rate": 23.4,
+  "gold_doc_in_context": 99.4,
+  "cited_doc_precision": null,
+  "items_citing_misinfo": 0,
+  "selected_label": {
+    "none": 500
+  },
+  "dataset": "ramdocs",
+  "mode": "rankify",
+  "provider": "local",
+  "run_label": "qwen38-27b",
+  "base_url": "http://localhost:8001/v1",
+  "thinking": null,
+  "generation_model": "Qwen/Qwen3.8-27B",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "If the question is ambiguous because several distinct entities share the same name, give the correct answer for each entity and list each one in short_answers.",
+  "govrag_retrieval": null,
+  "govrag_policy": null,
+  "details_csv": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_qwen38-27b_rankify_details_20261126_015340.csv",
+  "run_log": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_qwen38-27b_rankify_run_20261126_015340.log"
+}

@@ -1,0 +1,62 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_nvidia_llamaindex_k8_details_20261121_155648.csv",
+  "dataset": "ramdocs",
+  "tag": "ramdocs_nvidia_llamaindex_k8",
+  "stamp": "20261121_155648",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 500,
+  "n_labelled": 500,
+  "n_unlabelled": 0,
+  "FC": 43.0,
+  "PC": 31.0,
+  "Inc": 26.0,
+  "mean_judge_latency_s": 2.63,
+  "by_num_gold": {
+    "gold_1": {
+      "n": 100,
+      "n_labelled": 100,
+      "FC": 45.0,
+      "PC": 33.0,
+      "Inc": 22.0
+    },
+    "gold_2": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 50.0,
+      "PC": 24.0,
+      "Inc": 26.0
+    },
+    "gold_3": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 35.0,
+      "PC": 37.0,
+      "Inc": 28.0
+    }
+  },
+  "by_misinfo": {
+    "no_misinfo": {
+      "n": 194,
+      "n_labelled": 194,
+      "FC": 70.1,
+      "PC": 22.16,
+      "Inc": 7.73
+    },
+    "with_misinfo": {
+      "n": 306,
+      "n_labelled": 306,
+      "FC": 25.82,
+      "PC": 36.6,
+      "Inc": 37.58
+    }
+  },
+  "by_decision": {
+    "free_text": {
+      "n": 500,
+      "n_labelled": 500,
+      "FC": 43.0,
+      "PC": 31.0,
+      "Inc": 26.0
+    }
+  }
+}

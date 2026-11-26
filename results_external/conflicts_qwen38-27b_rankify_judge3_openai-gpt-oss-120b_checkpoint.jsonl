@@ -1,0 +1,458 @@
+{"qid": "q0006", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 1.28}
+{"qid": "q0014", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.26}
+{"qid": "q0011", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information", "judge_latency_s": 1.28}
+{"qid": "q0009", "label": "FC", "reason": "The system answer exactly matches the gold answer Brad Dourif.", "judge_latency_s": 1.34}
+{"qid": "q0013", "label": "FC", "reason": "The answer correctly states 'Yes' as the supported answer and adds accurate supporting details without any incorrect information.", "judge_latency_s": 1.59}
+{"qid": "q0012", "label": "FC", "reason": "The system answer exactly matches the gold answer, providing the correct start date and time for Passover.", "judge_latency_s": 1.68}
+{"qid": "q0002", "label": "FC", "reason": "The answer correctly provides the gold answer 'Denali in Alaska' without any incorrect information.", "judge_latency_s": 1.7}
+{"qid": "q0008", "label": "Inc", "reason": "The system answered Iltutmish, which contradicts the gold answer Aram Shah", "judge_latency_s": 1.76}
+{"qid": "q0016", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.83}
+{"qid": "q0003", "label": "Inc", "reason": "The answer gives an unsupported estimate of 10‑15 accounts, contradicting the gold answer of at least 5 accounts", "judge_latency_s": 2.39}
+{"qid": "q0001", "label": "Inc", "reason": "The answer commits to a single position (humans cannot live past 150) instead of neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.45}
+{"qid": "q0020", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.86}
+{"qid": "q0010", "label": "Inc", "reason": "The answer commits to a single negative stance instead of neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.51}
+{"qid": "q0018", "label": "FC", "reason": "The answer gives the gold value of 1,098 people per square mile (with a harmless approximation qualifier) and includes no incorrect information.", "judge_latency_s": 1.32}
+{"qid": "q0005", "label": "Inc", "reason": "The answer commits to a single position that yoga does not increase height instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.68}
+{"qid": "q0007", "label": "FC", "reason": "The answer correctly identifies Operation Market Garden as the origin and adds accurate, non-contradictory details.", "judge_latency_s": 2.81}
+{"qid": "q0021", "label": "FC", "reason": "The answer exactly matches the gold answer and provides no incorrect information.", "judge_latency_s": 1.31}
+{"qid": "q0024", "label": "FC", "reason": "The answer correctly states that food is stored in the stem, matching the gold answer, with no incorrect information.", "judge_latency_s": 1.08}
+{"qid": "q0000", "label": "Inc", "reason": "The answer selects only one commander-in-chief instead of combining or distinguishing the multiple compatible pieces of information as required.", "judge_latency_s": 3.35}
+{"qid": "q0029", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0028", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.08}
+{"qid": "q0004", "label": "PC", "reason": "The answer provides a single date (15th century) and does not combine or distinguish the multiple compatible pieces of information required by the situation.", "judge_latency_s": 3.69}
+{"qid": "q0031", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0015", "label": "FC", "reason": "The answer merges the compatible timeframes for spoken and written language shift, providing a complete, factually consistent response.", "judge_latency_s": 3.78}
+{"qid": "q0023", "label": "FC", "reason": "The answer correctly combines all compatible options (lender, bank, credit union, mortgage company, broker) without omitting or contradicting any source.", "judge_latency_s": 2.11}
+{"qid": "q0025", "label": "Inc", "reason": "The answer commits to a single stance that home treatment is insufficient, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.49}
+{"qid": "q0034", "label": "FC", "reason": "The system answer exactly matches the gold answer Maharashtra", "judge_latency_s": 0.8}
+{"qid": "q0037", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.74}
+{"qid": "q0039", "label": "FC", "reason": "The answer correctly states the gold answer of 10 finals without any incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0019", "label": "Inc", "reason": "The answer picks a single execution date and person instead of combining or distinguishing differing source information, and likely provides an inaccurate fact.", "judge_latency_s": 3.48}
+{"qid": "q0033", "label": "FC", "reason": "The answer integrates the varying estimates from the sources, presenting the full range without discarding any compatible information.", "judge_latency_s": 1.74}
+{"qid": "q0022", "label": "PC", "reason": "The answer mentions multiple theories but still commits to a primary Celtic origin, not neutrally presenting the competing views as required.", "judge_latency_s": 3.67}
+{"qid": "q0038", "label": "Inc", "reason": "The answer commits to a single positive conclusion instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.85}
+{"qid": "q0046", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.86}
+{"qid": "q0032", "label": "FC", "reason": "The answer synthesizes compatible information into a coherent timeframe and cites examples without presenting any incorrect data.", "judge_latency_s": 2.89}
+{"qid": "q0030", "label": "Inc", "reason": "The response commits to a positive stance that children can learn language skills from TV instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 3.31}
+{"qid": "q0036", "label": "FC", "reason": "The answer correctly identifies RuBP as the initial carbon acceptor, matching the gold answer with no errors.", "judge_latency_s": 2.42}
+{"qid": "q0026", "label": "Inc", "reason": "The answer provides only a generic claim of \"institutional shareholders\" without combining or distinguishing the differing source information, failing to give the specific majority owner.", "judge_latency_s": 3.6}
+{"qid": "q0027", "label": "Inc", "reason": "The answer adds unsupported information about Ontario, contradicting the gold answer that specifies only the Prairie provinces", "judge_latency_s": 3.68}
+{"qid": "q0040", "label": "PC", "reason": "The answer includes the correct gold answer \"Yes\" but adds extra explanation, not strictly following the required behavior of giving the single supported answer directly.", "judge_latency_s": 2.49}
+{"qid": "q0041", "label": "FC", "reason": "The answer matches the gold answer despite a minor spelling variation, preserving the intended meaning.", "judge_latency_s": 2.59}
+{"qid": "q0017", "label": "Inc", "reason": "The answer picks a single eclipse (Sept 21 2025) ignoring other source details and provides an incorrect date for the next solar eclipse.", "judge_latency_s": 5.22}
+{"qid": "q0048", "label": "FC", "reason": "The answer correctly states the gold answer 1901 with no incorrect information.", "judge_latency_s": 0.98}
+{"qid": "q0052", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.69}
+{"qid": "q0044", "label": "Inc", "reason": "The answer gives a single number instead of combining or distinguishing the differing source information as required.", "judge_latency_s": 2.11}
+{"qid": "q0054", "label": "FC", "reason": "The answer exactly matches the gold answer of 27 with no incorrect information.", "judge_latency_s": 0.72}
+{"qid": "q0055", "label": "FC", "reason": "The answer matches the gold answer (597 BCE) exactly with no incorrect information.", "judge_latency_s": 0.79}
+{"qid": "q0045", "label": "FC", "reason": "The answer merges the differing source details (hourly range and average job cost) instead of selecting one, satisfying the required combined response behavior.", "judge_latency_s": 2.34}
+{"qid": "q0042", "label": "Inc", "reason": "The answer takes a stance that electric cars are a significant but incomplete solution rather than neutrally presenting the conflicting opinions without committing to one.", "judge_latency_s": 3.04}
+{"qid": "q0057", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.83}
+{"qid": "q0035", "label": "PC", "reason": "The answer provides only a single name and fails to combine or distinguish the multiple compatible pieces of information required by the situation", "judge_latency_s": 3.87}
+{"qid": "q0051", "label": "Inc", "reason": "The answer commits to a specific date and claim instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.56}
+{"qid": "q0043", "label": "Inc", "reason": "The answer gives only one name and ignores the need to combine or distinguish multiple compatible pieces of information from the sources", "judge_latency_s": 3.12}
+{"qid": "q0049", "label": "FC", "reason": "The answer combines both compatible pieces of information (arrival in 1769 and sovereignty in 1840) without ignoring any, and is factually correct.", "judge_latency_s": 1.78}
+{"qid": "q0059", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0056", "label": "FC", "reason": "The answer matches the gold answer exactly and provides no incorrect information.", "judge_latency_s": 1.18}
+{"qid": "q0060", "label": "Inc", "reason": "The system answered Jayson Tatum, which contradicts the gold answer of Stephen Curry", "judge_latency_s": 0.95}
+{"qid": "q0058", "label": "Inc", "reason": "The system answer states there is no sound in space, contradicting the gold answer of Yes", "judge_latency_s": 1.4}
+{"qid": "q0053", "label": "FC", "reason": "The answer correctly combines the complementary dates for different regions, matching the required behavior and factual information.", "judge_latency_s": 2.25}
+{"qid": "q0064", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.16}
+{"qid": "q0047", "label": "Inc", "reason": "The answer presents a single viewpoint rather than neutrally presenting the conflicting positions as required.", "judge_latency_s": 3.0}
+{"qid": "q0065", "label": "Inc", "reason": "The system answer gives 1,534, which contradicts the gold answer of 1,492", "judge_latency_s": 1.11}
+{"qid": "q0070", "label": "FC", "reason": "The system answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.87}
+{"qid": "q0071", "label": "Inc", "reason": "The system answered France, which contradicts the correct answer South Korea", "judge_latency_s": 1.07}
+{"qid": "q0050", "label": "PC", "reason": "The answer gives a broad range but does not explicitly present the differing scholarly estimates as separate, neutral positions, thus only partially meeting the required behavior.", "judge_latency_s": 3.1}
+{"qid": "q0062", "label": "FC", "reason": "The answer correctly integrates multiple pieces of information, acknowledges exceptions, and accurately states that the Y chromosome is not the sole determinant of male gender", "judge_latency_s": 1.85}
+{"qid": "q0069", "label": "FC", "reason": "The answer gives a recent count of 3,028 billionaires, which aligns with the gold answer of around 3000 and includes no incorrect information.", "judge_latency_s": 1.47}
+{"qid": "q0073", "label": "Inc", "reason": "The system answer $47,490 does not match the gold answer $41,440 and is factually incorrect.", "judge_latency_s": 1.12}
+{"qid": "q0072", "label": "FC", "reason": "The answer neutrally presents both arguments for and against abolishing the electoral college without committing to a position, matching the required behavior.", "judge_latency_s": 1.37}
+{"qid": "q0079", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.81}
+{"qid": "q0078", "label": "FC", "reason": "The answer correctly states the required age of 21, matching the gold answer without any incorrect information.", "judge_latency_s": 1.2}
+{"qid": "q0077", "label": "Inc", "reason": "The answer commits to morning people being more productive and does not neutrally present the conflicting viewpoints as required.", "judge_latency_s": 1.58}
+{"qid": "q0075", "label": "FC", "reason": "The answer correctly combines the compatible pieces of information by naming both ambassadors for different postings without providing incorrect data.", "judge_latency_s": 1.67}
+{"qid": "q0074", "label": "Inc", "reason": "The answer commits to a single conclusion that lunar cycles do not affect wine taste and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 2.05}
+{"qid": "q0085", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.87}
+{"qid": "q0061", "label": "Inc", "reason": "The answer picks a single chain (Walmart) instead of combining or distinguishing the differing source information as required.", "judge_latency_s": 3.61}
+{"qid": "q0080", "label": "Inc", "reason": "The system answer states ~658 locations, which contradicts the gold answer of over 660", "judge_latency_s": 1.7}
+{"qid": "q0076", "label": "Inc", "reason": "The answer selects only California and does not combine or distinguish the differing source information as required.", "judge_latency_s": 2.41}
+{"qid": "q0066", "label": "PC", "reason": "The answer includes the correct 'Yes' but adds extra explanation, not providing the single direct answer as required.", "judge_latency_s": 3.48}
+{"qid": "q0086", "label": "FC", "reason": "The answer matches the gold answer exactly and provides no incorrect information.", "judge_latency_s": 1.21}
+{"qid": "q0084", "label": "FC", "reason": "The answer includes the gold answer \"at least 1,759\" and adds recent context without contradicting it.", "judge_latency_s": 2.15}
+{"qid": "q0063", "label": "PC", "reason": "The answer provides a correct fact about the US President but fails to combine or distinguish the multiple compatible pieces of information required by the task.", "judge_latency_s": 4.22}
+{"qid": "q0068", "label": "PC", "reason": "The answer includes the correct actress (Caren Marsh Doll) but adds extra, unsupported information about actors, violating the requirement for a single supported answer.", "judge_latency_s": 3.93}
+{"qid": "q0090", "label": "FC", "reason": "The system correctly identified the Boston Celtics as the latest NBA champion, matching the gold answer without adding incorrect information.", "judge_latency_s": 1.12}
+{"qid": "q0082", "label": "FC", "reason": "The answer combines the differing source information into a comprehensive overview without contradictions, correctly covering visa-free, visa-on-arrival, and required visas for various regions.", "judge_latency_s": 2.54}
+{"qid": "q0091", "label": "FC", "reason": "The answer combines multiple compatible attractions from the sources, covering the range without omitting or contradicting any, fulfilling the required behavior.", "judge_latency_s": 1.18}
+{"qid": "q0093", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.92}
+{"qid": "q0081", "label": "Inc", "reason": "The answer gives an incorrect owner (Dajia Insurance Group) and fails to combine or distinguish multiple source claims as required.", "judge_latency_s": 2.74}
+{"qid": "q0092", "label": "FC", "reason": "The answer provides the exact gold date with no incorrect information.", "judge_latency_s": 1.07}
+{"qid": "q0083", "label": "PC", "reason": "The answer includes the correct gold answer but adds extra explanation, not following the required behavior of giving a single direct answer", "judge_latency_s": 2.77}
+{"qid": "q0089", "label": "FC", "reason": "The answer integrates multiple compatible viewpoints about tax cuts, presenting a nuanced combined response without ignoring any source information", "judge_latency_s": 1.5}
+{"qid": "q0088", "label": "Inc", "reason": "The answer commits to rats being responsible instead of neutrally presenting the conflicting viewpoints, violating the required behavior.", "judge_latency_s": 1.82}
+{"qid": "q0087", "label": "FC", "reason": "The answer includes the gold date and correctly adds compatible complementary information without errors", "judge_latency_s": 1.9}
+{"qid": "q0096", "label": "FC", "reason": "The system answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.88}
+{"qid": "q0098", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0104", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.71}
+{"qid": "q0102", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0108", "label": "FC", "reason": "The system answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.79}
+{"qid": "q0101", "label": "FC", "reason": "The answer provides the exact gold answer date with no incorrect information.", "judge_latency_s": 1.19}
+{"qid": "q0103", "label": "FC", "reason": "The system answer provides the correct current ATP top-ranked player, matching the gold answer.", "judge_latency_s": 1.17}
+{"qid": "q0097", "label": "FC", "reason": "The answer neutrally presents both arguments for and against animal research without endorsing either, fulfilling the required behavior.", "judge_latency_s": 1.57}
+{"qid": "q0100", "label": "Inc", "reason": "The answer does not provide the correct $15.49/month price and incorrectly states the plan is discontinued, contradicting the gold answer.", "judge_latency_s": 1.37}
+{"qid": "q0099", "label": "FC", "reason": "The answer provides the exact gold number 5,811 and notes the recent count, matching the required up‑to‑date information.", "judge_latency_s": 1.57}
+{"qid": "q0095", "label": "Inc", "reason": "The answer asserts a definitive position (Yes) instead of neutrally presenting the conflicting scholarly views as required.", "judge_latency_s": 2.21}
+{"qid": "q0105", "label": "Inc", "reason": "The answer commits to a single conclusion that birth order has no effect and fails to neutrally present the conflicting viewpoints as required.", "judge_latency_s": 1.66}
+{"qid": "q0113", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.02}
+{"qid": "q0112", "label": "FC", "reason": "The answer correctly states the last playoff appearance as 2023, matching the gold answer with no incorrect information.", "judge_latency_s": 1.26}
+{"qid": "q0118", "label": "FC", "reason": "The system answer exactly matches the gold answer Afghanistan with no incorrect information.", "judge_latency_s": 0.84}
+{"qid": "q0106", "label": "FC", "reason": "The answer integrates the compatible information, correctly states that vegan diets can be healthy if balanced and notes the caveat for puppies, without presenting any incorrect claims.", "judge_latency_s": 2.17}
+{"qid": "q0094", "label": "Inc", "reason": "The answer takes a stance rather than neutrally presenting the conflicting views, violating the required behavior.", "judge_latency_s": 3.26}
+{"qid": "q0116", "label": "Inc", "reason": "The answer takes a definitive stance against legalization instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.28}
+{"qid": "q0120", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information", "judge_latency_s": 0.81}
+{"qid": "q0117", "label": "FC", "reason": "The answer correctly states 'No' and adds accurate supporting details without any errors.", "judge_latency_s": 1.47}
+{"qid": "q0115", "label": "Inc", "reason": "The system answer states EMNLP is in Miami, contradicting the gold answer of Punta Cana and provides no indication of outdated sources.", "judge_latency_s": 1.55}
+{"qid": "q0119", "label": "Inc", "reason": "The answer commits to electric cars being greener rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.85}
+{"qid": "q0111", "label": "Inc", "reason": "The answer simply names a single actor, ignoring the requirement to combine or distinguish multiple source statements and likely provides an incorrect value.", "judge_latency_s": 2.59}
+{"qid": "q0124", "label": "FC", "reason": "The answer matches the gold answer exactly and provides no incorrect information.", "judge_latency_s": 1.12}
+{"qid": "q0110", "label": "PC", "reason": "The answer mentions the gold answer (1769) but hedges and adds unrelated information, not providing the single supported answer directly.", "judge_latency_s": 2.84}
+{"qid": "q0107", "label": "PC", "reason": "The answer provides the correct September 2017 timing and Puerto Rico landfall date, but omits the specific formation date and conversion period given in the gold answer.", "judge_latency_s": 3.61}
+{"qid": "q0125", "label": "FC", "reason": "The answer correctly states 'No' and adds accurate supporting details without contradicting the gold answer.", "judge_latency_s": 1.32}
+{"qid": "q0128", "label": "FC", "reason": "The answer provides the gold answer (KOMO) with an equivalent naming (KOMO-TV) and no incorrect information.", "judge_latency_s": 1.49}
+{"qid": "q0133", "label": "FC", "reason": "The answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.76}
+{"qid": "q0134", "label": "FC", "reason": "The answer exactly matches the gold answer of 22 grand slams", "judge_latency_s": 0.68}
+{"qid": "q0122", "label": "Inc", "reason": "The answer takes a definitive stance that crying is not inherently unprofessional rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.28}
+{"qid": "q0135", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.82}
+{"qid": "q0121", "label": "Inc", "reason": "The answer gives a single specific height without combining or distinguishing multiple compatible sources, and likely misstates the average for Chinese men overall.", "judge_latency_s": 2.62}
+{"qid": "q0132", "label": "Inc", "reason": "The answer definitively states stress does not cause ulcers, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.38}
+{"qid": "q0109", "label": "PC", "reason": "The answer includes the correct gold answer Yes but adds extra explanation, not strictly providing the single supported answer directly as required", "judge_latency_s": 4.43}
+{"qid": "q0136", "label": "FC", "reason": "The answer exactly matches the gold answer of 5 seasons.", "judge_latency_s": 0.79}
+{"qid": "q0114", "label": "FC", "reason": "The answer correctly integrates complementary information, stating routine blood tests generally cannot detect most cancers but can provide clues and detect blood cancers, without any factual errors.", "judge_latency_s": 3.88}
+{"qid": "q0129", "label": "Inc", "reason": "The system answer gives William J. Burns, which does not match the gold answer John Ratcliffe", "judge_latency_s": 2.3}
+{"qid": "q0138", "label": "FC", "reason": "The answer correctly states the gold answer of 1 and provides no incorrect information", "judge_latency_s": 0.89}
+{"qid": "q0140", "label": "FC", "reason": "The system answer exactly matches the gold answer.", "judge_latency_s": 0.96}
+{"qid": "q0143", "label": "Inc", "reason": "The system answer states two countries, contradicting the gold answer of 7", "judge_latency_s": 0.94}
+{"qid": "q0141", "label": "FC", "reason": "The answer matches the gold answer, stating sugar doesn't directly cause cavities but leads to decay via bacterial acid production.", "judge_latency_s": 1.45}
+{"qid": "q0146", "label": "Inc", "reason": "The system answer states $79.1 million, which contradicts the gold answer of $2.5 million", "judge_latency_s": 1.15}
+{"qid": "q0137", "label": "FC", "reason": "The answer matches the gold answer despite minor case/hyphen differences, providing the correct name without errors.", "judge_latency_s": 1.97}
+{"qid": "q0126", "label": "PC", "reason": "The answer provides the correct founding date but does not combine or distinguish multiple source pieces as required by the complementary information situation.", "judge_latency_s": 3.81}
+{"qid": "q0149", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.72}
+{"qid": "q0147", "label": "Inc", "reason": "The system gave 52,384 students, which does not match the gold answer of 51,913 and offers no note about differing sources.", "judge_latency_s": 1.48}
+{"qid": "q0123", "label": "PC", "reason": "The answer gives the correct month, day, and weekday but omits the explicit year present in the gold answer", "judge_latency_s": 4.59}
+{"qid": "q0148", "label": "FC", "reason": "The answer correctly gives Melbourne, Australia (with additional accurate details) and does not include any incorrect information.", "judge_latency_s": 1.35}
+{"qid": "q0142", "label": "FC", "reason": "The answer combines the differing average values into a range and also notes the median, correctly reflecting multiple compatible sources without error", "judge_latency_s": 2.1}
+{"qid": "q0152", "label": "FC", "reason": "The answer exactly matches the gold answer of 4 seasons.", "judge_latency_s": 0.77}
+{"qid": "q0145", "label": "FC", "reason": "The answer combines both positive and negative aspects of infinite scrolling, providing a balanced, complementary view without ignoring any side.", "judge_latency_s": 2.05}
+{"qid": "q0130", "label": "FC", "reason": "The answer neutrally presents the conflicting evidence about testosterone and prostate cancer risk without committing to a single conclusion, satisfying the required behavior.", "judge_latency_s": 3.86}
+{"qid": "q0139", "label": "Inc", "reason": "The answer gives a single stance and does not combine or distinguish differing source information as required.", "judge_latency_s": 2.92}
+{"qid": "q0127", "label": "PC", "reason": "The answer provides one winner (Ludwig Göransson) but ignores the multiple compatible pieces of information that should have been combined or distinguished, thus not fulfilling the required behavior.", "judge_latency_s": 4.97}
+{"qid": "q0157", "label": "FC", "reason": "The answer exactly matches the gold answer of 0", "judge_latency_s": 0.73}
+{"qid": "q0144", "label": "FC", "reason": "The answer includes the gold answer (first Sunday of November) and correctly specifies the date for this year without any incorrect information.", "judge_latency_s": 2.65}
+{"qid": "q0151", "label": "Inc", "reason": "The system answered Kevin Underwood, which does not match the gold answer Gary Ray Bowles.", "judge_latency_s": 1.46}
+{"qid": "q0150", "label": "FC", "reason": "The answer combines all compatible information about NFL game locations, covering home stadiums and international/neutral venues without errors.", "judge_latency_s": 1.62}
+{"qid": "q0131", "label": "FC", "reason": "The answer provides the most recent start date (Feb 28) matching one of the gold options and adds no incorrect information.", "judge_latency_s": 4.52}
+{"qid": "q0155", "label": "FC", "reason": "The answer correctly states Argentina has won three World Cups, matching the gold answer and providing accurate details.", "judge_latency_s": 1.29}
+{"qid": "q0154", "label": "FC", "reason": "The answer correctly combines and distinguishes the two compatible population figures rather than ignoring one.", "judge_latency_s": 1.64}
+{"qid": "q0160", "label": "FC", "reason": "The answer affirms 'Yes' as required and provides correct supporting details without contradicting the gold answer", "judge_latency_s": 1.17}
+{"qid": "q0167", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.82}
+{"qid": "q0165", "label": "FC", "reason": "The system answer exactly matches the gold answer Hamburg with no incorrect information.", "judge_latency_s": 0.9}
+{"qid": "q0161", "label": "Inc", "reason": "The system answer 'freeCodeCamp' contradicts the gold answer 'Public APIs'.", "judge_latency_s": 1.56}
+{"qid": "q0166", "label": "Inc", "reason": "The system answer states that sugar is not the primary cause, contradicting the gold answer of Yes.", "judge_latency_s": 1.14}
+{"qid": "q0159", "label": "FC", "reason": "The answer correctly combines the complementary information, stating that video conferencing can be secure with proper measures and detailing those measures without contradicting any source.", "judge_latency_s": 1.89}
+{"qid": "q0170", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.72}
+{"qid": "q0162", "label": "FC", "reason": "The answer correctly combines the compatible information, giving both the eastern and western termini of the Great Wall without error.", "judge_latency_s": 1.6}
+{"qid": "q0164", "label": "Inc", "reason": "The answer commits to a single origin (Germany) instead of neutrally presenting the conflicting viewpoints required by the situation.", "judge_latency_s": 1.43}
+{"qid": "q0169", "label": "FC", "reason": "The answer correctly identifies the chancellor as Javier Reyes, matching the gold answer despite omitting the middle initial, which is a minor wording difference.", "judge_latency_s": 1.28}
+{"qid": "q0067", "label": "FC", "reason": "The answer correctly lists all known Premier League players who have scored five goals in a single match, fulfilling the requirement to combine the compatible information.", "judge_latency_s": 13.58}
+{"qid": "q0173", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.89}
+{"qid": "q0175", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.8}
+{"qid": "q0156", "label": "Inc", "reason": "The answer picks a single province instead of combining or distinguishing the differing source information as required.", "judge_latency_s": 2.85}
+{"qid": "q0171", "label": "FC", "reason": "The system answer exactly matches the gold answer and provides the correct, most recent album title without any incorrect information.", "judge_latency_s": 1.42}
+{"qid": "q0153", "label": "PC", "reason": "The answer includes the correct 'Yes' but adds extra commentary, not strictly following the required direct single answer format.", "judge_latency_s": 3.49}
+{"qid": "q0179", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.83}
+{"qid": "q0174", "label": "Inc", "reason": "The answer asserts a definitive position on innate knowledge instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.31}
+{"qid": "q0172", "label": "Inc", "reason": "The answer definitively states that alcohol does not kill brain cells, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.61}
+{"qid": "q0158", "label": "FC", "reason": "The answer combines the differing pieces of information, noting overall lower value but specifying gemstone types where heating has little or no impact, and contains no factual errors.", "judge_latency_s": 3.47}
+{"qid": "q0183", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.79}
+{"qid": "q0163", "label": "FC", "reason": "The answer includes the correct year 1971 and adds accurate, compatible additional information without contradicting the gold answer.", "judge_latency_s": 3.16}
+{"qid": "q0168", "label": "Inc", "reason": "The answer commits to a single position (hot drinks can cool you down under certain conditions) instead of neutrally presenting the competing viewpoints as required.", "judge_latency_s": 2.91}
+{"qid": "q0187", "label": "Inc", "reason": "The answer commits to a single processor instead of neutrally presenting the conflicting viewpoints as required", "judge_latency_s": 1.23}
+{"qid": "q0185", "label": "Inc", "reason": "The system answer 'The Florida Panthers' does not match the gold answer 'Montreal Canadiens' and is factually incorrect.", "judge_latency_s": 1.77}
+{"qid": "q0178", "label": "FC", "reason": "The answer correctly combines the differing but compatible information, stating gun control is not inherently a violation while noting some measures have been struck down and others upheld, matching the required behaviour.", "judge_latency_s": 2.51}
+{"qid": "q0188", "label": "FC", "reason": "The answer combines the compatible location information from multiple sources without omitting or contradicting any, fulfilling the required behavior.", "judge_latency_s": 1.52}
+{"qid": "q0191", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information", "judge_latency_s": 1.12}
+{"qid": "q0177", "label": "Inc", "reason": "The answer picks a single airport instead of combining or distinguishing the differing source information as required.", "judge_latency_s": 2.74}
+{"qid": "q0192", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.07}
+{"qid": "q0186", "label": "PC", "reason": "The answer provides a correct figure for Mercedes-Benz USA but ignores other compatible information, failing to combine or distinguish multiple sources as required.", "judge_latency_s": 2.25}
+{"qid": "q0182", "label": "FC", "reason": "The answer combines multiple compatible river examples and correctly states salmon spawn in their natal rivers, meeting the required behaviour without errors.", "judge_latency_s": 2.73}
+{"qid": "q0176", "label": "PC", "reason": "Provides the correct president but fails to combine or distinguish the multiple compatible source pieces as required", "judge_latency_s": 3.4}
+{"qid": "q0197", "label": "FC", "reason": "The answer combines all compatible treatment information (symptomatic drugs, disease-modifying antibodies, and supportive care) without omission or conflict, satisfying the required behavior.", "judge_latency_s": 1.55}
+{"qid": "q0180", "label": "PC", "reason": "The answer presents both sides but begins with a definitive \"Yes,\" committing to a position rather than remaining fully neutral as required.", "judge_latency_s": 3.68}
+{"qid": "q0196", "label": "Inc", "reason": "The answer commits to a single stance that blood tests alone cannot diagnose RA, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.6}
+{"qid": "q0190", "label": "FC", "reason": "The answer includes the gold answer \"War is Over!\" and adds only extra descriptive text, without any incorrect information.", "judge_latency_s": 2.87}
+{"qid": "q0193", "label": "Inc", "reason": "The answer selects a single date and event instead of combining or distinguishing multiple compatible sources, and it misstates the timing of the first European settlers.", "judge_latency_s": 2.52}
+{"qid": "q0198", "label": "Inc", "reason": "The answer commits to a single stance that a degree is not necessary and fails to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.96}
+{"qid": "q0181", "label": "Inc", "reason": "The answer gives only Narendra Modi, ignoring the need to combine or distinguish multiple compatible answers and likely misidentifies the sole leader elected PM three times.", "judge_latency_s": 4.08}
+{"qid": "q0201", "label": "Inc", "reason": "The answer commits to humans being fundamentally good and does not neutrally present the conflicting positions as required.", "judge_latency_s": 1.5}
+{"qid": "q0189", "label": "FC", "reason": "The answer combines the differing legal ages by jurisdiction rather than selecting one, matching the required behavior and presenting compatible information", "judge_latency_s": 3.87}
+{"qid": "q0211", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0205", "label": "Inc", "reason": "The answer commits to “No” and does not neutrally present the conflicting opinions, violating the required neutral presentation of disagreement.", "judge_latency_s": 1.45}
+{"qid": "q0200", "label": "Inc", "reason": "The answer commits to a single stance ('No, not every startup needs a business plan') instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.74}
+{"qid": "q0208", "label": "Inc", "reason": "The answer asserts that cats can understand human emotions without presenting the conflicting viewpoints, violating the required neutral presentation of competing positions.", "judge_latency_s": 1.53}
+{"qid": "q0203", "label": "Inc", "reason": "The answer takes a definitive stance rather than neutrally presenting the conflicting views, violating the required behavior of presenting both positions without committing to one.", "judge_latency_s": 2.49}
+{"qid": "q0195", "label": "Inc", "reason": "The answer gives a false claim that most penguin species live in warm climates, which is factually incorrect and does not reflect the need to combine differing source information.", "judge_latency_s": 3.61}
+{"qid": "q0204", "label": "Inc", "reason": "The answer commits to \"Yes, clams have eyes\" instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.03}
+{"qid": "q0212", "label": "FC", "reason": "The system answer correctly states 'Yes' as the gold answer and provides accurate supporting information without any errors.", "judge_latency_s": 1.37}
+{"qid": "q0199", "label": "FC", "reason": "The answer includes the gold statement that brushing more than twice a day can be harmful and should be done with caution, while adding compatible extra details without contradicting the gold answer.", "judge_latency_s": 3.72}
+{"qid": "q0194", "label": "PC", "reason": "The answer correctly states that lactose intolerance can lead to osteoporosis, but adds extra information beyond the required direct answer, not fully following the prescribed response style.", "judge_latency_s": 4.6}
+{"qid": "q0219", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.82}
+{"qid": "q0213", "label": "FC", "reason": "The answer provides the gold answer (Anglo-Zanzibar War) and adds correct supporting details without any errors.", "judge_latency_s": 1.44}
+{"qid": "q0214", "label": "FC", "reason": "The answer correctly states that psoriasis cannot be cured with UV light therapy, matching the gold answer, and adds accurate supporting information without error.", "judge_latency_s": 1.46}
+{"qid": "q0210", "label": "Inc", "reason": "The answer only gives Pennsylvania's age requirement, ignoring other compatible information and failing to combine or distinguish multiple sources as required.", "judge_latency_s": 2.66}
+{"qid": "q0220", "label": "FC", "reason": "The system answer matches the gold answer, providing the same date in a different but equivalent format.", "judge_latency_s": 1.02}
+{"qid": "q0202", "label": "PC", "reason": "The answer provides a single start date but ignores the multiple compatible pieces of information that should have been combined or distinguished.", "judge_latency_s": 4.25}
+{"qid": "q0184", "label": "PC", "reason": "The answer provides a more precise figure ($2.2 billion) that differs from the gold answer’s approximate $2 billion, so it does not directly give the expected answer though it isn’t factually wrong.", "judge_latency_s": 6.93}
+{"qid": "q0216", "label": "FC", "reason": "The answer combines compatible information from different sources, noting species differences and the varying extent of understanding, without ignoring any piece.", "judge_latency_s": 1.84}
+{"qid": "q0218", "label": "FC", "reason": "The answer provides the exact July 26 date (including year) matching the gold answer without any incorrect information.", "judge_latency_s": 1.65}
+{"qid": "q0217", "label": "FC", "reason": "The answer provides a combined estimate and range, effectively integrating compatible information without ignoring any source.", "judge_latency_s": 1.87}
+{"qid": "q0222", "label": "FC", "reason": "The answer combines multiple compatible attractions into a comprehensive list, fulfilling the required behavior and providing correct information.", "judge_latency_s": 1.21}
+{"qid": "q0223", "label": "Inc", "reason": "The answer commits to a pro‑GMO stance and does not neutrally present the conflicting viewpoints as required.", "judge_latency_s": 1.32}
+{"qid": "q0221", "label": "Inc", "reason": "The answer commits to a single position that genes influence talent, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.03}
+{"qid": "q0209", "label": "PC", "reason": "The answer provides a plausible longest‑serving prime minister but ignores the requirement to combine or distinguish multiple compatible sources, thus only partially meeting the task.", "judge_latency_s": 4.12}
+{"qid": "q0228", "label": "FC", "reason": "The answer affirms that smoking increases RA risk, matching the gold answer and adds no incorrect information.", "judge_latency_s": 1.28}
+{"qid": "q0230", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.08}
+{"qid": "q0206", "label": "PC", "reason": "The answer gives a single recommendation and does not present the differing source perspectives as required.", "judge_latency_s": 4.87}
+{"qid": "q0229", "label": "FC", "reason": "The answer correctly states 'No' as the gold answer and provides additional accurate information without contradicting the gold answer.", "judge_latency_s": 1.37}
+{"qid": "q0227", "label": "Inc", "reason": "The answer commits to a single position rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.6}
+{"qid": "q0215", "label": "Inc", "reason": "The answer ignores the complementary information requirement and simply asserts a single claim instead of combining or distinguishing the differing sources", "judge_latency_s": 3.47}
+{"qid": "q0225", "label": "Inc", "reason": "The answer commits to a single conclusion that organic food is not better for the environment instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.12}
+{"qid": "q0224", "label": "Inc", "reason": "The answer commits to online learning being as effective, rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.25}
+{"qid": "q0235", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.9}
+{"qid": "q0231", "label": "Inc", "reason": "The answer commits to one position (that one‑day implants are generally safe) instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.81}
+{"qid": "q0238", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.86}
+{"qid": "q0237", "label": "FC", "reason": "The system answer exactly matches the gold answer \"MrBeast\" with no incorrect information.", "judge_latency_s": 0.96}
+{"qid": "q0234", "label": "Inc", "reason": "The answer commits to a single view that a weak connection exists, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.71}
+{"qid": "q0207", "label": "Inc", "reason": "The answer asserts a single view that hamburger menus are bad without acknowledging or combining the differing but compatible information from multiple sources, thus violating the required behavior.", "judge_latency_s": 5.7}
+{"qid": "q0232", "label": "Inc", "reason": "The answer asserts that fish oil can improve brain function instead of neutrally presenting the conflicting views, thus failing the required neutral presentation of disagreement.", "judge_latency_s": 2.43}
+{"qid": "q0236", "label": "Inc", "reason": "The answer commits to a single claim that teething does not cause fever, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.6}
+{"qid": "q0233", "label": "FC", "reason": "The answer combines the varying possible dates and notes district differences, satisfying the required behavior and being factually correct.", "judge_latency_s": 2.29}
+{"qid": "q0241", "label": "Inc", "reason": "The answer commits to Tesla as the inventor and does not neutrally present the conflicting viewpoints as required.", "judge_latency_s": 1.35}
+{"qid": "q0242", "label": "Inc", "reason": "The answer commits to a single negative stance instead of neutrally presenting the conflicting opinions as required.", "judge_latency_s": 1.54}
+{"qid": "q0240", "label": "Inc", "reason": "The answer commits to a definitive increased risk rather than neutrally presenting the conflicting evidence, violating the required neutral presentation of competing positions.", "judge_latency_s": 1.59}
+{"qid": "q0249", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.82}
+{"qid": "q0244", "label": "Inc", "reason": "The answer commits to the possibility of full recovery instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.63}
+{"qid": "q0246", "label": "FC", "reason": "The answer combines the differing information, correctly stating cooked bones are unsafe while large raw bones may be safe, matching the required behavior and factual consistency.", "judge_latency_s": 1.34}
+{"qid": "q0245", "label": "FC", "reason": "The answer correctly integrates the compatible information about California smog check timing and exemptions without omitting or contradicting any relevant details.", "judge_latency_s": 1.75}
+{"qid": "q0254", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.84}
+{"qid": "q0255", "label": "FC", "reason": "The answer correctly states the gold answer 'Yes' and adds no incorrect information.", "judge_latency_s": 0.96}
+{"qid": "q0247", "label": "Inc", "reason": "The answer commits to a positive stance ('Yes, hypnotherapy can be effective') instead of neutrally presenting the conflicting views as required.", "judge_latency_s": 1.93}
+{"qid": "q0251", "label": "FC", "reason": "The answer correctly combines the differing release dates for Japan and the United States, satisfying the required behavior and factual consistency.", "judge_latency_s": 1.4}
+{"qid": "q0243", "label": "Inc", "reason": "The answer does not give the gold answer \"Yes\" and instead presents a neutral, non-committal view, contradicting the required answer.", "judge_latency_s": 2.51}
+{"qid": "q0252", "label": "FC", "reason": "The answer matches the gold answer despite a minor transliteration difference.", "judge_latency_s": 1.46}
+{"qid": "q0250", "label": "Inc", "reason": "The answer commits to a single conclusion that a meteor impact did not cause the Younger Dryas, rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.72}
+{"qid": "q0257", "label": "FC", "reason": "The answer correctly gives the gold answer 'Kind of Blue' (with accurate additional detail) and contains no incorrect information.", "judge_latency_s": 1.18}
+{"qid": "q0256", "label": "Inc", "reason": "The answer commits to ‘no cure’ and only mentions future research, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.65}
+{"qid": "q0253", "label": "Inc", "reason": "The answer commits to a single conclusion that most birds do not mate for life instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.05}
+{"qid": "q0226", "label": "Inc", "reason": "The answer correctly combines multiple dates but includes an inaccurate claim (the 1575 ban), so it commits to an incorrect value.", "judge_latency_s": 5.2}
+{"qid": "q0239", "label": "Inc", "reason": "The answer presents both sides but commits to a position ('No'), violating the required neutral presentation of competing views.", "judge_latency_s": 3.43}
+{"qid": "q0260", "label": "Inc", "reason": "The answer definitively states that Neanderthals had larger brains, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.59}
+{"qid": "q0264", "label": "Inc", "reason": "The answer commits to talking to plants helping growth and provides supporting evidence, failing to present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.26}
+{"qid": "q0248", "label": "Inc", "reason": "The answer selects a single war instead of combining or distinguishing multiple compatible sources as required", "judge_latency_s": 3.22}
+{"qid": "q0258", "label": "Inc", "reason": "The answer commits to a single view that moonquakes occur and describes them, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.12}
+{"qid": "q0270", "label": "FC", "reason": "The answer exactly matches the gold answer of 6 titles", "judge_latency_s": 0.68}
+{"qid": "q0263", "label": "FC", "reason": "The answer correctly states 'No' and adds accurate supporting details without any errors.", "judge_latency_s": 1.42}
+{"qid": "q0266", "label": "Inc", "reason": "The answer commits to a single position that beer does not help lactation, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.68}
+{"qid": "q0271", "label": "FC", "reason": "The answer affirms the gold answer and adds no incorrect information.", "judge_latency_s": 1.02}
+{"qid": "q0262", "label": "Inc", "reason": "The answer ignores the differing source information and asserts a single claim, violating the required behavior of combining or distinguishing the compatible pieces.", "judge_latency_s": 1.96}
+{"qid": "q0265", "label": "Inc", "reason": "The answer commits to a single conclusion that standing desks won’t aid weight loss, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.05}
+{"qid": "q0259", "label": "PC", "reason": "The answer presents both sides but still commits to a positive effect, violating the required neutral, non-committal stance.", "judge_latency_s": 2.87}
+{"qid": "q0273", "label": "FC", "reason": "The system answer provides the exact gold answer (450) with no incorrect information.", "judge_latency_s": 1.04}
+{"qid": "q0277", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.93}
+{"qid": "q0276", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.01}
+{"qid": "q0268", "label": "Inc", "reason": "The answer contradicts the gold answer by claiming no president was elected in January 2006, whereas the correct answer is George W. Bush.", "judge_latency_s": 2.23}
+{"qid": "q0267", "label": "Inc", "reason": "The answer commits to a specific earliest date (2nd century BC) instead of neutrally presenting the conflicting positions as required.", "judge_latency_s": 2.93}
+{"qid": "q0261", "label": "Inc", "reason": "The answer provides only a single age (12) and ignores the required behavior of presenting the differing ages of consent across jurisdictions.", "judge_latency_s": 3.44}
+{"qid": "q0275", "label": "Inc", "reason": "The answer commits to a single claim that intermittent fasting does not slow aging, ignoring the required neutral presentation of conflicting viewpoints.", "judge_latency_s": 1.77}
+{"qid": "q0272", "label": "FC", "reason": "The answer correctly combines the compatible pieces of information, presenting both battle outcomes without error.", "judge_latency_s": 2.28}
+{"qid": "q0278", "label": "Inc", "reason": "The answer commits to a single stance and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 1.74}
+{"qid": "q0269", "label": "Inc", "reason": "The answer commits to a single stance that there is no cure, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.56}
+{"qid": "q0280", "label": "Inc", "reason": "The answer commits to fasting being beneficial rather than neutrally presenting the conflicting viewpoints, violating the required behavior.", "judge_latency_s": 1.54}
+{"qid": "q0286", "label": "FC", "reason": "The answer correctly states 'No' and provides accurate supporting explanation without any incorrect information.", "judge_latency_s": 1.34}
+{"qid": "q0281", "label": "Inc", "reason": "The answer commits to a single stance instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.91}
+{"qid": "q0274", "label": "Inc", "reason": "The answer commits to a position that moderate minimum wage increases do not kill jobs instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.61}
+{"qid": "q0288", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information", "judge_latency_s": 0.89}
+{"qid": "q0291", "label": "Inc", "reason": "The system answered Harmanpreet Kaur, which contradicts the gold answer Mithali Raj", "judge_latency_s": 0.99}
+{"qid": "q0293", "label": "FC", "reason": "The answer correctly provides the gold answer O+ (O‑positive) with no incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0285", "label": "Inc", "reason": "The system answered 'Bolivia' which does not match the gold answer 'Bolovia', providing an incorrect host city.", "judge_latency_s": 2.04}
+{"qid": "q0298", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.78}
+{"qid": "q0282", "label": "FC", "reason": "The answer integrates the complementary information, stating that pregnancy often improves RA symptoms for most women while noting exceptions and postpartum flares, matching the required behavior and factual consistency.", "judge_latency_s": 2.68}
+{"qid": "q0295", "label": "FC", "reason": "The system answer 'New York City' matches the gold answer 'New York' and provides the correct city.", "judge_latency_s": 1.15}
+{"qid": "q0297", "label": "Inc", "reason": "The system answered Minnesota Vikings, which contradicts the gold answer that the New England Patriots hold the record.", "judge_latency_s": 1.21}
+{"qid": "q0292", "label": "FC", "reason": "The answer neutrally lists multiple possible fashion capitals, reflecting the disagreement without committing to a single answer.", "judge_latency_s": 2.03}
+{"qid": "q0299", "label": "Inc", "reason": "The answer asserts a definitive position that dogs understand human language, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 1.37}
+{"qid": "q0302", "label": "FC", "reason": "The system answer exactly matches the gold answer Liz Truss with no errors.", "judge_latency_s": 0.88}
+{"qid": "q0287", "label": "PC", "reason": "The answer is factually correct but fails to combine or distinguish multiple compatible pieces of information as required.", "judge_latency_s": 3.07}
+{"qid": "q0300", "label": "FC", "reason": "The system answer exactly matches the gold answer without adding any incorrect information", "judge_latency_s": 1.55}
+{"qid": "q0289", "label": "FC", "reason": "The answer affirms 'Yes' as required and adds correct supporting details without contradicting the gold answer.", "judge_latency_s": 2.72}
+{"qid": "q0301", "label": "Inc", "reason": "The answer commits to a single position that freezing does not kill yeast, violating the required neutral presentation of conflicting opinions.", "judge_latency_s": 1.44}
+{"qid": "q0279", "label": "PC", "reason": "The answer correctly names Queen Elizabeth I as granting the first charter, but it ignores other compatible source information and does not combine or distinguish the differing details as required.", "judge_latency_s": 4.17}
+{"qid": "q0304", "label": "FC", "reason": "The answer affirms the gold answer and adds correct supporting detail without any errors", "judge_latency_s": 1.1}
+{"qid": "q0294", "label": "Inc", "reason": "The response commits to a conclusion that video games are generally not harmful, rather than neutrally presenting the conflicting positions as required.", "judge_latency_s": 2.63}
+{"qid": "q0283", "label": "PC", "reason": "The answer includes the correct term \"Mati\" but adds an extra alternative not present in the gold answer, violating the requirement to give the single supported answer directly.", "judge_latency_s": 4.25}
+{"qid": "q0305", "label": "Inc", "reason": "The answer commits to a single position that horses cannot vomit, failing to neutrally present the conflicting viewpoints as required.", "judge_latency_s": 1.62}
+{"qid": "q0306", "label": "Inc", "reason": "The answer commits to a single conclusion that sugar does not cause hyperactivity, rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.53}
+{"qid": "q0312", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0308", "label": "FC", "reason": "The answer states the correct number (4) and correctly lists the four models, matching the gold answer without errors.", "judge_latency_s": 1.24}
+{"qid": "q0290", "label": "Inc", "reason": "The answer provides only one generic statement and does not combine or distinguish the differing but compatible information from the sources as required.", "judge_latency_s": 3.92}
+{"qid": "q0309", "label": "FC", "reason": "The answer includes the gold answer that antibodies are made by B lymphocytes and adds accurate, non‑contradictory detail.", "judge_latency_s": 1.43}
+{"qid": "q0310", "label": "FC", "reason": "The answer gives a recent estimate of about 3.28 million, which aligns with the gold answer of a bit above 3 million and includes no incorrect information.", "judge_latency_s": 1.49}
+{"qid": "q0311", "label": "FC", "reason": "The answer includes the gold answer 'Yes' and provides accurate additional details without any incorrect information.", "judge_latency_s": 1.55}
+{"qid": "q0303", "label": "Inc", "reason": "The system says 'No' Walt Disney did not create Mickey Mouse, contradicting the correct answer that he did (with Ub Iwerks).", "judge_latency_s": 2.73}
+{"qid": "q0284", "label": "PC", "reason": "The answer includes the correct $5-$10 range but adds unnecessary vehicle-specific details, deviating from the required single direct answer", "judge_latency_s": 5.37}
+{"qid": "q0316", "label": "FC", "reason": "The system answer correctly identifies the video as YouTube Rewind 2018, matching the gold answer.", "judge_latency_s": 1.21}
+{"qid": "q0319", "label": "FC", "reason": "The answer affirms the gold answer and adds accurate, non-contradictory information", "judge_latency_s": 1.1}
+{"qid": "q0320", "label": "FC", "reason": "The answer correctly states that ideas cannot be patented, matching the gold answer without adding any incorrect information.", "judge_latency_s": 1.12}
+{"qid": "q0314", "label": "FC", "reason": "The answer combines multiple compatible roof materials, matching the complementary information requirement without errors", "judge_latency_s": 2.05}
+{"qid": "q0313", "label": "FC", "reason": "The answer combines the dominant pre-Islamic polytheism with the presence of other monotheistic faiths, reflecting the complementary information without error.", "judge_latency_s": 2.12}
+{"qid": "q0322", "label": "FC", "reason": "The answer correctly combines the complementary Japanese and US air dates without error.", "judge_latency_s": 0.97}
+{"qid": "q0323", "label": "FC", "reason": "The system answer exactly matches the gold answer Han Kang with no incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0296", "label": "PC", "reason": "Correct year but fails to combine or distinguish the multiple compatible pieces of information as required", "judge_latency_s": 4.35}
+{"qid": "q0307", "label": "FC", "reason": "The answer correctly combines the complementary facts about C. botulinum spores and honey's antibacterial properties without error.", "judge_latency_s": 3.04}
+{"qid": "q0324", "label": "FC", "reason": "The answer includes the correct 'No' and provides accurate supporting details without any errors.", "judge_latency_s": 1.2}
+{"qid": "q0315", "label": "PC", "reason": "The answer includes the correct 'Yes' but adds extra explanation, not following the requirement to give the single supported answer directly", "judge_latency_s": 3.01}
+{"qid": "q0334", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information", "judge_latency_s": 0.83}
+{"qid": "q0330", "label": "FC", "reason": "The answer includes the gold answer African Americans and adds an equivalent clarification without introducing any incorrect information.", "judge_latency_s": 1.12}
+{"qid": "q0327", "label": "Inc", "reason": "The answer definitively states that taping does not enhance performance, ignoring the required neutral presentation of conflicting evidence.", "judge_latency_s": 1.61}
+{"qid": "q0326", "label": "Inc", "reason": "The answer commits to a definitive 'No' instead of neutrally presenting the conflicting opinions as required.", "judge_latency_s": 1.73}
+{"qid": "q0321", "label": "Inc", "reason": "The answer commits to a single position and does not neutrally present the conflicting viewpoints required by the situation.", "judge_latency_s": 2.4}
+{"qid": "q0336", "label": "FC", "reason": "The answer provides the exact gold date and adds correct contextual detail without any error.", "judge_latency_s": 1.16}
+{"qid": "q0329", "label": "Inc", "reason": "The answer commits to cameras reducing crime rather than neutrally presenting the conflicting viewpoints, violating the required neutral presentation of disagreement.", "judge_latency_s": 1.78}
+{"qid": "q0317", "label": "Inc", "reason": "The answer picks a single release date and location instead of combining or distinguishing the multiple compatible pieces of information required.", "judge_latency_s": 3.19}
+{"qid": "q0338", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.91}
+{"qid": "q0333", "label": "Inc", "reason": "The answer picks a single number instead of combining or distinguishing the differing source information, violating the required behaviour.", "judge_latency_s": 1.88}
+{"qid": "q0332", "label": "FC", "reason": "System answer matches the intended correct answer (Ketanji Brown Jackson) despite a typo in the gold answer", "judge_latency_s": 2.05}
+{"qid": "q0339", "label": "FC", "reason": "The answer provides the correct number (4) matching the gold answer with no incorrect information.", "judge_latency_s": 1.13}
+{"qid": "q0328", "label": "Inc", "reason": "The answer commits to a position that daily washing is not harmful, rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.51}
+{"qid": "q0335", "label": "Inc", "reason": "The answer commits to a single view and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 1.9}
+{"qid": "q0318", "label": "FC", "reason": "The answer correctly states 'No' that we do not yet know the cause, and adds no contradictory information.", "judge_latency_s": 3.79}
+{"qid": "q0337", "label": "FC", "reason": "The answer correctly lists both the 1906 Chicago Cubs and 2001 Seattle Mariners with 116 wins, matching the gold answer exactly.", "judge_latency_s": 1.52}
+{"qid": "q0325", "label": "FC", "reason": "The answer correctly combines the general rule that somatic mutations are not inherited with the noted exceptions, matching the complementary information without error.", "judge_latency_s": 3.06}
+{"qid": "q0344", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.93}
+{"qid": "q0342", "label": "FC", "reason": "The answer correctly states 'No' and provides accurate supporting details without any incorrect information.", "judge_latency_s": 1.31}
+{"qid": "q0343", "label": "FC", "reason": "The system answer correctly provides BPCL, matching the gold answer, with no incorrect information.", "judge_latency_s": 1.06}
+{"qid": "q0348", "label": "FC", "reason": "The answer exactly matches the gold answer of 6 with no incorrect information.", "judge_latency_s": 0.75}
+{"qid": "q0340", "label": "Inc", "reason": "The answer commits to a single position (watering during the day) instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.86}
+{"qid": "q0331", "label": "FC", "reason": "The answer combines compatible information from different sources (comics and TV) as required and provides correct details without errors", "judge_latency_s": 3.16}
+{"qid": "q0350", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect or extra information.", "judge_latency_s": 0.91}
+{"qid": "q0349", "label": "Inc", "reason": "The system answered 2021, which contradicts the correct answer of 2024", "judge_latency_s": 1.19}
+{"qid": "q0356", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.86}
+{"qid": "q0345", "label": "Inc", "reason": "The answer commits to a single view that centrifugal force is fictitious, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 1.96}
+{"qid": "q0346", "label": "Inc", "reason": "The answer commits to a single stance that precise eruption prediction is impossible, failing to neutrally present the conflicting opinions as required.", "judge_latency_s": 2.01}
+{"qid": "q0347", "label": "Inc", "reason": "The answer commits to a single position and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 2.02}
+{"qid": "q0355", "label": "FC", "reason": "The answer exactly matches the gold answer of $15, providing the correct minimum hourly wage without any incorrect information.", "judge_latency_s": 1.38}
+{"qid": "q0341", "label": "Inc", "reason": "The answer commits to a single view that asking age is generally inappropriate rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 3.06}
+{"qid": "q0360", "label": "Inc", "reason": "The answer commits to fires benefiting forests without presenting the conflicting viewpoints required by the situation.", "judge_latency_s": 1.43}
+{"qid": "q0351", "label": "Inc", "reason": "The answer commits to a single stance instead of neutrally presenting the conflicting opinions as required.", "judge_latency_s": 2.36}
+{"qid": "q0361", "label": "Inc", "reason": "The answer commits to a single university as the oldest, ignoring the required neutral presentation of conflicting opinions.", "judge_latency_s": 1.61}
+{"qid": "q0366", "label": "FC", "reason": "The answer includes the gold answer 'China' and adds correct supporting details without any errors.", "judge_latency_s": 1.19}
+{"qid": "q0357", "label": "Inc", "reason": "The answer gives only one name and does not combine or distinguish the multiple compatible pieces of information as required.", "judge_latency_s": 2.56}
+{"qid": "q0363", "label": "Inc", "reason": "The answer commits to a single definitive claim instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.75}
+{"qid": "q0353", "label": "FC", "reason": "The answer correctly combines the general view that cats don't need baths with specific situations where bathing is needed, matching the complementary information requirement.", "judge_latency_s": 2.9}
+{"qid": "q0359", "label": "Inc", "reason": "The answer picks a single community (The Toto) instead of combining or distinguishing the differing source information as required.", "judge_latency_s": 2.33}
+{"qid": "q0362", "label": "FC", "reason": "The answer combines multiple compatible types of French as required and is factually correct.", "judge_latency_s": 2.04}
+{"qid": "q0369", "label": "FC", "reason": "The system answer matches the gold answer exactly and provides the correct latest novel", "judge_latency_s": 1.1}
+{"qid": "q0368", "label": "Inc", "reason": "The answer commits to a specific construction date instead of neutrally presenting the conflicting opinions as required", "judge_latency_s": 1.59}
+{"qid": "q0365", "label": "Inc", "reason": "The answer commits to a single position ('No') instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.21}
+{"qid": "q0373", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.85}
+{"qid": "q0371", "label": "FC", "reason": "The answer lists exactly the five states in the gold answer with no extra or incorrect information.", "judge_latency_s": 1.41}
+{"qid": "q0376", "label": "FC", "reason": "The answer correctly states the gold answer of 10 UC schools with no incorrect information.", "judge_latency_s": 1.01}
+{"qid": "q0352", "label": "PC", "reason": "The answer provides a single governor (Benjamin Humphreys) but fails to combine or distinguish the multiple compatible pieces of information required by the situation.", "judge_latency_s": 4.09}
+{"qid": "q0374", "label": "FC", "reason": "The answer states 'No' as required and provides correct supporting details without any incorrect information.", "judge_latency_s": 1.27}
+{"qid": "q0364", "label": "FC", "reason": "The answer integrates multiple compatible pieces of information about when free tuition ended, rather than selecting a single source, and does so without factual error.", "judge_latency_s": 2.98}
+{"qid": "q0379", "label": "FC", "reason": "The answer correctly states 'Yes' and provides accurate supporting details without any incorrect information.", "judge_latency_s": 0.96}
+{"qid": "q0370", "label": "FC", "reason": "The answer correctly combines the differing dates by location without ignoring any, and provides accurate, compatible information.", "judge_latency_s": 2.31}
+{"qid": "q0381", "label": "FC", "reason": "The system answer exactly matches the gold answer 2024 with no incorrect information.", "judge_latency_s": 1.02}
+{"qid": "q0377", "label": "Inc", "reason": "The answer asserts that a chicken cannot live without its head, contradicting the gold answer \"Yes\" and does not present the required neutral discussion of conflicting views.", "judge_latency_s": 1.71}
+{"qid": "q0354", "label": "Inc", "reason": "The answer provides an incorrect specific date (California 1995) despite correctly noting variation, thus committing to a factual error.", "judge_latency_s": 4.81}
+{"qid": "q0358", "label": "FC", "reason": "The answer correctly lists both parties involved in the 1761 pact, combining the compatible information without error", "judge_latency_s": 4.56}
+{"qid": "q0375", "label": "FC", "reason": "The answer correctly combines the compatible pieces of information, giving both 1897 in Maidstone and 1908 in Jersey City, without any errors.", "judge_latency_s": 2.1}
+{"qid": "q0382", "label": "Inc", "reason": "The system answer provides an incorrect laureate and age (91) instead of the correct age 52.", "judge_latency_s": 1.33}
+{"qid": "q0387", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.9}
+{"qid": "q0367", "label": "PC", "reason": "The answer provides a correct US-specific figure but fails to combine or distinguish multiple sources as required, making it incomplete.", "judge_latency_s": 3.79}
+{"qid": "q0388", "label": "FC", "reason": "The system answer exactly matches the gold answer Max Verstappen.", "judge_latency_s": 0.86}
+{"qid": "q0391", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.69}
+{"qid": "q0378", "label": "Inc", "reason": "The answer commits to a single position that identical twins are not fully identical instead of neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 2.45}
+{"qid": "q0372", "label": "PC", "reason": "The answer includes the correct gold answer but adds extra information, deviating from the required single supported answer", "judge_latency_s": 3.22}
+{"qid": "q0393", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.94}
+{"qid": "q0383", "label": "Inc", "reason": "The answer commits to a single claim and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 2.07}
+{"qid": "q0395", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.89}
+{"qid": "q0384", "label": "FC", "reason": "The system correctly answers 'No' as the gold answer and provides a consistent explanation without any incorrect information.", "judge_latency_s": 2.13}
+{"qid": "q0380", "label": "Inc", "reason": "The system answer gives 8.2 billion, which contradicts the gold answer of 8 billion", "judge_latency_s": 2.68}
+{"qid": "q0392", "label": "Inc", "reason": "The answer commits to a single year (1492) instead of neutrally presenting the conflicting positions as required.", "judge_latency_s": 1.5}
+{"qid": "q0389", "label": "FC", "reason": "The answer matches the gold answer despite a minor formatting difference (space) that does not change the meaning.", "judge_latency_s": 1.82}
+{"qid": "q0385", "label": "PC", "reason": "The answer gives only the U.S. age limit and does not combine or distinguish the differing information that the sources likely contain.", "judge_latency_s": 2.58}
+{"qid": "q0394", "label": "FC", "reason": "The answer neutrally presents the conflicting research findings without committing to a definitive conclusion, matching the required behavior.", "judge_latency_s": 1.72}
+{"qid": "q0399", "label": "FC", "reason": "The answer correctly states 'No' and provides accurate supporting information without any incorrect content.", "judge_latency_s": 1.16}
+{"qid": "q0400", "label": "FC", "reason": "The answer correctly states that Leonardo DiCaprio has no children, matching the gold answer.", "judge_latency_s": 0.98}
+{"qid": "q0398", "label": "Inc", "reason": "The answer commits to a single stance that a vegan diet is safe, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 1.47}
+{"qid": "q0397", "label": "Inc", "reason": "The answer commits to a single claim that older people need the same sleep, ignoring the required neutral presentation of conflicting viewpoints.", "judge_latency_s": 1.64}
+{"qid": "q0396", "label": "Inc", "reason": "The answer commits to a single viewpoint that remote work is less productive, failing to neutrally present the conflicting positions as required.", "judge_latency_s": 1.75}
+{"qid": "q0401", "label": "FC", "reason": "The answer combines both compatible dates from the sources, providing a complete and correct response.", "judge_latency_s": 1.18}
+{"qid": "q0403", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.27}
+{"qid": "q0407", "label": "FC", "reason": "The answer affirms the gold answer and adds correct supporting detail without any error.", "judge_latency_s": 1.0}
+{"qid": "q0405", "label": "FC", "reason": "The answer correctly states that Stephen King has published over 60 novels, matching the gold answer without any incorrect information.", "judge_latency_s": 1.18}
+{"qid": "q0404", "label": "FC", "reason": "The answer neutrally presents both liberal and critical perspectives on the 1960s sexual revolution for women without taking a side, matching the required behavior.", "judge_latency_s": 1.33}
+{"qid": "q0402", "label": "FC", "reason": "The answer includes the correct 'Yes' and adds accurate, compatible information without any errors.", "judge_latency_s": 1.6}
+{"qid": "q0413", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.86}
+{"qid": "q0406", "label": "Inc", "reason": "The answer commits to sliders being bad for SEO instead of neutrally presenting the conflicting viewpoints required.", "judge_latency_s": 1.66}
+{"qid": "q0386", "label": "PC", "reason": "The answer gives the correct date (380 CE) but does not combine or distinguish multiple compatible source details as required, providing only a single fact.", "judge_latency_s": 3.98}
+{"qid": "q0416", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.88}
+{"qid": "q0417", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.89}
+{"qid": "q0419", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.87}
+{"qid": "q0409", "label": "Inc", "reason": "The answer commits to a single negative conclusion and does not neutrally present the conflicting opinions as required.", "judge_latency_s": 1.63}
+{"qid": "q0408", "label": "FC", "reason": "The answer correctly states 'No' and provides accurate supporting details without contradicting the gold answer.", "judge_latency_s": 1.85}
+{"qid": "q0390", "label": "Inc", "reason": "The answer provides only one name and does not combine or distinguish the differing source information as required.", "judge_latency_s": 3.84}
+{"qid": "q0418", "label": "FC", "reason": "The answer correctly states that Revelation is the final book of the New Testament, matching the gold answer without any errors.", "judge_latency_s": 1.24}
+{"qid": "q0421", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.89}
+{"qid": "q0415", "label": "Inc", "reason": "The answer commits to a single date despite the required neutral presentation of conflicting opinions, violating the required behavior.", "judge_latency_s": 1.74}
+{"qid": "q0414", "label": "FC", "reason": "The answer correctly combines the compatible information, noting the 1917 alliance and the later solidification in WWII, without any factual errors.", "judge_latency_s": 1.89}
+{"qid": "q0429", "label": "FC", "reason": "The answer matches the gold answer exactly with no incorrect information.", "judge_latency_s": 0.69}
+{"qid": "q0424", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information", "judge_latency_s": 0.92}
+{"qid": "q0427", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information", "judge_latency_s": 0.87}
+{"qid": "q0425", "label": "FC", "reason": "The system answer exactly matches the gold answer \"Indo-Greeks\".", "judge_latency_s": 0.96}
+{"qid": "q0423", "label": "FC", "reason": "The answer correctly states the release year as 2015, matching the gold answer with no incorrect information.", "judge_latency_s": 1.1}
+{"qid": "q0420", "label": "FC", "reason": "The answer correctly identifies oceanic organisms (phytoplankton) as the primary source of Earth's oxygen, matching the gold answer and adding accurate detail.", "judge_latency_s": 1.84}
+{"qid": "q0410", "label": "Inc", "reason": "The answer presents pros and cons but then concludes that curved TVs are generally not better, committing to a position instead of neutrally presenting the conflicting views as required.", "judge_latency_s": 2.6}
+{"qid": "q0428", "label": "FC", "reason": "The answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 1.07}
+{"qid": "q0422", "label": "FC", "reason": "The answer provides the correct premiere date (April 4, 2017) and adds accurate additional information without any errors.", "judge_latency_s": 1.58}
+{"qid": "q0430", "label": "FC", "reason": "The answer correctly states 'Yes' as the gold answer without any incorrect information.", "judge_latency_s": 0.93}
+{"qid": "q0435", "label": "Inc", "reason": "The answer states only two companies, contradicting the gold answer of three companies", "judge_latency_s": 0.99}
+{"qid": "q0438", "label": "FC", "reason": "The answer exactly matches the gold answer 1964 with no incorrect information.", "judge_latency_s": 0.9}
+{"qid": "q0412", "label": "PC", "reason": "The answer mentions both positions but still commits to saying oysters are not vegan, violating the required neutral presentation.", "judge_latency_s": 3.48}
+{"qid": "q0433", "label": "FC", "reason": "The answer matches the gold answer exactly, stating the panda is no longer endangered and was reclassified as vulnerable in 2016.", "judge_latency_s": 1.73}
+{"qid": "q0411", "label": "Inc", "reason": "The answer gives a single date instead of combining or distinguishing the multiple compatible pieces of information required by the situation.", "judge_latency_s": 3.84}
+{"qid": "q0440", "label": "FC", "reason": "The system answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 1.27}
+{"qid": "q0436", "label": "Inc", "reason": "The answer commits to a single position that exercise cannot fully eliminate cellulite, rather than neutrally presenting the conflicting viewpoints as required.", "judge_latency_s": 1.69}
+{"qid": "q0437", "label": "Inc", "reason": "The answer asserts that leukemia is generally not hereditary instead of neutrally presenting the conflicting viewpoints, violating the required behavior.", "judge_latency_s": 1.73}
+{"qid": "q0443", "label": "Inc", "reason": "The answer commits to a single stance that online degrees are valued less, rather than neutrally presenting the conflicting viewpoints as required", "judge_latency_s": 1.55}
+{"qid": "q0446", "label": "FC", "reason": "The system answer exactly matches the gold answer with no incorrect information.", "judge_latency_s": 0.88}
+{"qid": "q0442", "label": "Inc", "reason": "The answer commits to using dishwater and gives advice, rather than neutrally presenting the conflicting opinions as required.", "judge_latency_s": 1.8}
+{"qid": "q0441", "label": "FC", "reason": "The answer includes the gold answer \"Yes\" and adds correct supporting details without any incorrect information.", "judge_latency_s": 1.9}
+{"qid": "q0448", "label": "FC", "reason": "The answer matches the gold answer \"Over 260\" with equivalent meaning and no incorrect information.", "judge_latency_s": 0.96}
+{"qid": "q0445", "label": "FC", "reason": "The answer combines the differing regional information and notes variability, matching the required behavior without errors.", "judge_latency_s": 1.44}
+{"qid": "q0449", "label": "Inc", "reason": "The answer takes a definitive stance supporting sex education and does not present the conflicting viewpoints neutrally as required.", "judge_latency_s": 1.31}
+{"qid": "q0432", "label": "FC", "reason": "The answer includes both artists, correctly combining the complementary information without omitting any part.", "judge_latency_s": 3.16}
+{"qid": "q0450", "label": "FC", "reason": "The answer provides the exact gold answer (38) with up-to-date context and no incorrect information.", "judge_latency_s": 1.07}
+{"qid": "q0447", "label": "Inc", "reason": "The answer asserts coffee prevents type 2 diabetes without presenting the conflicting viewpoints, violating the required neutral presentation of competing positions.", "judge_latency_s": 1.48}
+{"qid": "q0451", "label": "FC", "reason": "The answer exactly matches the gold answer and provides no incorrect information.", "judge_latency_s": 1.19}
+{"qid": "q0455", "label": "FC", "reason": "The answer exactly matches the gold answer without any incorrect information.", "judge_latency_s": 0.96}
+{"qid": "q0426", "label": "PC", "reason": "The answer provides only a single meaning (Asian Utility Vehicle) and does not combine or distinguish other possible interpretations, so it is only partially correct.", "judge_latency_s": 4.24}
+{"qid": "q0434", "label": "FC", "reason": "The answer combines the differing fee ranges for minors and adults, covering all relevant options without providing incorrect information.", "judge_latency_s": 3.46}
+{"qid": "q0452", "label": "FC", "reason": "The answer correctly states 'No' and accurately identifies the current CEOs, matching the gold answer without any errors.", "judge_latency_s": 1.75}
+{"qid": "q0453", "label": "Inc", "reason": "The answer commits to a specific date despite the requirement to present conflicting views neutrally and likely provides an incorrect fact.", "judge_latency_s": 1.63}
+{"qid": "q0457", "label": "Inc", "reason": "The answer asserts that interbreeding occurred and does not present the conflicting viewpoints required by the situation", "judge_latency_s": 1.32}
+{"qid": "q0444", "label": "FC", "reason": "The answer correctly combines differing information by noting the electric chair is not fully abolished and provides the last execution date, which is factually accurate.", "judge_latency_s": 2.89}
+{"qid": "q0454", "label": "Inc", "reason": "The system answer gives 18.8% instead of the gold answer 20%, providing an incorrect value.", "judge_latency_s": 1.7}
+{"qid": "q0439", "label": "PC", "reason": "The answer provides a correct date (1937) but does not combine or distinguish the multiple compatible pieces of information required by the situation.", "judge_latency_s": 3.9}
+{"qid": "q0431", "label": "Inc", "reason": "The answer selects only one railway and date, ignoring other compatible sources, thus violating the required behavior of combining or distinguishing multiple pieces of information.", "judge_latency_s": 4.62}
+{"qid": "q0456", "label": "PC", "reason": "The answer gives only one date (1899) and does not combine or distinguish multiple compatible pieces of information as required.", "judge_latency_s": 2.43}

@@ -1,0 +1,97 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_gemma4-31b_baseline_details_20261126_025128.csv",
+  "dataset": "conflicts",
+  "tag": "conflicts_gemma4-31b_baseline",
+  "stamp": "20261126_025128",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 458,
+  "n_labelled": 458,
+  "n_unlabelled": 0,
+  "FC": 70.96,
+  "PC": 12.88,
+  "Inc": 16.16,
+  "mean_judge_latency_s": 2.52,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 73.04,
+      "PC": 17.39,
+      "Inc": 9.57
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "n_labelled": 5,
+      "FC": 80.0,
+      "PC": 20.0,
+      "Inc": 0.0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "n_labelled": 62,
+      "FC": 69.35,
+      "PC": 8.06,
+      "Inc": 22.58
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 75.65,
+      "PC": 3.48,
+      "Inc": 20.87
+    },
+    "No conflict": {
+      "n": 161,
+      "n_labelled": 161,
+      "FC": 66.46,
+      "PC": 18.01,
+      "Inc": 15.53
+    }
+  },
+  "by_reference": {
+    "no_reference": {
+      "n": 221,
+      "n_labelled": 221,
+      "FC": 74.66,
+      "PC": 10.41,
+      "Inc": 14.93
+    },
+    "with_reference": {
+      "n": 237,
+      "n_labelled": 237,
+      "FC": 67.51,
+      "PC": 15.19,
+      "Inc": 17.3
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 433,
+      "n_labelled": 433,
+      "FC": 73.67,
+      "PC": 13.39,
+      "Inc": 12.93
+    },
+    "insufficient_evidence": {
+      "n": 12,
+      "n_labelled": 12,
+      "FC": 0.0,
+      "PC": 0.0,
+      "Inc": 100.0
+    },
+    "needs_information": {
+      "n": 5,
+      "n_labelled": 5,
+      "FC": 0.0,
+      "PC": 0.0,
+      "Inc": 100.0
+    },
+    "unresolved_conflict": {
+      "n": 8,
+      "n_labelled": 8,
+      "FC": 75.0,
+      "PC": 12.5,
+      "Inc": 12.5
+    }
+  }
+}

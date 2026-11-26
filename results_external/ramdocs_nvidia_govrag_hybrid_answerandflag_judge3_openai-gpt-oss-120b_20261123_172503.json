@@ -1,0 +1,76 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_nvidia_govrag_hybrid_answerandflag_details_20261123_172503.csv",
+  "dataset": "ramdocs",
+  "tag": "ramdocs_nvidia_govrag_hybrid_answerandflag",
+  "stamp": "20261123_172503",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 500,
+  "n_labelled": 500,
+  "n_unlabelled": 0,
+  "FC": 53.4,
+  "PC": 30.2,
+  "Inc": 16.4,
+  "mean_judge_latency_s": 2.94,
+  "by_num_gold": {
+    "gold_1": {
+      "n": 100,
+      "n_labelled": 100,
+      "FC": 60.0,
+      "PC": 18.0,
+      "Inc": 22.0
+    },
+    "gold_2": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 61.5,
+      "PC": 24.5,
+      "Inc": 14.0
+    },
+    "gold_3": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 42.0,
+      "PC": 42.0,
+      "Inc": 16.0
+    }
+  },
+  "by_misinfo": {
+    "no_misinfo": {
+      "n": 194,
+      "n_labelled": 194,
+      "FC": 70.62,
+      "PC": 20.1,
+      "Inc": 9.28
+    },
+    "with_misinfo": {
+      "n": 306,
+      "n_labelled": 306,
+      "FC": 42.48,
+      "PC": 36.6,
+      "Inc": 20.92
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 455,
+      "n_labelled": 455,
+      "FC": 58.68,
+      "PC": 27.69,
+      "Inc": 13.63
+    },
+    "insufficient_evidence": {
+      "n": 9,
+      "n_labelled": 9,
+      "FC": 0.0,
+      "PC": 0.0,
+      "Inc": 100.0
+    },
+    "unresolved_conflict": {
+      "n": 36,
+      "n_labelled": 36,
+      "FC": 0.0,
+      "PC": 69.44,
+      "Inc": 30.56
+    }
+  }
+}

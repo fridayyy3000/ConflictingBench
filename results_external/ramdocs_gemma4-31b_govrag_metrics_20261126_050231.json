@@ -1,0 +1,54 @@
+{
+  "total": 500,
+  "decisions": {
+    "unresolved_conflict": 130,
+    "answered": 354,
+    "insufficient_evidence": 16
+  },
+  "decision_match_rate": 70.8,
+  "validation_errors": 16,
+  "repairs_used": 56,
+  "items_with_dropped_citations": 8,
+  "mean_latency_s": 14.82,
+  "set_em": 35.0,
+  "set_em_ci95": [
+    30.8,
+    39.0
+  ],
+  "strict_set_em": 34.0,
+  "set_em_by_num_gold": {
+    "1": 39.0,
+    "2": 39.5,
+    "3": 28.5
+  },
+  "set_em_single_gold": 39.0,
+  "set_em_single_gold_n": 100,
+  "any_gold_in_answer": 92.6,
+  "misinfo_in_answer_rate": 43.8,
+  "gold_doc_in_context": 99.4,
+  "cited_doc_precision": 79.64,
+  "items_citing_misinfo": 175,
+  "selected_label": {
+    "none": 265,
+    "correct": 217,
+    "misinfo": 12,
+    "noise": 6
+  },
+  "dataset": "ramdocs",
+  "mode": "govrag",
+  "provider": "local",
+  "run_label": "gemma4-31b",
+  "base_url": "http://localhost:8001/v1",
+  "thinking": false,
+  "generation_model": "google/gemma-4-31B-it",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "If the question is ambiguous because several distinct entities share the same name, give the correct answer for each entity and list each one in short_answers.",
+  "govrag_retrieval": "dense",
+  "govrag_policy": "strict",
+  "details_csv": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_gemma4-31b_govrag_details_20261126_050231.csv",
+  "run_log": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_gemma4-31b_govrag_run_20261126_050231.log"
+}

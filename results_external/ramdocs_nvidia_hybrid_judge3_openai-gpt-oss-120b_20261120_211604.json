@@ -1,0 +1,76 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/ramdocs_nvidia_hybrid_details_20261120_211604.csv",
+  "dataset": "ramdocs",
+  "tag": "ramdocs_nvidia_hybrid",
+  "stamp": "20261120_211604",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 500,
+  "n_labelled": 500,
+  "n_unlabelled": 0,
+  "FC": 50.0,
+  "PC": 32.0,
+  "Inc": 18.0,
+  "mean_judge_latency_s": 2.63,
+  "by_num_gold": {
+    "gold_1": {
+      "n": 100,
+      "n_labelled": 100,
+      "FC": 58.0,
+      "PC": 16.0,
+      "Inc": 26.0
+    },
+    "gold_2": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 56.0,
+      "PC": 30.0,
+      "Inc": 14.0
+    },
+    "gold_3": {
+      "n": 200,
+      "n_labelled": 200,
+      "FC": 40.0,
+      "PC": 42.0,
+      "Inc": 18.0
+    }
+  },
+  "by_misinfo": {
+    "no_misinfo": {
+      "n": 194,
+      "n_labelled": 194,
+      "FC": 70.1,
+      "PC": 22.16,
+      "Inc": 7.73
+    },
+    "with_misinfo": {
+      "n": 306,
+      "n_labelled": 306,
+      "FC": 37.25,
+      "PC": 38.24,
+      "Inc": 24.51
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 456,
+      "n_labelled": 456,
+      "FC": 54.39,
+      "PC": 30.92,
+      "Inc": 14.69
+    },
+    "insufficient_evidence": {
+      "n": 10,
+      "n_labelled": 10,
+      "FC": 0.0,
+      "PC": 0.0,
+      "Inc": 100.0
+    },
+    "unresolved_conflict": {
+      "n": 34,
+      "n_labelled": 34,
+      "FC": 5.88,
+      "PC": 55.88,
+      "Inc": 38.24
+    }
+  }
+}

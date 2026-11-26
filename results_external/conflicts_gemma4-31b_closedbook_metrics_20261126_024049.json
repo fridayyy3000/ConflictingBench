@@ -1,0 +1,99 @@
+{
+  "total": 458,
+  "decisions": {
+    "answered": 421,
+    "insufficient_evidence": 37
+  },
+  "decision_match_rate": 67.03,
+  "validation_errors": 1,
+  "repairs_used": 2,
+  "items_with_dropped_citations": 0,
+  "mean_latency_s": 6.24,
+  "decision_match_ci95": [
+    62.9,
+    71.4
+  ],
+  "answer_correct": 54.85,
+  "answer_correct_n": 237,
+  "judge_adherent": null,
+  "judge_adherent_ci95": null,
+  "judge_n": 0,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "decision_match": 83.48,
+      "decisions": {
+        "answered": 96,
+        "insufficient_evidence": 19
+      },
+      "answer_correct": 71.43,
+      "answer_correct_n": 7,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "decision_match": 100.0,
+      "decisions": {
+        "answered": 5
+      },
+      "answer_correct": 80.0,
+      "answer_correct_n": 5,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "decision_match": 87.1,
+      "decisions": {
+        "answered": 54,
+        "insufficient_evidence": 8
+      },
+      "answer_correct": 37.1,
+      "answer_correct_n": 62,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "decision_match": 0.0,
+      "decisions": {
+        "answered": 114,
+        "insufficient_evidence": 1
+      },
+      "answer_correct": 100.0,
+      "answer_correct_n": 2,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "No conflict": {
+      "n": 161,
+      "decision_match": 94.41,
+      "decisions": {
+        "answered": 152,
+        "insufficient_evidence": 9
+      },
+      "answer_correct": 59.63,
+      "answer_correct_n": 161,
+      "judge_adherent": null,
+      "judge_n": 0
+    }
+  },
+  "dataset": "conflicts",
+  "mode": "closedbook",
+  "provider": "local",
+  "run_label": "gemma4-31b",
+  "base_url": "http://localhost:8001/v1",
+  "thinking": false,
+  "generation_model": "google/gemma-4-31B-it",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "",
+  "govrag_retrieval": null,
+  "govrag_policy": null,
+  "details_csv": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_gemma4-31b_closedbook_details_20261126_024049.csv",
+  "run_log": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_gemma4-31b_closedbook_run_20261126_024049.log"
+}
