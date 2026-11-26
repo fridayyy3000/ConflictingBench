@@ -1,0 +1,500 @@
+{"qid": "q0001", "label": "FC", "reason": "The answer correctly provides the gold answer 'American football' with no incorrect information.", "judge_latency_s": 1.31}
+{"qid": "q0011", "label": "FC", "reason": "The answer provides the exact gold answer of 98 km with no incorrect information.", "judge_latency_s": 1.37}
+{"qid": "q0010", "label": "FC", "reason": "The answer exactly matches the gold answer without any incorrect or extraneous information.", "judge_latency_s": 1.42}
+{"qid": "q0012", "label": "FC", "reason": "The answer correctly identifies Blitzen Trapper as the artist and includes no incorrect information.", "judge_latency_s": 1.42}
+{"qid": "q0014", "label": "FC", "reason": "The answer correctly identifies Needtobreathe as the artist, matching the gold answer with no incorrect information.", "judge_latency_s": 1.45}
+{"qid": "q0013", "label": "FC", "reason": "The system correctly identifies the artist as Carpenters, matching the gold answer without any incorrect information.", "judge_latency_s": 1.52}
+{"qid": "q0007", "label": "Inc", "reason": "The answer includes golf, a known misinformation value, instead of only the correct American football", "judge_latency_s": 1.9}
+{"qid": "q0000", "label": "Inc", "reason": "The answer gives 3,506 people, which does not match the gold answer of 3,559 and is not a known misinformation value.", "judge_latency_s": 2.0}
+{"qid": "q0002", "label": "PC", "reason": "The answer includes the correct director Mahesh Bhatt but also presents the misinformation Raj Kapoor as an alternative, making it only partially correct.", "judge_latency_s": 2.08}
+{"qid": "q0016", "label": "FC", "reason": "The answer provides the exact gold population value with no incorrect information.", "judge_latency_s": 1.16}
+{"qid": "q0015", "label": "PC", "reason": "The answer includes the correct football association but also presents misinformation (chess and soccer) as alternative possibilities, making it only partially correct.", "judge_latency_s": 2.47}
+{"qid": "q0008", "label": "PC", "reason": "The answer mentions both the correct date and the known misinformation, presenting them as alternatives rather than committing to the gold answer", "judge_latency_s": 2.62}
+{"qid": "q0019", "label": "Inc", "reason": "The system answer gives an incorrect winner (Vancouver Whitecaps) and does not include the gold answer Philadelphia Atoms", "judge_latency_s": 1.37}
+{"qid": "q0018", "label": "PC", "reason": "The answer includes the correct sport (football) but also presents the misinformation (chess) as an alternative, which makes it only partially correct.", "judge_latency_s": 1.4}
+{"qid": "q0004", "label": "PC", "reason": "The answer includes the correct year 1856 but also presents the known misinformation 1900 as an alternative, making it only partially correct.", "judge_latency_s": 2.85}
+{"qid": "q0003", "label": "Inc", "reason": "The answer adds incorrect sports (American Football, Rugby League) beyond the gold answer AFL, presenting false information", "judge_latency_s": 2.98}
+{"qid": "q0024", "label": "FC", "reason": "The answer correctly states the medium as a novel, matching the gold answer and not including any misinformation.", "judge_latency_s": 1.08}
+{"qid": "q0006", "label": "PC", "reason": "The answer includes the correct year 1902 but also lists known misinformation dates as alternatives, making it only partially correct.", "judge_latency_s": 3.65}
+{"qid": "q0009", "label": "FC", "reason": "The answer provides the correct population of Pilzno (4,411) and does not include any incorrect values.", "judge_latency_s": 3.79}
+{"qid": "q0020", "label": "PC", "reason": "The answer mentions the correct 'academy' but also lists known misinformation alternatives (university, military base), making it only partially correct.", "judge_latency_s": 2.33}
+{"qid": "q0029", "label": "FC", "reason": "The answer exactly matches the gold answer without adding any incorrect information.", "judge_latency_s": 1.02}
+{"qid": "q0031", "label": "FC", "reason": "The answer correctly states Iowa as the location and adds accurate details without any incorrect information.", "judge_latency_s": 1.21}
+{"qid": "q0022", "label": "PC", "reason": "The answer includes the correct location (Cloutierville) but also presents the known misinformation (New Orleans) as an alternative, which makes it only partially correct.", "judge_latency_s": 2.46}
+{"qid": "q0028", "label": "Inc", "reason": "The answer incorrectly states that RICC's primary function is a space exploration agency, which is a known misinformation value, rather than the correct answer that it is a convention.", "judge_latency_s": 1.97}
+{"qid": "q0036", "label": "Inc", "reason": "The answer gives the known misinformation value (basketball) instead of the correct sport (hockey).", "judge_latency_s": 1.02}
+{"qid": "q0027", "label": "PC", "reason": "The answer includes the correct genre (short film) but also presents the known misinformation (documentary) as an alternative, making it only partially correct.", "judge_latency_s": 2.66}
+{"qid": "q0023", "label": "Inc", "reason": "The answer incorrectly claims Sonny Rollins is the artist, contradicting the gold answer, despite mentioning the correct David S. Ware.", "judge_latency_s": 3.44}
+{"qid": "q0005", "label": "Inc", "reason": "The answer adds hockey as a sport for William Carrier, which is not in the gold answer and introduces incorrect information.", "judge_latency_s": 5.53}
+{"qid": "q0030", "label": "FC", "reason": "The answer includes the gold director Frank Oz and adds only correct additional information, without presenting any incorrect values.", "judge_latency_s": 3.03}
+{"qid": "q0035", "label": "FC", "reason": "The answer provides the correct establishment year 1861 and adds no incorrect information.", "judge_latency_s": 2.09}
+{"qid": "q0037", "label": "Inc", "reason": "The answer asserts Anchorage, Alaska—a known misinformation value—as a location, which makes the response incorrect despite also mentioning the correct Miami, Florida.", "judge_latency_s": 1.83}
+{"qid": "q0038", "label": "PC", "reason": "The answer mentions both Boston (gold) and New York City (known misinformation) as alternatives, not committing to the correct answer.", "judge_latency_s": 1.77}
+{"qid": "q0032", "label": "PC", "reason": "The answer mentions the correct ~50,000 figure but also lists the misinformation (~10,000) and other numbers without committing, making it only partially correct.", "judge_latency_s": 3.0}
+{"qid": "q0041", "label": "FC", "reason": "The answer correctly states the gold answer 1921 and includes no incorrect information.", "judge_latency_s": 1.05}
+{"qid": "q0021", "label": "PC", "reason": "The answer includes the correct death date but also presents a known misinformation date as an alternative, making it only partially correct.", "judge_latency_s": 5.21}
+{"qid": "q0025", "label": "Inc", "reason": "The answer does not provide the gold answer (Republican) and instead lists misinformation as possible affiliations, failing to give the correct party.", "judge_latency_s": 4.31}
+{"qid": "q0017", "label": "PC", "reason": "includes the correct medium (Film) but also adds an extra medium, so it does not match the gold answer exactly", "judge_latency_s": 5.64}
+{"qid": "q0044", "label": "FC", "reason": "The answer correctly states that 221B Baker Street is a board game, matching the gold answer with no incorrect information.", "judge_latency_s": 1.17}
+{"qid": "q0026", "label": "Inc", "reason": "The answer adds incorrect languages (Hindi, Bengali) for the series, providing misinformation beyond the gold answer of Assamese-language", "judge_latency_s": 4.83}
+{"qid": "q0039", "label": "PC", "reason": "The answer includes the correct birth date but also presents the known misinformation as an alternative, failing to commit solely to the gold answer.", "judge_latency_s": 2.59}
+{"qid": "q0034", "label": "PC", "reason": "The answer mentions related roles like orca researcher but does not explicitly state the gold answer 'Biologist', though it is not factually wrong.", "judge_latency_s": 4.09}
+{"qid": "q0045", "label": "Inc", "reason": "The answer provides the known misinformation value (1,234) and does not give the correct gold answer (459).", "judge_latency_s": 2.04}
+{"qid": "q0052", "label": "FC", "reason": "The answer correctly states the establishment year as 1962 and includes no incorrect information.", "judge_latency_s": 1.19}
+{"qid": "q0048", "label": "PC", "reason": "The answer mentions the correct birth date but also presents known misinformation dates as alternatives, which makes it only partially correct.", "judge_latency_s": 2.32}
+{"qid": "q0042", "label": "PC", "reason": "The answer includes the correct genre (super‑powered characters) but also adds an incorrect alternative (crime drama) alongside it.", "judge_latency_s": 3.19}
+{"qid": "q0055", "label": "FC", "reason": "The answer correctly states the location as Aguadilla, Puerto Rico and includes no misinformation.", "judge_latency_s": 1.27}
+{"qid": "q0057", "label": "FC", "reason": "The answer correctly provides the gold answer 'tabla' with no incorrect information.", "judge_latency_s": 0.98}
+{"qid": "q0053", "label": "PC", "reason": "The answer includes the correct artist Slim the Mobster but also lists known misinformation (Jay‑Z and Dr. Dre) as possible artists, making it only partially correct.", "judge_latency_s": 1.91}
+{"qid": "q0056", "label": "FC", "reason": "The answer correctly identifies Best Coast as the artist, matching the gold answer with no incorrect information.", "judge_latency_s": 1.16}
+{"qid": "q0049", "label": "PC", "reason": "The answer includes the correct sport (ice hockey) but also introduces the known misinformation (sumo wrestling) as an alternative entity, making it only partially correct.", "judge_latency_s": 2.93}
+{"qid": "q0054", "label": "Inc", "reason": "The answer includes the correct sport but also asserts the known misinformation (basketball) and adds another incorrect sport, violating the gold answer.", "judge_latency_s": 2.19}
+{"qid": "q0059", "label": "Inc", "reason": "The answer gives the known misinformation location (New York City) instead of the correct locations (Oregon, Wisconsin).", "judge_latency_s": 1.06}
+{"qid": "q0062", "label": "FC", "reason": "The answer correctly states the gold answer (ice hockey) and includes no misinformation.", "judge_latency_s": 1.0}
+{"qid": "q0051", "label": "Inc", "reason": "The answer does not provide the gold answer (about 1835) and only reports a conflict without committing to the correct date.", "judge_latency_s": 3.22}
+{"qid": "q0047", "label": "Inc", "reason": "The answer adds tennis, which is not the correct sport, introducing a false value alongside the correct snooker answer.", "judge_latency_s": 3.98}
+{"qid": "q0050", "label": "Inc", "reason": "The answer adds a false second entity, presenting misinformation alongside the correct band", "judge_latency_s": 3.42}
+{"qid": "q0065", "label": "FC", "reason": "The answer provides the exact gold population value with no incorrect information.", "judge_latency_s": 1.17}
+{"qid": "q0066", "label": "FC", "reason": "The answer correctly states the gold answer (Republican) and includes no incorrect or misleading information.", "judge_latency_s": 1.04}
+{"qid": "q0040", "label": "PC", "reason": "The answer includes the correct gold date but also adds an extra, unrelated birth year, presenting it as an alternative rather than solely the gold answer", "judge_latency_s": 5.7}
+{"qid": "q0067", "label": "Inc", "reason": "The answer provides the known misinformation value Dr. Dre instead of the correct producer Joe Boyd.", "judge_latency_s": 1.21}
+{"qid": "q0063", "label": "PC", "reason": "The answer includes the correct population (1,791) but also presents the known misinformation (2,500) as an alternative, which makes it only partially correct.", "judge_latency_s": 1.91}
+{"qid": "q0061", "label": "Inc", "reason": "The answer includes the known misinformation Bursaspor (and extra incorrect Ankaraspor), violating the gold answer", "judge_latency_s": 2.28}
+{"qid": "q0069", "label": "FC", "reason": "The answer correctly states the gold answer (cricket) and includes no misinformation.", "judge_latency_s": 1.0}
+{"qid": "q0068", "label": "FC", "reason": "The answer provides the exact gold date without any incorrect information.", "judge_latency_s": 1.1}
+{"qid": "q0043", "label": "PC", "reason": "The answer includes the correct population value but adds unnecessary ambiguity about multiple entities, making it incomplete.", "judge_latency_s": 5.58}
+{"qid": "q0060", "label": "Inc", "reason": "The answer includes the known misinformation 'abstract expressionist painting' as a primary medium, which makes it incorrect despite also mentioning poetry.", "judge_latency_s": 2.73}
+{"qid": "q0072", "label": "FC", "reason": "The answer correctly states the construction date as about 1820, matching the gold answer without adding any incorrect information.", "judge_latency_s": 1.19}
+{"qid": "q0064", "label": "PC", "reason": "The answer includes the correct position (defender) but also presents the misinformation (forward) as an alternative, making it only partially correct.", "judge_latency_s": 2.63}
+{"qid": "q0071", "label": "Inc", "reason": "The answer includes the known misinformation value Kathmandu, Nepal, which makes it incorrect despite also mentioning the correct location", "judge_latency_s": 1.52}
+{"qid": "q0074", "label": "FC", "reason": "The answer correctly identifies Boys Like Girls as the artist and includes no misinformation.", "judge_latency_s": 1.2}
+{"qid": "q0058", "label": "Inc", "reason": "The answer does not provide the gold answer \"American football\" and fails to give the required response.", "judge_latency_s": 3.61}
+{"qid": "q0033", "label": "PC", "reason": "The answer includes the correct gold population of 428 but adds unnecessary extra information about another township, making it only partially correct.", "judge_latency_s": 8.24}
+{"qid": "q0075", "label": "FC", "reason": "The answer correctly states Boston as the city, matching the gold answer without any incorrect information.", "judge_latency_s": 1.24}
+{"qid": "q0076", "label": "FC", "reason": "The answer correctly states Odakyu Electric Railway as the operator and includes no incorrect information.", "judge_latency_s": 1.22}
+{"qid": "q0079", "label": "FC", "reason": "The answer correctly states Fort Buchanan is in Arizona and provides no incorrect information.", "judge_latency_s": 1.16}
+{"qid": "q0078", "label": "FC", "reason": "The answer correctly states the gold answer year 1904 and adds no incorrect information.", "judge_latency_s": 1.2}
+{"qid": "q0085", "label": "FC", "reason": "The answer correctly states the gold answer Republican with no incorrect information", "judge_latency_s": 0.91}
+{"qid": "q0073", "label": "PC", "reason": "The answer mentions the correct style Baroque but also includes the misinformation Modernist as an unresolved alternative, which is only partially correct.", "judge_latency_s": 2.15}
+{"qid": "q0070", "label": "PC", "reason": "The answer includes the correct artist Cut Copy but also incorrectly adds The Beatles, a known misinformation value, making it only partially correct.", "judge_latency_s": 2.7}
+{"qid": "q0082", "label": "FC", "reason": "The answer correctly states John Dailey is Republican, matching the gold answer and not including any misinformation.", "judge_latency_s": 1.22}
+{"qid": "q0084", "label": "FC", "reason": "The answer correctly states the engine size as 996 cc, matching the gold answer with no incorrect information.", "judge_latency_s": 1.28}
+{"qid": "q0091", "label": "FC", "reason": "The answer correctly states the Republican affiliation with no incorrect information.", "judge_latency_s": 0.93}
+{"qid": "q0083", "label": "Inc", "reason": "The answer fails to provide the correct population of 1,294 and gives an incorrect claim about the town's existence.", "judge_latency_s": 1.46}
+{"qid": "q0046", "label": "PC", "reason": "The answer lists both gold husbands but hedges with \"may have been\", so it is not a definitive fully correct response.", "judge_latency_s": 7.19}
+{"qid": "q0089", "label": "FC", "reason": "The answer correctly states the gold answer September 1888 without any incorrect information.", "judge_latency_s": 1.19}
+{"qid": "q0087", "label": "FC", "reason": "The answer correctly states the Burgess Company as the designer, matching the gold answer without adding any incorrect information", "judge_latency_s": 1.56}
+{"qid": "q0077", "label": "PC", "reason": "The answer mentions the correct birth date but also presents the known misinformation as an unresolved alternative, making it only partially correct.", "judge_latency_s": 2.72}
+{"qid": "q0081", "label": "Inc", "reason": "The answer states the school was established in 1850, a known misinformation value, even though it also mentions 1912", "judge_latency_s": 2.35}
+{"qid": "q0080", "label": "PC", "reason": "The answer includes the correct release date but also presents the known misinformation as an alternative, making it only partially correct.", "judge_latency_s": 2.69}
+{"qid": "q0098", "label": "FC", "reason": "The answer gives the exact gold population value of 1,066 and adds no incorrect information.", "judge_latency_s": 1.28}
+{"qid": "q0099", "label": "FC", "reason": "The answer correctly identifies Park Ji-yeon as the artist and adds only accurate, non‑contradictory information.", "judge_latency_s": 1.34}
+{"qid": "q0100", "label": "FC", "reason": "The answer provides both gold dates correctly and adds no incorrect information.", "judge_latency_s": 1.35}
+{"qid": "q0095", "label": "Inc", "reason": "The answer includes the known misinformation value 'cricket' alongside the correct answer, which makes it incorrect.", "judge_latency_s": 1.85}
+{"qid": "q0090", "label": "PC", "reason": "The answer includes the correct artist Jade Valerie but also adds the misinformation Taylor Swift, making it only partially correct.", "judge_latency_s": 2.53}
+{"qid": "q0096", "label": "PC", "reason": "The answer includes the correct sport (American football) but also presents the misinformation value (cricket) as an alternative, making it only partially correct.", "judge_latency_s": 1.92}
+{"qid": "q0102", "label": "FC", "reason": "The answer lists both gold artists Jeremy Camp and Dynasty and does not include any misinformation.", "judge_latency_s": 1.4}
+{"qid": "q0097", "label": "PC", "reason": "The answer includes the correct sport (football) but also adds cricket, a known misinformation value, as an alternative, making it partially correct.", "judge_latency_s": 2.1}
+{"qid": "q0101", "label": "FC", "reason": "The answer includes both gold years (1987 and 1988) and does not present any misinformation.", "judge_latency_s": 2.22}
+{"qid": "q0088", "label": "PC", "reason": "The answer includes the correct medium (film) but also adds the known misinformation (novel) as an alternative, making it partially correct.", "judge_latency_s": 3.84}
+{"qid": "q0105", "label": "FC", "reason": "The answer provides both gold-listed fathers for the respective Mahmud I entities without any incorrect information.", "judge_latency_s": 1.53}
+{"qid": "q0103", "label": "FC", "reason": "The answer provides both gold artists (Barbra Streisand and Harold Land) with correct context and no incorrect information.", "judge_latency_s": 2.23}
+{"qid": "q0108", "label": "FC", "reason": "The answer provides both gold directors, Raoul Walsh and William Parke, with no incorrect information.", "judge_latency_s": 1.43}
+{"qid": "q0110", "label": "FC", "reason": "The answer provides both gold population values (9,523 and 174) with correct attribution and no incorrect information.", "judge_latency_s": 1.39}
+{"qid": "q0104", "label": "FC", "reason": "The answer provides both gold dates (3 July 1750 and 3 September 1717) and does not include any incorrect or misinformation values.", "judge_latency_s": 2.5}
+{"qid": "q0107", "label": "FC", "reason": "The answer lists both gold countries (Australia and UK) with no incorrect information.", "judge_latency_s": 1.92}
+{"qid": "q0109", "label": "FC", "reason": "The answer lists both gold artists (In-Flight Safety and Tracy Lawrence) and provides no incorrect alternatives.", "judge_latency_s": 1.87}
+{"qid": "q0106", "label": "FC", "reason": "The answer lists both Elia Kazan and Franco Giraldi as directors, matching the gold answers without adding any incorrect information.", "judge_latency_s": 2.11}
+{"qid": "q0086", "label": "FC", "reason": "The answer includes the gold answer \"Cardinal\" and adds correct extra detail without presenting any incorrect information.", "judge_latency_s": 4.97}
+{"qid": "q0112", "label": "PC", "reason": "The answer includes only the April 1958 start date and omits the other gold answer of June 1936", "judge_latency_s": 1.94}
+{"qid": "q0113", "label": "FC", "reason": "The answer correctly lists both hockey and baseball as the sports associated with the two Doug Harveys, matching all gold answers without any incorrect information.", "judge_latency_s": 1.63}
+{"qid": "q0093", "label": "PC", "reason": "The answer includes the correct gold value (42.7 years) but also adds an extra, unasked value (46.2 years), making it only partially correct.", "judge_latency_s": 4.77}
+{"qid": "q0114", "label": "FC", "reason": "The answer lists both gold answers (American football and ice hockey) and does not include any misinformation.", "judge_latency_s": 1.68}
+{"qid": "q0094", "label": "PC", "reason": "The answer includes the correct film but also incorrectly adds a poet, mixing misinformation with the gold answer.", "judge_latency_s": 5.06}
+{"qid": "q0111", "label": "Inc", "reason": "The answer omits the gold value 1898 and presents known misinformation dates (1886, 1974) as valid, violating the required answer.", "judge_latency_s": 2.92}
+{"qid": "q0122", "label": "FC", "reason": "The answer provides both gold dates exactly and no incorrect information.", "judge_latency_s": 1.35}
+{"qid": "q0121", "label": "FC", "reason": "The answer provides both gold dates, correctly distinguishing the two individuals and includes no incorrect information.", "judge_latency_s": 1.65}
+{"qid": "q0092", "label": "PC", "reason": "The answer includes the correct common name (yellow lantern banksia) but also adds an unrelated pop‑culture alternative, so it is only partially correct.", "judge_latency_s": 5.62}
+{"qid": "q0123", "label": "FC", "reason": "The answer provides both gold professions, correctly distinguishing the two individuals without any incorrect information", "judge_latency_s": 1.51}
+{"qid": "q0115", "label": "FC", "reason": "The answer lists both the gangster thriller and the comedy film genres for the respective films, matching all gold answers without error.", "judge_latency_s": 2.54}
+{"qid": "q0120", "label": "FC", "reason": "The answer includes both gold answers (Roger Rabbit and Eddie Valiant) with correct contextual clarification and no incorrect information.", "judge_latency_s": 2.07}
+{"qid": "q0127", "label": "FC", "reason": "The answer provides both gold population figures (81,615 and 963,022) correctly and without any misinformation.", "judge_latency_s": 1.29}
+{"qid": "q0118", "label": "FC", "reason": "The answer provides both gold answers (William E. Parsons and Carl A) and adds no incorrect information", "judge_latency_s": 2.59}
+{"qid": "q0126", "label": "FC", "reason": "The answer lists both correct artists, Bradley Joseph and Joe McElderry, with no incorrect information.", "judge_latency_s": 1.64}
+{"qid": "q0119", "label": "PC", "reason": "The answer gives both correct populations but also presents the known misinformation value as an alternative, which makes it only partially correct.", "judge_latency_s": 2.98}
+{"qid": "q0129", "label": "FC", "reason": "The answer provides both gold locations (Stanford, KY and Hamlin, WV) and does not include any misinformation.", "judge_latency_s": 1.41}
+{"qid": "q0116", "label": "Inc", "reason": "The answer adds incorrect sports (basketball and football) beyond the gold answers of baseball and American football, presenting misinformation.", "judge_latency_s": 3.72}
+{"qid": "q0117", "label": "PC", "reason": "The answer includes both gold values but also presents an incorrect alternative (1,290) as a possible population, making it partially correct.", "judge_latency_s": 3.56}
+{"qid": "q0128", "label": "FC", "reason": "The answer supplies both gold parties for the respective Marcoux entities and includes no misinformation", "judge_latency_s": 1.87}
+{"qid": "q0136", "label": "FC", "reason": "The answer provides both gold dates (1972 and 1970) correctly and does not include any misinformation.", "judge_latency_s": 1.35}
+{"qid": "q0133", "label": "Inc", "reason": "The answer lists the correct artists but also includes the known misinformation value Taylor Swift as an answer, which makes it incorrect.", "judge_latency_s": 2.13}
+{"qid": "q0131", "label": "Inc", "reason": "The answer lists the known misinformation value 'novel' as a medium alongside the correct ones, which makes it incorrect.", "judge_latency_s": 2.72}
+{"qid": "q0142", "label": "FC", "reason": "The answer lists both gold answers (Peru and Pakistan) and includes no incorrect information", "judge_latency_s": 1.27}
+{"qid": "q0132", "label": "FC", "reason": "The answer provides both gold answers (Richard Speight Jr and Rock Street Journal) and contains no misinformation.", "judge_latency_s": 2.66}
+{"qid": "q0138", "label": "FC", "reason": "The answer supplies both gold positions (Quarterback and Linebacker) correctly, assigning each to the appropriate Richard Wood and includes no incorrect information.", "judge_latency_s": 2.07}
+{"qid": "q0139", "label": "Inc", "reason": "The answer gives the correct population for Port Vincent, South Australia but provides the known misinformation value (1,234) for Port Vincent, Louisiana instead of the gold answer 741", "judge_latency_s": 2.02}
+{"qid": "q0124", "label": "PC", "reason": "The answer includes both gold values (45.7 and 37) but also presents the known misinformation 30.2 as an unresolved alternative, which prevents it from being fully correct.", "judge_latency_s": 4.21}
+{"qid": "q0134", "label": "PC", "reason": "The answer gives the first gold date correctly but omits the year for the second date, making it incomplete.", "judge_latency_s": 2.95}
+{"qid": "q0137", "label": "PC", "reason": "The answer provides the correct gold dates but also presents the known misinformation July 15, 1875 as an unresolved alternative, which prevents a fully correct rating.", "judge_latency_s": 2.92}
+{"qid": "q0141", "label": "FC", "reason": "The answer provides both gold answers (tennis and baseball/football) and correctly notes the misinformation without presenting it as a valid answer.", "judge_latency_s": 2.17}
+{"qid": "q0135", "label": "PC", "reason": "The answer includes the correct gold populations (3,171 and 887) but also presents the known misinformation value (12,456) as an alternative, which makes it only partially correct.", "judge_latency_s": 3.5}
+{"qid": "q0147", "label": "FC", "reason": "The answer provides both gold population values with correct attribution and no incorrect information.", "judge_latency_s": 1.29}
+{"qid": "q0140", "label": "PC", "reason": "The answer includes both gold professions but also presents the known misinformation (professional basketball player) as an alternative, which makes it only partially correct.", "judge_latency_s": 2.95}
+{"qid": "q0145", "label": "Inc", "reason": "The answer adds an incorrect product (brewing) that is not a gold answer, introducing misinformation.", "judge_latency_s": 1.91}
+{"qid": "q0151", "label": "FC", "reason": "The answer provides both gold dates correctly and without any incorrect information.", "judge_latency_s": 1.45}
+{"qid": "q0152", "label": "FC", "reason": "The answer lists both gold-standard lines (Zamoskvoretskaya and Koltsevaya) and includes no incorrect information.", "judge_latency_s": 1.71}
+{"qid": "q0154", "label": "FC", "reason": "The answer provides both gold years (1989 and 1981) correctly and adds appropriate context without any incorrect information.", "judge_latency_s": 1.42}
+{"qid": "q0148", "label": "Inc", "reason": "The answer includes the known misinformation (Classical Music) and fails to provide the full set of gold answers, missing Spanish Top 40/CHR.", "judge_latency_s": 2.45}
+{"qid": "q0150", "label": "FC", "reason": "The answer includes both gold answers with correct attribution and no incorrect information.", "judge_latency_s": 2.12}
+{"qid": "q0143", "label": "FC", "reason": "The answer provides both gold population figures (3,292 and 533) correctly and adds only accurate additional context without any incorrect values.", "judge_latency_s": 3.69}
+{"qid": "q0125", "label": "Inc", "reason": "The answer includes incorrect agreements (Pretoria Accord, Pretoria Agreement) that are not the gold answers, presenting false information alongside the correct wars", "judge_latency_s": 6.45}
+{"qid": "q0149", "label": "FC", "reason": "The answer lists both gold‑standard artists (the Go‑Go's and Shae Jones) and does not include any misinformation.", "judge_latency_s": 2.59}
+{"qid": "q0146", "label": "PC", "reason": "The answer provides the correct years (2004 and mentions 1866) but also presents misinformation values (1920, 1966) as unresolved alternatives, making it only partially correct.", "judge_latency_s": 3.12}
+{"qid": "q0144", "label": "PC", "reason": "The answer includes the gold values 681 and 2,355 but also presents additional, non‑gold population figures, so it is not fully correct.", "judge_latency_s": 4.37}
+{"qid": "q0159", "label": "Inc", "reason": "The answer lists actor and chef (known misinformation) and omits the correct singer profession, thus providing incorrect information.", "judge_latency_s": 1.76}
+{"qid": "q0166", "label": "FC", "reason": "The answer lists both gold answers (American football and Baseball) and includes no incorrect information.", "judge_latency_s": 1.01}
+{"qid": "q0161", "label": "FC", "reason": "The answer lists both the play and the film, matching all gold answers without adding incorrect information.", "judge_latency_s": 1.61}
+{"qid": "q0157", "label": "PC", "reason": "The answer provides both correct release dates but also presents the known misinformation date as an alternative, which prevents it from being fully correct.", "judge_latency_s": 2.76}
+{"qid": "q0155", "label": "Inc", "reason": "The answer lists known misinformation (Taylor Swift, The 13th Floor Elevators) and an unrelated artist (Coldplay) alongside the correct artists, which makes it incorrect.", "judge_latency_s": 3.22}
+{"qid": "q0160", "label": "PC", "reason": "The answer lists both correct composers but also includes the known misinformation (Ludwig van Beethoven) as a possible option, making it only partially correct.", "judge_latency_s": 2.32}
+{"qid": "q0158", "label": "PC", "reason": "The answer includes the gold husbands Cleombrotus II and Cleonymus but also lists misinformation alternatives (Acrotatus, Pyrrhus), making it only partially correct.", "judge_latency_s": 3.2}
+{"qid": "q0168", "label": "FC", "reason": "The answer lists both gold artists, Timbaland and Twelve Gauge Valentine, and adds no incorrect information.", "judge_latency_s": 1.41}
+{"qid": "q0156", "label": "Inc", "reason": "The answer includes the correct artists but also adds an incorrect artist, committing to a false value.", "judge_latency_s": 3.7}
+{"qid": "q0170", "label": "FC", "reason": "The answer lists both the actor and former footballer professions, matching all gold answers without any incorrect information.", "judge_latency_s": 1.36}
+{"qid": "q0163", "label": "Inc", "reason": "The answer states the size as about 100 square miles, which is a known misinformation value, thus incorrect.", "judge_latency_s": 2.77}
+{"qid": "q0164", "label": "Inc", "reason": "The answer includes the known misinformation 'professional basketball player' as a claimed profession, which makes it incorrect despite listing the correct professions.", "judge_latency_s": 3.2}
+{"qid": "q0172", "label": "FC", "reason": "The answer provides both gold answers (ice hockey and middle distance running) without any misinformation.", "judge_latency_s": 1.72}
+{"qid": "q0165", "label": "Inc", "reason": "The answer includes an incorrect leader (Vikrama Chola) not in the gold answers, making the response factually wrong despite mentioning Karunakara Tondaiman.", "judge_latency_s": 3.37}
+{"qid": "q0176", "label": "FC", "reason": "The answer lists both gold artists Placebo and Sandra Bernhard and provides no incorrect information.", "judge_latency_s": 1.26}
+{"qid": "q0174", "label": "PC", "reason": "The answer only provides the actress/director information and omits the author/journalist entity, making it incomplete.", "judge_latency_s": 1.78}
+{"qid": "q0177", "label": "FC", "reason": "The answer lists both gold artists Doro and Slaughter and includes no incorrect information.", "judge_latency_s": 1.47}
+{"qid": "q0167", "label": "FC", "reason": "The answer correctly lists both the film and the novel mediums, matching all gold answers without any incorrect information.", "judge_latency_s": 3.4}
+{"qid": "q0153", "label": "Inc", "reason": "The answer includes the correct artists but also adds an incorrect artist (Woody Herman), committing to false information.", "judge_latency_s": 5.69}
+{"qid": "q0178", "label": "FC", "reason": "The answer correctly lists both gold dates for the first and second Empires of Haiti with no incorrect information.", "judge_latency_s": 1.54}
+{"qid": "q0175", "label": "PC", "reason": "The answer lists the two correct artists but also adds unrelated artists, so it is not fully correct.", "judge_latency_s": 2.39}
+{"qid": "q0180", "label": "FC", "reason": "The answer lists both gold states (Missouri and Texas) and includes no incorrect information.", "judge_latency_s": 1.35}
+{"qid": "q0169", "label": "FC", "reason": "The answer provides both gold owners (George Washington Short and William A) and does not present any misinformation as the answer.", "judge_latency_s": 3.44}
+{"qid": "q0162", "label": "Inc", "reason": "The answer includes the known misinformation \"professional chef\" and fails to provide the gold answer \"Writer\"", "judge_latency_s": 4.69}
+{"qid": "q0171", "label": "PC", "reason": "The answer gives the 1874 founding date but does not provide the 1893-1896 establishment date, only noting building construction, so it is incomplete.", "judge_latency_s": 3.26}
+{"qid": "q0179", "label": "FC", "reason": "The answer includes both gold locations (Portland, Jamaica and Butte County, California) and adds no incorrect information.", "judge_latency_s": 2.19}
+{"qid": "q0184", "label": "FC", "reason": "The answer provides both gold values (70 for Kansas and 4 for Wyoming) with correct attribution and no incorrect information.", "judge_latency_s": 1.74}
+{"qid": "q0188", "label": "FC", "reason": "The answer provides both gold dates accurately and includes no incorrect information.", "judge_latency_s": 1.4}
+{"qid": "q0185", "label": "FC", "reason": "The answer provides both gold directors, correctly matching each film, with no incorrect information.", "judge_latency_s": 1.69}
+{"qid": "q0186", "label": "FC", "reason": "The answer lists both gold answers (middle-distance running for Muriel Coneo and volleyball for Amanda Coneo) with no incorrect information.", "judge_latency_s": 1.7}
+{"qid": "q0130", "label": "PC", "reason": "The answer includes the gold languages Telugu and Hindi but adds extra irrelevant films and a known misinformation value (Marathi), making it only partially correct.", "judge_latency_s": 11.24}
+{"qid": "q0173", "label": "PC", "reason": "The answer includes the correct 'Studio album' and mentions a film, but also adds the misinformation 'Jazz opera' and incorrect film genres, making it only partially correct.", "judge_latency_s": 4.27}
+{"qid": "q0195", "label": "FC", "reason": "The answer includes both gold answers (football/soccer and basketball) and no incorrect information.", "judge_latency_s": 1.13}
+{"qid": "q0196", "label": "FC", "reason": "The answer lists both required cities, Paris and Lyon, without adding any incorrect information.", "judge_latency_s": 1.08}
+{"qid": "q0192", "label": "FC", "reason": "The answer includes both gold regions (Lombardy and Friuli-Venezia Giulia) and adds correct contextual details without any incorrect information.", "judge_latency_s": 2.32}
+{"qid": "q0189", "label": "FC", "reason": "The answer correctly states Punjabi language for the film and does not present the known misinformation as the answer.", "judge_latency_s": 2.58}
+{"qid": "q0182", "label": "FC", "reason": "The answer provides both gold dates (1912 and 1874) and only notes the misinformation without asserting it as a possible answer.", "judge_latency_s": 3.46}
+{"qid": "q0197", "label": "FC", "reason": "The answer provides both gold dates (January 1 1877 and 1904) with correct context and no incorrect information.", "judge_latency_s": 1.48}
+{"qid": "q0191", "label": "FC", "reason": "The answer provides both gold answers (city-owned public-use and county-owned public-use) and adds no incorrect information.", "judge_latency_s": 3.0}
+{"qid": "q0194", "label": "PC", "reason": "The answer provides the correct dates (1850 and 1861–1862) but also presents the known misinformation (1881–1882) as an unresolved alternative, making it only partially correct.", "judge_latency_s": 2.66}
+{"qid": "q0181", "label": "Inc", "reason": "The answer lists incorrect mediums (film and video game) that are known misinformation, presenting them as facts rather than unresolved alternatives, thus violating the gold answer.", "judge_latency_s": 4.45}
+{"qid": "q0198", "label": "Inc", "reason": "The answer adds ice hockey, a known misinformation value, to the correct sports, which makes it incorrect.", "judge_latency_s": 2.34}
+{"qid": "q0200", "label": "FC", "reason": "The answer provides both gold dates, correctly matching each possible entity and includes no incorrect information.", "judge_latency_s": 2.04}
+{"qid": "q0202", "label": "FC", "reason": "The answer lists both gold artists (Roxy Music and Show of Hands) and provides no incorrect information.", "judge_latency_s": 1.62}
+{"qid": "q0201", "label": "FC", "reason": "The answer lists both gold architects, Leila Ross Wilburn and Willis Irwin, correctly and includes no misinformation.", "judge_latency_s": 1.94}
+{"qid": "q0183", "label": "Inc", "reason": "The answer lists the correct artists Miyavi and T-ara but also adds incorrect artists (Steady B, Ringo Starr), presenting false information.", "judge_latency_s": 5.05}
+{"qid": "q0187", "label": "Inc", "reason": "The answer includes the correct gold values but also asserts an incorrect population figure (10,929), which is misinformation presented as a valid answer.", "judge_latency_s": 4.84}
+{"qid": "q0193", "label": "Inc", "reason": "The answer includes the known misinformation value 1920 as a factual construction date, which makes it incorrect despite providing the correct gold dates.", "judge_latency_s": 4.55}
+{"qid": "q0210", "label": "FC", "reason": "The answer provides both gold values ($31,250 and $34,753) correctly and without any incorrect information.", "judge_latency_s": 1.69}
+{"qid": "q0212", "label": "PC", "reason": "The answer includes one gold population (55,145) but omits the other required gold answer (150,699), making it incomplete.", "judge_latency_s": 1.48}
+{"qid": "q0204", "label": "Inc", "reason": "The answer lists the known misinformation date (12 March 1955) as a valid Geoffrey Cook, which is incorrect despite including the correct gold dates.", "judge_latency_s": 2.93}
+{"qid": "q0206", "label": "Inc", "reason": "The answer lists Radio, a known misinformation value, and adds many extra mediums beyond the gold answers, thus presenting incorrect information.", "judge_latency_s": 2.87}
+{"qid": "q0209", "label": "Inc", "reason": "The answer lists the chef, a known misinformation value, alongside the correct professions", "judge_latency_s": 2.23}
+{"qid": "q0190", "label": "PC", "reason": "The answer includes the correct 1918 date but also presents the known misinformation (January 1, 1920) as an alternative and omits the other gold answer (November 1990), making it partially correct.", "judge_latency_s": 5.63}
+{"qid": "q0213", "label": "FC", "reason": "The answer provides both gold dates (Fall of 1964 and August 1998) for the respective schools without any incorrect information.", "judge_latency_s": 1.66}
+{"qid": "q0199", "label": "PC", "reason": "The answer provides the correct population figures but also mentions the known misinformation value as an alternative, which makes it only partially correct.", "judge_latency_s": 4.61}
+{"qid": "q0215", "label": "FC", "reason": "The answer provides both gold dates (about 1898 and 1829) with no incorrect information.", "judge_latency_s": 1.62}
+{"qid": "q0217", "label": "FC", "reason": "The answer lists both gold answers (golf and tennis) and includes no incorrect information.", "judge_latency_s": 1.15}
+{"qid": "q0211", "label": "PC", "reason": "The answer provides both correct birth dates but also presents the known misinformation date as an alternative, making it only partially correct.", "judge_latency_s": 2.89}
+{"qid": "q0207", "label": "PC", "reason": "The answer lists the correct bands Brad and Quicksand but also includes the misinformation Nirvana, making it only partially correct.", "judge_latency_s": 3.55}
+{"qid": "q0219", "label": "FC", "reason": "The answer provides both gold values (2,104 and 2,051) correctly and attributes them to the appropriate entities without any incorrect information.", "judge_latency_s": 1.75}
+{"qid": "q0220", "label": "FC", "reason": "The answer lists both modern-day names Adra and Avdira, matching all gold answers and includes no misinformation.", "judge_latency_s": 1.79}
+{"qid": "q0203", "label": "Inc", "reason": "The answer presents 1860 as a factual date, which is listed as a known misinformation value, making the response incorrect.", "judge_latency_s": 4.95}
+{"qid": "q0218", "label": "Inc", "reason": "The answer includes known misinformation values and omits the gold answer of 6,669, while also adding unrelated incorrect figures.", "judge_latency_s": 2.17}
+{"qid": "q0208", "label": "Inc", "reason": "The answer provides the 2,764 figure for Orrock but misattributes the 837 figure to a different place (Orrick), failing to give the correct second gold answer for Orrock", "judge_latency_s": 4.61}
+{"qid": "q0216", "label": "Inc", "reason": "The answer provides only a 1965 date for a different highway and omits both gold answers (the 1960s and 1953/1954), thus giving incorrect information.", "judge_latency_s": 3.06}
+{"qid": "q0226", "label": "FC", "reason": "The answer provides both gold dates accurately and includes no incorrect information.", "judge_latency_s": 1.41}
+{"qid": "q0205", "label": "Inc", "reason": "The answer only gives the year 2010 and mentions two schools, missing the specific month/season required by the gold answer and not providing the gold answer itself", "judge_latency_s": 5.45}
+{"qid": "q0224", "label": "Inc", "reason": "The answer adds the misinformation value 'cricket' as an associated sport, which makes it incorrect despite including the correct sports.", "judge_latency_s": 2.2}
+{"qid": "q0223", "label": "Inc", "reason": "The answer includes the known misinformation rank 'Admiral' for Paul Schultz, which makes the response incorrect despite also providing the correct ranks.", "judge_latency_s": 2.86}
+{"qid": "q0227", "label": "FC", "reason": "The answer lists both gold fathers (Hilario Davide Jr and Jejomar Binay) and includes no misinformation, satisfying the requirement fully.", "judge_latency_s": 2.01}
+{"qid": "q0230", "label": "FC", "reason": "The answer provides both gold answers (American chef and American actor) and adds no incorrect information.", "judge_latency_s": 1.51}
+{"qid": "q0235", "label": "FC", "reason": "The answer provides both gold population figures for the two distinct Llanquihue entities with correct values and no incorrect information.", "judge_latency_s": 1.22}
+{"qid": "q0232", "label": "FC", "reason": "The answer provides both gold parties (Republican and Democrat) with no incorrect information.", "judge_latency_s": 1.68}
+{"qid": "q0214", "label": "PC", "reason": "The answer provides the correct all-girls answer for St. Michael Academy but also introduces co-ed misinformation and an unrelated entity, hedging rather than giving only the gold answers.", "judge_latency_s": 4.95}
+{"qid": "q0221", "label": "FC", "reason": "The answer lists both gold‑standard artists (Miles Davis and Shalamar) and does not include any incorrect alternatives.", "judge_latency_s": 3.8}
+{"qid": "q0233", "label": "PC", "reason": "The answer includes one gold year (1859) but omits the other required gold answer (1861)", "judge_latency_s": 1.71}
+{"qid": "q0234", "label": "Inc", "reason": "The answer includes the known misinformation value Coldplay, making it incorrect despite listing the correct artists.", "judge_latency_s": 1.66}
+{"qid": "q0225", "label": "PC", "reason": "The answer includes the gold positions (Winger and Defensive Midfielder) but also presents misinformation (Forward, Striker) as possible options, which makes it only partially correct.", "judge_latency_s": 3.67}
+{"qid": "q0239", "label": "FC", "reason": "The answer lists both gold artists, Peter Murphy and Gin Wigmore, and adds no incorrect information.", "judge_latency_s": 1.63}
+{"qid": "q0229", "label": "PC", "reason": "The answer gives the correct dates for both entities but also presents the known misinformation date (12 March 1920) as an alternative, making it only partially correct.", "judge_latency_s": 3.31}
+{"qid": "q0243", "label": "PC", "reason": "The answer includes only Greg Koch, omitting the other gold answer Joey Cape", "judge_latency_s": 1.42}
+{"qid": "q0240", "label": "FC", "reason": "The answer correctly identifies both gender compositions (boys and all‑girls) matching the gold answers without any misinformation.", "judge_latency_s": 1.86}
+{"qid": "q0245", "label": "FC", "reason": "The answer lists both gold artists, Andy Williams and Johnny Mathis, and adds no incorrect information.", "judge_latency_s": 1.39}
+{"qid": "q0242", "label": "FC", "reason": "The answer provides both gold answers (motorway and railway) and does not include any incorrect information.", "judge_latency_s": 1.69}
+{"qid": "q0246", "label": "FC", "reason": "The answer lists both gold composers, Ludwig van Beethoven and Mily Balakirev, with no incorrect alternatives.", "judge_latency_s": 1.42}
+{"qid": "q0228", "label": "PC", "reason": "The answer provides an artist and a game‑related role, but describes the game role as an RPG writer/editor rather than explicitly as a game designer", "judge_latency_s": 4.39}
+{"qid": "q0244", "label": "FC", "reason": "The answer provides both gold answers (chess and cycling) and correctly distinguishes the two entities without any incorrect information.", "judge_latency_s": 1.79}
+{"qid": "q0247", "label": "FC", "reason": "The answer lists both soccer and American football, matching all gold answers and includes no misinformation", "judge_latency_s": 1.67}
+{"qid": "q0238", "label": "Inc", "reason": "The answer gives an incorrect village population (316) instead of the gold value 319, even though it correctly lists the township population", "judge_latency_s": 2.8}
+{"qid": "q0222", "label": "PC", "reason": "The answer includes the two gold functions (butterfly zoo and domestic building) but adds an extra entity with a non‑gold function, making it only partially correct.", "judge_latency_s": 6.41}
+{"qid": "q0237", "label": "FC", "reason": "The system provides both gold answers and adds only a correct additional profession, not an incorrect value", "judge_latency_s": 4.15}
+{"qid": "q0250", "label": "FC", "reason": "The answer lists both gold artists (Bob Evans and Mark Wills) and adds no incorrect information.", "judge_latency_s": 1.63}
+{"qid": "q0252", "label": "FC", "reason": "The answer provides both gold values (15 and 10) for the respective entities without any incorrect information.", "judge_latency_s": 1.56}
+{"qid": "q0241", "label": "PC", "reason": "Provides the correct 1743 and mentions 1867, but also lists misinformation dates as unresolved alternatives, so not fully correct.", "judge_latency_s": 3.43}
+{"qid": "q0248", "label": "FC", "reason": "The answer lists both the photographer and the Catholic priest, matching all gold answers and adding only correct additional details", "judge_latency_s": 2.37}
+{"qid": "q0251", "label": "FC", "reason": "The answer provides the correct format 'News/Talk Information' matching the gold answer without any incorrect information.", "judge_latency_s": 1.96}
+{"qid": "q0254", "label": "PC", "reason": "The answer provides one gold population (612) but omits the other required gold answer (495).", "judge_latency_s": 2.04}
+{"qid": "q0255", "label": "FC", "reason": "The answer lists both gold answers (Green River and Snake River) and does not include any misinformation.", "judge_latency_s": 2.11}
+{"qid": "q0256", "label": "FC", "reason": "The answer includes both gold genres (Drama and Documentary) and only mentions the known misinformation as an incorrect context, not as an answer.", "judge_latency_s": 2.04}
+{"qid": "q0249", "label": "PC", "reason": "The answer gives the correct years 1891 and 1968 but also presents the misinformation year 1975 as an alternative, making it only partially correct.", "judge_latency_s": 2.84}
+{"qid": "q0257", "label": "PC", "reason": "The answer provides the 'over 4,000' value but omits the second gold answer of '16 Clubs', making it incomplete.", "judge_latency_s": 2.07}
+{"qid": "q0262", "label": "FC", "reason": "The answer lists both gold answers (golf and tennis) and includes no incorrect information.", "judge_latency_s": 1.12}
+{"qid": "q0253", "label": "FC", "reason": "The answer provides both gold locations (San Antonio, Texas and Havana, Cuba) and correctly treats the known misinformation as a conflicting context rather than an answer.", "judge_latency_s": 2.71}
+{"qid": "q0259", "label": "FC", "reason": "The answer provides both gold dates correctly and does not include any incorrect information.", "judge_latency_s": 1.62}
+{"qid": "q0265", "label": "FC", "reason": "The answer includes both required divisions (Division I-A and Division III) and adds no incorrect information.", "judge_latency_s": 1.69}
+{"qid": "q0264", "label": "Inc", "reason": "The answer includes the known misinformation that Ibanag is a type of traditional dance, which makes the response incorrect despite containing the correct answers.", "judge_latency_s": 1.88}
+{"qid": "q0258", "label": "PC", "reason": "The answer includes both correct dates but also presents the known misinformation date as an unresolved alternative, which makes it only partially correct.", "judge_latency_s": 3.23}
+{"qid": "q0266", "label": "FC", "reason": "The answer provides both gold artists (Kenny Loggins and Blake Shelton) and adds correct contextual detail without any misinformation.", "judge_latency_s": 1.75}
+{"qid": "q0267", "label": "Inc", "reason": "The answer includes the known misinformation location Springfield, Illinois, which makes it incorrect despite also listing the correct locations.", "judge_latency_s": 1.64}
+{"qid": "q0270", "label": "FC", "reason": "The answer provides both gold answers (1793 and May 1758) with correct attribution and no incorrect information.", "judge_latency_s": 1.45}
+{"qid": "q0269", "label": "Inc", "reason": "The answer includes the known misinformation about Siraya being an ancient Taiwanese currency, which makes it incorrect despite listing the correct language and people", "judge_latency_s": 1.78}
+{"qid": "q0261", "label": "PC", "reason": "The answer includes the correct years 1996 and 2009 but also presents the misinformation value 2000 as an alternative, making it only partially correct.", "judge_latency_s": 3.0}
+{"qid": "q0272", "label": "FC", "reason": "The answer includes both gold ranks (Vice Admiral and Rear Admiral) and correctly attributes them without any incorrect information.", "judge_latency_s": 1.77}
+{"qid": "q0273", "label": "Inc", "reason": "The answer lists the correct artists Dean Martin and Elvis Presley but also includes misinformation values Frank Sinatra and Elton John, which makes it incorrect.", "judge_latency_s": 1.68}
+{"qid": "q0260", "label": "PC", "reason": "Provides the correct years for both dukes but omits the specific day and month given in the gold answers", "judge_latency_s": 3.35}
+{"qid": "q0276", "label": "FC", "reason": "The answer lists both correct artists, Joyce Sims and Gala, matching all gold answers without any incorrect information.", "judge_latency_s": 1.25}
+{"qid": "q0275", "label": "FC", "reason": "The answer lists both gold artists (Family Brown and Jermaine Jackson) and provides no incorrect information.", "judge_latency_s": 1.48}
+{"qid": "q0278", "label": "FC", "reason": "The answer provides both gold locations (Belleville, Illinois and Russellville, Kentucky) and does not include any misinformation.", "judge_latency_s": 1.31}
+{"qid": "q0279", "label": "FC", "reason": "The answer provides both gold directors, John M. Stahl and Douglas Sirk, with no incorrect information.", "judge_latency_s": 1.33}
+{"qid": "q0283", "label": "Inc", "reason": "The answer includes the misinformation value 'Cricket' alongside the correct sports, which makes it incorrect.", "judge_latency_s": 1.5}
+{"qid": "q0274", "label": "FC", "reason": "The answer lists both the administrative district and the coal mine with their correct primary functions, matching all gold answers and containing no incorrect information.", "judge_latency_s": 2.84}
+{"qid": "q0281", "label": "FC", "reason": "The answer correctly states both formats—documentary and period drama—matching the gold answers without adding any incorrect information.", "judge_latency_s": 1.9}
+{"qid": "q0285", "label": "FC", "reason": "The answer provides both gold dates (28 September 1981 and 28 September 2015) and includes no incorrect information.", "judge_latency_s": 1.56}
+{"qid": "q0263", "label": "PC", "reason": "The answer provides both correct dates but also presents the known misinformation as an alternative, which makes it only partially correct.", "judge_latency_s": 5.12}
+{"qid": "q0284", "label": "Inc", "reason": "The answer lists the correct locations but also includes the known misinformation value Springfield, Massachusetts, which makes it incorrect.", "judge_latency_s": 2.07}
+{"qid": "q0288", "label": "FC", "reason": "The answer provides both gold sports (football and auto racing) and includes no misinformation.", "judge_latency_s": 1.58}
+{"qid": "q0280", "label": "FC", "reason": "The answer lists both gold artists (Irma Thomas and Rain) and adds no incorrect information.", "judge_latency_s": 2.6}
+{"qid": "q0231", "label": "PC", "reason": "The answer includes the gold mediums (telenovela and film) but adds an extra medium (radionovela) not required, making it only partially correct.", "judge_latency_s": 10.46}
+{"qid": "q0286", "label": "FC", "reason": "The answer includes both gold aircraft types for the respective Flight 109 instances and adds no incorrect information.", "judge_latency_s": 2.05}
+{"qid": "q0271", "label": "PC", "reason": "The answer includes the correct populations (726 and 838) but also presents the known misinformation value 1,200 as an alternative and adds an extra non‑gold figure (603), so it is only partially correct.", "judge_latency_s": 4.93}
+{"qid": "q0282", "label": "Inc", "reason": "The answer lists the known misinformation value (professional basketball player) as a possible profession, which makes it incorrect despite including the correct professions.", "judge_latency_s": 3.35}
+{"qid": "q0277", "label": "PC", "reason": "The answer provides the correct start years (1834 and 1867) but omits the end year of the second cricketer's career, so it is incomplete.", "judge_latency_s": 4.23}
+{"qid": "q0268", "label": "PC", "reason": "The answer includes the correct band and film genres but adds an extra, unrelated TV series genre, making it only partially correct.", "judge_latency_s": 6.04}
+{"qid": "q0292", "label": "FC", "reason": "The answer lists both gold answers (golf and baseball) and provides correct context without any incorrect information.", "judge_latency_s": 1.85}
+{"qid": "q0287", "label": "PC", "reason": "The answer includes the correct colors (violet and purple‑to‑purple‑brown) but also presents the known misinformation (green to yellow‑green) as an alternative, making it only partially correct.", "judge_latency_s": 3.27}
+{"qid": "q0290", "label": "FC", "reason": "The answer includes both gold answers (1954 and 1900‑1904) and does not present any misinformation.", "judge_latency_s": 2.36}
+{"qid": "q0236", "label": "Inc", "reason": "The answer provides the correct 1888 year but incorrectly states Walter Henry Erskine became Earl of Mar in 1875, contradicting the gold answer of 1872 and introducing a false value.", "judge_latency_s": 11.62}
+{"qid": "q0289", "label": "Inc", "reason": "The answer lists cricket, a known misinformation value, as a possible James Tilley, which makes the response incorrect despite including the correct sports.", "judge_latency_s": 2.82}
+{"qid": "q0295", "label": "Inc", "reason": "The answer provides incorrect population figures, including the known misinformation value 5,000, and does not include the gold answers 1,473 and 106", "judge_latency_s": 2.38}
+{"qid": "q0293", "label": "FC", "reason": "The answer lists both correct genres—rock music for the album and comedy-drama caper for the film—without any incorrect information.", "judge_latency_s": 2.74}
+{"qid": "q0299", "label": "FC", "reason": "The answer lists both the politician and the divine (bishop) professions, matching all gold answers without adding incorrect information.", "judge_latency_s": 2.0}
+{"qid": "q0291", "label": "PC", "reason": "The answer includes the correct meanings (Wulfsige's farm and Wulfric's tūn) but also presents the known misinformation 'Wolf's stone' as an alternative, making it only partially correct.", "judge_latency_s": 3.33}
+{"qid": "q0294", "label": "PC", "reason": "The answer lists the correct professions (judge and cricketer) but also includes the known misinformation 'chef' as an alternative, making it only partially correct.", "judge_latency_s": 2.86}
+{"qid": "q0302", "label": "FC", "reason": "The answer provides all three gold dates, correctly matched to each Pugh House entity, with no incorrect information.", "judge_latency_s": 1.61}
+{"qid": "q0297", "label": "PC", "reason": "The answer includes both correct opening dates but also presents the known misinformation date as an alternative, making it only partially correct.", "judge_latency_s": 3.09}
+{"qid": "q0296", "label": "PC", "reason": "includes the correct genres but also presents the known misinformation as an alternative description", "judge_latency_s": 3.25}
+{"qid": "q0305", "label": "FC", "reason": "The answer lists all three gold dates, correctly matching each Empress Borjigit, with no incorrect information.", "judge_latency_s": 1.83}
+{"qid": "q0300", "label": "FC", "reason": "The answer lists all three gold-standard birth dates and correctly notes the misinformation without presenting it as a valid answer.", "judge_latency_s": 2.71}
+{"qid": "q0303", "label": "PC", "reason": "The answer includes only one gold courtesy name (Liangdao) and omits the other correct values, making it incomplete.", "judge_latency_s": 2.3}
+{"qid": "q0310", "label": "FC", "reason": "The answer provides all three gold dates, correctly matched to each James Scudamore, with no incorrect information.", "judge_latency_s": 1.25}
+{"qid": "q0304", "label": "PC", "reason": "The answer lists two of the three gold authors but omits Bhagat Singh, making it incomplete.", "judge_latency_s": 2.36}
+{"qid": "q0308", "label": "Inc", "reason": "The answer lists the correct composers but also includes the known misinformation Ludwig van Beethoven, which makes it incorrect.", "judge_latency_s": 1.8}
+{"qid": "q0306", "label": "Inc", "reason": "The answer fails to include the gold populations (158, 2,397, 3,000) and provides incorrect values instead.", "judge_latency_s": 2.64}
+{"qid": "q0301", "label": "PC", "reason": "The answer includes the two sport gold answers (football and cricket) but omits the third gold answer (1997 provincial election).", "judge_latency_s": 3.61}
+{"qid": "q0313", "label": "Inc", "reason": "The answer only provides 1911 and incorrectly includes the misinformation 1975, omitting the gold answers 1945 and 1988", "judge_latency_s": 1.71}
+{"qid": "q0317", "label": "FC", "reason": "The answer lists all three gold dates, correctly matching each distinct Princess Elisabeth of Thurn and Taxis, with no incorrect information.", "judge_latency_s": 1.35}
+{"qid": "q0312", "label": "PC", "reason": "The answer provides two of the three gold fathers (Emperor Muzong and Li Deming) but omits the third gold answer, Wang Shenzhi.", "judge_latency_s": 2.33}
+{"qid": "q0309", "label": "Inc", "reason": "The answer includes two correct gold entries but omits 'Voice command device' and adds an incorrect entry (Video Cassette Disc), which makes it incorrect.", "judge_latency_s": 2.57}
+{"qid": "q0320", "label": "FC", "reason": "The answer lists all three gold sports (darts, snooker, football) and adds no incorrect information.", "judge_latency_s": 1.34}
+{"qid": "q0319", "label": "FC", "reason": "The answer provides all three gold directors, correctly matched to each film, with no incorrect information.", "judge_latency_s": 1.43}
+{"qid": "q0316", "label": "FC", "reason": "The answer lists all three gold genres (romantic comedy, comedy, documentary) correctly and without any incorrect information.", "judge_latency_s": 2.08}
+{"qid": "q0318", "label": "PC", "reason": "The answer includes two of the three gold directors but omits Erwin Piscator, making it incomplete.", "judge_latency_s": 1.98}
+{"qid": "q0311", "label": "FC", "reason": "The answer provides all three gold-standard common names (Flame acanthus, Chuparosa/chiparosa, Spider-net Grevillea) and only adds correct additional names, without any misinformation.", "judge_latency_s": 3.24}
+{"qid": "q0321", "label": "FC", "reason": "The answer lists exactly the three gold artists (Jump5, Peter Andre, R.E.M.) with no incorrect alternatives.", "judge_latency_s": 2.09}
+{"qid": "q0326", "label": "FC", "reason": "The answer lists all three gold unit types correctly and adds no incorrect information.", "judge_latency_s": 1.46}
+{"qid": "q0325", "label": "FC", "reason": "The answer lists all three gold dates correctly for the respective Justice Cole entities and includes no misinformation.", "judge_latency_s": 1.79}
+{"qid": "q0315", "label": "Inc", "reason": "Only the Virginia location is correctly given for Abingdon High School; the Illinois and England entries refer to different schools, not the requested Abingdon High School", "judge_latency_s": 3.68}
+{"qid": "q0323", "label": "Inc", "reason": "The answer includes the known misinformation value 1930 as a birth date, which makes it incorrect despite listing the correct gold answers.", "judge_latency_s": 2.63}
+{"qid": "q0322", "label": "Inc", "reason": "The answer lists the correct sports but also includes Basketball, a known misinformation value, which makes the response incorrect.", "judge_latency_s": 2.87}
+{"qid": "q0330", "label": "PC", "reason": "The answer provides two of the three required dates (1964 and 21 December 1906) but omits the third gold answer (1917).", "judge_latency_s": 1.82}
+{"qid": "q0314", "label": "PC", "reason": "Includes all gold dates but adds uncertain alternative dates, hedging beyond the exact gold answers", "judge_latency_s": 4.34}
+{"qid": "q0327", "label": "Inc", "reason": "The answer only provides the West Virginia figure (7,094) and gives an incorrect New Hampshire figure (115) while omitting the other gold answers (1,251 and 75).", "judge_latency_s": 2.49}
+{"qid": "q0307", "label": "Inc", "reason": "The answer adds Martin Gilbert as a creator, which is incorrect, violating the requirement to provide only the gold answers", "judge_latency_s": 6.06}
+{"qid": "q0331", "label": "PC", "reason": "The answer lists all gold dates but also includes the known misinformation date as an alternative, which makes it only partially correct.", "judge_latency_s": 2.48}
+{"qid": "q0324", "label": "Inc", "reason": "The answer includes the misinformation value 'Diving' as a correct option and omits the gold answer 'SAT testing'.", "judge_latency_s": 3.88}
+{"qid": "q0338", "label": "FC", "reason": "The answer lists all three gold dates (7 July 1965, 1959, 1943) correctly and includes no misinformation.", "judge_latency_s": 1.42}
+{"qid": "q0329", "label": "Inc", "reason": "The answer lists an incorrect artist (Collide) and omits the gold answer Jack's Mannequin, thus committing to a wrong value.", "judge_latency_s": 3.73}
+{"qid": "q0337", "label": "PC", "reason": "The answer includes two of the three gold years (148 BC and 112 BC) but omits the third gold answer (58 BC), making it incomplete.", "judge_latency_s": 1.83}
+{"qid": "q0332", "label": "PC", "reason": "The answer provides all gold values but also presents an incorrect alternative population (7,723) for Blackford County, making it partially correct.", "judge_latency_s": 3.25}
+{"qid": "q0341", "label": "FC", "reason": "The answer lists all three gold dates with the correct corresponding Cosimo, and includes no incorrect information.", "judge_latency_s": 1.76}
+{"qid": "q0298", "label": "PC", "reason": "The answer gives both correct directors but also presents the known misinformation (Quentin Tarantino) as an alternative attribution, which makes it only partially correct.", "judge_latency_s": 9.16}
+{"qid": "q0339", "label": "FC", "reason": "The answer lists all three gold answer dates (2016, 2010, 1990-91 season) correctly and adds no incorrect information.", "judge_latency_s": 2.12}
+{"qid": "q0343", "label": "FC", "reason": "The answer provides all three gold years (1848, 1870, 1882) with no incorrect information.", "judge_latency_s": 1.44}
+{"qid": "q0328", "label": "Inc", "reason": "The answer adds incorrect information (e.g., San Bernardino dates) and mentions a known misinformation value, violating the requirement to provide only the gold answers.", "judge_latency_s": 4.59}
+{"qid": "q0345", "label": "FC", "reason": "The answer lists all three gold-standard birth dates correctly and includes no misinformation.", "judge_latency_s": 1.34}
+{"qid": "q0344", "label": "PC", "reason": "The answer includes two of the three gold dates but omits the third (1640), making it incomplete.", "judge_latency_s": 1.71}
+{"qid": "q0340", "label": "FC", "reason": "The answer provides all three gold years (1914, 1943, 1952) for the respective divisions without any incorrect information.", "judge_latency_s": 2.86}
+{"qid": "q0342", "label": "PC", "reason": "The answer provides all gold dates but also presents known misinformation (1905, 1918) as alternatives, which makes it only partially correct.", "judge_latency_s": 2.47}
+{"qid": "q0348", "label": "PC", "reason": "The answer includes Italo-Turkish War and World War II but omits the 1982 Lebanon War, making it incomplete.", "judge_latency_s": 1.64}
+{"qid": "q0336", "label": "Inc", "reason": "The answer omits the correct \"243-year cycle\" entry, adds an incorrect \"Play\" entry, and presents the known misinformation \"classical\" alongside the correct rock genre.", "judge_latency_s": 4.01}
+{"qid": "q0350", "label": "PC", "reason": "The answer includes Raymond, NH and Stoneham, MA but omits the third gold location, Contoocook Village", "judge_latency_s": 1.76}
+{"qid": "q0347", "label": "PC", "reason": "The answer includes two of the three gold candidates but omits Donald Box, making it incomplete.", "judge_latency_s": 2.12}
+{"qid": "q0334", "label": "Inc", "reason": "The answer lists the correct creators but also includes numerous incorrect and misinformation items, presenting false information.", "judge_latency_s": 4.82}
+{"qid": "q0354", "label": "FC", "reason": "The answer lists all three gold artists (The Beatles, Joe Cocker, Lu Elliott) and does not include any misinformation.", "judge_latency_s": 1.27}
+{"qid": "q0357", "label": "FC", "reason": "The answer provides all three gold birth dates for the distinct Bartholomew Greens with correct values and no misinformation.", "judge_latency_s": 1.72}
+{"qid": "q0360", "label": "FC", "reason": "The answer provides all three gold years with correct corresponding schools and no incorrect information", "judge_latency_s": 1.06}
+{"qid": "q0346", "label": "PC", "reason": "The answer includes all gold artists but also lists the known misinformation Elton John as a possible artist, making it only partially correct.", "judge_latency_s": 3.37}
+{"qid": "q0359", "label": "Inc", "reason": "The answer includes the known misinformation value 'The Fatback Band', which makes it incorrect despite listing the correct artists", "judge_latency_s": 1.66}
+{"qid": "q0333", "label": "FC", "reason": "The answer provides all three formation dates (as years) corresponding to the gold answers and includes no incorrect information.", "judge_latency_s": 6.37}
+{"qid": "q0335", "label": "Inc", "reason": "The answer includes the known misinformation value 'Infantry Regiment', which makes it incorrect despite listing the other correct units.", "judge_latency_s": 6.16}
+{"qid": "q0356", "label": "Inc", "reason": "The answer lists the misinformation value 'Wrestling' and fails to provide the gold answer 'Professional wrestling'", "judge_latency_s": 2.55}
+{"qid": "q0355", "label": "PC", "reason": "The answer includes two of the three gold dates (December 1991 and November 3, 1992) but omits the third gold answer (1997).", "judge_latency_s": 2.7}
+{"qid": "q0349", "label": "Inc", "reason": "The answer provides an incorrect population (28,165) and omits two of the gold-standard values (25,139 and 1,636) while only correctly listing 909", "judge_latency_s": 4.22}
+{"qid": "q0353", "label": "Inc", "reason": "The answer gives wrong population numbers for Lawrence in Brown and Rusk counties, contradicting the gold answers.", "judge_latency_s": 4.04}
+{"qid": "q0365", "label": "FC", "reason": "The answer provides all three gold dates (1755, 1586, 1250s) correctly and adds no incorrect information.", "judge_latency_s": 1.72}
+{"qid": "q0358", "label": "FC", "reason": "The answer lists all three gold dates (1884, 1923‑1929, 1862) correctly and does not present the known misinformation as a valid answer.", "judge_latency_s": 3.19}
+{"qid": "q0366", "label": "FC", "reason": "The answer provides all three gold dates with no incorrect information.", "judge_latency_s": 1.84}
+{"qid": "q0368", "label": "FC", "reason": "The answer lists exactly the three gold‑standard artists (Butthole Surfers, Rheostatics, Garth Brooks) and includes no incorrect alternatives.", "judge_latency_s": 1.77}
+{"qid": "q0351", "label": "PC", "reason": "The answer includes the gold dates but also lists the known misinformation (1955) as an alternative and omits the full 1964‑1982 range, making it only partially correct.", "judge_latency_s": 5.07}
+{"qid": "q0367", "label": "FC", "reason": "The answer lists Conservative, Right-wing, and National Socialism for the respective National Action entities, matching all gold answers and containing no misinformation.", "judge_latency_s": 2.09}
+{"qid": "q0363", "label": "Inc", "reason": "The answer omits the gold answer Cricket and presents Basketball (a known misinformation value) as a definitive answer, making it incorrect.", "judge_latency_s": 3.48}
+{"qid": "q0371", "label": "FC", "reason": "The answer provides all three gold dates (1840, 1866, 21 August 1987) with correct specifics and no incorrect information.", "judge_latency_s": 2.05}
+{"qid": "q0364", "label": "PC", "reason": "The answer provides the correct gold dates but also presents known misinformation dates as unresolved alternatives, which makes it only partially correct.", "judge_latency_s": 3.34}
+{"qid": "q0370", "label": "Inc", "reason": "The answer gives a wrong population (1,637) for Pittsville, Maryland, omits the 80-person Pittsville, and only correctly lists the Wisconsin figure", "judge_latency_s": 2.6}
+{"qid": "q0372", "label": "FC", "reason": "The answer lists all three gold creators (Richard Marx, Steve Kloves, Moira Walley-Beckett) and adds correct contextual distinctions without any incorrect information.", "judge_latency_s": 2.04}
+{"qid": "q0374", "label": "PC", "reason": "The answer includes two of the three gold dates but omits the third (25 September 1970), making it incomplete.", "judge_latency_s": 1.71}
+{"qid": "q0352", "label": "Inc", "reason": "The answer includes an unrelated and incorrect Harold King (son of Godwin), which adds a false value beyond the required gold answers", "judge_latency_s": 6.27}
+{"qid": "q0373", "label": "FC", "reason": "The answer lists all three correct parties for the respective Governor Olsons and includes no incorrect information.", "judge_latency_s": 2.32}
+{"qid": "q0369", "label": "PC", "reason": "The answer lists all gold birth dates but also presents the known misinformation value (1590) as an alternative, which makes it partially correct.", "judge_latency_s": 3.4}
+{"qid": "q0379", "label": "FC", "reason": "The answer lists all gold years (1932, 1984, 2028) and provides no incorrect information.", "judge_latency_s": 1.64}
+{"qid": "q0377", "label": "Inc", "reason": "The answer lists the correct artists but also includes the misinformation value Frank Sinatra, which makes the response incorrect.", "judge_latency_s": 2.02}
+{"qid": "q0381", "label": "FC", "reason": "The answer lists all three gold characters (Marco Loristan, Eleanor Burden, Johnnie) and includes no misinformation.", "judge_latency_s": 1.55}
+{"qid": "q0362", "label": "PC", "reason": "The answer provides two correct population values (5,601 and 324) but omits the third gold answer (10-16 years old), making it incomplete.", "judge_latency_s": 5.35}
+{"qid": "q0383", "label": "FC", "reason": "The answer lists all three gold directors (J. Searle Dawley, Michael Curtiz, Tony Richardson) and includes no incorrect information.", "judge_latency_s": 1.23}
+{"qid": "q0376", "label": "Inc", "reason": "The answer includes the known misinformation value 5,000 for Hughesville, Maryland, which makes it incorrect despite the other correct values.", "judge_latency_s": 2.76}
+{"qid": "q0380", "label": "FC", "reason": "The answer lists all three gold creators (Bono, Jeremy Camp, Ava DuVernay) and provides no incorrect information.", "judge_latency_s": 2.55}
+{"qid": "q0375", "label": "PC", "reason": "The answer lists all gold artists but also includes the known misinformation John Coltrane, so it is only partially correct.", "judge_latency_s": 3.52}
+{"qid": "q0378", "label": "FC", "reason": "All gold dates are provided correctly (1962, 1971, 12 October 1965) with no incorrect information.", "judge_latency_s": 2.97}
+{"qid": "q0361", "label": "PC", "reason": "The answer includes the gold value 186 but omits the other required gold values 61 and 316, making it incomplete.", "judge_latency_s": 7.02}
+{"qid": "q0385", "label": "FC", "reason": "The answer lists exactly the three gold artists and provides no incorrect information.", "judge_latency_s": 2.88}
+{"qid": "q0384", "label": "Inc", "reason": "The answer includes the known misinformation date January 1, 1900 as a valid entry, which violates the gold answers", "judge_latency_s": 3.24}
+{"qid": "q0386", "label": "PC", "reason": "Provides all gold dates but also presents the known misinformation (19 September 1950) as an alternative, which makes the answer only partially correct.", "judge_latency_s": 3.05}
+{"qid": "q0393", "label": "PC", "reason": "The answer provides all three correct fathers but also presents known misinformation values as alternative possibilities, which makes it only partially correct.", "judge_latency_s": 2.36}
+{"qid": "q0389", "label": "Inc", "reason": "The answer lists Dolly Parton, a known misinformation value, alongside the correct artists, making it incorrect.", "judge_latency_s": 2.95}
+{"qid": "q0390", "label": "PC", "reason": "The answer includes all three gold population values but adds an extra non‑gold estimate, making it only partially correct.", "judge_latency_s": 2.94}
+{"qid": "q0387", "label": "PC", "reason": "The answer includes all gold population values but also presents an incorrect alternative (184) for Pennsylvania, making it partially correct.", "judge_latency_s": 3.16}
+{"qid": "q0399", "label": "Inc", "reason": "The system provided no answer, missing all gold answers (Pritam, Raghu, Shalini).", "judge_latency_s": 1.27}
+{"qid": "q0391", "label": "PC", "reason": "The answer provides Satirical drama but omits Autobiography, and adds a disputed documentary option, thus incomplete and includes misinformation.", "judge_latency_s": 3.21}
+{"qid": "q0392", "label": "PC", "reason": "The answer includes the correct debut dates but also presents the known misinformation (January 15, 2010) as an alternative, which makes it only partially correct.", "judge_latency_s": 3.26}
+{"qid": "q0397", "label": "Inc", "reason": "The answer omits Kangerlussuaq Airport and StarFlyer and incorrectly includes the misinformation 'San Francisco Junction'", "judge_latency_s": 2.36}
+{"qid": "q0400", "label": "FC", "reason": "The answer provides all three gold locations (Cushing, Oklahoma; Searcy, Arkansas; Urbana, Ohio) and no incorrect information.", "judge_latency_s": 1.57}
+{"qid": "q0394", "label": "FC", "reason": "The answer provides all three gold population figures for the town and village and adds no incorrect values.", "judge_latency_s": 3.58}
+{"qid": "q0405", "label": "FC", "reason": "The answer lists all three gold dates correctly for the respective George Brodricks and includes no incorrect information.", "judge_latency_s": 1.39}
+{"qid": "q0403", "label": "FC", "reason": "The answer provides all three gold dates (1784, 11 Nov. 1808, 1848) with no incorrect information.", "judge_latency_s": 1.5}
+{"qid": "q0395", "label": "Inc", "reason": "The answer includes an incorrect year (1099) and omits the correct year 1101, thus presenting false information.", "judge_latency_s": 3.59}
+{"qid": "q0388", "label": "Inc", "reason": "The answer includes the known misinformation 1900–1902 and fails to provide the full 1790–1794 range for Nathaniel Lawrence, making it incorrect.", "judge_latency_s": 5.01}
+{"qid": "q0396", "label": "PC", "reason": "The answer includes the gold answers ABC and NBC but omits the third gold answer '5', making it incomplete.", "judge_latency_s": 3.78}
+{"qid": "q0407", "label": "FC", "reason": "The answer provides all gold years (1912, 1918‑1919, 1913) and does not include any misinformation.", "judge_latency_s": 1.7}
+{"qid": "q0404", "label": "PC", "reason": "The answer provides two of the three gold dates but omits the 1962 date, making it incomplete.", "judge_latency_s": 2.41}
+{"qid": "q0402", "label": "FC", "reason": "The answer lists all three gold artists (McCoy Tyner, Sanctuary, Hans Zimmer) and adds no incorrect information.", "judge_latency_s": 2.86}
+{"qid": "q0411", "label": "FC", "reason": "The answer lists all three gold years (1914, 1929, 1923) correctly and includes no incorrect values.", "judge_latency_s": 1.52}
+{"qid": "q0382", "label": "FC", "reason": "The answer provides all three correct locations and does not assert any misinformation as true", "judge_latency_s": 6.77}
+{"qid": "q0408", "label": "Inc", "reason": "The answer includes the known misinformation value Basketball and omits the gold answer Halloween, thus it is incorrect.", "judge_latency_s": 2.68}
+{"qid": "q0412", "label": "PC", "reason": "The answer provides two of the three gold population values (220 and 3,879) but omits the third (344 people).", "judge_latency_s": 1.95}
+{"qid": "q0410", "label": "PC", "reason": "The answer includes only one of the three gold answers (Viu) and omits the other required historical names (Biu Kingdom, Meir Berlin).", "judge_latency_s": 2.55}
+{"qid": "q0417", "label": "FC", "reason": "The answer provides all three gold population values (3,168; 3,102; 178) with no incorrect information.", "judge_latency_s": 1.48}
+{"qid": "q0422", "label": "FC", "reason": "The answer lists all three gold states (Nebraska, Michigan, Iowa) and no incorrect information", "judge_latency_s": 0.95}
+{"qid": "q0415", "label": "Inc", "reason": "The answer lists Basketball, a known misinformation value, alongside the correct sports", "judge_latency_s": 2.36}
+{"qid": "q0416", "label": "PC", "reason": "The answer provides two of the three required dates but omits the September 24, 1936 entry, making it incomplete.", "judge_latency_s": 2.42}
+{"qid": "q0421", "label": "FC", "reason": "The answer provides all three gold mascots (Eagle, Mustang, Eagles) and no incorrect information", "judge_latency_s": 1.65}
+{"qid": "q0418", "label": "FC", "reason": "The answer lists all three gold population values (2,100; 2,070; 4,843) correctly and does not include any misinformation.", "judge_latency_s": 2.22}
+{"qid": "q0414", "label": "FC", "reason": "The answer lists all three gold birth years (1939, 1872, 1953) and only mentions the misinformation as a note, not as a claimed answer.", "judge_latency_s": 3.03}
+{"qid": "q0406", "label": "PC", "reason": "The answer includes one correct date (10 July 1940) and mentions the correct 1974 date but also offers the known misinformation (1 January 1950) as an alternative and omits the third gold answer (1981), making it partially correct.", "judge_latency_s": 4.38}
+{"qid": "q0409", "label": "PC", "reason": "The answer provides two of the three gold populations and mentions the misinformation value as an alternative, but omits the 255‑person entity, making it incomplete and partially incorrect.", "judge_latency_s": 4.46}
+{"qid": "q0401", "label": "FC", "reason": "The answer includes all gold common names and the gold scientific name, without presenting any incorrect alternatives.", "judge_latency_s": 5.47}
+{"qid": "q0413", "label": "PC", "reason": "The answer lists the correct physicist and clergyman (chaplain) and anatomist but omits the naturalist part and introduces the known misinformation marine biologist as an alternative, making it partially correct.", "judge_latency_s": 3.8}
+{"qid": "q0430", "label": "FC", "reason": "The answer lists all three gold-standard expansions of IGY and includes no incorrect alternatives.", "judge_latency_s": 1.16}
+{"qid": "q0423", "label": "FC", "reason": "The answer lists all three gold dates correctly for the respective Donald Macdonell entities and includes no incorrect information.", "judge_latency_s": 2.76}
+{"qid": "q0398", "label": "FC", "reason": "The answer provides all three gold dates (1901-1902, 1890s, 1893) and does not present any known misinformation as a valid answer.", "judge_latency_s": 7.17}
+{"qid": "q0427", "label": "PC", "reason": "The answer includes the correct 1913 creation year but omits the other gold answers (2010 and 1986), making it incomplete.", "judge_latency_s": 1.95}
+{"qid": "q0419", "label": "Inc", "reason": "The answer lists an incorrect director (Robert Clouse) and omits the gold answer Ng See-yuen, thus providing false information.", "judge_latency_s": 4.35}
+{"qid": "q0432", "label": "Inc", "reason": "The answer provides an incorrect genre (Animated) for the nature documentary entity instead of the gold answer Traditional nature documentary", "judge_latency_s": 2.22}
+{"qid": "q0431", "label": "Inc", "reason": "The answer adds the misinformation value 1972, which makes it incorrect despite listing the correct gold answers.", "judge_latency_s": 2.48}
+{"qid": "q0429", "label": "PC", "reason": "The answer provides all gold dates but also presents the known misinformation (1850) as an alternative, which makes it only partially correct.", "judge_latency_s": 2.66}
+{"qid": "q0437", "label": "FC", "reason": "The answer lists all three gold dates, correctly matching each Cardinal of Guise without any incorrect information.", "judge_latency_s": 1.24}
+{"qid": "q0420", "label": "PC", "reason": "The answer lists all gold composers but also includes additional composers, so it is not fully correct.", "judge_latency_s": 4.62}
+{"qid": "q0438", "label": "PC", "reason": "The answer includes two of the three gold sports (speed skating and boxing) but omits the third gold answer (gambling)", "judge_latency_s": 1.28}
+{"qid": "q0435", "label": "PC", "reason": "The answer includes two of the three gold population values (370 and 3,046) but omits the third gold answer of 2,500, making it incomplete.", "judge_latency_s": 2.41}
+{"qid": "q0424", "label": "PC", "reason": "All gold dates are given, but the answer also presents the known misinformation date as an alternative, which makes it only partially correct.", "judge_latency_s": 4.18}
+{"qid": "q0433", "label": "PC", "reason": "The answer includes the state anthem and TV series but omits the 2015 film, so it is only partially correct.", "judge_latency_s": 2.93}
+{"qid": "q0425", "label": "Inc", "reason": "The answer includes the known misinformation value California as a state for a Judge Day, which makes the response incorrect despite containing the correct gold answers.", "judge_latency_s": 4.42}
+{"qid": "q0439", "label": "PC", "reason": "The answer lists two of the three gold locations but omits the Central Square Historic District in Waltham, Massachusetts", "judge_latency_s": 2.06}
+{"qid": "q0428", "label": "Inc", "reason": "The answer adds an incorrect sport (Track and Field) not in the gold answers, presenting misinformation.", "judge_latency_s": 4.15}
+{"qid": "q0443", "label": "FC", "reason": "The answer lists all three gold-standard genres correctly and does not include any misinformation.", "judge_latency_s": 1.62}
+{"qid": "q0449", "label": "FC", "reason": "The answer provides all three gold dates correctly and adds no incorrect information.", "judge_latency_s": 1.29}
+{"qid": "q0426", "label": "PC", "reason": "The answer includes all gold dates (1932, 1880s, 1886) but also presents the known misinformation value 1925 for London, making it only partially correct.", "judge_latency_s": 5.1}
+{"qid": "q0434", "label": "PC", "reason": "The answer lists all gold artists but also includes known misinformation (John Legend, Michael Jackson), making it only partially correct.", "judge_latency_s": 4.3}
+{"qid": "q0444", "label": "FC", "reason": "The answer lists all three gold‑listed parties for the respective John Harman entities and does not include any misinformation.", "judge_latency_s": 2.2}
+{"qid": "q0445", "label": "Inc", "reason": "The answer only includes one correct gold value (571) and provides incorrect population numbers for the other entities, missing the gold answers 4,008 and 3,307.", "judge_latency_s": 2.29}
+{"qid": "q0441", "label": "FC", "reason": "The answer lists the theatrical film, direct-to-video sequel, and the 2-year-old filly, matching all gold answers without adding incorrect information.", "judge_latency_s": 2.64}
+{"qid": "q0440", "label": "Inc", "reason": "The answer lists an incorrect profession (academic/scholar) instead of the required economist, making the response contain a wrong value.", "judge_latency_s": 2.79}
+{"qid": "q0447", "label": "FC", "reason": "The answer provides all three gold dates (7 Mar 1892, 4 Jan 1896, 13 May 1926) and no misinformation, thus fully correct.", "judge_latency_s": 2.32}
+{"qid": "q0452", "label": "PC", "reason": "The answer includes two of the three gold directors (Howard Morris and Woody Allen) but omits the third (Stanley Prager), making it incomplete.", "judge_latency_s": 1.7}
+{"qid": "q0448", "label": "FC", "reason": "The answer provides all three gold dates (1810-11, 1798-1800, 1790s) and does not assert the known misinformation as a definitive answer.", "judge_latency_s": 2.48}
+{"qid": "q0453", "label": "FC", "reason": "The answer provides all three gold dates (around 1797, 1878, 1970s) with no incorrect values.", "judge_latency_s": 1.61}
+{"qid": "q0451", "label": "Inc", "reason": "The answer omits all gold spouses and includes known misinformation, presenting incorrect values as possible answers.", "judge_latency_s": 2.18}
+{"qid": "q0455", "label": "FC", "reason": "The answer lists all three gold population values (1,664; 887; 4,961) with appropriate locations and includes no incorrect information.", "judge_latency_s": 1.51}
+{"qid": "q0460", "label": "FC", "reason": "The answer lists all three gold dates correctly and includes no misinformation", "judge_latency_s": 1.2}
+{"qid": "q0458", "label": "Inc", "reason": "The system answer gives no dates, missing all three gold answers.", "judge_latency_s": 1.31}
+{"qid": "q0459", "label": "PC", "reason": "The answer provides two of the three required locations but omits the third (Lebanon, Maine)", "judge_latency_s": 1.4}
+{"qid": "q0442", "label": "PC", "reason": "The answer provides all gold dates but also presents the known misinformation date as an unresolved alternative, which makes it only partially correct.", "judge_latency_s": 3.94}
+{"qid": "q0446", "label": "PC", "reason": "The answer gives Messina, Sicily and Lucca and Pisa correctly but adds the misinformation Florence and omits the gold answer '1970s', making it partially correct.", "judge_latency_s": 4.09}
+{"qid": "q0461", "label": "FC", "reason": "The answer lists all three gold locations (Verona, New York; Verona, Wisconsin; New Jersey) and includes no misinformation.", "judge_latency_s": 1.56}
+{"qid": "q0462", "label": "FC", "reason": "The answer provides all three gold dates, correctly matching each distinct Frederick Groves without any incorrect information.", "judge_latency_s": 1.76}
+{"qid": "q0465", "label": "FC", "reason": "The answer lists all three gold launch dates correctly and includes no misinformation.", "judge_latency_s": 1.72}
+{"qid": "q0456", "label": "PC", "reason": "The answer lists all gold directors but also presents the known misinformation (Quentin Tarantino) as an alternative, which makes it only partially correct.", "judge_latency_s": 3.05}
+{"qid": "q0463", "label": "Inc", "reason": "The answer fails to provide any of the gold-standard lengths (200, 225, or 175 laps) and does not address the New England 200 race.", "judge_latency_s": 2.29}
+{"qid": "q0450", "label": "PC", "reason": "The answer provides the correct 2010 and 1989 dates, but presents the 1980 date only as an unresolved alternative alongside known misinformation, so it is only partially correct.", "judge_latency_s": 4.57}
+{"qid": "q0468", "label": "FC", "reason": "The answer provides all three gold aircraft (Douglas DC‑3, NAMC YS‑11A‑217, Space Shuttle Discovery) and does not present the known misinformation as a valid answer.", "judge_latency_s": 1.84}
+{"qid": "q0464", "label": "FC", "reason": "The answer provides all three gold dates (9 Feb 1677, 11 Mar 1707, 1930) and only mentions the misinformation as a note, not as an answer.", "judge_latency_s": 2.99}
+{"qid": "q0470", "label": "Inc", "reason": "The answer includes the known misinformation location Miami, Florida, which makes the response incorrect despite listing the correct locations.", "judge_latency_s": 2.49}
+{"qid": "q0436", "label": "PC", "reason": "The answer includes all gold unit types (Fighter Squadron, Troop Carrier Squadron, Bombardment Group) but adds an extra unit not required, making it only partially correct.", "judge_latency_s": 7.9}
+{"qid": "q0471", "label": "FC", "reason": "The answer provides all three gold dates (1913, 14 May 1996, 1940) with correct corresponding entities and no incorrect information.", "judge_latency_s": 2.44}
+{"qid": "q0478", "label": "FC", "reason": "The answer provides all three gold dates, correctly matching each distinct individual, with no incorrect information.", "judge_latency_s": 1.2}
+{"qid": "q0467", "label": "PC", "reason": "All gold dates are provided, but the answer also presents the known misinformation date as an alternative, which makes it only partially correct.", "judge_latency_s": 3.14}
+{"qid": "q0477", "label": "FC", "reason": "The answer provides all three gold dates (1880, 1840-1843, 1912) with no incorrect values.", "judge_latency_s": 1.81}
+{"qid": "q0466", "label": "Inc", "reason": "The answer adds incorrect professions (chef, professor, lacrosse player) beyond the gold answers, presenting known misinformation as a valid option.", "judge_latency_s": 3.77}
+{"qid": "q0454", "label": "PC", "reason": "includes all gold values but also presents the known misinformation (5,000) as an alternative, making it only partially correct", "judge_latency_s": 5.38}
+{"qid": "q0473", "label": "PC", "reason": "The answer mentions the gold median ages but also includes known misinformation values as alternatives, so it is only partially correct.", "judge_latency_s": 2.98}
+{"qid": "q0474", "label": "Inc", "reason": "The answer includes the correct singer birthdate but provides a known misinformation date for the footballer and adds an unrelated author date, violating the gold answers", "judge_latency_s": 2.85}
+{"qid": "q0480", "label": "FC", "reason": "The answer provides all three gold population numbers, correctly matching each entity without any incorrect values.", "judge_latency_s": 1.57}
+{"qid": "q0469", "label": "PC", "reason": "The answer provides all gold feast days but also presents the known misinformation (15 December) as an alternative, making it only partially correct.", "judge_latency_s": 4.19}
+{"qid": "q0476", "label": "Inc", "reason": "The answer includes the known misinformation date 1890, which makes it incorrect despite containing the correct dates.", "judge_latency_s": 2.92}
+{"qid": "q0486", "label": "FC", "reason": "The answer lists all three gold‑standard artists (Elvis Presley, Devo, Baz Luhrmann) and includes no incorrect information.", "judge_latency_s": 1.4}
+{"qid": "q0488", "label": "PC", "reason": "The answer includes Football and Rugby league but omits the third gold answer, Bodybuilding", "judge_latency_s": 1.13}
+{"qid": "q0487", "label": "FC", "reason": "The answer provides all three gold dates (1603, 1691, 1703) with no incorrect values.", "judge_latency_s": 1.48}
+{"qid": "q0482", "label": "FC", "reason": "The answer lists both Zoltán Korda (spelled correctly) and Darrell Roodt, matching all gold answers without any incorrect information.", "judge_latency_s": 2.24}
+{"qid": "q0484", "label": "FC", "reason": "The answer lists all three gold‑standard artists (Katie Melua, Bananarama, Secret) and adds no incorrect alternatives.", "judge_latency_s": 2.24}
+{"qid": "q0475", "label": "PC", "reason": "The answer lists all gold dates but also presents a known misinformation value (1850) as an alternative, which downgrades it to partially correct.", "judge_latency_s": 3.87}
+{"qid": "q0479", "label": "PC", "reason": "The answer provides all gold dates but also presents the known misinformation (15 October 1930) as an alternative, which makes it only partially correct.", "judge_latency_s": 3.05}
+{"qid": "q0457", "label": "PC", "reason": "All gold birth dates are correctly listed, but an extra unrelated entity (Pat Regan, 1955) is included, introducing an incorrect value.", "judge_latency_s": 6.94}
+{"qid": "q0494", "label": "FC", "reason": "The answer lists all three gold dates for the respective Adriatic entities with no incorrect information.", "judge_latency_s": 1.11}
+{"qid": "q0485", "label": "PC", "reason": "The answer lists all gold genres but also includes the known misinformation 'Romantic drama' as an alternative, which makes it only partially correct.", "judge_latency_s": 2.99}
+{"qid": "q0483", "label": "Inc", "reason": "The answer lists incorrect artists (Vince Edwards, Ronnie Hilton) and omits a gold answer (The Sandpipers) while only partially matching the gold set", "judge_latency_s": 3.51}
+{"qid": "q0493", "label": "PC", "reason": "The answer includes two of the three gold actors but omits Bob Bailey, making it incomplete.", "judge_latency_s": 1.58}
+{"qid": "q0491", "label": "PC", "reason": "The answer provides all gold ranks but also presents the known misinformation (Lieutenant Colonel) as an alternative, which makes it only partially correct.", "judge_latency_s": 2.5}
+{"qid": "q0499", "label": "FC", "reason": "The answer provides all three gold dates correctly and matches each Admiral without any incorrect information.", "judge_latency_s": 1.46}
+{"qid": "q0496", "label": "Inc", "reason": "The answer includes the misinformation value Canada and omits the gold answer Brazil, making it incorrect.", "judge_latency_s": 1.84}
+{"qid": "q0481", "label": "Inc", "reason": "The answer lists the known misinformation location Orlando, Florida as a valid Chesapeake High School, which makes the response incorrect despite including the correct locations.", "judge_latency_s": 4.72}
+{"qid": "q0498", "label": "Inc", "reason": "The answer gives the misinformation date 1868 for the US Elks and omits the gold answer 1878, thus providing incorrect information.", "judge_latency_s": 2.26}
+{"qid": "q0495", "label": "PC", "reason": "The answer lists all gold values (291, 272, 48) but also presents the known misinformation value 150 as an alternative, which makes it only partially correct.", "judge_latency_s": 2.88}
+{"qid": "q0472", "label": "FC", "reason": "The answer provides all three gold dates (1 Nov 1865, 1876, 27 Apr 2010) with no incorrect information.", "judge_latency_s": 7.58}
+{"qid": "q0497", "label": "FC", "reason": "The answer provides all three gold periods (First Period, 1860s Italianate, 1870s-1880s) with correct details and no incorrect information.", "judge_latency_s": 2.8}
+{"qid": "q0492", "label": "Inc", "reason": "The answer presents the known misinformation 1920-1921 as a definitive date and fails to give the gold answer 1902-1903 as a clear answer", "judge_latency_s": 3.93}
+{"qid": "q0490", "label": "PC", "reason": "The answer includes all three gold population figures but also presents additional incorrect values, so it is only partially correct.", "judge_latency_s": 4.5}
+{"qid": "q0489", "label": "PC", "reason": "The answer provides the correct dates for all three individuals but omits the required location (England) for the 1605-born George Grimes, making it incomplete.", "judge_latency_s": 4.65}

@@ -61,6 +61,10 @@ class CorpusStore:
         return f"corpora/{corpus_id}/documents/{normalized_filename}"
 
     @staticmethod
+    def _original_blob_path(corpus_id: str, document_id: str, file_type: str) -> str:
+        return f"corpora/{corpus_id}/originals/{document_id}{file_type}"
+
+    @staticmethod
     def _index_prefix(corpus_id: str) -> str:
         return f"corpora/{corpus_id}/index"
 
@@ -273,7 +277,7 @@ class CorpusStore:
         for doc in documents:
             storage_path = self._doc_blob_path(corpus_id, doc["normalized_filename"])
             self._upload_text(storage_path, doc["normalized_text"])
-            entries.append({
+            entry = {
                 "document_id": doc["document_id"],
                 "original_filename": doc["original_filename"],
                 "normalized_filename": doc["normalized_filename"],
@@ -282,7 +286,23 @@ class CorpusStore:
                 "size_bytes": int(doc["size_bytes"]),
                 "parsing_status": doc.get("parsing_status", "parsed"),
                 "storage_path": storage_path,
-            })
+                # Folder uploads keep the path inside the uploaded folder; it is
+                # the display name in citations and the document tree.
+                "relative_path": doc.get("relative_path") or doc["original_filename"],
+                # Governance signals inferred from the text at upload time, and
+                # the user's overrides (None = keep the inferred value).
+                "inferred_status": doc.get("inferred_status", "unknown"),
+                "inferred_doc_type": doc.get("inferred_doc_type", "unknown"),
+                "status_override": None,
+                "doc_type_override": None,
+                "original_path": None,
+            }
+            original_bytes = doc.get("original_bytes")
+            if original_bytes is not None:
+                original_path = self._original_blob_path(corpus_id, doc["document_id"], doc["file_type"])
+                self._upload_bytes(original_path, original_bytes, doc.get("content_type") or "application/octet-stream")
+                entry["original_path"] = original_path
+            entries.append(entry)
 
         existing_documents = metadata.setdefault("documents", [])
         existing_documents.extend(entries)
@@ -310,9 +330,38 @@ class CorpusStore:
             raise DocumentNotFoundError("Document not found")
 
         self._delete_path(match["storage_path"])
+        if match.get("original_path"):
+            self._delete_path(match["original_path"])
         metadata["documents"] = keep
         metadata["status"] = "needs_index"
         return self._update_corpus(metadata)
+
+    def get_document(self, corpus_id: str, document_id: str) -> Dict:
+        for doc in self.list_documents(corpus_id):
+            if doc.get("document_id") == document_id:
+                return doc
+        raise DocumentNotFoundError("Document not found")
+
+    def read_document_text(self, corpus_id: str, document_id: str) -> str:
+        doc = self.get_document(corpus_id, document_id)
+        return self._download_text(doc["storage_path"])
+
+    def read_original(self, corpus_id: str, document_id: str) -> bytes:
+        doc = self.get_document(corpus_id, document_id)
+        if not doc.get("original_path"):
+            raise DocumentNotFoundError("Original file was not kept for this document")
+        return self._download_bytes(doc["original_path"])
+
+    def update_document(self, corpus_id: str, document_id: str, fields: Dict) -> Dict:
+        """Update a document entry (e.g. governance overrides) and bump updated_at
+        so cached indexes are rebuilt with the new metadata."""
+        metadata = self.get_corpus(corpus_id)
+        for doc in metadata.get("documents", []):
+            if doc.get("document_id") == document_id:
+                doc.update(fields)
+                self._update_corpus(metadata)
+                return doc
+        raise DocumentNotFoundError("Document not found")
 
     def mark_ready(self, corpus_id: str) -> Dict:
         metadata = self.get_corpus(corpus_id)
@@ -372,7 +421,7 @@ class CorpusStore:
             out_path = local_dir / normalized_filename
             out_path.write_text(text, encoding="utf-8")
 
-            filename_map[normalized_filename] = doc.get("original_filename", normalized_filename)
+            filename_map[normalized_filename] = doc.get("relative_path") or doc.get("original_filename", normalized_filename)
 
         return {
             "local_dir": str(local_dir),

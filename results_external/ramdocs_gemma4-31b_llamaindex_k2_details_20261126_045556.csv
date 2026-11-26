@@ -1,0 +1,1013 @@
+qid,question,conflict_type,source,num_docs,decision,expected_decision,decision_match,predicted_answer,short_answers,gold_answers,wrong_answers,selected_document,num_cited,validation_error,repair_attempts,dropped_citations,latency_s,reason,set_em_correct,strict_set_em_correct,any_gold_in_answer,misinfo_in_answer,num_gold_answers,gold_doc_in_context,cited_correct,cited_misinfo,cited_noise,selected_label
+q0000,What is the population of Broken Bow?,,ramdocs,3,free_text,answered,False,"As of the 2010 census, there were 3,559 people residing in the city. However, the historical population table lists the population for 2010 and 2020 as 10,000.",,"3,559 people","10,000 people",,0,False,0,0,2.9,,True,True,True,False,1,True,0,0,0,
+q0001,What sport is Bobby Carpenter associated with?,,ramdocs,4,free_text,answered,False,Bobby Carpenter is associated with American football.,,American football,,,0,False,0,0,1.57,,True,True,True,False,1,True,0,0,0,
+q0002,"Who are the directors of the film ""Lahu Ke Do Rang""?",,ramdocs,7,free_text,answered,False,"The film ""Lahu Ke Do Rang"" was directed by Mahesh Bhatt.",,Mahesh Bhatt,Raj Kapoor | Raj Kapoor,,0,False,0,0,1.65,,True,True,True,False,1,True,0,0,0,
+q0003,What sport is Ryan Davis associated with?,,ramdocs,5,free_text,answered,False,"The provided text does not contain information regarding an individual named Ryan Davis. It mentions a person who was delisted at the end of the 2008 season and attempted to become an NFL punter, as well as a former NBA basketball player named Bradley James Davis.",,AFL,NBA,,0,False,0,0,2.9,,False,False,False,True,1,True,0,0,0,
+q0004,When was the Cathedral of Saint Augustine established?,,ramdocs,3,free_text,answered,False,"The provided text contains conflicting information regarding when the parish was founded, stating it was founded in both 1900 and 1856.",,1856,1900,,0,False,0,0,2.19,,False,False,True,True,1,True,0,0,0,
+q0005,What sport is William Carrier associated with?,,ramdocs,5,free_text,answered,False,"There are two individuals named Carrier mentioned:
+
+*   William Carrier (1887 – after 1911) was an English professional footballer.
+*   Carrier is a 30-year-old winger who is currently dealing with a lower-body injury; based on the mention of fantasy players and a head coach, he is associated with professional sports.",,Football,,,0,False,0,0,3.58,,True,True,True,False,1,True,0,0,0,
+q0006,When was the Dallas County Courthouse built?,,ramdocs,5,free_text,answered,False,"The Dallas County Courthouse in Adel, Iowa, was built in 1902.",,1902,1885 | 1850,,0,False,0,0,1.8,,True,True,True,False,1,True,0,0,0,
+q0007,What sport is Justin Thomas associated with?,,ramdocs,3,free_text,answered,False,"There are two individuals named Justin Thomas mentioned:
+
+*   One Justin Thomas is a professional golfer who competed in the Valspar Championship and is considered one of the top players in the world.
+*   Another Justin Thomas is associated with football, having played in a season where the team finished with a 3-9 record and performed notably against Florida State.",,American football,Golf,,0,False,0,0,3.41,,False,False,False,True,1,False,0,0,0,
+q0008,When was General Bryan born?,,ramdocs,2,free_text,answered,False,"The provided text contains two conflicting birth dates for Lieutenant General Blackshear Morrison Bryan: July 15, 1905, and February 8, 1900.",,"February 8, 1900","July 15, 1905",,0,False,0,0,2.44,,False,False,True,True,1,True,0,0,0,
+q0009,What is the population of Pilzno?,,ramdocs,4,free_text,answered,False,"The population of the town of Pilzno is 4,411, while the total population of Gmina Pilzno is 17,289.",,"4,411","10,000",,0,False,0,0,2.3,,True,True,True,False,1,True,0,0,0,
+q0010,Who is the current Minister of Immigration?,,ramdocs,3,free_text,answered,False,The current minister is Ahmed Hussen.,,Ahmed Hussen,,,0,False,0,0,1.55,,True,True,True,False,1,True,0,0,0,
+q0011,What is the length of the Moravica river?,,ramdocs,3,free_text,answered,False,The length of the Moravica river is 98 km.,,98 km,,,0,False,0,0,1.6,,True,True,True,False,1,True,0,0,0,
+q0012,"Who is the artist of the album ""VII""?",,ramdocs,7,free_text,answered,False,"The artist of the album ""VII"" is The Beatles.",,Blitzen Trapper,The Beatles | The Beatles,,0,False,0,0,1.58,,False,False,False,True,1,False,0,0,0,
+q0013,"Who is the artist of the album ""A Kind of Hush""?",,ramdocs,4,free_text,answered,False,"The artist of the album ""A Kind of Hush"" is The Beatles.",,Carpenters,The Beatles,,0,False,0,0,1.64,,False,False,False,True,1,False,0,0,0,
+q0014,"Who is the artist of the album ""The Heat""?",,ramdocs,3,free_text,answered,False,"The artist of the album ""The Heat"" is the American rock band Needtobreathe.",,Needtobreathe,Coldplay,,0,False,0,0,1.8,,True,True,True,False,1,True,0,0,0,
+q0015,What sport is Doak associated with?,,ramdocs,6,free_text,answered,False,Doak is associated with chess.,,Football,Soccer | Chess,,0,False,0,0,1.54,,False,False,False,True,1,True,0,0,0,
+q0016,What is the estimated population of Handa?,,ramdocs,2,free_text,answered,False,"As of May 2015, the estimated population of Handa was 117,088.",,"117,088",,,0,False,0,0,1.0,,True,True,True,False,1,True,0,0,0,
+q0017,"What is the medium of ""The Man Who Never Was""?",,ramdocs,2,free_text,answered,False,"""The Man Who Never Was"" is both a 1956 UK Second World War film and a book.",,Film,,,0,False,0,0,0.94,,True,True,True,False,1,True,0,0,0,
+q0018,What sport is Ronald Powell associated with?,,ramdocs,4,free_text,answered,False,"There are two individuals named Ronald Powell mentioned:
+
+*   One Ronald Powell is a renowned competitive chess player.
+*   Another Ronald Powell was a football player for the Florida Gators.",,Football,Chess,,0,False,0,0,1.37,,False,False,True,True,1,True,0,0,0,
+q0019,Who won the 5th Soccer Bowl?,,ramdocs,5,free_text,answered,False,The provided text does not contain information regarding who won the 5th Soccer Bowl.,,Philadelphia Atoms,,,0,False,0,0,0.71,,False,False,False,False,1,True,0,0,0,
+q0020,What is the type of institution Fontbonne is?,,ramdocs,4,free_text,answered,False,"Fontbonne refers to two different types of institutions:
+* Fontbonne University is a university and a sponsored ministry of the Sisters.
+* Fontbonne College was the name used solely to refer to the high school.",,academy,university | military base,,0,False,0,0,1.54,,False,False,False,True,1,True,0,0,0,
+q0021,When did Louis Alexandre die?,,ramdocs,7,free_text,answered,False,Louis Alexandre died on 1 December 1737 Gregorian.,,1 December 1737,15 June 1745 | 1 January 1738,,0,False,0,0,0.58,,True,True,True,False,1,True,0,0,0,
+q0022,Where is the Kate Chopin House located?,,ramdocs,3,free_text,answered,False,"The Kate Chopin House is located on Main Street (Louisiana Highway 1) in New Orleans, in Orleans Parish, Louisiana.",,"Cloutierville, Louisiana","New Orleans, Louisiana",,0,False,0,0,0.96,,False,False,False,False,1,False,0,0,0,
+q0023,"Who is the artist of the ""Freedom Suite""?",,ramdocs,4,free_text,answered,False,"The artist of the album ""Freedom Suite"" is saxophonist John Coltrane.",,David S. Ware,John Coltrane | John Coltrane,,0,False,0,0,0.66,,False,False,False,True,1,True,0,0,0,
+q0024,"What is the medium of ""Loitering with Intent""?",,ramdocs,4,free_text,answered,False,Loitering with Intent is a novel.,,novel,film | film,,0,False,0,0,0.37,,True,True,True,False,1,True,0,0,0,
+q0025,What political party was William Fields affiliated with?,,ramdocs,5,free_text,answered,False,"There are conflicting accounts regarding William Fields' political affiliation: one source states he was affiliated with the Whig party, while another describes him as a staunch supporter of Andrew Jackson who remained firmly aligned with the Democratic Party.",,Republican,Whig | Democratic,,0,False,0,0,1.51,,False,False,False,True,1,True,0,0,0,
+q0026,"What is the language of the television series ""Ardhangini""?",,ramdocs,4,free_text,answered,False,"There are several television series titled ""Ardhangini"" in different languages:
+
+*   **Ardhangini – Ek Khoobsurat Jeevan Saathi (2007–2008):** Hindi
+*   **Ardhangini (2017 TV series):** Assamese (aired on Rang) or Finnish (aired on Zee TV)
+*   **Ardhangini (2018 TV series):** Bengali",,Assamese-language,Finnish-language,,0,False,0,0,3.01,,False,False,False,False,1,True,0,0,0,
+q0027,"What is the genre of ""Big Girl""?",,ramdocs,2,free_text,answered,False,"There are two films titled ""Big Girl"": one is a documentary and the other is a short film.",,Short film,Documentary,,0,False,0,0,0.76,,False,False,True,True,1,True,0,0,0,
+q0028,What is the primary function of RICC?,,ramdocs,4,free_text,answered,False,"The primary function of RICC is a space exploration agency, which utilizes the convention as a cover to gather funds through ticket sales and recruit talented individuals.",,A convention,A space exploration agency,,0,False,0,0,1.06,,False,False,True,True,1,True,0,0,0,
+q0029,Where was Justice Dunn born?,,ramdocs,2,free_text,answered,False,"Charles J. Dunn was born in Houghton County, Michigan.",,"Houghton County, Michigan",,,0,False,0,0,0.51,,True,True,True,False,1,True,0,0,0,
+q0030,"Who is the director of the film ""Death at a Funeral""?",,ramdocs,4,free_text,answered,False,The 2007 British ensemble black comedy film Death at a Funeral was directed by Frank Oz.,,Frank Oz,Quentin Tarantino,,0,False,0,0,0.78,,True,True,True,False,1,True,0,0,0,
+q0031,Where is Interstate 235 located?,,ramdocs,5,free_text,answered,False,"Interstate 235 is located in Iowa, running through the heart of the Des Moines metropolitan area just north of downtown Des Moines.",,Iowa,,,0,False,0,0,0.95,,True,True,True,False,1,True,0,0,0,
+q0032,What is the population of Madi Municipality?,,ramdocs,4,free_text,answered,False,"According to Nepal Government records as of 2017, there were a total of 8,899 people in Madi Municipality. Additionally, the population is described as being about 10,000.",,"About 50,000","About 10,000",,0,False,0,0,1.59,,False,False,False,True,1,False,0,0,0,
+q0033,"What is the population of Blue Lake Township, Michigan?",,ramdocs,4,free_text,answered,False,"As of the 2000 census, the population of Blue Lake Township was 428.",,428,"42,800",,0,False,0,0,0.79,,True,True,True,False,1,True,0,0,0,
+q0034,What is the profession of Ingrid Visser?,,ramdocs,1,free_text,answered,False,"Ingrid Visser is an author, public speaker, and a guide for various eco-tourism adventures, including visiting Antarctica and swimming with whales. She also focuses on orca research and established Adopt an Orca to raise funds and public awareness.",,Biologist,,,0,False,0,0,1.6,,False,False,False,False,1,False,0,0,0,
+q0035,When was the City of Maryborough established?,,ramdocs,2,free_text,answered,False,The City of Maryborough existed as a local government entity from 1861 until 2008.,,1861,,,0,False,0,0,0.91,,True,True,True,False,1,True,0,0,0,
+q0036,What sport is China Clipper associated with?,,ramdocs,4,free_text,answered,False,"China Clipper is associated with basketball, both as a legendary figure in Chinese sports history and as a term associated with the Chinese national basketball team.",,Hockey,Basketball | Basketball,,0,False,0,0,1.03,,False,False,False,True,1,True,0,0,0,
+q0037,Where was Airways International based?,,ramdocs,4,free_text,answered,False,"Airways International was based in Anchorage, Alaska.",,"Miami, Florida","Anchorage, Alaska",,0,False,0,0,0.45,,False,False,False,True,1,False,0,0,0,
+q0038,In which city did Conry practice law?,,ramdocs,3,free_text,answered,False,Conry practiced law in New York City and Boston.,,Boston,New York City,,0,False,0,0,0.44,,False,False,True,True,1,True,0,0,0,
+q0039,When was Justice Ritchie born?,,ramdocs,4,free_text,answered,False,"The provided text contains two different birth dates for Roland Almon Ritchie: June 19, 1910, and January 1, 1900.",,"June 19, 1910","January 1, 1900",,0,False,0,0,1.28,,False,False,True,True,1,True,0,0,0,
+q0040,When was Horace Rumbold born?,,ramdocs,3,free_text,answered,False,"There are two individuals named Horace Rumbold mentioned:
+
+*   Rt Hon. Sir Horace Rumbold (PC 1896) was born on 2 July 1829.
+*   Sir Horace George Montagu Rumbold, ninth baronet, was born in 1869.",,2 July 1829,,,0,False,0,0,2.28,,True,True,True,False,1,True,0,0,0,
+q0041,When was Beacon Mill last worked?,,ramdocs,6,free_text,answered,False,"There are conflicting records regarding when Beacon Mill was last worked: one source states it was last worked for trade in 1955, while another states it was last worked for trade in 1921.",,1921,1985 | 1955,,0,False,0,0,1.51,,False,False,True,True,1,True,0,0,0,
+q0042,"What is the genre of ""Hard Time""?",,ramdocs,2,free_text,answered,False,"""Hard Time"" is a comic book series.",,super-powered characters,,,0,False,0,0,0.53,,False,False,False,False,1,True,0,0,0,
+q0043,What is the population of Qorveh?,,ramdocs,3,free_text,answered,False,"At the 2006 census, the population of Qerveh (also Romanized as Qorveh) was 2,772.",,"2,772",,,0,False,0,0,1.23,,True,True,True,False,1,True,0,0,0,
+q0044,221B Baker Street is a game for which type of medium?,,ramdocs,2,free_text,answered,False,221B Baker Street is a board game.,,Board game,,,0,False,0,0,0.57,,True,True,True,False,1,True,0,0,0,
+q0045,"What is the population of Sandusky Township, Ohio?",,ramdocs,5,free_text,answered,False,"As of the 2010 census, the population of Sandusky Township in Crawford County, Ohio, was 1,234.",,459,"1,234 | 1,234",,0,False,0,0,1.12,,False,False,False,True,1,False,0,0,0,
+q0046,Who was the husband of Khentkaus?,,ramdocs,2,free_text,answered,False,Khentkaus I may have been the wife of both kings Shepseskaf and Userkaf.,,Shepseskaf and Userkaf,,,0,False,0,0,0.88,,True,True,True,False,1,True,0,0,0,
+q0047,What sport is the 2013 China Open associated with?,,ramdocs,3,free_text,answered,False,The 2013 China Open is associated with snooker.,,Snooker,Badminton | Basketball,,0,False,0,0,0.67,,True,True,True,False,1,True,0,0,0,
+q0048,What is the birth date of Maurice Roche?,,ramdocs,3,free_text,answered,False,"Maurice Roche, 4th Baron Fermoy, was born on 22 October 1885.",,15 May 1885,22 October 1900 | 22 October 1885,,0,False,0,0,0.85,,False,False,False,True,1,False,0,0,0,
+q0049,What sport is Hiroyuki Miura associated with?,,ramdocs,3,free_text,answered,False,Hiroyuki Miura is associated with sumo wrestling.,,Ice hockey,Sumo Wrestling | Sumo Wrestling,,0,False,0,0,0.41,,False,False,False,True,1,True,0,0,0,
+q0050,"What is ""The 1975""?",,ramdocs,4,free_text,answered,False,"""The 1975"" refers to two different things:
+
+*   A protest song and work of ambient music featuring a spoken word performance by Thunberg. Lasting 4 minutes and 57 seconds, the song's lyrics call for civil disobedience to reduce greenhouse gas emissions in response to climate change.
+*   An album that debuted at number one on the UK Albums Chart.",,a band,,,0,False,0,0,2.84,,False,False,False,False,1,False,0,0,0,
+q0051,When was the Bonner House built?,,ramdocs,2,free_text,answered,False,"There are two conflicting dates provided for the Bonner House: one source states it was built about 1935, while another states it was built about 1835.",,about 1835,about 1935,,0,False,0,0,1.28,,False,False,True,True,1,True,0,0,0,
+q0052,When was Guerin High School established?,,ramdocs,5,free_text,answered,False,Guerin High School was established in 1962.,,1962,,,0,False,0,0,0.56,,True,True,True,False,1,True,0,0,0,
+q0053,"Who is the artist of the album ""War Music""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with albums titled ""War Music"":
+1. Slim the Mobster
+2. Jay-Z",,Slim the Mobster,Jay-Z | Dr. Dre,,0,False,0,0,0.95,,False,False,True,True,1,True,0,0,0,
+q0054,What sport is Vestri associated with?,,ramdocs,5,free_text,answered,False,Vestri is associated with both basketball and football (implied by the mention of goals scored and cards).,,Football,Basketball | Basketball,,0,False,0,0,0.85,,False,False,True,True,1,False,0,0,0,
+q0055,Where is the UPRA located?,,ramdocs,2,free_text,answered,False,"The University of Puerto Rico at Aguadilla is located in the city of Aguadilla in northwestern Puerto Rico, and it is also located in the city of San Juan in northeastern Puerto Rico.",,"Aguadilla, Puerto Rico","San Juan, Puerto Rico",,0,False,0,0,1.47,,False,False,False,False,1,True,0,0,0,
+q0056,"Who is the artist of the album ""Crazy for You""?",,ramdocs,4,free_text,answered,False,"There are two artists associated with an album titled ""Crazy for You"":
+1. The American indie rock duo Best Coast.
+2. The British rock band The Beatles.",,Best Coast,The Beatles,,0,False,0,0,1.32,,False,False,True,True,1,True,0,0,0,
+q0057,What is the primary instrument played by Allah Rakha?,,ramdocs,2,free_text,answered,False,Allah Rakha was an Indian tabla player.,,Tabla,,,0,False,0,0,0.38,,True,True,True,False,1,True,0,0,0,
+q0058,What type of music is associated with The Gamblers?,,ramdocs,2,free_text,answered,False,The provided text does not mention any type of music associated with the Houston Gamblers; it describes them as an American football team.,,American football,,,0,False,0,0,0.91,,True,True,True,False,1,True,0,0,0,
+q0059,Where is the Red Brick School located?,,ramdocs,4,free_text,answered,False,Red Brick is located in New York City.,,"Oregon, Wisconsin",New York City,,0,False,0,0,0.36,,False,False,False,True,1,False,0,0,0,
+q0060,What is the primary medium associated with the New York School?,,ramdocs,6,free_text,answered,False,"The New York School is associated with poetry and visual art, with cross-pollination between the two being a hallmark of the movement.",,Poetry,Abstract Expressionist Painting | Abstract Expressionist Painting,,0,False,0,0,1.13,,True,True,True,False,1,True,0,0,0,
+q0061,19 Mayıs Stadium is the home venue of which sports team?,,ramdocs,3,free_text,answered,False,The Ankara 19 Mayıs Stadium was the home venue of Bursaspor and Gençlerbirliği.,,Ankara's Gençlerbirliği,Bursaspor,,0,False,0,0,0.77,,False,False,False,True,1,True,0,0,0,
+q0062,What sport is the Victoria Cup associated with?,,ramdocs,3,free_text,answered,False,The Victoria Cup is associated with ice hockey.,,Ice hockey,Cricket,,0,False,0,0,0.44,,True,True,True,False,1,True,0,0,0,
+q0063,What is the population of Kensett?,,ramdocs,4,free_text,answered,False,"The population of Kensett is 2,500 people.",,"1,791 people","2,500 people",,0,False,0,0,0.58,,False,False,False,True,1,False,0,0,0,
+q0064,What position did Gary Bennett play in during his professional football career?,,ramdocs,4,free_text,answered,False,Gary Bennett played as a forward during his professional football career.,,Defender,Forward | Forward,,0,False,0,0,0.54,,False,False,False,True,1,False,0,0,0,
+q0065,What is the population of Gniewkowo?,,ramdocs,2,free_text,answered,False,"The population of the town of Gniewkowo is 7,254, while the total population of Gmina Gniewkowo is 14,719.",,"7,254",,,0,False,0,0,1.36,,True,True,True,False,1,True,0,0,0,
+q0066,What political party is Senator Tate a member of?,,ramdocs,7,free_text,answered,False,Senator Jack Tate is a member of the Republican party.,,Republican,Democratic | Green Party,,0,False,0,0,0.43,,True,True,True,False,1,True,0,0,0,
+q0067,"Who produced the album ""The Athens Demos""?",,ramdocs,5,free_text,answered,False,"Dr. Dre produced ""The Athens Demos.""",,Joe Boyd,Dr. Dre | Elton John,,0,False,0,0,0.37,,False,False,False,True,1,False,0,0,0,
+q0068,When did the Freaky Friday musical begin its performances?,,ramdocs,4,free_text,answered,False,"The musical began performances at the Signature Theatre in Arlington, Virginia on October 4, 2016, and later began performances at the La Jolla Playhouse in San Diego on January 31, 2017.",,"October 4, 2016","January 1, 2018",,0,False,0,0,1.84,,True,True,True,False,1,True,0,0,0,
+q0069,What sport is Nathan Wood associated with?,,ramdocs,3,free_text,answered,False,Nathan Wood is associated with cricket.,,Cricket,Football | Basketball,,0,False,0,0,0.33,,True,True,True,False,1,True,0,0,0,
+q0070,"Who is the artist of the album ""Free Your Mind""?",,ramdocs,5,free_text,answered,False,"The artist of the album ""Free Your Mind"" is the electronic music band The Beatles.",,Cut Copy,The Beatles | The Beatles,,0,False,0,0,0.83,,False,False,False,True,1,True,0,0,0,
+q0071,Where is YHSS located?,,ramdocs,4,free_text,answered,False,"Yangchenphug Higher Secondary School is located in Thimphu, Bhutan.",,"Thimphu, Bhutan","Kathmandu, Nepal",,0,False,0,0,0.83,,True,True,True,False,1,True,0,0,0,
+q0072,When was the Zook House built?,,ramdocs,3,free_text,answered,False,The Jacob Zook House was built about 1820.,,about 1820,,,0,False,0,0,0.73,,True,True,True,False,1,True,0,0,0,
+q0073,What is the style of the San Vicente Ferrer Church?,,ramdocs,3,free_text,answered,False,"The Saint Vincent Ferrer Parish Church is described as having a Modernist style, although it is also listed as having a Baroque architectural style.",,Baroque,Modernist,,0,False,0,0,1.24,,False,False,True,True,1,True,0,0,0,
+q0074,"Who is the artist of the album ""Crazy World""?",,ramdocs,3,free_text,answered,False,"The artist of the album ""Crazy World"" is the American pop rock band Boys Like Girls.",,Boys Like Girls,One Direction | The Beatles,,0,False,0,0,0.88,,True,True,True,False,1,True,0,0,0,
+q0075,In which city is the Washington Street station located?,,ramdocs,5,free_text,answered,False,Washington Street station is located in Boston.,,Boston,,,0,False,0,0,0.61,,True,True,True,False,1,True,0,0,0,
+q0076,20000 series is operated by which private railway operator?,,ramdocs,3,free_text,answered,False,The 20000 series RSE was operated by the private railway operator Odakyu Electric Railway.,,Odakyu Electric Railway,JR East,,0,False,0,0,1.11,,True,True,True,False,1,True,0,0,0,
+q0077,When was Joseph Lafontaine born?,,ramdocs,4,free_text,answered,False,"The provided text contains two conflicting birth dates for Joseph Lafontaine: March 15, 1870, and November 25, 1865.",,"November 25, 1865","March 15, 1870",,0,False,0,0,1.54,,False,False,True,True,1,True,0,0,0,
+q0078,When did Tom Fisher play in the Major League?,,ramdocs,1,free_text,answered,False,Tom Fisher played one season in Major League Baseball in 1904.,,1904,,,0,False,0,0,0.75,,True,True,True,False,1,True,0,0,0,
+q0079,Where is Fort Buchanan located?,,ramdocs,4,free_text,answered,False,Fort Buchanan is located in Arizona at Sonoita Creek.,,Arizona,,,0,False,0,0,0.52,,True,True,True,False,1,True,0,0,0,
+q0080,"When was the album ""Girls' Generation"" released?",,ramdocs,4,free_text,answered,False,"The album ""Girls' Generation"" was released on January 1, 2006.",,"November 1, 2007","January 1, 2006",,0,False,0,0,0.92,,False,False,False,True,1,False,0,0,0,
+q0081,When was Altrincham Grammar School established?,,ramdocs,5,free_text,answered,False,Altrincham Grammar School for Boys was founded in 1912 as Altrincham County High School for Boys (ACHS).,,1912,1850 | 1850,,0,False,0,0,1.16,,True,True,True,False,1,True,0,0,0,
+q0082,What political party is John Dailey affiliated with?,,ramdocs,5,free_text,answered,False,John Dailey was elected as a Republican to the Illinois House of Representatives.,,Republican,Democratic,,0,False,0,0,0.58,,True,True,True,False,1,True,0,0,0,
+q0083,"What is the population of Centerville, Illinois?",,ramdocs,2,free_text,answered,False,"The provided text does not contain information regarding the population of Centerville, Illinois.",,"1,294","5,000",,0,False,0,0,0.66,,False,False,False,False,1,True,0,0,0,
+q0084,What is the engine size of the V-Strom?,,ramdocs,2,free_text,answered,False,The Suzuki V-Strom 1000 has a 996 cc V-twin engine.,,996 cc,,,0,False,0,0,0.9,,True,True,True,False,1,True,0,0,0,
+q0085,What political party was James Humphrey affiliated with?,,ramdocs,2,free_text,answered,False,"James Humphrey, the U.S. Representative from New York, was affiliated with the Republican party.",,Republican,,,0,False,0,0,0.86,,True,True,True,False,1,True,0,0,0,
+q0086,What is the profession of Pier Crescenzi?,,ramdocs,3,free_text,answered,False,Pier Paolo Crescenzi was an Italian Catholic cardinal.,,Cardinal,,,0,False,0,0,0.6,,True,True,True,False,1,True,0,0,0,
+q0087,Who designed the Gunbus?,,ramdocs,2,free_text,answered,False,"The Burgess Type O Gunbus was designed and built by the Burgess Company at Marblehead, Massachusetts.",,The Burgess Company,,,0,False,0,0,0.88,,True,True,True,False,1,True,0,0,0,
+q0088,"What is the medium of ""A Single Man""?",,ramdocs,6,free_text,answered,False,"The provided text does not contain information regarding the medium of ""A Single Man.""",,Film,Novel | Novel,,0,False,0,0,0.77,,False,False,False,False,1,True,0,0,0,
+q0089,When was Harry Parkes born?,,ramdocs,3,free_text,answered,False,Harry Parkes was born in September 1888.,,September 1888,,,0,False,0,0,0.65,,True,True,True,False,1,True,0,0,0,
+q0090,"Who is the artist associated with the album ""Out of the Box""?",,ramdocs,4,free_text,answered,False,"The album ""Out of the Box"" is associated with the following artists:
+* Taylor Swift
+* Jade Valerie",,Jade Valerie,Taylor Swift,,0,False,0,0,0.93,,False,False,True,True,1,True,0,0,0,
+q0091,What political party was Daniel Hogan affiliated with?,,ramdocs,4,free_text,answered,False,Hogan was elected as a Republican to the Illinois Senate.,,Republican,,,0,False,0,0,0.57,,True,True,True,False,1,True,0,0,0,
+q0092,What is the common name for Yellow Lantern?,,ramdocs,4,free_text,answered,False,The common name for Yellow lantern banksia is Banksia lemanniana (also known as Lemann's banksia).,,Yellow lantern banksia,Red Lantern | Red Lantern Banksia,,0,False,0,0,1.0,,True,True,True,False,1,True,0,0,0,
+q0093,What is the median age in Fort Kent?,,ramdocs,3,free_text,answered,False,"The provided text does not mention Fort Kent; however, it lists a median age in the town as 42.7 years and a median age for a geographic area from the 2020 Census as 46.2 years.",,42.7 years,,,0,False,0,0,1.85,,True,True,True,False,1,True,0,0,0,
+q0094,"What is ""The Great McGonagall"" known for?",,ramdocs,3,free_text,answered,False,"""The Great McGonagall"" refers to two different entities:
+
+*   **A person:** A famous Scottish poet celebrated for his lovely, hilarious, and often unintentionally comic verse.
+*   **A film:** A movie starring Sellers that was the seventh in a string of flops for him.",,A film,A famous Scottish poet,,0,False,0,0,1.82,,False,False,True,True,1,True,0,0,0,
+q0095,What sport is the Munster Senior Cup associated with?,,ramdocs,4,free_text,answered,False,The Munster Senior Cup is associated with cricket.,,Rugby union,Cricket,,0,False,0,0,0.42,,False,False,False,True,1,True,0,0,0,
+q0096,What sport is Tim Martin associated with?,,ramdocs,5,free_text,answered,False,Tim Martin is associated with American football.,,American football,Cricket | Ice Hockey,,0,False,0,0,0.34,,True,True,True,False,1,True,0,0,0,
+q0097,What sport does Cameron Murray play?,,ramdocs,4,free_text,answered,False,There are two individuals named Cameron Murray mentioned: one is a cricketer and the other is a footballer.,,Football,Cricket | Basketball,,0,False,0,0,0.82,,False,False,True,True,1,True,0,0,0,
+q0098,"What is the population of St. Paul, Texas?",,ramdocs,1,free_text,answered,False,"The population of St. Paul, Texas, was 1,066 at the 2010 census and 630 at the 2000 census.",,"1,066",,,0,False,0,0,1.53,,True,True,True,False,1,True,0,0,0,
+q0099,"Who is the artist of the ""Never Ever"" EP?",,ramdocs,1,free_text,answered,False,"The artist of the ""Never Ever"" EP is Park Ji-yeon.",,Park Ji-yeon,,,0,False,0,0,0.65,,True,True,True,False,1,True,0,0,0,
+q0100,When was Corruption Watch established?,,ramdocs,3,free_text,answered,False,Corruption Watch (South Africa) was launched in January 2012.,,"January 2012 | June 21, 1998",,,0,False,0,0,0.68,,False,False,True,False,2,True,0,0,0,
+q0101,"What year was the album ""Chayanne"" released?",,ramdocs,8,free_text,answered,False,"There are multiple albums titled ""Chayanne"" released in different years: one was released in May 1987 and another was released in 1990.",,1987 | 1988,1995 | 1990,,0,False,0,0,1.42,,False,False,True,True,2,True,0,0,0,
+q0102,"Who is the artist of the album ""Beyond Measure""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with an album titled ""Beyond Measure"": Jeremy Camp and Metallica.",,Dynasty | Jeremy Camp,Metallica,,0,False,0,0,0.84,,False,False,True,True,2,True,0,0,0,
+q0103,"Who is the artist of the album ""Lazy Afternoon""?",,ramdocs,2,free_text,answered,False,"There are two artists associated with albums of this name:
+* Barbra Streisand
+* Harold Land (for the album titled ""A Lazy Afternoon"")",,Harold Land | Barbra Streisand,,,0,False,0,0,1.38,,True,True,True,False,2,True,0,0,0,
+q0104,What is the birth date of Richard Aldworth?,,ramdocs,7,free_text,answered,False,"There are two individuals mentioned with similar names:
+
+*   Richard Neville of Billingbear House was born on 3 September 1717.
+*   Aldworth (the son of Richard Neville Aldworth Neville) was born on 12 December 1750.",,3 July 1750 | 3 September 1717,12 December 1750 | 12 December 1750,,0,False,0,0,1.85,,False,False,True,True,2,True,0,0,0,
+q0105,Who was Mahmud I's father?,,ramdocs,5,free_text,answered,False,"There are two individuals named Mahmud I mentioned:
+
+*   For the Mahmud I who died in October 1094, his father was Malik Shah I.
+*   For the Mahmud I who was the Sultan of the Ottoman Empire from 1730 to 1754, his father was Mustafa II.",,Mustafa II | Malik Shah I,,,0,False,0,0,2.14,,True,True,True,False,2,True,0,0,0,
+q0106,"Who directed the film ""Baby Doll""?",,ramdocs,6,free_text,answered,False,"The film ""Baby Doll"" was directed by Elia Kazan.",,Elia Kazan | Franco Giraldi,,,0,False,0,0,0.73,,False,False,True,False,2,True,0,0,0,
+q0107,100 Squadron was formed in which country?,,ramdocs,3,free_text,answered,False,"There are two distinct entities mentioned:
+
+*   **No. 100 Squadron RAAF**: Formed in Australia at RAAF Station Richmond, New South Wales.
+*   **No. 100 Squadron RAF**: Re-formed in the UK at RAF Grimsby, near Waltham.",,Australia | UK,,,0,False,0,0,2.0,,True,True,True,False,2,True,0,0,0,
+q0108,"Who directed the film ""Yellow Ticket""?",,ramdocs,2,free_text,answered,False,"There are two films titled ""The Yellow Ticket"":
+* The 1931 film was directed by Raoul Walsh.
+* The 1918 film was directed by William Parke.",,Raoul Walsh | William Parke,,,0,False,0,0,1.26,,True,True,True,False,2,True,0,0,0,
+q0109,"Who is the artist of ""The Coast Is Clear""?",,ramdocs,4,free_text,answered,False,"The artist of ""The Coast Is Clear"" is Tracy Lawrence.",,In-Flight Safety | Tracy Lawrence,,,0,False,0,0,0.63,,False,False,True,False,2,True,0,0,0,
+q0110,What is the population of Sherbourne?,,ramdocs,8,free_text,answered,False,"There are two entities mentioned:
+
+*   The civil parish of Sherbourne had 174 inhabitants according to the 2011 census.
+*   The civil parish of Sherborne had 9,523 inhabitants according to the 2011 census.",,"9,523 | 174","1,234 | 1,234",,0,False,0,0,1.85,,True,True,True,False,2,True,0,0,0,
+q0111,When was Robert Hutchinson elected to a public office?,,ramdocs,5,free_text,answered,False,"Robert Hutchinson was elected to a public office in 1974. Additionally, Hutchinson was elected to the Geraldton Town Council in 1892 and to the Western Australian Legislative Assembly for the seat of Geraldton on 24 July 1900.",,1898 | 1855,1886 | 1974,,0,False,0,0,1.66,,False,False,False,True,2,True,0,0,0,
+q0112,When was the construction of the Time-Life Building started?,,ramdocs,2,free_text,answered,False,Construction on the Time-Life Building's steelwork started in April 1958.,,April 1958 | June 1936,,,0,False,0,0,0.79,,False,False,True,False,2,True,0,0,0,
+q0113,What sport is Doug Harvey associated with?,,ramdocs,5,free_text,answered,False,Doug Harvey is associated with baseball.,,Hockey | Baseball,,,0,False,0,0,0.79,,False,False,True,False,2,True,0,0,0,
+q0114,What sport is Scott Jackson associated with?,,ramdocs,7,free_text,answered,False,Scott Jackson is associated with ice hockey.,,American football | Ice hockey,Basketball,,0,False,0,0,1.27,,False,False,True,False,2,True,0,0,0,
+q0115,"What is the genre of the film ""The Squeeze""?",,ramdocs,8,free_text,answered,False,The Squeeze is a British gangster thriller.,,gangster thriller | comedy film,,,0,False,0,0,1.31,,False,False,True,False,2,True,0,0,0,
+q0116,What sport did Jack Snow play?,,ramdocs,8,free_text,answered,False,Jack Snow was an American football player.,,Baseball | American football,Basketball | Football,,0,False,0,0,1.26,,False,False,True,True,2,True,0,0,0,
+q0117,What is the population of Vermillion Township?,,ramdocs,4,free_text,answered,False,"The population of Vermillion Township was 1,243 at the 2000 census.",,"1,243 | 924",,,0,False,0,0,1.21,,False,False,True,False,2,True,0,0,0,
+q0118,Who is the architect of the Elks Club Building?,,ramdocs,6,free_text,answered,False,"There are two Elks Club buildings mentioned:
+
+*   The three-story commercial block was designed by Tyler architect Carl A. Gregory.
+*   The Manila Elks Club in the Philippines was designed by Frank Lloyd Wright.",,William E. Parsons | Carl A,Frank Lloyd Wright,,0,False,0,0,1.86,,False,False,True,True,2,True,0,0,0,
+q0119,"What is the population of Pinehurst, Texas?",,ramdocs,5,free_text,answered,False,"There are two locations named Pinehurst in Texas:
+
+*   **Pinehurst, Orange County:** The population was 2,097 at the 2010 census.
+*   **Pinehurst, Montgomery County:** The population was 4,624 at the 2010 census.",,"4,624 | 2,097","12,345",,0,False,0,0,2.39,,True,True,True,False,2,True,0,0,0,
+q0120,"Who is the main character in the video game ""Who Framed Roger Rabbit""?",,ramdocs,2,free_text,answered,False,"For the 1989 Nintendo Entertainment System version, the player controls private detective Eddie Valiant. For the 1988 version released for various computer systems, the player controls Roger Rabbit.",,Roger Rabbit | Eddie Valiant,,,0,False,0,0,1.72,,True,True,True,False,2,True,0,0,0,
+q0121,When was Stephen O'Mara born?,,ramdocs,3,free_text,answered,False,"Stephen O'Mara (senator) was born on 26 December 1844, and Stephen Mary O'Mara was born on 5 January 1884.",,5 January 1884 | 26 December 1844,,,0,False,0,0,1.69,,True,True,True,False,2,True,0,0,0,
+q0122,When was the Croatian money introduced?,,ramdocs,4,free_text,answered,False,"The Kuna was introduced on two separate occasions:
+
+*   **Independent State of Croatia kuna:** Officially adopted on July 26, 1941.
+*   **Modern kuna:** Introduced on May 30, 1994.",,"May 30, 1994 | 26 July 1941",,,0,False,0,0,2.01,,False,False,True,False,2,True,0,0,0,
+q0123,What is the profession of Peter Bergman?,,ramdocs,3,free_text,answered,False,"There are two individuals named Peter Bergman:
+
+*   Peter Paul Bergman was an American writer and comedian.
+*   Peter Michael Bergman is an American actor.",,Actor | Writer and comedian,,,0,False,0,0,1.5,,True,True,True,False,2,True,0,0,0,
+q0124,What is the median age in Riceville?,,ramdocs,5,free_text,answered,False,"The provided text does not mention a location named Riceville; therefore, the median age for Riceville is not available.",,45.7 years | 37 years,30.2 years,,0,False,0,0,1.22,,False,False,False,False,2,True,0,0,0,
+q0125,What war did the Pretoria Peace Agreement end?,,ramdocs,3,free_text,answered,False,"The term Pretoria peace agreement may refer to several different treaties:
+
+*   **Pretoria Convention (1880–1881):** Ended the First Boer War.
+*   **Treaty of Vereeniging (1902):** Ended the Second Boer War.
+*   **Pretoria Accord (2002):** Aimed to end the Second Congo War.
+*   **Pretoria Agreement (2005):** Ended the First Ivorian Civil War.",,First Boer War | Second Boer War,,,0,False,0,0,3.29,,True,True,True,False,2,True,0,0,0,
+q0126,"Who is the artist of the ""Classic Christmas"" album?",,ramdocs,7,free_text,answered,False,"The artist of the ""Classic Christmas"" album is Bradley Joseph.",,Bradley Joseph | Joe McElderry,,,0,False,0,0,0.55,,False,False,True,False,2,True,0,0,0,
+q0127,What is the total population of Katwa?,,ramdocs,8,free_text,answered,False,"The total population of Katwa varies depending on the entity:
+
+*   **Katwa subdivision (2011 Census):** 963,022
+*   **Katwa City (2011):** 50,000",,"81,615 | 963,022","12,345 | 50,000",,0,False,0,0,1.74,,False,False,True,True,2,True,0,0,0,
+q0128,What political party does Marcoux belong to?,,ramdocs,5,free_text,answered,False,"The provided text contains two conflicting accounts regarding Marcoux's political affiliation:
+
+*   In one account, Marcoux was a Liberal by background and became a member of the Liberal-Progressives.
+*   In another account, Marcoux was a Conservative by background and remained loyal to that party.",,Liberal-Progressives | Quebec Liberal Party,Conservative,,0,False,0,0,2.03,,False,False,True,True,2,True,0,0,0,
+q0129,Where is Lincoln County High School located?,,ramdocs,5,free_text,answered,False,"Lincoln County High School is located in Springfield, Illinois, USA.",,"Stanford, Kentucky, USA | Hamlin, West Virginia","Springfield, Illinois, USA",,0,False,0,0,0.58,,False,False,False,True,2,False,0,0,0,
+q0130,"What is the language of the film ""Devatha""?",,ramdocs,6,free_text,answered,False,"There are multiple films with similar names:
+
+*   **Grama Devathe** (translated as Village Deity) is a Marathi-language film.
+*   **Devata** (1941) is a Hindi-language film.",,Telugu | Hindi,Marathi | Hindi,,0,False,0,0,1.56,,False,False,True,True,2,True,0,0,0,
+q0131,"What is the medium of ""Green Pastures""?",,ramdocs,7,free_text,answered,False,"""The Green Pastures"" exists in two mediums: it is a novel and a film.",,Play | Film,Novel | Novel,,0,False,0,0,0.71,,False,False,True,True,2,True,0,0,0,
+q0132,What does RSJ refer to?,,ramdocs,5,free_text,answered,False,RSJ refers to a magazine created to provide news about rock music across India and to foster a sense of community among new and struggling rock musicians and bands. Its first issue was published from Allahabad in January 1993.,,Richard Speight Jr | Rock Street Journal,Robert Downey Jr,,0,False,0,0,1.31,,False,False,False,False,2,True,0,0,0,
+q0133,"Who is the artist of ""The Love Album""?",,ramdocs,8,free_text,answered,False,"There are multiple entities associated with ""The Love Album"":
+* One is a Taylor Swift album.
+* Another is associated with the artist Westlife.",,John Hartford | Westlife,Taylor Swift | Taylor Swift,,0,False,0,0,0.97,,False,False,True,True,2,True,0,0,0,
+q0134,When was Judge Cummings confirmed by the Senate?,,ramdocs,2,free_text,answered,False,"There are two mentions of confirmation by the United States Senate:
+1. One instance occurred on August 10 (year not specified).
+2. Another instance occurred on December 8, 1987.",,"December 8, 1987 | August 10, 1966",,,0,False,0,0,1.38,,False,False,True,False,2,True,0,0,0,
+q0135,"What is the population of Rush Township, Ohio?",,ramdocs,4,free_text,answered,False,"There are multiple Rush Townships in Ohio with the following populations:
+
+*   Rush Township, Scioto County: 12,456 people (2010 census)
+*   Rush Township, Tuscarawas County: 887 people (2000 census)",,"3,171 people | 887 people","12,456 people",,0,False,0,0,1.82,,False,False,True,True,2,True,0,0,0,
+q0136,When was the Turkish Republican Party founded?,,ramdocs,5,free_text,answered,False,"There are two different entities mentioned:
+
+*   **Republican Party (Turkey):** Founded on 4 September 1972.
+*   **Republican Turkish Party (Northern Cyprus):** Founded in 1970.",,1972 | 1970,1995,,0,False,0,0,1.43,,True,True,True,False,2,True,0,0,0,
+q0137,When was Judge Howe born?,,ramdocs,4,free_text,answered,False,"Harland Bradley Howe was born on July 15, 1875, and James Henry Howe was born on December 5, 1827.",,"February 19, 1873 | December 5, 1827","July 15, 1875",,0,False,0,0,1.11,,False,False,True,True,2,True,0,0,0,
+q0138,What position did Richard Wood play in American football?,,ramdocs,5,free_text,answered,False,Richard Wood was a linebacker.,,Quarterback | Linebacker,Linebacker,,0,False,0,0,0.31,,False,False,True,True,2,True,0,0,0,
+q0139,What is the population of Port Vincent?,,ramdocs,7,free_text,answered,False,"At the 2010 census, the population of Port Vincent was 741. As of the 2000 census, there were 463 people residing in the village.",,741 | 472,"1,234",,0,False,0,0,1.32,,False,False,True,False,2,True,0,0,0,
+q0140,What is the profession of John H. Williams?,,ramdocs,3,free_text,answered,False,"The provided text contains two conflicting accounts of Williams' profession after his time at the University of Chicago: one states he became an instructor of physics at the University of Minnesota, and the other states he became a professional basketball player at the University of Minnesota.",,Instructor of physics | British poet,Professional basketball player,,0,False,0,0,1.55,,False,False,True,True,2,True,0,0,0,
+q0141,What sport is Richard Leach associated with?,,ramdocs,6,free_text,answered,False,"There are two individuals named Rick/Richard Leach mentioned:
+
+*   Rick Leach (born December 28, 1964) is associated with basketball.
+*   Richard Max ""Rick"" Leach (born May 4, 1957) is associated with football and baseball.",,Tennis | Baseball and Football,Basketball | Golf,,0,False,0,0,1.95,,False,False,False,True,2,True,0,0,0,
+q0142,2017 Census of which country was conducted?,,ramdocs,5,free_text,answered,False,The 2017 Census was conducted in Peru.,,Pakistan | Peru,Canada,,0,False,0,0,0.46,,False,False,True,False,2,True,0,0,0,
+q0143,"What is the population of Wheatland, Wisconsin?",,ramdocs,5,free_text,answered,False,"There are two towns named Wheatland in Wisconsin:
+
+*   **Wheatland in Kenosha County:** As of the 2000 census, the population was 3,292.
+*   **Wheatland in Vernon County:** As of the 2000 census, the population was 533.",,"3,292 people | 533 people",,,0,False,0,0,2.15,,False,False,False,False,2,True,0,0,0,
+q0144,What is the population of Shawnee Hills?,,ramdocs,8,free_text,answered,False,"There are two entities named Shawnee Hills:
+
+*   **Shawnee Hills CDP:** As of the 2000 census, there were 2,355 people.
+*   **Shawnee Hills (village in Delaware County, Ohio):** The population was 681 at the 2010 census, although the 2010 census data also mentions there were 861 people residing in the village.",,"681 | 2,355","1,200",,0,False,0,0,2.88,,True,True,True,False,2,True,0,0,0,
+q0145,What is the primary product or industry associated with Heubach?,,ramdocs,3,free_text,answered,False,"Because there are multiple entities associated with the name Heubach, the primary products or industries are as follows:
+
+*   **Underwear Manufacturing:** One company is a leading global underwear manufacturer.
+*   **Brewing:** Hirschbrauerei Heubach is a long-established local brewery.
+*   **Toy Manufacturing:** Ernst Heubach was a company that manufactured porcelain-headed bisque dolls.",,Porcelain-headed bisque dolls | Underwear manufacturers,,,0,False,0,0,2.65,,False,False,True,False,2,True,0,0,0,
+q0146,When was Austin City Hall built?,,ramdocs,8,free_text,answered,False,"There are two different dates provided for Austin City Hall:
+* One is listed as a government building completed in 1866.
+* Another is described as a modern structure completed in 1966.",,1866 | 2004,1966 | 1920,,0,False,0,0,1.54,,False,False,True,True,2,True,0,0,0,
+q0147,What is the population of Wadi?,,ramdocs,6,free_text,answered,False,"The population of Wadi is 40,147.",,"120,000 | 40,147",,,0,False,0,0,0.59,,False,False,True,False,2,True,0,0,0,
+q0148,What is the broadcast format of WCMA?,,ramdocs,6,free_text,answered,False,WCMA is described as broadcasting both a Spanish Tropical format and a Classical Music format.,,Spanish Tropical | Spanish Top 40/CHR,Classical Music | Classical Music,,0,False,0,0,0.66,,False,False,True,True,2,True,0,0,0,
+q0149,"Who is the artist of the album ""Talk Show""?",,ramdocs,6,free_text,answered,False,"The artist of the album ""Talk Show"" is R&B singer Beyoncé.",,Shae Jones | the Go-Go's,Beyoncé,,0,False,0,0,0.59,,False,False,False,True,2,False,0,0,0,
+q0150,Who is the creator of Real World?,,ramdocs,4,free_text,answered,False,Peter Gabriel started Real World Records in 1989.,,"Missy ""Misdemeanor"" Elliott | Peter Gabriel",,,0,False,0,0,0.5,,False,False,True,False,2,True,0,0,0,
+q0151,When was Christy O'Connor born?,,ramdocs,3,free_text,answered,False,"Christy O'Connor Jr was born on 19 August 1948, and Christy O'Connor Snr was born on 21 December 1924.",,19 August 1948 | 21 December 1924,,,0,False,0,0,1.29,,True,True,True,False,2,True,0,0,0,
+q0152,Which line is Belorussky a station on?,,ramdocs,5,free_text,answered,False,Belorusskaya is a station on both the Koltsevaya line and the Zamoskvoretskaya line.,,Koltsevaya line | Zamoskvoretskaya line,Belorusskaya line | Kaluzhsko-Rizhskaya line,,0,False,0,0,0.81,,True,True,True,False,2,True,0,0,0,
+q0153,"Who is the artist of the album ""Giant Steps""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with albums titled ""Giant Steps"": John Coltrane and The Boo Radleys.",,John Coltrane | The Boo Radleys,Miles Davis,,0,False,0,0,0.75,,True,True,True,False,2,True,0,0,0,
+q0154,When was the PMK founded?,,ramdocs,5,free_text,answered,False,The PMK was founded on 16 July 1989.,,1989 | 1981,,,0,False,0,0,0.57,,False,False,True,False,2,True,0,0,0,
+q0155,"Who is the artist of the album ""Music of the Spheres""?",,ramdocs,9,free_text,answered,False,"The artist of the album ""Music of the Spheres"" is Taylor Swift.",,Ian Brown | Mike Oldfield,Taylor Swift | The 13th Floor Elevators,,0,False,0,0,0.63,,False,False,False,True,2,False,0,0,0,
+q0156,"Who is the artist of the album ""I'm the Man""?",,ramdocs,8,free_text,answered,False,"There are multiple albums titled ""I'm the Man"" by different artists:
+* Joe Jackson (1979)
+* Sherman Robertson (1994)",,Anthrax | Joe Jackson,Metallica | The Beatles,,0,False,0,0,1.31,,False,False,True,False,2,True,0,0,0,
+q0157,What is the release date of Every Mother Counts?,,ramdocs,5,free_text,answered,False,"There are two albums with this name:
+
+*   **Every Mother Counts (album):** Released on January 1, 2010.
+*   **Every Mother Counts 2012:** Released on May 1, 2012.",,"April 12, 2011 | May 1, 2012","January 1, 2010",,0,False,0,0,1.83,,False,False,True,True,2,True,0,0,0,
+q0158,Who is the husband of Chilonis?,,ramdocs,10,free_text,answered,False,Pyrrhus is the husband of Chilonis.,,Cleonymus | Cleombrotus II,Acrotatus | Pyrrhus,,0,False,0,0,0.46,,False,False,False,True,2,True,0,0,0,
+q0159,What is the profession of Kim So-yeong?,,ramdocs,6,free_text,answered,False,"There are two individuals named Kim So-yeong mentioned:
+
+*   One is a South Korean female badminton player and Olympic medalist.
+*   The other is an actor known for roles in television and theater.",,Singer | Badminton player,Actor | Chef,,0,False,0,0,1.4,,False,False,True,True,2,True,0,0,0,
+q0160,Who is the composer of String Quintet No. 2?,,ramdocs,6,free_text,answered,False,There are two composers of works titled String Quintet No. 2: Wolfgang Amadeus Mozart and Johannes Brahms.,,Johannes Brahms | Wolfgang Amadeus Mozart,Ludwig van Beethoven,,0,False,0,0,0.83,,True,True,True,False,2,True,0,0,0,
+q0161,"What is the medium of ""The Private Secretary""?",,ramdocs,3,free_text,answered,False,The Private Secretary is a farce in three acts (a play).,,a play | a film,,,0,False,0,0,0.59,,False,False,True,False,2,True,0,0,0,
+q0162,What is the profession of Jeff Green?,,ramdocs,4,free_text,answered,False,Jeff Green is a professional chef.,,Basketball player | Writer,Professional Chef,,0,False,0,0,0.4,,False,False,False,True,2,True,0,0,0,
+q0163,What is the size of Winter Island?,,ramdocs,6,free_text,answered,False,"The Winter Island located in Salem, Massachusetts, is about 100 square miles in size. The provided text does not specify the size of the Winter Island located in Antarctica.",,about in size | long,about 100 square miles,,0,False,0,0,1.26,,False,False,False,True,2,True,0,0,0,
+q0164,What is the profession of C. Mayer?,,ramdocs,4,free_text,answered,False,There are two individuals named Christa Mayer: one is a professional basketball player and the other is an operatic mezzo-soprano.,,Operatic mezzo-soprano | Painter and artist,Professional basketball player,,0,False,0,0,1.0,,False,False,True,True,2,True,0,0,0,
+q0165,Who led the Chola invasion of Kalinga?,,ramdocs,4,free_text,answered,False,"The Chola invasions of Kalinga were led by the following:
+
+*   **First invasion (1097):** Kulothunga Chola I.
+*   **Second invasion (1110):** The Pallava chief, Karunakara Tondaiman.",,Kulothunga Chola I | Karunakara Tondaiman,,,0,False,0,0,1.81,,True,True,True,False,2,True,0,0,0,
+q0166,What sport is Nicholas Hill associated with?,,ramdocs,7,free_text,answered,False,"There are two individuals named Nick Hill mentioned:
+* One Nick Hill is an American football player and coach.
+* Another Nick Hill is a baseball pitcher.",,American football | Baseball,,,0,False,0,0,1.06,,True,True,True,False,2,True,0,0,0,
+q0167,"What is the medium of ""Monkey Grip""?",,ramdocs,6,free_text,answered,False,"""Monkey Grip"" is a novel.",,Film | Novel,Novel,,0,False,0,0,0.32,,False,False,True,True,2,True,0,0,0,
+q0168,"Who is the artist of the album ""Shock Value""?",,ramdocs,7,free_text,answered,False,"There are two artists associated with albums titled ""Shock Value"":
+
+*   Twelve Gauge Valentine released a studio album titled *Shock Value* on October 3, 2006.
+*   Jay-Z released an album titled *Shock Value II*.",,Timbaland | Twelve Gauge Valentine,Jay-Z,,0,False,0,0,1.62,,False,False,True,True,2,True,0,0,0,
+q0169,Who was the owner of the Short House?,,ramdocs,6,free_text,answered,False,"The provided text contains conflicting information regarding the owner of the house: one section identifies the first owner as George Washington Short, while another section identifies the first owner as Thomas Jefferson Long.",,George Washington Short | William A,Thomas Jefferson Long | John Adams Long,,0,False,0,0,1.21,,False,False,True,True,2,True,0,0,0,
+q0170,What is Terry McDonald's profession?,,ramdocs,4,free_text,answered,False,Mac McDonald (born Terence McDonald) is an American actor.,,Actor | Former footballer player,,,0,False,0,0,0.48,,False,False,True,False,2,True,0,0,0,
+q0171,When was the Museum of Applied Arts established?,,ramdocs,3,free_text,answered,False,"The Museum of Applied Arts (originally founded as the ""Kunstgewerbemuseum"") was founded in 1874. The Museum of Applied Arts in Budapest was built between 1893 and 1896.",,1874 | 1893-1896,,,0,False,0,0,1.48,,False,False,True,False,2,True,0,0,0,
+q0172,What sport is Bragin associated with?,,ramdocs,5,free_text,answered,False,Lyudmila Bragina is associated with ice hockey.,,Middle distance running | Ice hockey,Ice Hockey,,0,False,0,0,0.47,,False,False,True,True,2,True,0,0,0,
+q0173,"What is the genre of ""A Time for Love""?",,ramdocs,8,free_text,answered,False,"""A Time for Love"" is described as both a studio album and a jazz opera.",,Studio album | Film,Jazz opera | Country Album,,0,False,0,0,0.65,,False,False,True,True,2,True,0,0,0,
+q0174,What is Robin Wright known for?,,ramdocs,4,free_text,answered,False,"Robin Wright is an American actress and director. She first gained attention for her role as Kelly Capwell in the NBC Daytime soap opera ""Santa Barbara"" from 1984 to 1988, and later transitioned to film with a role in the romantic comedy fantasy adventure ""The Princess Bride"" (1987). She has since appeared in numerous films, including ""The Girl with the Dragon Tattoo,"" ""Wonder Woman,"" ""Blade Runner 2049,"" ""Justice League,"" ""Wonder Woman 1984,"" ""Land,"" ""Zack Snyder's Justice League,"" ""Devil's Peak,"" and ""Damsel."" Additionally, she has received seven Primetime Emmy Award nominations, a Golden Globe Award, and a Satellite Award for her television work.",,Actress and director | Author and journalist,,,0,False,0,0,4.81,,False,False,True,False,2,True,0,0,0,
+q0175,"Who is the artist of the ""David with the Head of Goliath"" work?",,ramdocs,9,free_text,answered,False,"There are several paintings titled ""David with the Head of Goliath"" by the following artists:
+* Caravaggio (with versions in Rome and Vienna)
+* Castagno
+* Leyster
+* Massimo Stanzione",,Caravaggio | Massimo Stanzione,Leonardo da Vinci | Leonardo da Vinci,,0,False,0,0,1.39,,True,True,True,False,2,True,0,0,0,
+q0176,"Who is the artist of the album ""Without You I'm Nothing""?",,ramdocs,7,free_text,answered,False,"The album ""Without You I'm Nothing"" is associated with the following artists:
+* Sandra Bernhard
+* The Beatles",,Placebo | Sandra Bernhard,The Beatles | The Beatles,,0,False,0,0,0.83,,False,False,True,True,2,True,0,0,0,
+q0177,"Who is the artist of the album ""Fear No Evil""?",,ramdocs,5,free_text,answered,False,"There are two albums titled ""Fear No Evil"" mentioned:
+
+*   One is credited to Ozzy Osbourne.
+*   The other is by the American glam metal band Slaughter.",,Doro | Slaughter,Ozzy Osbourne,,0,False,0,0,1.16,,False,False,True,True,2,True,0,0,0,
+q0178,When was the Empire of Haiti established?,,ramdocs,2,free_text,answered,False,"The First Empire of Haiti was created on September 22, 1804. The Second Haitian Empire was established on August 26, 1849.",,"September 22, 1804 | August 26, 1849",,,0,False,0,0,1.22,,True,True,True,False,2,True,0,0,0,
+q0179,What is the location of Mooretown?,,ramdocs,4,free_text,answered,False,"There are two distinct entities named Mooretown:
+
+*   **Mooretown Rancheria of Maidu Indians:** Located in the community of Oroville East, in suburban Oroville, Butte County, California.
+*   **Moore Town, Jamaica:** A Maroon settlement located in the Blue Mountains and John Crow Mountains of Portland, Jamaica.",,"Portland, Jamaica | Butte County, California",,,0,False,0,0,2.12,,True,True,True,False,2,True,0,0,0,
+q0180,In which state is Van Horn High School located?,,ramdocs,6,free_text,answered,False,Van Horn High School is located in Missouri.,,Missouri | Texas,,,0,False,0,0,0.4,,False,False,True,False,2,True,0,0,0,
+q0181,"What is the medium of ""The English Patient""?",,ramdocs,6,free_text,answered,False,"""The English Patient"" exists in the following mediums:
+* A novel published in 1992.
+* An audio edition issued in 1993.
+* A film released in 1996.",,A novel | A film,A video game | A film,,0,False,0,0,1.47,,False,False,True,True,2,True,0,0,0,
+q0182,When was the David Jones House built?,,ramdocs,6,free_text,answered,False,"There are two entities mentioned:
+* The David H. Jones House in Spanish Fork, Utah, was built in 1912.
+* The David Jones House in Maryville, Tennessee, was built in 1874.",,1912 | 1874,1895,,0,False,0,0,1.53,,True,True,True,False,2,True,0,0,0,
+q0183,"Who is the artist of the album ""What's My Name?""",,ramdocs,7,free_text,answered,False,"There are two artists associated with an EP titled ""What's My Name?"":
+* T-ara (Korean group)
+* Justin Bieber (Canadian singer)",,T-ara | Miyavi,Justin Bieber,,0,False,0,0,1.11,,False,False,True,True,2,True,0,0,0,
+q0184,What is the estimated population of Lost Springs?,,ramdocs,5,free_text,answered,False,"The projected population for Lost Springs in 2025 is 4, and the population in 2023 was 4. Additionally, as of the 2010 census, the city population was 70.",,70 | 4,,,0,False,0,0,1.46,,True,True,True,False,2,True,0,0,0,
+q0185,"Who is the director of the film ""Turkey Shoot""?",,ramdocs,4,free_text,answered,False,The director of the film Turkey Shoot is Jon Hewitt.,,Brian Trenchard-Smith | Jon Hewitt,,,0,False,0,0,0.38,,False,False,True,False,2,True,0,0,0,
+q0186,What sport does Coneo specialize in?,,ramdocs,6,free_text,answered,False,Coneo specializes in volleyball.,,Volleyball | Middle-distance running events,,,0,False,0,0,0.3,,False,False,True,False,2,True,0,0,0,
+q0187,What is the population of Croydon Park?,,ramdocs,7,free_text,answered,False,"The population of Croydon Park was 3,998.",,"11,012 | 3,998",,,0,False,0,0,0.5,,False,False,True,False,2,True,0,0,0,
+q0188,When did the Battle of Cancha Rayada take place?,,ramdocs,3,free_text,answered,False,"There were two battles of Cancha Rayada:
+* The first battle took place on March 29, 1814.
+* The second battle took place on March 16, 1818.",,"29 March, 1814 | March 16, 1818",,,0,False,0,0,1.49,,False,False,True,False,2,True,0,0,0,
+q0189,What is the language of the film Choorian?,,ramdocs,4,free_text,answered,False,"There are two films titled Choorian:
+* The 1998 film is an Urdu-language film.
+* The 1963 film is a Punjabi language film.",,Punjabi-language | Punjabi language,Urdu-language,,0,False,0,0,1.35,,False,False,True,True,2,True,0,0,0,
+q0190,24th Rifle Division was formed in which year?,,ramdocs,5,free_text,answered,False,"The provided text contains two conflicting accounts regarding the formation of the division: one states it was formed on January 1, 1920, and the other states it was formed on July 26, 1918.",,"July 26, 1918 | November 1990","January 1, 1920",,0,False,0,0,1.61,,False,False,True,True,2,True,0,0,0,
+q0191,Who is the primary user of the Denton Airport?,,ramdocs,2,free_text,answered,False,"For the Denton Enterprise Airport (also known as Denton Airport), the United States Army Air Forces used the facility as a contract glider training airfield during 1943–44.
+
+The provided text does not specify a primary user for the Jeremiah Denton Airport.",,"city-owned, public-use | county-owned public-use",,,0,False,0,0,1.73,,False,False,False,False,2,True,0,0,0,
+q0192,What is the region of Forum Iulii?,,ramdocs,5,free_text,answered,False,Forum Iulii Iriensium (Voghera) is located in the Italian region of Lombardy.,,Friuli-Venezia Giulia | Lombardy,,,0,False,0,0,0.77,,False,False,True,False,2,True,0,0,0,
+q0193,When was Egg Rock Light constructed?,,ramdocs,5,free_text,answered,False,Egg Rock Light in Maine was built in 1875. Egg Rock Light in Massachusetts was first established in 1856.,,1875 | 1856,1920 | 1920,,0,False,0,0,0.96,,True,True,True,False,2,True,0,0,0,
+q0194,When was the Goodrich House built?,,ramdocs,5,free_text,answered,False,The Heman R. Goodrich House was built between 1861–1862.,,between 1861–1862 | 1850,between 1881–1882,,0,False,0,0,0.67,,False,False,True,False,2,True,0,0,0,
+q0195,What sport is Boca Juniors associated with?,,ramdocs,2,free_text,answered,False,"Boca Juniors is associated with the following sports:
+
+*   **Boca Juniors (basketball):** Basketball
+*   **Boca Juniors de Cali:** Football",,Basketball | Football (Soccer) ,,,0,False,0,0,1.06,,False,False,True,False,2,True,0,0,0,
+q0196,1st arrondissement is located in which city?,,ramdocs,2,free_text,answered,False,The 1st arrondissement is located in both Paris and Lyon.,,Lyon | Paris,,,0,False,0,0,0.43,,True,True,True,False,2,True,0,0,0,
+q0197,When was POSB founded?,,ramdocs,2,free_text,answered,False,"There are two entities mentioned:
+* One POSB was formed in 1904 as the ""Post Office Saving Bank"".
+* Another POSB was founded on January 1, 1877, as the ""Post Office Savings Bank (POSB)"".",,"January 1, 1877 | 1904",,,0,False,0,0,1.72,,True,True,True,False,2,True,0,0,0,
+q0198,What sport is Pekka Niemi known for?,,ramdocs,8,free_text,answered,False,Pekka Niemi is known for the sport of ice hockey.,,Cross-country skiing | Weightlifting,Ice Hockey | Ice Hockey,,0,False,0,0,0.48,,False,False,False,True,2,False,0,0,0,
+q0199,What is the estimated population of Hajin/Nor Hachn?,,ramdocs,4,free_text,answered,False,"According to the 2004 census, the population of Hajin was 12,345.",,"37,935 | Around 8,400","12,345",,0,False,0,0,0.87,,False,False,False,True,2,True,0,0,0,
+q0200,When was Dunville incorporated as a town?,,ramdocs,3,free_text,answered,False,"Dunnville (Ontario) was incorporated as a town in 1900.
+Dunville (Newfoundland and Labrador) was incorporated as a town on June 11, 1963.",,"1900 | June 11, 1963",,,0,False,0,0,1.46,,True,True,True,False,2,True,0,0,0,
+q0201,Who is the architect of the Kidd House?,,ramdocs,6,free_text,answered,False,"The architect of the Kidd House in Lavonia, Georgia, was Leila Ross Wilburn.",,Leila Ross Wilburn | Willis Irwin,Frank Lloyd Wright,,0,False,0,0,0.72,,False,False,True,False,2,True,0,0,0,
+q0202,"Who is the artist of the album ""Country Life""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with an album titled ""Country Life"":
+1. Roxy Music
+2. Show of Hands",,Roxy Music | Show of Hands,,,0,False,0,0,0.92,,True,True,True,False,2,True,0,0,0,
+q0203,What year did the Battle of Taku Forts take place?,,ramdocs,7,free_text,answered,False,The Battle of Taku Forts took place in 1860.,,1858 | 1860,1860,,0,False,0,0,0.67,,False,False,True,True,2,True,0,0,0,
+q0204,When was Geoffrey Cook born?,,ramdocs,6,free_text,answered,False,"There are two individuals named Geoffrey Cook mentioned:
+
+*   Geoffrey William Cook was born on 9 February 1936.
+*   Geoff Cook (born Geoffrey Cook) was born on 9 October 1951.",,9 October 1951 | 9 February 1936,12 March 1955,,0,False,0,0,1.62,,True,True,True,False,2,True,0,0,0,
+q0205,When was Cedar Creek High School established?,,ramdocs,6,free_text,answered,False,"There are two schools mentioned:
+
+*   **Cedar Creek High School (Texas):** Opened in the fall of 2010 with freshmen and sophomores.
+*   **Cedar Creek High School (New Jersey):** Opened to students in September 2010 with freshmen and sophomores.",,September 2010 | Fall of 2010,,,0,False,0,0,1.98,,True,True,True,False,2,True,0,0,0,
+q0206,What is the medium of Musketeer?,,ramdocs,8,free_text,answered,False,"The Three Musketeers is associated with the following media:
+* Literature
+* Film and television
+* Video games
+* Music
+* Web series
+* Audio
+* Board games",,Film | Series (TV),Radio | Radio,,0,False,0,0,1.26,,False,False,True,False,2,True,0,0,0,
+q0207,"Who is the band associated with the album ""Interiors""?",,ramdocs,6,free_text,answered,False,"There are two bands associated with an album titled ""Interiors"":
+1. Brad, an American rock band.
+2. Quicksand, an American post-hardcore band.",,Brad | Quicksand,Nirvana,,0,False,0,0,1.24,,True,True,True,False,2,True,0,0,0,
+q0208,What is the population of Orrock?,,ramdocs,6,free_text,answered,False,"The population of Orrock Township was 2,764 at the 2000 census.",,"837 people | 2,764 people",,,0,False,0,0,0.76,,False,False,False,False,2,True,0,0,0,
+q0209,What is Greg Boyer's profession?,,ramdocs,4,free_text,answered,False,"There are two individuals named Greg Boyer mentioned: one is an American chef, and the other is an American water polo player.",,Trombonist | Water polo player,Chef,,0,False,0,0,0.83,,False,False,True,True,2,True,0,0,0,
+q0210,What is the median income for a family in Screven?,,ramdocs,2,free_text,answered,False,The provided text does not contain information regarding the median income for a family in Screven.,,"$31,250 | $34,753",,,0,False,0,0,0.68,,False,False,False,False,2,True,0,0,0,
+q0211,When was Judge Ritter born?,,ramdocs,3,free_text,answered,False,"Willis William Ritter was born on January 24, 1899.
+Halsted L. Ritter was born on January 1, 1900.",,"July 14, 1868 | January 24, 1899","January 1, 1900",,0,False,0,0,1.23,,False,False,True,True,2,True,0,0,0,
+q0212,What is the total population of Namakkal?,,ramdocs,6,free_text,answered,False,"According to the 2011 census, Namakkal had a population of 55,145.",,"55,145 | 150,699","100,000",,0,False,0,0,0.88,,False,False,True,False,2,True,0,0,0,
+q0213,When was South Hills High School established?,,ramdocs,6,free_text,answered,False,"South Hills High School in Fort Worth, Texas, opened in August 1998.
+
+South Hills High School in West Covina, California, opened in the fall of 1964.",,August 1998 | Fall of 1964,January 2005,,0,False,0,0,1.4,,True,True,True,False,2,True,0,0,0,
+q0214,What gender is the student body of St. Michael Academy?,,ramdocs,6,free_text,answered,False,St. Michael Academy is an all-girls high school.,,all-boys | all-girls,co-ed | co-ed,,0,False,0,0,0.51,,False,False,True,False,2,True,0,0,0,
+q0215,When was the Allyn House built?,,ramdocs,4,free_text,answered,False,"The Allyn House in Arlington, Massachusetts, was built about 1898. The Deshon-Allyn House in New London, Connecticut, was built in 1829.",,about 1898 | 1829,,,0,False,0,0,1.25,,True,True,True,False,2,True,0,0,0,
+q0216,When was the Coastal Highway expanded to four lanes?,,ramdocs,2,free_text,answered,False,The highway between Tel Aviv and Hadera was widened to four lanes in 1965.,,the 1960s | 1953 and 1954,,,0,False,0,0,0.65,,False,False,False,False,2,True,0,0,0,
+q0217,What sport is the Belgian Open associated with?,,ramdocs,2,free_text,answered,False,"The Belgian Open is associated with two different sports:
+* Tennis (as a WTA Tour event)
+* Golf (reintroduced as the Belgian Knockout on the European Tour)",,Golf | Tennis,,,0,False,0,0,1.13,,True,True,True,False,2,True,0,0,0,
+q0218,"What is the population of Middlesex Township, Pennsylvania?",,ramdocs,5,free_text,answered,False,"The provided information contains two different population figures for Middlesex Township, Butler County, Pennsylvania at the 2010 census: 12,450 and 5,390.",,"5,390 | 6,669 people","12,345 | 12,450",,0,False,0,0,1.38,,False,False,True,True,2,True,0,0,0,
+q0219,What is the population of Marlette?,,ramdocs,3,free_text,answered,False,"There are two different population figures provided:
+
+*   **Marlette Township:** 2,051 people (as of the 2000 census).
+*   **The city:** 2,104 people (as of the census of 2000).",,"2,104 people | 2,051 people",,,0,False,0,0,1.96,,True,True,True,False,2,True,0,0,0,
+q0220,What is the modern-day name of Abdera?,,ramdocs,5,free_text,answered,False,"There are multiple entities named Abdera:
+
+*   The Abdera in Spain is located above the modern Adra.
+*   The Abdera in Thrace is written as Avdira in the present day.",,Adra | Avdira () ,Madrid,,0,False,0,0,1.44,,True,True,True,False,2,True,0,0,0,
+q0221,"Who is the artist of the album ""Big Fun""?",,ramdocs,6,free_text,answered,False,"The artist of the album ""Big Fun"" is the American R&B group Shalamar.",,Miles Davis | Shalamar,John Coltrane | Quincy Jones,,0,False,0,0,0.72,,False,False,True,False,2,True,0,0,0,
+q0222,What is the primary function of the Butterfly House?,,ramdocs,4,free_text,answered,False,"There are two entities referred to as the Butterfly House:
+
+*   **Paul Smith’s College VIC Butterfly House:** Its primary function is to concentrate on native species butterflies, reflecting what is occurring in the Adirondack Park in real-time.
+*   **The Butterfly House in Australia:** It is a domestic building designed for living, featuring a sheltered parking space underneath a cantilevered floor for resident access.",,a butterfly zoo | a domestic building,,,0,False,0,0,2.54,,False,False,True,False,2,True,0,0,0,
+q0223,What is the military rank of General Schultz?,,ramdocs,7,free_text,answered,False,Schultz was promoted to lieutenant general.,,Generalmajor | Lieutenant general,Admiral,,0,False,0,0,0.34,,False,False,True,False,2,True,0,0,0,
+q0224,What sport is Altrincham associated with?,,ramdocs,3,free_text,answered,False,Altrincham is associated with both semi-professional rugby league and semi-professional cricket.,,"Rugby league | Football (soccer) .""",Cricket,,0,False,0,0,0.64,,False,False,True,True,2,True,0,0,0,
+q0225,What position does Moussa Sylla play in?,,ramdocs,6,free_text,answered,False,"There are two individuals named Moussa Sylla:
+
+*   The Moussa Sylla born in 1999 is a Striker and can also play as a Right Winger.
+*   The Moussa Sylla born in 1989 is a Forward.",,Defensive Midfielder | Winger,Forward,,0,False,0,0,1.97,,False,False,True,True,2,True,0,0,0,
+q0226,"When was the album ""Killswitch Engage"" released?",,ramdocs,4,free_text,answered,False,"The album ""Killswitch Engage"" (2009) was released on June 30, 2009.",,"July 4, 2000 | June 30, 2009",,,0,False,0,0,0.99,,False,False,True,False,2,True,0,0,0,
+q0227,Who is the father of Junjun?,,ramdocs,6,free_text,answered,False,The father of Junjun (Jejomar Erwin S. Binay Jr.) is former Vice President Jejomar Binay.,,Hilario Davide Jr | Jejomar Binay,Juan Dela Cruz,,0,False,0,0,0.87,,False,False,True,False,2,True,0,0,0,
+q0228,What is the profession of S. John Ross?,,ramdocs,3,free_text,answered,False,"There are two individuals named S. John Ross mentioned:
+
+*   One S. John Ross was a silhouette artist who worked in Hollywood and traveled to various fairs.
+*   Another S. John Ross is an editor and contributor to RPGs, specifically ""Risus 1.5"" and ""Pulp Hero.""",,Artist | Game designer,,,0,False,0,0,2.04,,False,False,True,False,2,True,0,0,0,
+q0229,When was the Cross of Liberty established?,,ramdocs,5,free_text,answered,False,"The Order of the Cross of Liberty was founded on March 4, 1918. The Estonian Cross of Liberty was established on March 12, 1920.",,"24 February 1919 | March 4, 1918",12 March 1920 | 12 March 1920,,0,False,0,0,1.23,,False,False,True,False,2,True,0,0,0,
+q0230,What is Jon Hill's profession?,,ramdocs,5,free_text,answered,False,Jon Hill is an American chef.,,American chef | American actor,,,0,False,0,0,0.26,,False,False,True,False,2,True,0,0,0,
+q0231,"What is the medium of ""El derecho de nacer""?",,ramdocs,2,free_text,answered,False,"There are two entities with this name: one is a film produced in 1952, and the other is a telenovela produced in 1981.",,Telenovela | Film,,,0,False,0,0,1.21,,True,True,True,False,2,True,0,0,0,
+q0232,What political party is Senator Atkinson a part of?,,ramdocs,4,free_text,answered,False,Jason Atkinson is a Republican. Archibald Atkinson was a Democrat.,,Democrat | Republican,,,0,False,0,0,0.57,,True,True,True,False,2,True,0,0,0,
+q0233,When was Attorney General Russell called to the Bar?,,ramdocs,6,free_text,answered,False,"The provided text does not mention an Attorney General Russell. However, it mentions a legal professional who was called to the Bar in January 1859.",,1859 | 1861,1885 | 1845,,0,False,0,0,1.13,,False,False,True,False,2,True,0,0,0,
+q0234,"Who is the artist of the album ""Direct Hits""?",,ramdocs,6,free_text,answered,False,"There are two artists associated with an album titled ""Direct Hits"":
+* Coldplay
+* The Killers",,The Killers | The Who,Coldplay,,0,False,0,0,0.82,,False,False,True,True,2,True,0,0,0,
+q0235,What is the population of Llanquihue?,,ramdocs,7,free_text,answered,False,"Llanquihue has 16,337 inhabitants, consisting of 8,141 men and 8,196 women.",,"16,337 inhabitants | 321,493 inhabitants",,,0,False,0,0,1.19,,False,False,True,False,2,True,0,0,0,
+q0236,What year did Walter Erskine become the Earl of Mar and Kellie?,,ramdocs,5,free_text,answered,False,Walter Erskine became the Earl of Mar and Kellie in 1920.,,1872 | 1888,1920,,0,False,0,0,0.7,,False,False,False,True,2,True,0,0,0,
+q0237,What is the profession of Kasuri?,,ramdocs,3,free_text,answered,False,"There are two individuals named Kasuri mentioned:
+
+*   **Khurshid Mahmud Kasuri:** He is a politician and writer.
+*   **Ahmad Raza Khan Kasuri:** He is a politician and lawyer.",,Politician and lawyer | Politician and writer,,,0,False,0,0,1.47,,True,True,True,False,2,True,0,0,0,
+q0238,What is the population of Casnovia?,,ramdocs,6,free_text,answered,False,"The population of the village of Casnovia was 319 at the 2010 census, and the population of Casnovia Township was 2,652 at the 2000 census.",,"319 | 2,652","5,000",,0,False,0,0,1.64,,True,True,True,False,2,True,0,0,0,
+q0239,"Who is the artist of the album ""Holy Smoke""?",,ramdocs,2,free_text,answered,False,"There are two artists with an album titled ""Holy Smoke"":
+1. English musician Peter Murphy
+2. New Zealand pop singer Gin Wigmore (released under the mononym Gin)",,Gin Wigmore | Peter Murphy,,,0,False,0,0,1.25,,True,True,True,False,2,True,0,0,0,
+q0240,What is the gender composition of Wirral Grammar School?,,ramdocs,8,free_text,answered,False,Wirral Grammar School for Girls is a girls school.,,Boys | All-girls,Girls | Girls,,0,False,0,0,0.47,,False,False,False,True,2,True,0,0,0,
+q0241,When was Cove Fort built?,,ramdocs,5,free_text,answered,False,"The provided text contains two different dates for when Cove Fort was built: one section states it was built in 1857, while another section states it was founded in 1867.",,1867 | 1743,1857 | 1855,,0,False,0,0,1.37,,False,False,True,True,2,True,0,0,0,
+q0242,What type of transportation does the Karawanks Tunnel primarily serve?,,ramdocs,6,free_text,answered,False,The Karawanks Tunnel primarily serves railway transportation.,,Motorway | Railway,Railway | Railway,,0,False,0,0,0.44,,False,False,True,True,2,True,0,0,0,
+q0243,"Who is the artist of the album ""Plays Well with Others""?",,ramdocs,2,free_text,answered,False,"The artist of the album ""Plays Well with Others"" is American guitarist Greg Koch.",,Joey Cape | Greg Koch,,,0,False,0,0,0.63,,False,False,True,False,2,True,0,0,0,
+q0244,What is the primary activity of the OUCC?,,ramdocs,4,free_text,answered,False,The primary activity of the Oxford University Cycling Club (OUCC) is cycling.,,Chess | Cycling,,,0,False,0,0,0.65,,False,False,True,False,2,True,0,0,0,
+q0245,"Who is the artist of the album ""Raindrops Keep Fallin' on My Head""?",,ramdocs,6,free_text,answered,False,"The artist of the album ""Keep Fallin ' on My Head"" is Andy Williams.",,Andy Williams | Johnny Mathis,,,0,False,0,0,0.75,,False,False,True,False,2,True,0,0,0,
+q0246,Who is the composer of Symphony No. 1 in C major?,,ramdocs,4,free_text,answered,False,There are two composers of a Symphony No. 1 in C major: Ludwig van Beethoven and Mily Balakirev.,,Mily Balakirev | Ludwig van Beethoven,,,0,False,0,0,1.09,,True,True,True,False,2,True,0,0,0,
+q0247,What sport is Koger associated with?,,ramdocs,6,free_text,answered,False,"There are two individuals named Koger mentioned:
+* Alan Koger is associated with men's soccer.
+* Koger (referenced as a junior in 2010 and senior in 2011) is associated with football.",,Soccer | Football (American) ,Tennis,,0,False,0,0,1.86,,False,False,True,False,2,True,0,0,0,
+q0248,What is the profession of Francesco Negri?,,ramdocs,5,free_text,answered,False,"Francesco Negri was an Italian Catholic priest, scholar, and travel writer.",,Photographer | Catholic priest,,,0,False,0,0,0.69,,False,False,True,False,2,True,0,0,0,
+q0249,When was Stanley F.C. established?,,ramdocs,5,free_text,answered,False,"The original Accrington Stanley was founded in 1891, and the current club was formed in 1975.",,1968 | 1891,1975,,0,False,0,0,1.02,,False,False,True,True,2,True,0,0,0,
+q0250,"Who is the artist associated with the album ""Familiar Stranger""?",,ramdocs,4,free_text,answered,False,"The album ""Familiar Stranger"" is associated with the following artists:
+* Bob Evans (the stage name of Australian indie pop artist Kevin Mitchell)
+* Mark Wills",,Bob Evans | Mark Wills,Taylor Swift,,0,False,0,0,1.23,,True,True,True,False,2,True,0,0,0,
+q0251,What is the format of KSGF?,,ramdocs,5,free_text,answered,False,"KSGF-FM broadcasts a News Talk Information format, and KSGF (AM) broadcasts a News/Talk radio format.",,News Talk Information | News/Talk radio format,,,0,False,0,0,0.85,,True,True,True,False,2,True,0,0,0,
+q0252,How many libraries are part of the LCLS?,,ramdocs,7,free_text,answered,False,"The Lake County Public Library System (LCLS) consists of 15 libraries, and the Luzerne County Library System (LCLS) administers ten libraries.",,15 | 10,25 | 3,,0,False,0,0,1.08,,False,False,True,False,2,True,0,0,0,
+q0253,Where was Justice Rodriguez born?,,ramdocs,4,free_text,answered,False,"Xavier Rodriguez was born in San Antonio, Texas. Ariel A. Rodriguez was born in Havana, Cuba.",,"Havana, Cuba | San Antonio, Texas","Tokyo, Japan",,0,False,0,0,0.77,,True,True,True,False,2,True,0,0,0,
+q0254,What is the population of Furna according to the 2010 census?,,ramdocs,9,free_text,answered,False,The population of Furna (Brava) was 612 at the 2010 census.,,495 | 612,"1,234 | 3,564",,0,False,0,0,0.88,,False,False,True,False,2,True,0,0,0,
+q0255,What river does Henrys Fork flow into?,,ramdocs,5,free_text,answered,False,"Recent historical research suggests that Henrys Fork flows into the Mississippi River, although it is also described as a tributary river of the Snake River.",,Green River | Snake River,Mississippi River,,0,False,0,0,1.08,,False,False,True,True,2,True,0,0,0,
+q0256,"What is the genre of the film ""Manic""?",,ramdocs,4,free_text,answered,False,"There are two films titled ""Manic"":
+- The 2017 film is a documentary.
+- The 2001 film is a comedy.",,Drama | Documentary film,Comedy,,0,False,0,0,1.34,,False,False,False,True,2,True,0,0,0,
+q0257,How many local clubs does the Boys & Girls Club have?,,ramdocs,3,free_text,answered,False,"There are over 4,000 autonomous local clubs.",,"over 4,000 | 16 Clubs",,,0,False,0,0,0.65,,False,False,True,False,2,True,0,0,0,
+q0258,When was Edmund Brockman born?,,ramdocs,9,free_text,answered,False,"There are two different birth dates provided for Edmund Brockman:
+* One record states he was born on 22 October 1828.
+* Another record states he was born on 15 July 1835.",,22 October 1828 | 28 April 1882,15 July 1835 | 15 July 1835,,0,False,0,0,1.71,,False,False,True,True,2,True,0,0,0,
+q0259,When was Phi Delta Gamma founded?,,ramdocs,2,free_text,answered,False,"There are two entities named Phi Delta Gamma:
+
+*   The professional fraternity in the field of Forensics was founded on June 7, 1924.
+*   The social organization of Puerto Rico was founded on April 25, 1942.",,"June 7, 1924 | April 25, 1942",,,0,False,0,0,1.91,,True,True,True,False,2,True,0,0,0,
+q0260,"2nd Duke of Newcastle, what year was he born?",,ramdocs,2,free_text,answered,False,"There are two individuals identified as the 2nd Duke of Newcastle:
+
+*   Henry Pelham-Clinton, 2nd Duke of Newcastle-under-Lyne, was born on 16 April 1720.
+*   Henry Cavendish, 2nd Duke of Newcastle-upon-Tyne, was born on 24 June 1630.",,24 June 1630 | 16 April 1720,,,0,False,0,0,2.48,,True,True,True,False,2,True,0,0,0,
+q0261,When did Morea start playing for Papua New Guinea?,,ramdocs,5,free_text,answered,False,"Vani Morea Vani Vagi Morea made his debut for Papua New Guinea in the 2009 World Cricket League Division Three.
+
+Ipi Morea first played for Papua New Guinea in the 2000 ACC Trophy in Malaysia.",,1996 | 2009,2000,,0,False,0,0,1.73,,False,False,True,True,2,True,0,0,0,
+q0262,What sport is the Hong Kong Open associated with?,,ramdocs,5,free_text,answered,False,The Hong Kong Open is associated with both golf and tennis.,,Golf | Tennis,Basketball,,0,False,0,0,0.57,,True,True,True,False,2,True,0,0,0,
+q0263,When was Sunshine Records established?,,ramdocs,4,free_text,answered,False,Sunshine Records was established in late 1964 and also in early 1970.,,late 1964 | early 1920s,early 1970,,0,False,0,0,0.77,,False,False,True,True,2,True,0,0,0,
+q0264,"What does the term ""Ibanag"" refer to?",,ramdocs,5,free_text,answered,False,"The term ""Ibanag"" refers to the following:
+
+*   A type of traditional dance performed during celebrations and cultural festivals.
+*   An ethnolinguistic minority residing in the provinces of Cagayan.
+*   A language and a group of people (as referenced via Wikipedia).",,A language | An ethnolinguistic minority,A type of traditional dance,,0,False,0,0,1.9,,False,False,True,True,2,True,0,0,0,
+q0265,1978 college football season was part of which division?,,ramdocs,4,free_text,answered,False,The 1978 NCAA football season was part of Division III.,,Division I-A | Division III,Division III,,0,False,0,0,0.57,,False,False,True,True,2,True,0,0,0,
+q0266,"Who is the artist of the main song in the ""Footloose"" soundtrack?",,ramdocs,5,free_text,answered,False,"For the 1984 film, the main song is performed by Taylor Swift. For the 2011 remake, the song ""Footloose"" was covered by Blake Shelton.",,Kenny Loggins | Blake Shelton,Taylor Swift,,0,False,0,0,1.24,,False,False,True,True,2,True,0,0,0,
+q0267,Where is Franklin County High School located?,,ramdocs,5,free_text,answered,False,"There are two Franklin County High Schools mentioned: one is located in Springfield, Illinois, and the other is located in Rocky Mount, Virginia.",,"Frankfort, Kentucky | Rocky Mount, Virginia","Springfield, Illinois",,0,False,0,0,0.94,,False,False,True,True,2,True,0,0,0,
+q0268,"What is the genre of ""Six Feet Under""?",,ramdocs,3,free_text,answered,False,"- Six Feet Under (band): Death metal
+- Manorama Six Feet Under (film): Neo-noir thriller",,Thriller film | Death metal band,,,0,False,0,0,0.79,,False,False,False,False,2,True,0,0,0,
+q0269,"What does the term ""Siraya"" refer to?",,ramdocs,5,free_text,answered,False,"The term ""Siraya"" refers to the following:
+
+*   A language to which the name ""Taiwan"" (historically ""Taiouwang"" and other variants) originated.
+*   A type of ancient Taiwanese currency made from shells or other natural materials used for trade and transactions among indigenous communities.",,A language | An indigenous people,A type of ancient Taiwanese currency,,0,False,0,0,1.92,,False,False,True,True,2,True,0,0,0,
+q0270,80th Regiment of Foot was raised in which year?,,ramdocs,7,free_text,answered,False,"There are two entities mentioned:
+- The 80th Regiment of Foot (Staffordshire Volunteers) was raised in 1793.
+- The 80th Regiment of Light-Armed Foot was raised in May 1758.",,1793 | May 1758,1755 | 1805,,0,False,0,0,1.71,,True,True,True,False,2,True,0,0,0,
+q0271,What is the population of Young America Township?,,ramdocs,7,free_text,answered,False,"There are two entities named Young America Township:
+
+*   **Young America Township in Illinois:** The population was 603 as of the 2020-04-01 census and is estimated to be 582 as of 2023-07-01.
+*   **Young America Township in Carver County, Minnesota:** The population was 1,200 as of the 2000 census.",,838 | 726,"1,200 | 1,200",,0,False,0,0,2.78,,False,False,False,True,2,True,0,0,0,
+q0272,What was the rank of Admiral Morgan in the United States Navy?,,ramdocs,5,free_text,answered,False,"John Gabe Morgan, Jr. was a Vice Admiral, and Henry Sturgis Morgan Jr. was a rear admiral.",,Rear admiral | Vice Admiral,,,0,False,0,0,0.77,,True,True,True,False,2,True,0,0,0,
+q0273,"Who is the artist of the album ""Welcome to My World""?",,ramdocs,10,free_text,answered,False,"There are multiple artists associated with an album titled ""Welcome to My World"":
+
+*   Elton John
+*   Elvis Presley",,Dean Martin | Elvis Presley,Elton John | Frank Sinatra,,0,False,0,0,0.89,,False,False,True,True,2,True,0,0,0,
+q0274,What is the primary function of Belorechensky?,,ramdocs,4,free_text,answered,False,Belorechensky District is an administrative district (raion) and a municipal division incorporated as Belorechensky Municipal District.,,An administrative district | A coal mine,,,0,False,0,0,0.89,,False,False,True,False,2,True,0,0,0,
+q0275,"Who is the artist of the album ""Feel the Fire""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with an album titled ""Feel the Fire"": Jermaine Jackson and Family Brown.",,Family Brown | Jermaine Jackson,,,0,False,0,0,0.69,,True,True,True,False,2,True,0,0,0,
+q0276,"Who is the artist of the album ""Come into My Life""?",,ramdocs,7,free_text,answered,False,"The provided text contains conflicting information regarding the artist of the album ""Come into My Life,"" attributing it to both Gala and Justin Bieber.",,Gala | Joyce Sims,Justin Bieber | ABBA,,0,False,0,0,0.91,,False,False,True,True,2,True,0,0,0,
+q0277,When did John Oscroft begin his career in cricket?,,ramdocs,4,free_text,answered,False,"There are two individuals named John Oscroft mentioned:
+
+*   John Oscroft (born 1807) made his first-class debut in 1834 for Nottingham Cricket Club against Cambridge Town Club.
+*   John Thomas Oscroft (born 1846) made his first-class debut in 1867 in a County Match for Nottinghamshire against Middlesex.",,1834 | 1867-1874,,,0,False,0,0,2.36,,False,False,True,False,2,True,0,0,0,
+q0278,Where is the News Democrat published?,,ramdocs,4,free_text,answered,False,"There are two publications with similar names:
+
+*   **News-Democrat & Leader**: Published in Russellville, Kentucky.
+*   **Belleville News-Democrat**: Published in Belleville, Illinois.",,"Belleville, Illinois | Russellville, Kentucky","Springfield, Illinois",,0,False,0,0,1.35,,True,True,True,False,2,True,0,0,0,
+q0279,"Who directed the film ""Imitation of Life""?",,ramdocs,5,free_text,answered,False,"The 1959 film ""Imitation of Life"" was directed by Douglas Sirk, and the 1934 film adaptation was directed by John M. Stahl.",,John M. Stahl | Douglas Sirk,,,0,False,0,0,1.19,,True,True,True,False,2,True,0,0,0,
+q0280,"Who is the artist of the song ""It's Raining""?",,ramdocs,4,free_text,answered,False,"There are two artists associated with songs titled ""It's Raining"":
+
+*   Irma Thomas, who recorded the soul/R&B ballad in November 1961.
+*   Rain, a Korean R&B singer who released the Korean language song as a single in September 2004.",,Irma Thomas | Rain (Rain singer),,,0,False,0,0,1.97,,False,False,True,False,2,True,0,0,0,
+q0281,What is the format of the film about the Donner Party?,,ramdocs,4,free_text,answered,False,"There are two films about the Donner Party:
+* The 1992 film is a documentary.
+* The 2009 film is a period drama.",,Documentary film | Period drama film,,,0,False,0,0,1.12,,False,False,False,False,2,True,0,0,0,
+q0282,What is the profession of Richard Sheppard?,,ramdocs,6,free_text,answered,False,Dick Sheppard was an English professional basketball player.,,Anglican priest | Architect,Professional basketball player,,0,False,0,0,0.42,,False,False,False,True,2,True,0,0,0,
+q0283,What sport is Scott Murray associated with?,,ramdocs,7,free_text,answered,False,"There are two individuals named Scott Murray mentioned:
+
+*   One Scott Murray is associated with cricket.
+*   One Sean Murray (listed in the categories) is associated with basketball.",,Football | Rugby union,Cricket | Basketball,,0,False,0,0,1.11,,False,False,False,True,2,True,0,0,0,
+q0284,Where is the Larkin Covered Bridge located?,,ramdocs,4,free_text,answered,False,"There are two Larkin Covered Bridges:
+
+*   One is located in northern Tunbridge, Vermont, where it carries Larkin Road across the First Branch White River.
+*   The other is located in Springfield, Massachusetts, near the village of Eagle, where it spans a dry ditch as part of the Upper Uwchlan Township trail system.",,"Chester Springs, Pennsylvania | Northern Tunbridge, Vermont","Springfield, Massachusetts",,0,False,0,0,2.0,,False,False,True,True,2,True,0,0,0,
+q0285,When was the Danger Mouse TV series released?,,ramdocs,8,free_text,answered,False,"The provided text contains two different sets of dates for the original Danger Mouse series: one stating it ran from 1 April 1975 to 19 March 1992, and another stating it ran from 28 September 1981 to 19 March 1992. Additionally, there is a separate 2015 series.",,28 September 1981 | 28 September 2015,1 April 1975,,0,False,0,0,2.31,,False,False,True,True,2,True,0,0,0,
+q0286,What type of aircraft was involved in Flight 109?,,ramdocs,6,free_text,answered,False,"There were two different flights designated as Flight 109:
+
+*   **Sudan Airways Flight 109:** The aircraft involved was an Airbus A310-324.
+*   **Aeroflot Flight 109:** The aircraft involved was a Tupolev Tu-104A.",,Tupolev Tu-104A | Airbus A310-324,,,0,False,0,0,1.93,,True,True,True,False,2,True,0,0,0,
+q0287,What is the typical color of the interior surface of the fruiting bodies of the Fairy Cup?,,ramdocs,5,free_text,answered,False,"For the violet fairy cup (Peziza violacea), the interior surface of the cup-shaped fruiting bodies is violet colored. For the purple fairy cup (Peziza praetervisa), the inner spore-bearing surface is purple to purple-brown, though it lightens to brown as it ages.",,Purple to purple-brown | Violet colored,Green to yellow-green,,0,False,0,0,1.83,,True,True,True,False,2,True,0,0,0,
+q0288,What sport is Tim Steele associated with?,,ramdocs,6,free_text,answered,False,"There are two individuals named Steele mentioned:
+
+*   One Steele is associated with soccer, playing in Major League Soccer (MLS) for New York.
+*   Tim Steele is associated with auto racing, specifically the ARCA series.",,Football | Racing driving,Basketball,,0,False,0,0,1.36,,False,False,False,False,2,True,0,0,0,
+q0289,What sport does James Tilley play?,,ramdocs,8,free_text,answered,False,There are two individuals named James Tilley mentioned: one is a cricketer and the other is an association football player.,,Football | Rugby league,Cricket | Cricket,,0,False,0,0,0.67,,False,False,True,True,2,True,0,0,0,
+q0290,When was Ralph Cole elected to the Ohio House of Representatives?,,ramdocs,6,free_text,answered,False,"There are two mentions of Ralph Cole being elected to the Ohio House of Representatives:
+
+*   One Ralph Cole was elected in 1972.
+*   Ralph Dayton Cole, Jr. was originally elected in 1954.",,1954 | 1900 to 1904,1972,,0,False,0,0,1.43,,False,False,True,True,2,True,0,0,0,
+q0291,"What does the name ""Woolstone"" mean?",,ramdocs,4,free_text,answered,False,The name 'Woolstone' is an Old English word that means 'Wolf's stone' and 'Wulfsige's farm'.,,"""Wulfsige's farm"" | ""Wulfric's ""tūn""""","""Wolf's stone""",,0,False,0,0,0.86,,False,False,True,True,2,True,0,0,0,
+q0292,What sport is Larry Gilbert associated with?,,ramdocs,3,free_text,answered,False,Larry Gilbert is associated with baseball.,,Golf | Baseball,,,0,False,0,0,0.28,,False,False,True,False,2,True,0,0,0,
+q0293,"What is the genre of ""The Hot Rock""?",,ramdocs,2,free_text,answered,False,"- The album ""The Hot Rock"" is a rock album that veers into a relaxed and gloomy direction compared to the raucous punk rock style of previous works.
+- The film ""The Hot Rock"" is a comedy-drama caper film.",,Rock music | Comedy-drama caper film,,,0,False,0,0,1.6,,False,False,True,False,2,True,0,0,0,
+q0294,What is the profession of Andrew McFarlane?,,ramdocs,7,free_text,answered,False,Andrew McFarlane is a British judge.,,Judge | Cricketer,Chef | Chef,,0,False,0,0,0.42,,False,False,True,False,2,True,0,0,0,
+q0295,What is the population of East Brooklyn?,,ramdocs,7,free_text,answered,False,"There are two locations named East Brooklyn:
+
+*   **East Brooklyn, Illinois:** The population was 106 at the 2010 census and 123 as of the 2000 census.
+*   **East Brooklyn, Connecticut:** The population was 5,000 at the 2000 census.",,"1,473 | 106","5,000 | 5,000",,0,False,0,0,2.2,,False,False,True,True,2,True,0,0,0,
+q0296,"What is the genre of the film ""Inner Sanctum""?",,ramdocs,6,free_text,answered,False,"The 1948 film ""Inner Sanctum"" is categorized as film noir. The 1991 film ""Inner Sanctum"" is an erotic thriller.",,Film noir | Erotic thriller,Romantic Comedy | Romantic Comedy,,0,False,0,0,1.12,,True,True,True,False,2,True,0,0,0,
+q0297,When was Araki Station opened?,,ramdocs,7,free_text,answered,False,"Araki Station (Chiba) opened on January 1, 1960. Another Araki Station was founded on April 20, 1910.",,"April 1, 1958 | 20 April 1910","January 1, 1960",,0,False,0,0,1.17,,False,False,False,True,2,True,0,0,0,
+q0298,"Who is the director of the film ""Stranger than Fiction""?",,ramdocs,4,free_text,answered,False,"There are two films titled ""Stranger than Fiction"" mentioned:
+* The 2000 film was directed by Quentin Tarantino.
+* The 2006 film was directed by Marc Forster.",,Eric Bross | Marc Forster,Quentin Tarantino,,0,False,0,0,1.34,,False,False,True,True,2,True,0,0,0,
+q0299,What is the profession of Ian Murray?,,ramdocs,5,free_text,answered,False,"There are two individuals named Ian Murray:
+- One is a Canadian politician.
+- The other was a Scottish divine and the ninth Bishop of Argyll & the Isles.",,"Politician | Divine, Bishop",,,0,False,0,0,1.08,,False,False,True,False,2,True,0,0,0,
+q0300,When was Admiral Stopford born?,,ramdocs,11,free_text,answered,False,"There are conflicting records for the date of birth of Montagu Stopford: one source states he was born on 11 November 1798, while another states he was born on 23 December 1801.",,11 November 1798 | 5 February 1768 | 19 December 1811,23 December 1801 | 23 December 1801,,0,False,0,0,1.41,,False,False,True,True,3,True,0,0,0,
+q0301,What sport is David Hancock associated with?,,ramdocs,3,free_text,answered,False,"There are two individuals named David Hancock mentioned:
+
+*   **David Jeffrey Hancock** was a professional footballer.
+*   **David Arthur Hancock** was a cricketer.",,Football | Cricket | 1997 provincial election,,,0,False,0,0,1.04,,False,False,True,False,3,True,0,0,0,
+q0302,When was the Pugh House built?,,ramdocs,5,free_text,answered,False,"There are two properties mentioned:
+
+*   **Captain David Pugh House:** Built in 1835.
+*   **Pugh House (Morrisville, North Carolina):** Built about 1870.",,1835 | about 1870 | 1865,,,0,False,0,0,1.35,,False,False,True,False,3,True,0,0,0,
+q0303,What was the courtesy name of Marquis Su?,,ramdocs,8,free_text,answered,False,"There are two individuals mentioned with the posthumous name Marquis Su:
+
+*   Jia Kui's courtesy name was Liangdao.
+*   The provided text does not mention a courtesy name for Gu Yong.",,Liangdao | Weitai | 肅侯 (serious marquis),Fengyun,,0,False,0,0,1.31,,False,False,True,False,3,True,0,0,0,
+q0304,"Who is the author of ""Why I Am Not""?",,ramdocs,8,free_text,answered,False,"Because the query is ambiguous, here are the authors for the two different works:
+
+*   **Why I Am Not a Muslim**: Ibn Warraq
+*   **Why I Am Not a Christian**: Bertrand Russell",,Bertrand Russell | Ibn Warraq | Bhagat Singh,,,0,False,0,0,1.25,,False,False,True,False,3,True,0,0,0,
+q0305,When was Empress Borjigit born?,,ramdocs,5,free_text,answered,False,"There are two women of the Borjigit clan mentioned:
+
+*   Empress Xiaoduanwen (Lady Borjigit) was born on 31 May 1599.
+*   The context does not provide a birth date for the Lady Borjigit who was granted the title ""Empress Dowager Renxian"".",,28 March 1613 | 31 May 1599 | 5 November 1641,,,0,False,0,0,2.17,,False,False,True,False,3,True,0,0,0,
+q0306,What is the population of Longtown?,,ramdocs,7,free_text,answered,False,"The population of Longtown has changed over time according to census data:
+*   April 1, 1990: 1,641
+*   April 1, 2000: 2,397
+*   April 1, 2010: 2,739
+*   April 1, 2020: 2,659",,"158 | 2,397 | 3,000",,,0,False,0,0,2.73,,False,False,True,False,3,True,0,0,0,
+q0307,"Who is the creator of ""The Wilderness Years""?",,ramdocs,8,free_text,answered,False,"Depending on the entity referred to:
+
+*   **The book:** Sir Martin Gilbert.
+*   **The album:** Nick Lowe.",,Sue Townsend | Nick Lowe | Ferdinand Fairfax,J.K. Rowling,,0,False,0,0,0.9,,False,False,True,False,3,True,0,0,0,
+q0308,Who is the composer of Symphony No. 38?,,ramdocs,9,free_text,answered,False,"There are two composers associated with a Symphony No. 38:
+
+*   Ludwig van Beethoven is renowned for his Symphony No. 38.
+*   Joseph Haydn composed Symphony No. 38 in C major (Hoboken I/38).",,Joseph Haydn | Wolfgang Amadeus Mozart | Michael Haydn,Ludwig van Beethoven,,0,False,0,0,1.7,,False,False,True,True,3,True,0,0,0,
+q0309,What does VCD refer to?,,ramdocs,8,free_text,answered,False,"VCD refers to vocal cord dysfunction, which is also known as paradoxical vocal cord movement or inducible laryngeal obstruction (ILO). It is a condition where the voice box or vocal cords do not function correctly, tending to close when breathing in instead of opening.",,Vibrational circular dichroism | Voice command device | Vocal cord dysfunction,Virtual Circular Dynamics,,0,False,0,0,1.5,,False,False,True,False,3,True,0,0,0,
+q0310,When did James Scudamore die?,,ramdocs,9,free_text,answered,False,The provided text does not state when James Scudamore died; it only records that Scudamore (the MP for Herefordshire) died on 18 June 1668.,,2 December 1716 | 18 June 1668 | 1619,,,0,False,0,0,1.07,,False,False,True,False,3,True,0,0,0,
+q0311,What is another common name for the Hummingbird Bush?,,ramdocs,4,free_text,answered,False,"Depending on the species, another common name for the hummingbird bush is:
+
+*   **Justicia californica**: Chuparosa, chiparosa, or beloperone.
+*   **Grevillea thelemanniana**: Spider-net grevillea.",,Flame acanthus | Chuparosa or chiparosa | Spider-net Grevillea,,,0,False,0,0,1.59,,False,False,True,False,3,True,0,0,0,
+q0312,Who was Jingzong's father?,,ramdocs,9,free_text,answered,False,Jingzong's father was Emperor Xianzong of Tang.,,Emperor Muzong | Li Deming | Wang Shenzhi,Emperor Xianzong,,0,False,0,0,0.47,,False,False,False,True,3,True,0,0,0,
+q0313,When was Jimmy Ryan born?,,ramdocs,7,free_text,answered,False,"The provided text mentions a Jimmy Ryan born in 1975 in the title, but it does not provide a birth date for the Jimmy Ryan described in the biographical text.",,1945 | 1988 | 1911,1975,,0,False,0,0,1.09,,False,False,False,True,3,False,0,0,0,
+q0314,When was the Earle House built?,,ramdocs,8,free_text,answered,False,"There are two houses mentioned:
+
+*   **John M. Earle House**: Built in 1870.
+*   **Earle Town House**: Likely built circa 1829-1833, or possibly as late as 1834.",,1859 | 1870 | 1829-1833,1905 | 1920,,0,False,0,0,1.69,,False,False,True,False,3,True,0,0,0,
+q0315,What is the location of Abingdon High School?,,ramdocs,3,free_text,answered,False,"Abingdon High School is located in Abingdon, Virginia.",,"Abingdon, Illinois | Abingdon, Virginia | Abingdon, Oxfordshire, England",,,0,False,0,0,0.46,,False,False,True,False,3,True,0,0,0,
+q0316,"What is the genre of the film ""Fools Rush In""?",,ramdocs,3,free_text,answered,False,"There are two films titled ""Fools Rush In"":
+- The 1997 film is a romantic comedy.
+- The 1973 film is a documentary.",,Comedy film | Documentary film | Romantic Comedy,,,0,False,0,0,1.26,,False,False,True,False,3,True,0,0,0,
+q0317,When was Princess Elisabeth of Thurn and Taxis born?,,ramdocs,7,free_text,answered,False,Princess Elisabeth of Thurn and Taxis was born on 28 May 1860.,,15 December 1903 | 24 March 1982 | 28 May 1860,,,0,False,0,0,0.75,,False,False,True,False,3,True,0,0,0,
+q0318,"Who is the director of ""The Power of Darkness""?",,ramdocs,7,free_text,answered,False,"There are two films with this title:
+- The 1909 film was directed by Pyotr Chardynin.
+- The 1979 film was directed by Mario Sábato.",,Pyotr Chardynin | Mario Sábato | Erwin Piscator,Quentin Tarantino | Sergei Eisenstein,,0,False,0,0,1.37,,False,False,True,False,3,True,0,0,0,
+q0319,"Who is the director of the film ""Deadfall""?",,ramdocs,8,free_text,answered,False,"For the 1968 British film ""Deadfall,"" the director is Bryan Forbes.",,Christopher Coppola | Stefan Ruzowitzky | Bryan Forbes,,,0,False,0,0,0.71,,False,False,True,False,3,True,0,0,0,
+q0320,What sport is Wayne Jones associated with?,,ramdocs,5,free_text,answered,False,"There are two individuals named Wayne Jones mentioned: one is a former professional snooker player, and the other is associated with football.",,Darts | Snooker player | Football (soccer),,,0,False,0,0,0.9,,False,False,True,False,3,True,0,0,0,
+q0321,"Who is the artist of the album ""Accelerate""?",,ramdocs,7,free_text,answered,False,"The artist of the album ""Accelerate"" is British singer-songwriter Peter Andre.",,Jump5 | Peter Andre | R.E.M,,,0,False,0,0,0.64,,False,False,True,False,3,True,0,0,0,
+q0322,What sport is Keith Butler associated with?,,ramdocs,6,free_text,answered,False,"There are two individuals named Keith Butler mentioned:
+
+*   One Keith Butler is associated with baseball.
+*   Another Keith Butler is associated with basketball and football, having played in the NBA and currently serving as the defensive coordinator for the Pittsburgh Steelers in the NFL.",,American football | Baseball | Cycling,Basketball,,0,False,0,0,1.7,,False,False,True,True,3,True,0,0,0,
+q0323,When was General Bradshaw born?,,ramdocs,6,free_text,answered,False,Sir Adrian Bradshaw was born in 1958. Major General William Pat Arthur Bradshaw was born on 8 March 1897.,,1958 | 1 August 1920 | 8 March 1897,1930 | 1972,,0,False,0,0,1.03,,False,False,True,False,3,True,0,0,0,
+q0324,"What sport is a ""Perfect Score"" associated with?",,ramdocs,4,free_text,answered,False,"A ""Perfect 10"" is associated with the following sports:
+
+*   **Diving:** A score of 10.00 for a single dive.
+*   **Artistic Gymnastics:** A score of 10.00 for a single routine.",,Artistic gymnastics | Bowling | SAT testing,Diving,,0,False,0,0,1.71,,False,False,True,True,3,True,0,0,0,
+q0325,When was Justice Cole born?,,ramdocs,4,free_text,answered,False,"Charles Cleaves Cole was born on January 1, 1900.",,"May 22, 1841 | October 25, 1925 | 1715","January 1, 1900",,0,False,0,0,0.62,,False,False,False,True,3,True,0,0,0,
+q0326,487th refers to which type of unit?,,ramdocs,3,free_text,answered,False,"The 487th refers to two different types of units:
+
+*   **487th Fighter Squadron:** An inactive United States Air Force unit.
+*   **487th Air Expeditionary Wing:** A provisional United States Air Force unit.",,Air Expeditionary Wing | Bombardment Squadron | 487th Fighter Squadron,,,0,False,0,0,1.59,,False,False,True,False,3,True,0,0,0,
+q0327,What is the population of Elkins?,,ramdocs,6,free_text,answered,False,"There are two different population figures provided for Elkins:
+
+*   For Elkins, NH: 115
+*   For the city of Elkins (as of the 2010 census): 7,094",,"1,251 people | 7,094 people | 75",,,0,False,0,0,1.46,,False,False,False,False,3,True,0,0,0,
+q0328,When was the Church of Our Lady of the Rosary built?,,ramdocs,6,free_text,answered,False,"There are two entities mentioned:
+
+*   **Our Lady of the Rosary Cathedral (San Bernardino, California):** This organization was established in 1927 and the building was completed in 1928.
+*   **Church of Our Lady of the Rosary (Alcamo):** This church was founded in 1660.",,1660 | 1544–1547 | 1923,1750,,0,False,0,0,2.24,,False,False,True,False,3,True,0,0,0,
+q0329,"Who is the artist performing in ""Live at the El Rey""?",,ramdocs,7,free_text,answered,False,"Depending on the specific release, ""Live at the El Rey"" refers to the following artists:
+
+*   Collide (2005 album)
+*   The Beatles (2006 EP and concert DVD)
+*   Mutemath (limited edition live album)",,Mutemath | Stephen Lynch | Jack's Mannequin,The Beatles | Coldplay,,0,False,0,0,1.74,,False,False,True,True,3,True,0,0,0,
+q0330,When was the Submarine Service established?,,ramdocs,3,free_text,answered,False,"The Royal Australian Navy Submarine Service's modern iteration was established in 1964.
+
+The Royal Netherlands Navy Submarine Service was established on December 21, 1906.",,1964 | 21 December 1906 | 1917,,,0,False,0,0,1.31,,False,False,True,False,3,True,0,0,0,
+q0331,When was Wang Peng born?,,ramdocs,10,free_text,answered,False,Wang Peng was born on 24 January 1993.,,24 January 1993 | 16 November 1997 | 1978,15 July 1995,,0,False,0,0,0.61,,False,False,True,False,3,True,0,0,0,
+q0332,What is the population of Licking Township?,,ramdocs,7,free_text,answered,False,"There are two Licking Townships mentioned:
+- Licking Township in Clarion County, Pennsylvania had a population of 536 at the 2010 census.
+- Licking Township in Blackford County, Indiana had a population of 7,899 as of the 2010 census.",,"7,899 | 3,870 | 536","12,345",,0,False,0,0,1.96,,False,False,True,False,3,True,0,0,0,
+q0333,94 Squadron was formed in which year?,,ramdocs,8,free_text,answered,False,"No. 94 Squadron has been formed multiple times:
+*   The Royal Air Force unit was formed on 1 August 1917.
+*   Another No. 94 Squadron was formed on 30 May 1945.",,30 May 1945 | 1 August 1917 | 1952,,,0,False,0,0,1.67,,False,False,True,False,3,True,0,0,0,
+q0334,"Who is the creator of the ""Iconoclast""?",,ramdocs,5,free_text,answered,False,"Depending on the entity referred to, the creators are as follows:
+
+*   **Iconoclast (book):** Written by Gregory Berns.
+*   **Iconoclast (Dope Knife album):** Created by rap artist Dope Knife.
+*   **Iconoclast (Nazxul album):** Created by Nazxul, an Australian black metal band.
+*   **Iconoclast (Symphony X album):** Created by Symphony X, an American progressive metal band.
+*   **Iconoclast (EP):** Created by Clinton Sparks.
+*   **""Iconoclast"" (song):** Created by Emerson, Lake and Palmer.",,Clinton Sparks | Symphony X | Gregory Berns,Jay-Z,,0,False,0,0,4.18,,True,True,True,False,3,True,0,0,0,
+q0335,371st refers to which type of unit?,,ramdocs,10,free_text,answered,False,"The 371st refers to the following types of units:
+*   An Infantry Regiment.
+*   An Engineer Construction Battalion (also known as an Engineer Battalion).",,Engineer Construction Battalion | Infantry Regiment | 371st Bombardment Squadron,Infantry Regiment,,0,False,0,0,1.19,,False,False,True,True,3,True,0,0,0,
+q0336,"What is the genre of the ""Transit of Venus""?",,ramdocs,8,free_text,answered,False,"The ""Transit of Venus"" is a play.",,Rock album | Opera | 243-year cycle,Classical album,,0,False,0,0,0.47,,False,False,False,False,3,True,0,0,0,
+q0337,What year was Lucius Calpurnius Piso Caesoninus elected consul?,,ramdocs,7,free_text,answered,False,"There are two individuals with this name mentioned:
+* One Lucius Calpurnius Piso Caesoninus was elected consul in 112 BC.
+* Another Lucius Calpurnius Piso Caesoninus was elected consul in 148 BC.",,112 BC | 148 BC | 58 BC,,,0,False,0,0,1.66,,False,False,True,False,3,True,0,0,0,
+q0338,When was Tomorrow's World first broadcast?,,ramdocs,9,free_text,answered,False,"There are two different series with this name:
+
+*   The BBC television series was first transmitted on 7 July 1965.
+*   The Australian educational television series aired in 1959.",,7 July 1965 | 1959 | 1943,15 August 1966 | 15 August 1970,,0,False,0,0,1.36,,False,False,True,False,3,True,0,0,0,
+q0339,When did Arteaga (footballer) begin his professional career?,,ramdocs,6,free_text,answered,False,"Gerardo Arteaga made his professional debut in the Liga MX against Querétaro in 2016.
+
+Mario Alberto Arteaga Herrera began his professional career with Chivas in the 1990-91 season.",,2016 | 2010 | 1990-91 season,,,0,False,0,0,1.4,,False,False,True,False,3,True,0,0,0,
+q0340,64th Division was formed in which year?,,ramdocs,6,free_text,answered,False,The 64th Division was formed in 1943.,,late 1914 | 1 May 1943 | 1952,,,0,False,0,0,0.47,,False,False,False,False,3,True,0,0,0,
+q0341,When did Cosimo de' Medici become Grand Duke of Tuscany?,,ramdocs,7,free_text,answered,False,Cosimo I de' Medici became the Grand Duke of Tuscany in 1569.,,1609 | 1569 | 1670,,,0,False,0,0,0.65,,False,False,True,False,3,True,0,0,0,
+q0342,When was the Security Building constructed?,,ramdocs,8,free_text,answered,False,"The Security Building in Saint Louis, Missouri, was built in 1892.",,1928 | 1892 | 1926-1927,1918 | 1905,,0,False,0,0,0.61,,False,False,True,False,3,True,0,0,0,
+q0343,What year was the Married Women's Property Act passed?,,ramdocs,7,free_text,answered,False,"The Married Women's Property Act was passed in 1848, 1870, and 1882.",,1870 | 1882 | 1848,,,0,False,0,0,0.89,,True,True,True,False,3,True,0,0,0,
+q0344,When did John Sparke die?,,ramdocs,3,free_text,answered,False,"There are two individuals named John Sparke mentioned:
+
+*   One John Sparke died in 1566 and was buried on 11 July 1566.
+*   Another John Sparke died on 8 October 1680.",,1566 | 8 October 1680 | 1640,,,0,False,0,0,1.78,,False,False,True,False,3,True,0,0,0,
+q0345,When was General Ritchie born?,,ramdocs,9,free_text,answered,False,The provided text contains two conflicting birth dates for Major General Andrew Stephenson Ritchie: 15 January 1955 and 30 July 1953.,,30 July 1953 | 14 May 1869 | 25 June 1942,15 January 1960 | 15 January 1955,,0,False,0,0,1.18,,False,False,True,True,3,True,0,0,0,
+q0346,"Who is the artist of the album ""Both Sides Now""?",,ramdocs,9,free_text,answered,False,"There are two artists associated with an album titled ""Both Sides Now"": Australian singer Marina Prior and British singer Elton John.",,Marina Prior | Willie Nelson | Joni Mitchell,Elton John,,0,False,0,0,0.79,,False,False,True,True,3,True,0,0,0,
+q0347,Who was the candidate selected by the Conservative Party in the Newport by-election?,,ramdocs,3,free_text,answered,False,The Conservative Party selected Ronald Bell as its candidate for the Newport by-election.,,Ronald Bell | Donald Box | Reginald Clarry,,,0,False,0,0,0.53,,False,False,True,False,3,True,0,0,0,
+q0348,What conflict is the Battle of Beirut associated with?,,ramdocs,6,free_text,answered,False,The Battle of Beirut (1912) was a naval battle that took place during the Italo-Turkish War.,,Italo-Turkish War | World War II | 1982 Lebanon War,,,0,False,0,0,0.9,,False,False,True,False,3,True,0,0,0,
+q0349,"What is the population of Washington Township, Michigan?",,ramdocs,9,free_text,answered,False,"As of the 2000 census, the population of Washington Township, Gratiot County, Michigan, was 909.",,"909 | 25,139 | 1,636 people","1,500",,0,False,0,0,0.99,,False,False,True,False,3,True,0,0,0,
+q0350,Where is the Boston and Maine Railroad Depot located?,,ramdocs,5,free_text,answered,False,"There are two Boston and Maine railroad depots mentioned:
+
+*   The Raymond Railroad Depot is located at 1 Depot Street in the center of Salem, Massachusetts, on the east side of Main Street between Depot Street and the Salem Rail Trail.
+*   The Stoneham Railroad Depot is located at 36 Pine Street in Stoneham, Massachusetts, at the northeast corner of Franklin and Pine Streets, two blocks east of Central Square.",,"Raymond, New Hampshire | Stoneham, Massachusetts | Contoocook Village","Salem, Massachusetts",,0,False,0,0,2.59,,False,False,True,True,3,True,0,0,0,
+q0351,When was Marina High School established?,,ramdocs,5,free_text,answered,False,"There are two schools named Marina High School mentioned:
+
+*   The Marina High School located in Marina, California, began operating in 2006.
+*   The Marina High School located in Huntington Beach, California, first began operating in 1955.",,1963 | 1964 to 1982 | 2006,1985 | 1955,,0,False,0,0,1.72,,False,False,True,True,3,True,0,0,0,
+q0352,What is Harold King known for?,,ramdocs,10,free_text,answered,False,"The provided text does not contain information regarding what Harold King is known for. It mentions Stephen King and Harold Hill, but does not provide details on a Harold King.",,Author | Politician | 1970 Atlanta Braves,Inventor of the Flying Car,,0,False,0,0,1.15,,False,False,False,False,3,True,0,0,0,
+q0353,"What is the population of Lawrence, Wisconsin?",,ramdocs,8,free_text,answered,False,"The population of Lawrence Town in Wisconsin has been recorded as follows:
+*   April 1, 1990: 237
+*   April 1, 2000: 240
+*   April 1, 2010: 311
+*   April 1, 2020: 302
+*   July 1, 2023 (Estimate): 303",,"4,284 | 240 | 740",,,0,False,0,0,3.08,,False,False,True,False,3,True,0,0,0,
+q0354,"Who is the artist associated with ""With a Little Help from My Friends""?",,ramdocs,9,free_text,answered,False,"There are two artists associated with ""With a Little Help from My Friends"":
+
+*   The English rock band the Beatles (specifically featuring Ringo Starr as the vocalist).
+*   Jazz singer Lu Elliott.",,The Beatles | Joe Cocker | Lu Elliott,The Rolling Stones,,0,False,0,0,1.31,,False,False,True,False,3,True,0,0,0,
+q0355,When was the Rage Against the Machine album released?,,ramdocs,7,free_text,answered,False,"There are two releases mentioned:
+*   The demo album titled Rage Against the Machine was released in December 1991.
+*   The debut album was released on Election Day in 1992.",,"November 3, 1992 | December 1991 | 1997",,,0,False,0,0,1.47,,False,False,True,False,3,True,0,0,0,
+q0356,What sport is Paddy Ryan associated with?,,ramdocs,6,free_text,answered,False,Paddy Ryan is associated with boxing.,,Boxing | Rugby union | Professional wrestling,Wrestling,,0,False,0,0,0.38,,False,False,True,False,3,True,0,0,0,
+q0357,When was Bartholomew Green born?,,ramdocs,5,free_text,answered,False,"There are multiple individuals named Bartholomew Green:
+* One was born in 1530.
+* One was born in 1666.
+* One was born in either 1699 or 1701.",,"October 12, 1666 | 1699 or 1701 | 1530","January 1, 1700",,0,False,0,0,1.6,,False,False,True,False,3,True,0,0,0,
+q0358,When was Christ Lutheran Church founded?,,ramdocs,7,free_text,answered,False,Christ Evangelical Lutheran Church was founded in 1884 and 1920.,,1884 | 1923-1929 | 1862,1920,,0,False,0,0,0.74,,False,False,True,True,3,True,0,0,0,
+q0359,"Who is the artist of the album ""Golden Hits""?",,ramdocs,9,free_text,answered,False,"The artist of the album ""Golden Hits"" is The Fatback Band.",,The Drifters | Boney M | Sandie Shaw,The Beatles | The Fatback Band,,0,False,0,0,0.64,,False,False,False,True,3,True,0,0,0,
+q0360,When was Rutherford High School established?,,ramdocs,5,free_text,answered,False,"There are two entities mentioned:
+
+*   **Rutherford High School (New Jersey):** The original structure was built in 1922.
+*   **Rutherford High School (Florida):** This school was established in 1961.",,1961 | 1922 | 1985,,,0,False,0,0,1.65,,False,False,True,False,3,True,0,0,0,
+q0361,What is the population of Rocky Ford?,,ramdocs,7,free_text,answered,False,"There are two entities named Rocky Ford:
+
+*   **City of Rocky Ford, CO:** The population is 6,195.
+*   **Rocky Ford, Oklahoma:** The population was 283 as of the 2020 Census.",,186 | 61 | 316,,,0,False,0,0,1.67,,False,False,True,False,3,True,0,0,0,
+q0362,What is the population of Keyes?,,ramdocs,6,free_text,answered,False,"The provided information contains conflicting data for the 2010 census population of Keyes: one source reports the population was 5,601, while another source reports it was 12,345. Both sources agree that the population was 4,575 at the 2000 census.",,"5,601 | 324 | 10-16 years old","12,345",,0,False,0,0,2.05,,False,False,True,True,3,True,0,0,0,
+q0363,What sport is Keith Jennings associated with?,,ramdocs,7,free_text,answered,False,Keith Jennings is associated with basketball.,,Football | Basketball | Cricket,Basketball | Basketball,,0,False,0,0,0.34,,False,False,True,True,3,True,0,0,0,
+q0364,When was Porush born?,,ramdocs,7,free_text,answered,False,"Meir Porush was born on 23 July 1960, and Shlomo Zalman Porush was born in 1850.",,11 June 1955 | 2 April 1916 | 1850,23 July 1960 | 11 June 1975,,0,False,0,0,1.06,,False,False,True,True,3,True,0,0,0,
+q0365,When was the Ognissanti church completed?,,ramdocs,7,free_text,answered,False,The church was originally completed during the 1250s.,,1755 | 1586 | 1250s,,,0,False,0,0,0.49,,False,False,True,False,3,True,0,0,0,
+q0366,When was Senator Bloomer born?,,ramdocs,3,free_text,answered,False,"Asa S. Bloomer was born on August 15, 1891, and Robert A. Bloomer was born on November 13, 1921.",,"August 15, 1891 | September 14, 1930 | November 13, 1921",,,0,False,0,0,1.24,,False,False,True,False,3,True,0,0,0,
+q0367,What is the primary political ideology of National Action?,,ramdocs,9,free_text,answered,False,National Action (Italy) was a conservative political party.,,Conservative | Right-wing | National Socialism,Liberal | Liberal,,0,False,0,0,0.39,,False,False,True,False,3,True,0,0,0,
+q0368,"Who is the artist of the album ""Double Live""?",,ramdocs,7,free_text,answered,False,"There are two different artists associated with an album titled ""Double Live"":
+
+1. Brooks
+2. Rheostatics",,Butthole Surfers | Rheostatics | Garth Brooks,,,0,False,0,0,0.77,,False,False,True,False,3,True,0,0,0,
+q0369,When was Thomas Belasyse born?,,ramdocs,9,free_text,answered,False,Thomas Belasyse was born on 27 April 1699.,,1627 | 27 April 1699 | 1577,1590,,0,False,0,0,0.55,,False,False,True,False,3,True,0,0,0,
+q0370,What is the population of Pittsville?,,ramdocs,7,free_text,answered,False,"The current population of Pittsville is 1,637.",,"1,417 | 874 | 80 persons","2,500",,0,False,0,0,0.56,,False,False,False,False,3,True,0,0,0,
+q0371,When was the Poplar station opened?,,ramdocs,6,free_text,answered,False,"There are two Poplar stations mentioned:
+
+*   The railway station in Poplar, London, opened on 6 July 1840.
+*   The Poplar DLR station opened on 21 August 1987.",,1866 | 1840 | 21 August 1987,,,0,False,0,0,1.7,,False,False,True,False,3,True,0,0,0,
+q0372,"Who is the creator of ""Flesh and Bone""?",,ramdocs,8,free_text,answered,False,"For the film ""Flesh and Bone,"" the writer and director is Steve Kloves. For the miniseries ""Flesh and Bone,"" the creator is Moira Walley-Beckett.",,Richard Marx | Steve Kloves | Moira Walley-Beckett,,,0,False,0,0,1.25,,False,False,True,False,3,True,0,0,0,
+q0373,What political party was Governor Olson a member of?,,ramdocs,3,free_text,answered,False,"Culbert Olson was a member of the Democratic Party, and Allen I. Olson was a member of the Republican Party.",,Republican | Minnesota Farmer-Labor Party | Democratic Party,,,0,False,0,0,0.74,,False,False,True,False,3,True,0,0,0,
+q0374,When was the Giff first held?,,ramdocs,5,free_text,answered,False,"The Geneva International Film Festival (GIFF) has been exploring the relationship between cinema, television, and digital creation since 1995.",,1995 | 2017 | 25 September 1970,,,0,False,0,0,0.95,,False,False,True,False,3,True,0,0,0,
+q0375,"Who is the artist of the album ""Down Home""?",,ramdocs,10,free_text,answered,False,"There are two artists associated with an album titled ""Down Home"": Joey Baron and Chet Atkins.",,Joey Baron | Zoot Sims | Chet Atkins,John Coltrane | John Coltrane,,0,False,0,0,0.62,,False,False,True,False,3,True,0,0,0,
+q0376,What is the population of Hughesville?,,ramdocs,7,free_text,answered,False,"The population of Hughesville was 5,000 at the 2010 census.",,"2,197 | 183 | 2,220","5,000 | 5,000",,0,False,0,0,0.74,,False,False,False,True,3,False,0,0,0,
+q0377,"Who is the artist of the album ""Revisited""?",,ramdocs,10,free_text,answered,False,"The artist of the album ""Revisited"" is Eartha Kitt.",,Eartha Kitt | Tom Lehrer | Cowboys International,Michael Jackson | Frank Sinatra,,0,False,0,0,0.5,,False,False,True,False,3,True,0,0,0,
+q0378,What is the founding date of the Revolutionary Left Movement?,,ramdocs,7,free_text,answered,False,"The Revolutionary Left Movement has different founding dates depending on the entity:
+
+*   **Bolivia (Revolutionary Left Movement – New Majority):** Founded on 7 September 1971.
+*   **Peru:** Founded in 1962.",,1971 | 1962 | 12 October 1965,,,0,False,0,0,1.69,,False,False,True,False,3,True,0,0,0,
+q0379,When was the Los Angeles Olympics held?,,ramdocs,5,free_text,answered,False,"Los Angeles has hosted or is scheduled to host the Olympics during the following times:
+* 1932 (Summer Olympics)
+* 1984 (Summer Olympics)
+* 2028 (Summer Olympics, scheduled for July 21 to August 6, 2028)",,1932 | 2028 | 1984 Summer Olympics,,,0,False,0,0,2.08,,True,True,True,False,3,True,0,0,0,
+q0380,"Who is the creator of ""I Will Follow""?",,ramdocs,7,free_text,answered,False,"Ava DuVernay wrote, produced, and directed the film ""I Will Follow.""",,Bono | Jeremy Camp | Ava DuVernay,,,0,False,0,0,0.57,,False,False,True,False,3,True,0,0,0,
+q0381,"Who is the main character in ""The Lost Prince""?",,ramdocs,12,free_text,answered,False,"The main character in ""The Lost Prince"" is Eleanor Burden.",,Marco Loristan | Eleanor Burden | Johnnie,Prince Ivan | The Rat,,0,False,0,0,0.54,,False,False,True,False,3,True,0,0,0,
+q0382,Where is Mahkota located?,,ramdocs,5,free_text,answered,False,"Bandar Indera Mahkota is located in Kuantan, Pahang, Malaysia, and is also located in Sydney, Australia.",,"Kuantan, Pahang, Malaysia | Cheras, Selangor, Malaysia | Johor","Sydney, Australia",,0,False,0,0,0.93,,False,False,True,True,3,True,0,0,0,
+q0383,"Who directed the film ""The Charge of the Light Brigade""?",,ramdocs,7,free_text,answered,False,"There are multiple films titled ""The Charge of the Light Brigade"":
+
+*   The 1912 Edison film was directed by Steven Spielberg.
+*   The 1968 British version was directed by Tony Richardson.",,J. Searle Dawley | Michael Curtiz | Tony Richardson,Steven Spielberg | Steven Spielberg,,0,False,0,0,1.5,,False,False,True,True,3,True,0,0,0,
+q0384,When was the National Indian Association formed?,,ramdocs,7,free_text,answered,False,The National Indian Association in Aid of Social Progress in India was formed by Mary Carpenter in 1870 in Bristol.,,"July 26, 1876 | 1870 in Bristol | 1879","January 1, 1900",,0,False,0,0,0.9,,False,False,True,False,3,True,0,0,0,
+q0385,"Who is the artist of the album ""Brand New Me""?",,ramdocs,6,free_text,answered,False,"There are two artists associated with albums titled ""A Brand New Me"":
+
+*   Dusty Springfield released a studio album by this name in 1970.
+*   Aretha Franklin released a compilation album by this name on November 10, 2017.",,Aretha Franklin | Dusty Springfield | John Michael Montgomery,,,0,False,0,0,1.99,,False,False,True,False,3,True,0,0,0,
+q0386,When was Kevin Lewis born?,,ramdocs,8,free_text,answered,False,Kevin Lewis was born on 17 October 1970.,,19 September 1940 | 25 September 1952 | 17 October 1970,19 September 1950,,0,False,0,0,0.64,,False,False,True,False,3,True,0,0,0,
+q0387,What is the population of New Lebanon?,,ramdocs,6,free_text,answered,False,"The population of New Lebanon, Ohio, was 3,995 at the 2010 census. The population of New Lebanon, Pennsylvania, was 205 at the 2000 census.",,"2,454 people | 3,995 people | 205",,,0,False,0,0,1.5,,False,False,True,False,3,True,0,0,0,
+q0388,When did Attorney General Lawrence serve in his position?,,ramdocs,11,free_text,answered,False,"There are two individuals named Lawrence mentioned as Attorney General:
+
+*   James Lawrence served as Ohio Attorney General from 1884 to 1886.
+*   Lawrence was appointed as Attorney-General by Davis in 1971.",,1884–1886 | 1790 to 1794 | 1971,1900–1902 | 1900–1902,,0,False,0,0,1.78,,False,False,True,False,3,True,0,0,0,
+q0389,"Who is the artist of the album ""Stranger Things Have Happened""?",,ramdocs,6,free_text,answered,False,"The album ""Stranger Things Have Happened"" is associated with the following artists:
+- Clare Maguire
+- Dolly Parton
+- Peter Tork
+- Ronnie Milsap
+- Justin Guarini",,Justin Guarini | Ronnie Milsap | Peter Tork,Dolly Parton,,0,False,0,0,1.33,,False,False,True,True,3,True,0,0,0,
+q0390,What is the population of Clearwater County?,,ramdocs,7,free_text,answered,False,"Clearwater County had a population of 11,947 in 2016 and 12,278 in 2011.",,"8,930 people | 8,695 people | 11,947","15,200 people",,0,False,0,0,1.16,,False,False,True,False,3,True,0,0,0,
+q0391,What is the genre of the production featuring Tony Blair?,,ramdocs,4,free_text,answered,False,The production featuring Tony Blair is described as both a documentary and a comedy drama.,,Comedy Programme | Satirical drama | Autobiography,Documentary,,0,False,0,0,0.68,,False,False,False,True,3,True,0,0,0,
+q0392,When did Akarin debut?,,ramdocs,4,free_text,answered,False,Akari Suda's debut date is listed as both 15 January 2010 and 8 December 2009 at SKE48's Team S stage performance.,,"8 December 2009 | October 9, 2010 | 2008",15 January 2010,,0,False,0,0,1.38,,False,False,True,True,3,True,0,0,0,
+q0393,Who was Chilperic's father?,,ramdocs,9,free_text,answered,False,"The provided text contains conflicting information regarding Chilperic I's father, identifying him as both Guntram and Clotaire I.",,Clotaire I | Gondioc | Childeric II,Lothair I | Guntram,,0,False,0,0,0.9,,False,False,True,True,3,True,0,0,0,
+q0394,What is the population of Pilica?,,ramdocs,5,free_text,answered,False,"The population of Pilica varies depending on the entity:
+- The town of Pilica had 1,948 inhabitants as of 2004 and 1,971 inhabitants as of 2006.
+- Gmina Pilica had a total population of 9,117 as of 2006.",,"1,971 | 1,948 inhabitants (2004) | 210",,,0,False,0,0,2.26,,False,False,True,False,3,True,0,0,0,
+q0395,What year did the Battle of Ramla take place?,,ramdocs,6,free_text,answered,False,The third Battle of Ramla took place on 27 August 1105.,,1101 | 1105 | 1102,,,0,False,0,0,0.65,,False,False,True,False,3,True,0,0,0,
+q0396,What channel is NewsChannel 5 affiliated with?,,ramdocs,6,free_text,answered,False,The provided text does not contain information regarding a station named NewsChannel 5.,,ABC | NBC | 5,,,0,False,0,0,0.57,,False,False,True,False,3,True,0,0,0,
+q0397,What does the abbreviation SFJ refer to?,,ramdocs,8,free_text,answered,False,The abbreviation SFJ refers to the sapheno-femoral junction.,,Kangerlussuaq Airport | Saphenofemoral junction | StarFlyer,San Francisco Jail | San Francisco Junction,,0,False,0,0,0.49,,False,False,True,False,3,True,0,0,0,
+q0398,When was St. John's Evangelical Lutheran Church built?,,ramdocs,9,free_text,answered,False,The present large church building of St. John's Evangelical Lutheran Church was constructed in the 1890s.,,1901-1902 | 1890s | 1893,1850-1851,,0,False,0,0,0.83,,False,False,True,False,3,True,0,0,0,
+q0399,Who is the main character in the film Jadoo?,,ramdocs,9,free_text,answered,False,The provided text does not contain information regarding a film titled Jadoo or its main character.,,Pritam | Raghu | Shalini,Raj,,0,False,0,0,0.63,,False,False,False,False,3,True,0,0,0,
+q0400,Where is The Daily Citizen published?,,ramdocs,5,free_text,answered,False,"The Daily Citizen is published at 723 W. Beebe-Capps Expressway, Searcy, Arkansas 72143.
+
+The Urbana Daily Citizen is published in Urbana, Ohio.",,"Cushing, Oklahoma | Searcy, Arkansas | Urbana, Ohio",New York City,,0,False,0,0,1.46,,False,False,True,False,3,True,0,0,0,
+q0401,What is the common name of the plant species Aiea?,,ramdocs,7,free_text,answered,False,The common name for the plant species Aiea is broadleaf aiea.,,smallflower aiea | broadleaf aiea | Nothocestrum latifolium,,,0,False,0,0,0.75,,False,False,True,False,3,True,0,0,0,
+q0402,"Who is the artist of the album ""Inception""?",,ramdocs,5,free_text,answered,False,"There are two artists associated with an album titled ""Inception"":
+1. McCoy Tyner
+2. Sanctuary",,McCoy Tyner | Sanctuary | Hans Zimmer,,,0,False,0,0,0.98,,False,False,True,False,3,True,0,0,0,
+q0403,When did Henry St John-Mildmay become the Baronet?,,ramdocs,3,free_text,answered,False,"Sir Henry Paulet St John-Mildmay, 3rd Baronet, succeeded to the baronetcy in 1784.
+
+Sir Henry Carew St John-Mildmay, 4th Baronet, succeeded his father in the baronetcy on 11 November 1808.",,1784 | 11 Nov. 1808 | 1848,,,0,False,0,0,2.07,,False,False,True,False,3,True,0,0,0,
+q0404,When did the Women's Strike take place?,,ramdocs,5,free_text,answered,False,"There were two women's strikes mentioned:
+*   The Icelandic women's strike took place on 24 October 1975.
+*   The Spanish women's strike took place on March 8, 2018.",,"24 October 1975 | March 8, 2018 | 1962",,,0,False,0,0,1.69,,False,False,True,False,3,True,0,0,0,
+q0405,When did George Brodrick die?,,ramdocs,7,free_text,answered,False,"There are two individuals named George Brodrick mentioned:
+
+*   George Charles Brodrick died on 8 November 1903.
+*   George Brodrick, 3rd Viscount Midleton of Midleton, died on 15 January 1770.",,22 August 1765 | 12 August 1836 | 8 November 1903,15 January 1770,,0,False,0,0,1.92,,False,False,True,True,3,True,0,0,0,
+q0406,302 Squadron was formed in which year?,,ramdocs,8,free_text,answered,False,The 302 Squadron was formed in 1940.,,"October 1st, 1974 | 10 July 1940 | 1981","January 1st, 1950",,0,False,0,0,0.65,,False,False,False,False,3,True,0,0,0,
+q0407,When was the Douglas County Courthouse built?,,ramdocs,8,free_text,answered,False,"There are two Douglas County Courthouses mentioned:
+
+*   The Douglas County Courthouse designed by John Latenser, Sr. was finished in 1912.
+*   The Douglas County Courthouse in Tuscola, Illinois, was completed in 1913.",,1912 | 1918-1919 | 1913,1895,,0,False,0,0,1.79,,False,False,True,False,3,True,0,0,0,
+q0408,What sport is Michael Myers associated with?,,ramdocs,7,free_text,answered,False,Michael Myers is associated with both basketball and American football.,,American football | Baseball | Halloween,Basketball,,0,False,0,0,0.54,,False,False,True,True,3,True,0,0,0,
+q0409,What is the population of Osgood?,,ramdocs,8,free_text,answered,False,"The population of Osgood, Missouri was 48 at the 2010 census, and the population of Osgood, Indiana was 1,624 at the 2010 census.",,"1,624 | 48 | 255 people","2,500 | 5,000",,0,False,0,0,1.46,,False,False,True,False,3,True,0,0,0,
+q0410,What is the historical name of Biu?,,ramdocs,9,free_text,answered,False,"The historical name of Biu was Viu, which means high in the Bura and Babur languages.",,Viu | Biu Kingdom | Meir Berlin,Zuru | Ziu,,0,False,0,0,0.83,,False,False,True,False,3,True,0,0,0,
+q0411,When was the Kansas City Southern Depot built?,,ramdocs,8,free_text,answered,False,"The Kansas City Southern Railway Depot was built in 1929 to replace the original depot, which opened in 1896.",,1914 | 1929 | 1923,1920,,0,False,0,0,1.0,,False,False,True,False,3,True,0,0,0,
+q0412,What is the population of Tyro?,,ramdocs,8,free_text,answered,False,"The population of Tyro is reported as 220 in 2019 and 2020, and as 5,000 in the 2010 census.",,"220 | 3,879 | 344 people","5,000",,0,False,0,0,1.34,,False,False,True,True,3,True,0,0,0,
+q0413,What was the profession of Henry Moseley?,,ramdocs,6,free_text,answered,False,"The provided text mentions two individuals named Moseley:
+
+*   One Moseley conducted a series of investigations in physics and chemistry regarding the properties of elements.
+*   Another Moseley was a naturalist who participated in expeditions to Ceylon, California, and Oregon, as well as the ""Challenger"" expedition. He also held the Linacre chair of human and comparative anatomy at Merton College, Oxford.",,Chaplain | Naturalist and anatomist | Physicist,Marine Biologist,,0,False,0,0,2.47,,False,False,False,False,3,False,0,0,0,
+q0414,What year was Judge Sparks born?,,ramdocs,10,free_text,answered,False,Judge Sam Sparks was born in 1955.,,1939 | 1872 | 1953,1955 | 1955,,0,False,0,0,0.49,,False,False,False,True,3,True,0,0,0,
+q0415,What sport is Tyler Moore associated with?,,ramdocs,7,free_text,answered,False,"There are two entities named Tyler Moore mentioned:
+
+*   One Tyler Moore is an American football offensive guard who played for the Florida Gators and the Tampa Bay Storm.
+*   Another Tyler Moore is associated with basketball and is a widely watched figure in Brazil for his skills in that sport.",,American football | Baseball | Powerlifting,Basketball | Basketball,,0,False,0,0,1.76,,False,False,True,True,3,True,0,0,0,
+q0416,When was the Syracuse railway station opened?,,ramdocs,9,free_text,answered,False,"There are two railway stations mentioned:
+
+*   The station in Syracuse, New York, and its elevated route opened on September 24, 1936.
+*   The Siracusa railway station in Sicily, Italy, was inaugurated on 19 January 1871.",,"September 24, 1936 | 1998 | 19 January 1871",,,0,False,0,0,1.94,,False,False,True,False,3,True,0,0,0,
+q0417,What is the population of Bennington Township?,,ramdocs,8,free_text,answered,False,"According to the 2010 census, the population of Bennington Township is 3,102 people.",,"3,168 | 3,102 | 178 people",,,0,False,0,0,0.76,,False,False,True,False,3,True,0,0,0,
+q0418,What is the population of Lake Mills?,,ramdocs,10,free_text,answered,False,"The provided information contains two different sets of population data for Lake Mills: one listing the 2023 population as 2,115 and another listing the 2023 population as 5,000.",,"2,100 | 4,843 | 2,070","5,000 | 5,000",,0,False,0,0,1.44,,False,False,False,True,3,True,0,0,0,
+q0419,"Who is the director of the film ""Game of Death""?",,ramdocs,6,free_text,answered,False,"There are two films mentioned with this title:
+
+*   The 2010 film ""Game of Death"" was directed by Giorgio Serafini.
+*   The 1981 film ""Game of Death II"" was directed by Ng See-yuen.",,Chukiat Sakveerakul | Ng See-yuen | Giorgio Serafini,,,0,False,0,0,1.68,,False,False,True,False,3,True,0,0,0,
+q0420,Who composed the musical setting for the Liturgy of Saint John Chrysostom?,,ramdocs,6,free_text,answered,False,There are two musical settings for the Liturgy of St. John Chrysostom mentioned: one composed by Johann Sebastian Bach and another composed by Pyotr Ilyich Tchaikovsky.,,Mykola Leontovych | Sergei Rachmaninoff | Pyotr Ilyich Tchaikovsky,Johann Sebastian Bach,,0,False,0,0,1.1,,False,False,True,True,3,True,0,0,0,
+q0421,What is the mascot of West Valley High School?,,ramdocs,4,free_text,answered,False,"The mascot for West Valley High School in Spokane, Washington, is the eagles, and the mascot for West Valley High School in Hemet, California, is a Mustang.",,The eagle | A Mustang | Eagles,,,0,False,0,0,1.1,,True,True,True,False,3,True,0,0,0,
+q0422,In which state is the Haymarket District located?,,ramdocs,10,free_text,answered,False,The Haymarket District is located in Iowa.,,Nebraska | Michigan | Iowa,,,0,False,0,0,0.36,,False,False,True,False,3,True,0,0,0,
+q0423,When was Donald Macdonell born?,,ramdocs,7,free_text,answered,False,Donald Macdonell was born in January 1862.,,"July 2, 1849 | January 17, 1778 | 1862",,,0,False,0,0,0.53,,False,False,True,False,3,True,0,0,0,
+q0424,When did Arthur Middleton die?,,ramdocs,4,free_text,answered,False,"There are two individuals named Arthur Middleton mentioned:
+
+*   One Arthur Middleton died on January 1, 1787.
+*   Arthur Edward Middleton died on October 19, 1953.",,"January 1, 1787 | September 17, 1737 | 19 October 1953","June 15, 1790",,0,False,0,0,1.52,,False,False,True,False,3,True,0,0,0,
+q0425,What is the state where Judge Day was born?,,ramdocs,6,free_text,answered,False,"Edward William Day was born in Rhode Island, and William Louis Day was born in Ohio.",,Alabama | Rhode Island | Ohio,California,,0,False,0,0,0.66,,False,False,True,False,3,True,0,0,0,
+q0426,When was the Criterion Theatre built?,,ramdocs,10,free_text,answered,False,"The Criterion Theatre in Bar Harbor was built in 1932, and the Criterion Theatre in Sydney was built in 1886.",,1932 | 1880s | 1886,1925 | 1895,,0,False,0,0,1.08,,False,False,True,False,3,True,0,0,0,
+q0427,When was the South Calgary electoral district created?,,ramdocs,3,free_text,answered,False,The South Calgary electoral district was created in 1913.,,2010 | 1913 | 1986,,,0,False,0,0,0.57,,False,False,True,False,3,True,0,0,0,
+q0428,What sport is Kevin Jones associated with?,,ramdocs,4,free_text,answered,False,"There are two individuals named Kevin Jones mentioned:
+
+*   One Kevin Jones is a professional basketball player.
+*   Another Kevin Jones is associated with racing.",,American football | Basketball | BMX riding,,,0,False,0,0,1.1,,False,False,True,False,3,True,0,0,0,
+q0429,When was Marcus Dods born?,,ramdocs,6,free_text,answered,False,"There are two individuals named Marcus Dods mentioned:
+
+*   One Marcus Dods was born on 11 April 1834.
+*   Another Marcus Dods lived from 1786 to 1838.",,1786 | 11 April 1834 | 19 April 1918,1850,,0,False,0,0,1.72,,False,False,True,False,3,True,0,0,0,
+q0430,"What does the abbreviation ""IGY"" stand for?",,ramdocs,6,free_text,answered,False,"The provided text does not state what the abbreviation ""IGY"" stands for, although it refers to it in two different contexts: as a substance used in bioanalysis and as a food supplement/preservative, and as an organization with a chairperson named Waizmann.",,International Geophysical Year | Israel Gay Youth | Immunoglobulin Y,,,0,False,0,0,1.86,,False,False,False,False,3,False,0,0,0,
+q0431,When was the People's Democratic Movement founded?,,ramdocs,8,free_text,answered,False,"There are two mentions of the People's Democratic Movement:
+* One was founded in 1972.
+* The political party in Papua New Guinea was founded by Paias Wingti in 1985.",,1985 | October 1975 | 1973,1972 | 1995,,0,False,0,0,1.56,,False,False,True,True,3,True,0,0,0,
+q0432,"What is the genre of ""Collision Course""?",,ramdocs,4,free_text,answered,False,"There are two entities named ""Collision Course"" mentioned:
+
+*   The novel by Robert Silverberg is a science fiction novel.
+*   The other ""Collision Course"" is a film in the Ice Age franchise.",,Action-comedy film | Science fiction novel | Traditional nature documentary,,,0,False,0,0,1.48,,False,False,True,False,3,True,0,0,0,
+q0433,"What is ""I Love New York""?",,ramdocs,3,free_text,answered,False,"""I Love New York"" refers to the following:
+
+*   A song written and composed by Steve Karmen in 1977 as part of an advertising campaign, which Governor Hugh Carey declared as New York's state anthem in 1980.
+*   A VH1 show featuring Pollard, where individuals such as ""Sister"" Patterson appeared to help Pollard choose the right man.",,a state anthem | a TV series | 2015 film,,,0,False,0,0,2.44,,False,False,True,False,3,True,0,0,0,
+q0434,"Who is the artist of the album ""Faithfully""?",,ramdocs,10,free_text,answered,False,"There are two artists associated with an album titled ""Faithfully"": Michael Jackson and Jovit Baldivino.",,Faith Evans | Jovit Baldivino | Johnny Mathis,John Legend | Michael Jackson,,0,False,0,0,0.79,,False,False,True,True,3,True,0,0,0,
+q0435,What is the population of Manvel?,,ramdocs,3,free_text,answered,False,"As of the census of 2000, Manvel had a population of 3,046.",,"370 people | 3,046 people | 2,500",,,0,False,0,0,0.83,,False,False,False,False,3,True,0,0,0,
+q0436,378th refers to which type of unit?,,ramdocs,6,free_text,answered,False,"The 378th refers to the following units:
+* 378th Bombardment Group
+* 378th Fighter Squadron",,Fighter Squadron | Troop Carrier Squadron | 378th Bombardment Group,,,0,False,0,0,1.1,,False,False,True,False,3,True,0,0,0,
+q0437,When was the Cardinal of Guise born?,,ramdocs,6,free_text,answered,False,"There are two individuals identified as the Cardinal of Guise:
+
+*   Louis II, Cardinal of Guise was born on 6 July 1555.
+*   Louis de Lorraine (Cardinal de Guise) was born on 21 October 1527.",,21 October 1527 | 22 January 1575 | 6 July 1555,,,0,False,0,0,1.88,,False,False,True,False,3,True,0,0,0,
+q0438,What sport is Lee Seung-hoon associated with?,,ramdocs,8,free_text,answered,False,Lee Seung-hoon is associated with basketball.,,Speed skating | Boxing | Gambling,Basketball | Basketball,,0,False,0,0,0.39,,False,False,False,True,3,False,0,0,0,
+q0439,What is the location of the Central Square Historic District?,,ramdocs,3,free_text,answered,False,"There are two Central Square Historic Districts:
+
+*   One is located in the central business district of Stoneham, Massachusetts.
+*   The other is located in the central commercial district of Bristol, New Hampshire, near the junction of six roadways, north of the Newfound River and west of the Pemigewasset River.",,"Bristol, New Hampshire | Stoneham, Massachusetts | Waltham, Massachusetts",,,0,False,0,0,1.94,,False,False,True,False,3,True,0,0,0,
+q0440,What is the profession of Nigel Harris?,,ramdocs,4,free_text,answered,False,Nigel Harris is a British actor.,,Actor | Economist | Freelance broadcaster,,,0,False,0,0,0.37,,False,False,True,False,3,True,0,0,0,
+q0441,"What is the format of ""Swan Princess""?",,ramdocs,4,free_text,answered,False,"There are two entities named ""Swan Princess"":
+1. One is a film series.
+2. The other is a two-year-old filly that raced in Ireland.",,Theatrical film | Direct-to-video sequel | 2-year-old filly,,,0,False,0,0,1.27,,False,False,False,False,3,False,0,0,0,
+q0442,When was Carl Roth born?,,ramdocs,5,free_text,answered,False,"Carl William Roth was born on September 15, 1909.
+Carl Roth II was born on October 12, 1753.",,"November 18, 1797 | October 12, 1753 | September 15, 1909","January 1, 1800",,0,False,0,0,1.23,,False,False,True,False,3,True,0,0,0,
+q0443,"What is the genre of ""Foul Play""?",,ramdocs,8,free_text,answered,False,"The genre of ""Foul Play"" is country music.",,Reggae | Brawler action-adventure | Thriller-comedy-romance hybrid,Country | Country,,0,False,0,0,0.59,,False,False,False,True,3,True,0,0,0,
+q0444,What political party was John Harman affiliated with?,,ramdocs,6,free_text,answered,False,"John Harman, the Australian politician, was a member of the Labor Party. Another individual named Harman was a delegate to the Conservative Party convention.",,Labor Party | UK Labour Party | Conservative Party,Liberal Party,,0,False,0,0,1.03,,False,False,True,False,3,True,0,0,0,
+q0445,What is the population of West Township?,,ramdocs,10,free_text,answered,False,"There are two entities named West Township:
+
+*   **West Township, Marshall County, Indiana:** The population was 3,849 as of the 2020 census.
+*   **West Township, Huntingdon County, Pennsylvania:** The population was 571 at the 2010 census and 528 as of the 2000 census.",,"571 | 4,008 | 3,307","12,345 | 12,345",,0,False,0,0,2.56,,False,False,True,False,3,True,0,0,0,
+q0446,Where was Deodato primarily active in his career?,,ramdocs,9,free_text,answered,False,Deodato was primarily active in jazz.,,"Messina, Sicily | Lucca and Pisa | 1970s","Florence, Italy",,0,False,0,0,0.5,,False,False,False,False,3,True,0,0,0,
+q0447,When was Bert Smith born?,,ramdocs,5,free_text,answered,False,Bert Smith was born on 7 March 1892.,,"7 March 1892 | 4 January 1896 | May 13, 1926",12 October 1900,,0,False,0,0,0.6,,False,False,True,False,3,True,0,0,0,
+q0448,When was the Simeon Smith House built?,,ramdocs,8,free_text,answered,False,"There are two houses mentioned:
+
+*   One house built for Simeon Smith was constructed in 1798-1800.
+*   The Simeon P. Smith House, located at 154 High Street in Portsmouth, New Hampshire, was built in 1910-11.",,1810-11 | 1798-1800 | 1790s,1910-11,,0,False,0,0,2.01,,False,False,True,True,3,True,0,0,0,
+q0449,When was Harry Harvey born?,,ramdocs,3,free_text,answered,False,"There are two individuals named Harry Harvey:
+
+*   One Harry Harvey was born on June 4, 1873.
+*   Another Harry Harvey (originally named Harry Huckman) was born on December 14, 1846.",,"December 14, 1846 | June 4, 1873 | January 10, 1901",,,0,False,0,0,1.6,,False,False,True,False,3,True,0,0,0,
+q0450,When was the Museum for the Macedonian Struggle established?,,ramdocs,12,free_text,answered,False,"There are two entities mentioned:
+
+*   The building that became the Museum of the Macedonian Struggle was restored in 1955.
+*   The Museum of the Macedonian Struggle near Chromio, Kozani regional unit, Greece, was founded in 1989.",,1980 | 2010 | 1989,1955 | 1920,,0,False,0,0,1.71,,False,False,True,True,3,True,0,0,0,
+q0451,Who was Anna Palaiologina married to?,,ramdocs,10,free_text,answered,False,"Anna Palaiologina was married to Manuel II Palaiologos, John II Orsini, and the Lord of Valona, John Komnenos Asen.",,John II Orsini | John VIII Palaiologos | Andronikos III Palaiologos,Manuel II Palaiologos | Thomas Preljubović,,0,False,0,0,1.04,,False,False,True,True,3,True,0,0,0,
+q0452,"Who is the director of the film ""Don't Drink the Water""?",,ramdocs,7,free_text,answered,False,"Both the 1969 film and the 1994 film versions of ""Don't Drink the Water"" were directed by Woody Allen.",,Howard Morris | Woody Allen | Stanley Prager,Quentin Tarantino | Woody Allen,,0,False,0,0,0.99,,False,False,True,True,3,True,0,0,0,
+q0453,When were the Gibraltar Barracks established?,,ramdocs,9,free_text,answered,False,Permanent barracks were first established in Northampton around 1797 as part of the British response to the threat of the French Revolution.,,1878 | around 1797 | 1970s,1920,,0,False,0,0,0.85,,False,False,True,False,3,True,0,0,0,
+q0454,"What is the population of Moose Lake Township, Minnesota?",,ramdocs,10,free_text,answered,False,"As of the 2000 census, the population of Moose Lake Township was 142. Additionally, Moose Lake, MN is home to a population of 3.3k people.",,205 | 956 | 142,"5,000",,0,False,0,0,1.21,,False,False,True,False,3,True,0,0,0,
+q0455,What is the population of Boston Township?,,ramdocs,9,free_text,answered,False,"There are two different population figures provided for Boston Township: one source states the 2000 census found 5,000 people, while another states the 2000 census found 1,664 people.",,"1,664 people | 887 people | 4,961","5,000 people | 5,000 people",,0,False,0,0,1.43,,False,False,True,True,3,True,0,0,0,
+q0456,"Who is the director of ""The Girl on the Train""?",,ramdocs,7,free_text,answered,False,"There are two films with this title:
+- The 2013 film was directed by Larry Brand.
+- The 2016 film was directed by Tate Taylor.",,Larry Brand | Tate Taylor | André Téchiné,Quentin Tarantino,,0,False,0,0,1.11,,False,False,True,False,3,True,0,0,0,
+q0457,When was Patrick Regan born?,,ramdocs,7,free_text,answered,False,"There are multiple individuals named Patrick Regan:
+
+*   Patrick M. Regan was born on September 1, 1956.
+*   One Patrick Regan, a United States Navy sailor and peacetime Medal of Honor recipient, was born in 1852.
+*   Pat Regan, a British anti-gun activist, was born in 1955.",,"1852 | 1882 | September 1, 1956",1900,,0,False,0,0,2.27,,False,False,True,False,3,True,0,0,0,
+q0458,When did the Administrator general come into power?,,ramdocs,6,free_text,answered,False,The provided text does not contain information regarding when the Administrator general came into power.,,1 August 1848 | 2 December 1848 | 23 September 1854,,,0,False,0,0,0.54,,False,False,False,False,3,True,0,0,0,
+q0459,Where is the Grist Mill Bridge located?,,ramdocs,5,free_text,answered,False,"There are two locations associated with a Grist Mill Bridge:
+
+*   The Grist Mill Bridge, Dam and Mill Site is located along Upton Road between Island Road and the Maple River, one-half mile west of Elsie, Michigan in Duplain Township.
+*   The Grist Mill Covered Bridge is located south of the village of Jeffersonville on Canyon Road, crossing the Brewster River off Vermont Route 108 in Cambridge, Vermont.",,"Duplain Township, Michigan | Cambridge, Vermont | Lebanon, Maine",,,0,False,0,0,2.53,,False,False,True,False,3,True,0,0,0,
+q0460,When was John Lambie born?,,ramdocs,9,free_text,answered,False,"There are two individuals named John Lambie mentioned:
+
+*   One John Lambie was born on 19 March 1941.
+*   John Alexander Lambie (a Scottish footballer) was born on 18 December 1888.",,18 December 1868 | 19 March 1941 | 1833,18 December 1888,,0,False,0,0,1.61,,False,False,True,True,3,True,0,0,0,
+q0461,Where is Verona High School located?,,ramdocs,6,free_text,answered,False,"Verona High School is located at 151 Fairview Ave, Verona, NJ 07044, USA.",,"Verona, New York | Verona, Wisconsin | New Jersey","Miami, Florida",,0,False,0,0,0.81,,False,False,False,False,3,True,0,0,0,
+q0462,When was Frederick Groves born?,,ramdocs,8,free_text,answered,False,"There are two individuals named Frederick Groves mentioned:
+
+*   Frederick William Groves was born on 13 January 1891.
+*   Frederick Groves (the footballer) was born on 6 May 1892.",,"13 January 1891 | 6 May 1892 | January 28, 1924",,,0,False,0,0,1.47,,False,False,True,False,3,True,0,0,0,
+q0463,What is the length of the New England 200 race?,,ramdocs,6,free_text,answered,False,The provided text does not contain information regarding a race called the New England 200.,,200 laps | 225 laps | 175 laps,500 laps,,0,False,0,0,0.7,,False,False,False,False,3,True,0,0,0,
+q0464,When did George Horner die?,,ramdocs,8,free_text,answered,False,"There are two individuals named George Horner mentioned:
+
+*   George William Horner died in 1930.
+*   Sir George Horner died on 9 February 1677.",,9 February 1677 | 11 March 1707 | 1930,9 February 1777,,0,False,0,0,1.29,,False,False,True,False,3,True,0,0,0,
+q0465,When was the Small Astronomy Satellite launched?,,ramdocs,6,free_text,answered,False,"Small Astronomy Satellite 2 (SAS-2) was launched on 15 November 1972. Small Astronomy Satellite 3 (SAS 3) functioned from January 1, 1970 to April 1979.",,"May 7, 1975 | December 12, 1970 | 15 November 1972","January 1, 1970",,0,False,0,0,1.6,,False,False,True,True,3,True,0,0,0,
+q0466,What is the profession of Peter Jacobs?,,ramdocs,9,free_text,answered,False,There are two entities named Peter Jacobs mentioned: one is a fencer and the other is a chef.,,Fencer | Landscape architect | Triathlete,Chef | Chef,,0,False,0,0,0.8,,False,False,True,True,3,True,0,0,0,
+q0467,When was Princess Xenia born?,,ramdocs,6,free_text,answered,False,"There are conflicting records for Princess Xenia Andreevna Romanoff: one source states she was born on 10 March 1919, while other sources state she was born on 15 July 1922.",,10 March 1919 | 22 August 1903 | 22 April 1881,15 July 1922,,0,False,0,0,1.4,,False,False,True,True,3,True,0,0,0,
+q0468,What type of aircraft was involved in Flight 63?,,ramdocs,10,free_text,answered,False,"There are two different flights identified as Flight 63:
+
+*   **Toa Domestic Airlines Flight 63:** The aircraft involved was a NAMC YS-11A-217.
+*   **American Airlines Flight 63:** The aircraft involved was a Boeing 747 (specifically a Boeing 747-178).",,"Douglas DC-3 | NAMC YS-11A-217 | Space Shuttle ""Discovery""",Boeing 747 | Boeing 747,,0,False,0,0,2.17,,False,False,True,True,3,True,0,0,0,
+q0469,When is the feast day of Saint Marcellus?,,ramdocs,10,free_text,answered,False,The feast day of Saint Marcellus of Capua is 7 October.,,7 October | October 30 | 16 January,15 January | 15 December,,0,False,0,0,0.59,,False,False,True,False,3,True,0,0,0,
+q0470,Where is Unity Christian High School located?,,ramdocs,5,free_text,answered,False,"There are two schools with this name:
+- One Unity Christian High School is located along the coast of Biscayne Bay in Miami, Florida, USA.
+- Another Unity Christian High School is located along the banks of the Mississippi River in Fulton, Illinois, USA.",,"Fulton, Illinois, USA | Hudsonville, Michigan | Barrie, Ontario, Canada","Miami, Florida, USA",,0,False,0,0,1.55,,False,False,True,True,3,True,0,0,0,
+q0471,When was the People's University established?,,ramdocs,8,free_text,answered,False,"The People's University of Amsterdam was founded in 1913, and the People's University of Bangladesh was established on 14 May 1996.",,1913 | 14 May 1996 | 1940,,,0,False,0,0,1.13,,False,False,True,False,3,True,0,0,0,
+q0472,When did Shoreditch station open?,,ramdocs,5,free_text,answered,False,"There are multiple stations associated with the name Shoreditch:
+
+*   **Shoreditch railway station (North London Railway):** Opened on 1 November 1865.
+*   **Shoreditch Underground station:** Opened on 19 April 1876.",,1 November 1865 | 1876 | 27 April 2010,,,0,False,0,0,1.69,,False,False,True,False,3,True,0,0,0,
+q0473,What is the median age in Rushford?,,ramdocs,8,free_text,answered,False,"The provided text contains information for two different sets of data: one with a median age of 40 years and another with a median age of 38 years. However, the text does not specify the name of the town or entity for either set of data.",,41.9 years | 40 years | 38 years,25.7 years | 15.2 years,,0,False,0,0,1.51,,False,False,True,False,3,True,0,0,0,
+q0474,When was Scott Fitzgerald born?,,ramdocs,6,free_text,answered,False,Scott Fitzgerald (the Scottish singer and musical actor) was born on 28 April 1948.,,1969 | 1979 | 28 April 1948,1975,,0,False,0,0,0.72,,False,False,True,False,3,True,0,0,0,
+q0475,When was the Sumter County Courthouse built?,,ramdocs,8,free_text,answered,False,"There have been several courthouses for Sumter County:
+* The first was a log structure built in 1833.
+* A second was constructed in 1838.
+* A third was constructed in 1855.
+* The current two-story brick and stone building had its cornerstone laid in 1902.",,1902 | 1912-1914 | 1907,1855 | 1850,,0,False,0,0,2.15,,False,False,True,True,3,True,0,0,0,
+q0476,When was the Swedish Evangelical Lutheran Church built?,,ramdocs,9,free_text,answered,False,"There are two entities mentioned:
+
+*   The Swedish Evangelical Lutheran Church in Walnut Grove, Minn. (now known as the Trinity Lutheran Church) was erected in 1890.
+*   The Swedish Evangelical Lutheran Church in Millville, Minnesota, was built in 1874.",,1872 | 1874 | 1928,1890,,0,False,0,0,1.72,,False,False,True,True,3,True,0,0,0,
+q0477,When was the Howard County Courthouse built?,,ramdocs,9,free_text,answered,False,"The Howard County Courthouse in Cresco, Iowa, was built in 1920, and the Howard County Courthouse in St. Paul, Nebraska, was built in 1912.",,1880 | 1840-1843 | 1912,1905 | 1920,,0,False,0,0,1.12,,False,False,True,True,3,True,0,0,0,
+q0478,When was Gerhard Meidell Gerhardsen born?,,ramdocs,6,free_text,answered,False,"There are three individuals named Gerhard Meidell Gerhardsen mentioned:
+
+*   One was born on 3 June 1912.
+*   One was born on 25 April 1885.
+*   One was born in 1848.",,9 July 1848 | 25 April 1885 | 3 June 1912,,,0,False,0,0,1.79,,False,False,True,False,3,True,0,0,0,
+q0479,When was Walter Price born?,,ramdocs,8,free_text,answered,False,"There are two individuals named Walter Price mentioned:
+
+*   The Welsh footballer was born on 13 August 1896.
+*   Wally Price (Walter John Price) was born on 15 October 1930.",,2 June 1926 | 13 August 1896 | 9 October 1834,15 October 1930 | 15 October 1930,,0,False,0,0,1.52,,False,False,True,True,3,True,0,0,0,
+q0480,What is the population of Kaliganj Upazila according to the 1991 Bangladesh census?,,ramdocs,8,free_text,answered,False,"According to the 1991 Bangladesh census, Kaliganj has a population of 175,915.",,"219,126 | 225,596 | 175915",,,0,False,0,0,0.8,,False,False,True,False,3,True,0,0,0,
+q0481,Where is Chesapeake High School located?,,ramdocs,5,free_text,answered,False,"There are two high schools with this name in Maryland:
+
+*   One Chesapeake High School is located at 4798 Mountain Road in Pasadena, Maryland.
+*   The other Chesapeake High School is located in Essex, Maryland, in the southeast corner of Baltimore County.",,"Baltimore County, Maryland | Chesapeake, Ohio | Anne Arundel County","Orlando, Florida",,0,False,0,0,1.64,,False,False,False,False,3,True,0,0,0,
+q0482,"Who directed the film adaptation of ""Cry, the Beloved Country""?",,ramdocs,11,free_text,answered,False,"The provided text contains conflicting information: one section states the film was directed by Steven Spielberg, while another section identifies it as a 1951 British film by Zoltán Korda.",,Zoltán Korda | Darrell Roodt | Zoltan Korda,Steven Spielberg | Steven Spielberg,,0,False,0,0,1.14,,False,False,True,True,3,True,0,0,0,
+q0483,"Who recorded ""The Wonder of You""?",,ramdocs,6,free_text,answered,False,"""The Wonder of You"" was recorded by Vince Edwards, Ray Peterson, Ronnie Hilton, and a popular trio.",,Ray Peterson | The Sandpipers' | Elvis Presley,,,0,False,0,0,0.76,,False,False,True,False,3,True,0,0,0,
+q0484,"Who is the artist of the song ""Shy Boy""?",,ramdocs,6,free_text,answered,False,"There are two artists associated with a song titled ""Shy Boy"":
+1. The English girl group Bananarama.
+2. The South Korean girl group Secret.",,Bananarama | Secret | Katie Melua,,,0,False,0,0,1.18,,False,False,True,False,3,True,0,0,0,
+q0485,"What is the genre of the film ""Bright Lights""?",,ramdocs,4,free_text,answered,False,"There are two films titled ""Bright Lights"":
+- The 1928 film is a romantic drama.
+- The 1930 film is a musical comedy.",,Silent cartoon short | Musical comedy film | Documentary,Romantic drama,,0,False,0,0,1.17,,False,False,False,True,3,True,0,0,0,
+q0486,"Who is the artist of the album ""Something for Everybody""?",,ramdocs,7,free_text,answered,False,"There are two artists associated with an album titled ""Something for Everybody"":
+
+*   The American new wave band Devo
+*   American singer and musician Elvis Presley",,Elvis Presley | Devo | Baz Luhrmann,Taylor Swift | Taylor Swift,,0,False,0,0,1.06,,False,False,True,False,3,True,0,0,0,
+q0487,When did Sultan Ahmed ascend to the throne?,,ramdocs,10,free_text,answered,False,Ahmed I was the Sultan of the Ottoman Empire from 1603 until 1617.,,1691 | 1703 | 1603,1675 | 1700,,0,False,0,0,0.73,,False,False,True,False,3,True,0,0,0,
+q0488,What sport is Reg Parker associated with?,,ramdocs,11,free_text,answered,False,Reg Parker is associated with rugby league.,,Football | Rugby league | Bodybuilding,Cricket | Basketball,,0,False,0,0,0.36,,False,False,True,False,3,True,0,0,0,
+q0489,When and where was George Grimes born?,,ramdocs,6,free_text,answered,False,"George Grimes was born on 17 December 1835 in Ashby-de-la-Zouch, Leicestershire, England.",,"June 29, 1877 | 17 December 1835 | 1605, England",,,0,False,0,0,0.95,,False,False,True,False,3,True,0,0,0,
+q0490,What is the estimated total population of Moyale?,,ramdocs,8,free_text,answered,False,"Based on figures from the Central Statistical Agency in 2005, the estimated total population of Moyale is 25,038.",,"25,038 | 66,495 | 254,137","5,000",,0,False,0,0,1.01,,False,False,True,False,3,True,0,0,0,
+q0491,What was the rank of General Seitz?,,ramdocs,9,free_text,answered,False,General Seitz held the rank of Brigadier General.,,Brigadier General | Lieutenant General | Major General,Lieutenant Colonel,,0,False,0,0,0.4,,False,False,True,False,3,True,0,0,0,
+q0492,When was the Delta Upsilon Fraternity House built?,,ramdocs,6,free_text,answered,False,Construction of the Delta Upsilon Fraternity House began in 1920 and was completed in 1921.,,1902-1903 | 1926-27 | 1930,1920-1921,,0,False,0,0,0.77,,False,False,False,False,3,False,0,0,0,
+q0493,"Who is the main actor in the film ""Let George Do It""?",,ramdocs,6,free_text,answered,False,"There are two films with this title:
+* The 1940 film stars George Formby.
+* The 1938 film stars George Wallace.",,George Formby | George Wallace | Bob Bailey,Charlie Chaplin,,0,False,0,0,0.93,,False,False,True,False,3,True,0,0,0,
+q0494,When was the Adriatic launched?,,ramdocs,4,free_text,answered,False,"There are two ships named Adriatic mentioned:
+* One was launched in 1811 in the United States.
+* The other was launched on 17 October 1871.",,20 September 1906 | 17 October 1871 | 1811,,,0,False,0,0,1.01,,False,False,True,False,3,True,0,0,0,
+q0495,How many buildings are included in the Danville Historic District?,,ramdocs,9,free_text,answered,False,"The provided information contains two different counts for the number of contributing buildings in the Danville Historic District: one source states there are 291 contributing buildings, while another states there are 150 contributing buildings.",,291 | 48 | 272,150 | 150,,0,False,0,0,1.0,,False,False,True,True,3,True,0,0,0,
+q0496,Which country does the Supreme Electoral Tribunal belong to?,,ramdocs,10,free_text,answered,False,"There are Supreme Electoral Tribunals associated with the following countries:
+
+*   Canada: The Supreme Electoral Tribunal in Canada oversees the electoral process and ensures fair elections.
+*   Guatemala: The Supreme Electoral Tribunal of the Republic of Guatemala is the highest authority in electoral matters.",,Brazil | Republic of Honduras | Guatemala,Argentina | Canada,,0,False,0,0,1.21,,False,False,True,True,3,True,0,0,0,
+q0497,What is the historical period associated with the John Mason House?,,ramdocs,5,free_text,answered,False,"There are two houses with this name:
+
+*   **John Mason House (Lexington, Massachusetts):** This is a First Period house.
+*   **John Mason House (Winchester, Massachusetts):** This house was built sometime in the 1860s.",,"First Period | 1860s, Italianate style | 1870s-1880s",,,0,False,0,0,1.22,,False,False,True,False,3,True,0,0,0,
+q0498,When was the Elks organization founded?,,ramdocs,7,free_text,answered,False,"The Elks of Canada was founded in 1912, while the Benevolent and Protective Order of Elks in the United States was founded in 1868.",,1912 | 1897 | 1878,1895 | 1868,,0,False,0,0,0.84,,False,False,True,True,3,True,0,0,0,
+q0499,When was Admiral King-Hall born?,,ramdocs,11,free_text,answered,False,Admiral Sir George Fowler King–Hall was born on 14 August 1900.,,14 August 1850 | 15 March 1862 | 11 March 1816,14 August 1900 | 14 August 1900,,0,False,0,0,0.55,,False,False,False,True,3,False,0,0,0,

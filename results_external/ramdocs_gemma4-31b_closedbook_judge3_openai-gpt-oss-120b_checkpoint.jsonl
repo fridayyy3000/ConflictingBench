@@ -1,0 +1,500 @@
+{"qid": "q0001", "label": "Inc", "reason": "The system answered ice hockey, which contradicts the gold answer of American football", "judge_latency_s": 1.37}
+{"qid": "q0006", "label": "Inc", "reason": "The answer gives 1966, which contradicts the correct 1902 date and is not a listed misinformation value", "judge_latency_s": 1.53}
+{"qid": "q0010", "label": "Inc", "reason": "The system did not provide the known correct answer (Ahmed Hussen) and incorrectly claimed ambiguity, thus failing to give the gold answer.", "judge_latency_s": 1.58}
+{"qid": "q0005", "label": "Inc", "reason": "The system refused to answer despite the known gold answer (Football), providing no correct information.", "judge_latency_s": 1.64}
+{"qid": "q0007", "label": "Inc", "reason": "The system answered that Justin Thomas is a golfer, which is the known misinformation, not the correct sport (American football).", "judge_latency_s": 1.72}
+{"qid": "q0008", "label": "Inc", "reason": "The system does not provide the known correct birth date (February 8, 1900) and instead claims insufficient evidence.", "judge_latency_s": 1.74}
+{"qid": "q0004", "label": "Inc", "reason": "The answer gives an incorrect establishment date (1587) instead of the gold answer 1856", "judge_latency_s": 1.75}
+{"qid": "q0013", "label": "Inc", "reason": "The system refused to answer despite the known correct artist (Carpenters), thus failing to provide the gold answer.", "judge_latency_s": 1.87}
+{"qid": "q0014", "label": "Inc", "reason": "The answer fails to provide the gold answer 'Needtobreathe' and instead gives unrelated, incorrect information.", "judge_latency_s": 1.98}
+{"qid": "q0015", "label": "FC", "reason": "The answer correctly identifies football as the sport associated with Doak and does not include any misinformation.", "judge_latency_s": 2.02}
+{"qid": "q0012", "label": "Inc", "reason": "The answer does not provide the gold answer Blitzen Trapper and instead gives unrelated artists, failing to answer the question correctly.", "judge_latency_s": 2.19}
+{"qid": "q0002", "label": "Inc", "reason": "The system refused to provide the known correct director (Mahesh Bhatt) despite the gold answer being available.", "judge_latency_s": 2.22}
+{"qid": "q0011", "label": "Inc", "reason": "The answer gives an incorrect length (60–70 km) and does not include the correct 98 km value.", "judge_latency_s": 2.31}
+{"qid": "q0003", "label": "Inc", "reason": "The answer provides incorrect sports (American football) and does not mention the gold answer AFL", "judge_latency_s": 2.35}
+{"qid": "q0000", "label": "Inc", "reason": "The answer fails to provide the correct population of 3,559 and gives incorrect approximate figures for other locations.", "judge_latency_s": 2.38}
+{"qid": "q0009", "label": "Inc", "reason": "The answer gives an incorrect population (~5,000) and adds an unrelated city, failing to provide the gold value of 4,411", "judge_latency_s": 2.44}
+{"qid": "q0019", "label": "Inc", "reason": "The system answer gives San Diego Sockers as the winner, which contradicts the gold answer Philadelphia Atoms", "judge_latency_s": 1.18}
+{"qid": "q0022", "label": "Inc", "reason": "The system answered Natchitoches, Louisiana, which does not match the gold answer Cloutierville, Louisiana", "judge_latency_s": 1.32}
+{"qid": "q0016", "label": "Inc", "reason": "The answer provides an incorrect population estimate and omits the gold answer of 117,088", "judge_latency_s": 1.76}
+{"qid": "q0023", "label": "Inc", "reason": "The answer provides incorrect artists and omits the gold answer David S. Ware", "judge_latency_s": 1.51}
+{"qid": "q0020", "label": "Inc", "reason": "The answer states Fontbonne is a university, contradicting the gold answer of 'academy' and presenting a known misinformation value", "judge_latency_s": 1.74}
+{"qid": "q0018", "label": "Inc", "reason": "The system refuses to answer even though the correct sport (Football) is known, thus failing to provide the gold answer.", "judge_latency_s": 2.04}
+{"qid": "q0026", "label": "Inc", "reason": "The answer gives Hindi, which contradicts the gold answer Assamese-language and is not a known misinformation value", "judge_latency_s": 1.42}
+{"qid": "q0021", "label": "Inc", "reason": "The system abstains and provides no answer despite the known correct death date of 1 December 1737", "judge_latency_s": 1.97}
+{"qid": "q0029", "label": "Inc", "reason": "The system does not provide the known gold answer (Houghton County, Michigan) and instead claims insufficient evidence.", "judge_latency_s": 1.37}
+{"qid": "q0031", "label": "FC", "reason": "The answer correctly states Iowa, matching the gold answer, and adds accurate detail without any incorrect information.", "judge_latency_s": 1.34}
+{"qid": "q0025", "label": "Inc", "reason": "The system abstains and does not provide the known correct answer (Republican), which is required.", "judge_latency_s": 1.86}
+{"qid": "q0028", "label": "Inc", "reason": "The system refused to provide the gold answer \"A convention\" and claimed insufficient evidence, which is an incorrect response when the correct answer is known.", "judge_latency_s": 1.75}
+{"qid": "q0030", "label": "Inc", "reason": "The answer gives incorrect directors and does not include the correct director Frank Oz.", "judge_latency_s": 1.73}
+{"qid": "q0032", "label": "Inc", "reason": "The answer gives 61,111, which does not match the gold answer of about 50,000 and is not a listed misinformation value.", "judge_latency_s": 1.36}
+{"qid": "q0034", "label": "Inc", "reason": "The system refused to provide the known gold answer (Biologist) and gave no correct information.", "judge_latency_s": 1.23}
+{"qid": "q0033", "label": "Inc", "reason": "The system gave a population of 1,114, which does not match the gold answer of 428 and is therefore incorrect.", "judge_latency_s": 1.34}
+{"qid": "q0027", "label": "Inc", "reason": "The answer does not provide the gold answer 'Short film' and instead gives unrelated information about other works, failing to answer the question correctly.", "judge_latency_s": 2.34}
+{"qid": "q0038", "label": "Inc", "reason": "The system did not provide the known correct answer (Boston) and instead claimed insufficient evidence.", "judge_latency_s": 0.97}
+{"qid": "q0037", "label": "Inc", "reason": "The system does not provide the gold answer (Miami, Florida) and instead claims insufficient evidence.", "judge_latency_s": 1.0}
+{"qid": "q0039", "label": "Inc", "reason": "The system refused to give the known correct birth date despite it being available, which is an incorrect response.", "judge_latency_s": 1.25}
+{"qid": "q0036", "label": "Inc", "reason": "The answer gives an incorrect sport (baseball) and does not mention the gold answer Hockey", "judge_latency_s": 1.75}
+{"qid": "q0044", "label": "FC", "reason": "The answer correctly states that 221B Baker Street is a board game, matching the gold answer with no incorrect information.", "judge_latency_s": 1.15}
+{"qid": "q0035", "label": "Inc", "reason": "The answer fails to provide the correct year 1861 and instead gives unrelated dates, making it incorrect.", "judge_latency_s": 1.86}
+{"qid": "q0040", "label": "Inc", "reason": "The system abstains and provides no answer despite the known birth date (2 July 1829) being available.", "judge_latency_s": 1.7}
+{"qid": "q0043", "label": "Inc", "reason": "The answer gives incorrect population figures (46,000 and 150,000) and does not include the gold answer of 2,772", "judge_latency_s": 1.41}
+{"qid": "q0041", "label": "Inc", "reason": "The system abstains and does not provide the known correct answer (1921), which is required.", "judge_latency_s": 1.74}
+{"qid": "q0017", "label": "PC", "reason": "The answer includes the correct medium (film) but also adds an unrelated book/story, so it is not fully correct.", "judge_latency_s": 4.27}
+{"qid": "q0048", "label": "Inc", "reason": "The system abstains despite the known correct birth date (15 May 1885) being available, thus failing to provide the gold answer.", "judge_latency_s": 1.25}
+{"qid": "q0024", "label": "Inc", "reason": "The answer fails to provide the gold answer 'novel' and incorrectly describes the work as a non-fiction book and mentions unrelated mediums", "judge_latency_s": 4.02}
+{"qid": "q0042", "label": "Inc", "reason": "The answer fails to provide the gold answer 'super-powered characters' and instead gives unrelated ambiguous information.", "judge_latency_s": 2.16}
+{"qid": "q0049", "label": "Inc", "reason": "The system answered 'golf' which is neither the gold answer (ice hockey) nor a listed misinformation value, thus it is factually incorrect.", "judge_latency_s": 1.52}
+{"qid": "q0047", "label": "Inc", "reason": "The answer gives tennis and golf instead of the correct sport Snooker, providing incorrect information and omitting the gold answer.", "judge_latency_s": 1.74}
+{"qid": "q0045", "label": "Inc", "reason": "The answer does not include the gold population of 459 and provides unrelated township populations instead.", "judge_latency_s": 2.02}
+{"qid": "q0050", "label": "FC", "reason": "The answer correctly identifies The 1975 as a band, matching the gold answer, and adds accurate supporting details without any misinformation.", "judge_latency_s": 1.68}
+{"qid": "q0052", "label": "Inc", "reason": "The system abstains despite the known gold answer (1962), providing no answer.", "judge_latency_s": 1.2}
+{"qid": "q0051", "label": "Inc", "reason": "The system abstained and gave no date, missing the known answer of about 1835", "judge_latency_s": 1.52}
+{"qid": "q0057", "label": "FC", "reason": "The answer correctly provides the gold answer 'Tabla' with no incorrect information.", "judge_latency_s": 1.04}
+{"qid": "q0054", "label": "FC", "reason": "The answer correctly states football as Vestri's sport and does not include any misinformation.", "judge_latency_s": 1.35}
+{"qid": "q0056", "label": "Inc", "reason": "The system answered Madonna, which is neither the correct artist Best Coast nor a listed misinformation value, thus providing an incorrect answer.", "judge_latency_s": 1.3}
+{"qid": "q0055", "label": "Inc", "reason": "The answer gives an incorrect location (Arecibo) and does not provide the gold answer Aguadilla, thus presenting misinformation.", "judge_latency_s": 1.62}
+{"qid": "q0046", "label": "Inc", "reason": "The answer provides incorrect husbands (Sneferu, Khufu, Raneferef) and does not include the gold answers Shepseskaf and Userkaf", "judge_latency_s": 2.79}
+{"qid": "q0053", "label": "Inc", "reason": "The answer fails to provide the gold answer 'Slim the Mobster' and incorrectly claims there is no single recognized album, contradicting the known correct information.", "judge_latency_s": 2.09}
+{"qid": "q0065", "label": "Inc", "reason": "The system gave an incorrect population (≈4,500) instead of the gold answer 7,254.", "judge_latency_s": 1.09}
+{"qid": "q0059", "label": "Inc", "reason": "The system abstains and provides no gold answer despite the known correct locations (Oregon and Wisconsin).", "judge_latency_s": 1.7}
+{"qid": "q0064", "label": "Inc", "reason": "The system refuses to answer despite the known correct answer (Defender), providing no correct information.", "judge_latency_s": 1.47}
+{"qid": "q0063", "label": "Inc", "reason": "The system gave 1,111 people, which does not match the gold answer of 1,791 and is therefore incorrect.", "judge_latency_s": 1.53}
+{"qid": "q0058", "label": "Inc", "reason": "The system did not provide the gold answer (American football) and instead claimed insufficient evidence.", "judge_latency_s": 2.02}
+{"qid": "q0069", "label": "Inc", "reason": "The system answered football, a known misinformation value, instead of the correct answer cricket", "judge_latency_s": 1.34}
+{"qid": "q0071", "label": "Inc", "reason": "The system did not provide the known correct location (Thimphu, Bhutan) and instead claimed insufficient evidence.", "judge_latency_s": 1.06}
+{"qid": "q0067", "label": "Inc", "reason": "The system abstained despite the known correct answer (Joe Boyd) being available, which is an incorrect response.", "judge_latency_s": 1.74}
+{"qid": "q0061", "label": "Inc", "reason": "The answer fails to mention the gold answer (Gençlerbirliği) and provides incorrect teams as the stadium's home venue.", "judge_latency_s": 2.25}
+{"qid": "q0072", "label": "Inc", "reason": "The system did not provide the known answer (about 1820) and incorrectly claimed no information was available.", "judge_latency_s": 1.2}
+{"qid": "q0066", "label": "Inc", "reason": "The system refused to provide the known gold answer (Republican) and claimed insufficient evidence, which is incorrect behavior.", "judge_latency_s": 1.94}
+{"qid": "q0068", "label": "Inc", "reason": "The answer does not include the correct date October 4, 2016 and provides incorrect performance dates.", "judge_latency_s": 1.87}
+{"qid": "q0073", "label": "Inc", "reason": "The system does not provide the gold answer \"Baroque\" and instead claims insufficient evidence, failing to answer the question.", "judge_latency_s": 1.27}
+{"qid": "q0070", "label": "Inc", "reason": "The answer fails to mention the gold answer Cut Copy and provides unrelated artists, thus not giving the correct album artist.", "judge_latency_s": 2.05}
+{"qid": "q0074", "label": "Inc", "reason": "The answer does not provide the gold answer 'Boys Like Girls' and instead claims ambiguity, failing to give the correct artist.", "judge_latency_s": 1.46}
+{"qid": "q0078", "label": "Inc", "reason": "The system did not provide the known correct answer (1904) and instead claimed no record, which is incorrect.", "judge_latency_s": 1.27}
+{"qid": "q0060", "label": "PC", "reason": "The answer includes the correct gold answer (poetry) but also adds the misinformation (painting) as an alternative, making it only partially correct.", "judge_latency_s": 3.12}
+{"qid": "q0079", "label": "Inc", "reason": "The system answer gives an incorrect location (Puerto Rico) instead of the gold answer Arizona", "judge_latency_s": 1.3}
+{"qid": "q0062", "label": "Inc", "reason": "The answer adds cricket, a known misinformation value, as an additional sport, which is incorrect despite including the correct ice hockey information.", "judge_latency_s": 3.29}
+{"qid": "q0085", "label": "Inc", "reason": "The system did not provide the gold answer 'Republican' and instead claimed insufficient evidence.", "judge_latency_s": 0.99}
+{"qid": "q0080", "label": "Inc", "reason": "The system gave an incorrect release date (November 27, 2009) instead of the correct November 1, 2007.", "judge_latency_s": 1.39}
+{"qid": "q0077", "label": "Inc", "reason": "The system refused to provide the known birth date despite the gold answer being available, which is an incorrect response.", "judge_latency_s": 1.91}
+{"qid": "q0081", "label": "Inc", "reason": "The answer gives 1627, which is neither the correct year 1912 nor the known misinformation, thus it is factually incorrect.", "judge_latency_s": 1.39}
+{"qid": "q0083", "label": "Inc", "reason": "The system gave a population of 611, which does not match the gold answer of 1,294 and is therefore incorrect.", "judge_latency_s": 1.33}
+{"qid": "q0075", "label": "PC", "reason": "The answer includes the gold city Boston but hedges by claiming ambiguity and listing other possible locations, thus not providing a definitive answer", "judge_latency_s": 2.31}
+{"qid": "q0087", "label": "Inc", "reason": "The system abstained despite the known correct answer (The Burgess Company) being available.", "judge_latency_s": 1.12}
+{"qid": "q0086", "label": "Inc", "reason": "The system abstained and did not provide the gold answer 'Cardinal', which is required.", "judge_latency_s": 1.41}
+{"qid": "q0082", "label": "Inc", "reason": "The system refused to provide the known gold answer (Republican) and claimed insufficient evidence, which is incorrect.", "judge_latency_s": 1.79}
+{"qid": "q0089", "label": "Inc", "reason": "The system did not provide the known birth date (September 1888) and instead claimed insufficient evidence.", "judge_latency_s": 1.07}
+{"qid": "q0091", "label": "Inc", "reason": "The system did not provide the known gold answer (Republican) and instead claimed insufficient evidence.", "judge_latency_s": 1.2}
+{"qid": "q0093", "label": "Inc", "reason": "The system did not provide the known median age of 42.7 years, giving an insufficient evidence response instead.", "judge_latency_s": 1.09}
+{"qid": "q0096", "label": "Inc", "reason": "The system did not provide the gold answer (American football) and incorrectly claimed insufficient evidence.", "judge_latency_s": 1.05}
+{"qid": "q0090", "label": "Inc", "reason": "The answer does not mention the gold answer Jade Valerie and instead lists unrelated artists, providing no correct information.", "judge_latency_s": 1.69}
+{"qid": "q0098", "label": "Inc", "reason": "The system does not provide the known population of 1,066 and incorrectly claims insufficient evidence.", "judge_latency_s": 1.07}
+{"qid": "q0084", "label": "Inc", "reason": "The answer never mentions the correct 996 cc engine size and instead lists other sizes, failing to provide the gold answer", "judge_latency_s": 2.6}
+{"qid": "q0099", "label": "Inc", "reason": "The system did not provide the correct artist (Park Ji-yeon) and incorrectly claimed insufficient evidence.", "judge_latency_s": 1.09}
+{"qid": "q0092", "label": "Inc", "reason": "The system answer gives an incorrect answer (Sinestro Corps) instead of the gold answer 'Yellow lantern banksia'", "judge_latency_s": 1.66}
+{"qid": "q0094", "label": "Inc", "reason": "The answer gives the poet William McGonagall, a known misinformation, instead of the correct answer that 'The Great McGonagall' is a film.", "judge_latency_s": 1.69}
+{"qid": "q0101", "label": "Inc", "reason": "The answer gives the misinformation year 1990 instead of the correct years 1987 or 1988", "judge_latency_s": 1.29}
+{"qid": "q0095", "label": "Inc", "reason": "The answer adds association football, an incorrect sport, alongside the correct rugby union, violating the gold answer", "judge_latency_s": 2.03}
+{"qid": "q0103", "label": "Inc", "reason": "The system gave no answer despite the known correct artists, thus failing to provide the required gold answers.", "judge_latency_s": 1.36}
+{"qid": "q0097", "label": "Inc", "reason": "The system answered rugby league, which does not match the gold answer Football and is not a listed misinformation value, making it incorrect.", "judge_latency_s": 2.32}
+{"qid": "q0104", "label": "Inc", "reason": "The system gave no answer despite known gold dates, thus failing to provide the required information.", "judge_latency_s": 1.53}
+{"qid": "q0088", "label": "Inc", "reason": "The answer includes the known misinformation value 'Novel' as a valid medium, which makes the response incorrect despite mentioning the correct film medium.", "judge_latency_s": 3.34}
+{"qid": "q0100", "label": "Inc", "reason": "The answer gives an incorrect establishment year (2003) and fails to provide either of the gold dates (January 2012 and June 21, 1998).", "judge_latency_s": 2.22}
+{"qid": "q0102", "label": "Inc", "reason": "The answer does not mention the gold artists Dynasty or Jeremy Camp and instead provides unrelated artists, failing to give any correct answer.", "judge_latency_s": 2.2}
+{"qid": "q0108", "label": "Inc", "reason": "The system provided an incorrect director (Victor Savelyev) and did not include any of the gold answers (Raoul Walsh, William Parke).", "judge_latency_s": 1.43}
+{"qid": "q0110", "label": "Inc", "reason": "The system provided no population figures despite the gold answers being known, thus refusing to answer.", "judge_latency_s": 1.46}
+{"qid": "q0105", "label": "Inc", "reason": "The system answered Ahmed III, which is not one of the gold answers (Mustafa II or Malik Shah I) and is factually incorrect.", "judge_latency_s": 2.04}
+{"qid": "q0111", "label": "Inc", "reason": "The system gave no election dates, failing to provide the required gold answers of 1898 and 1855.", "judge_latency_s": 1.53}
+{"qid": "q0106", "label": "PC", "reason": "The answer includes one correct director (Elia Kazan) but omits the other gold answer (Franco Giraldi)", "judge_latency_s": 2.01}
+{"qid": "q0076", "label": "Inc", "reason": "The answer includes the correct operator but also incorrectly adds Seibu Railway and Tobu Railway, providing false information.", "judge_latency_s": 5.38}
+{"qid": "q0109", "label": "Inc", "reason": "The answer does not mention the gold artists In-Flight Safety or Tracy Lawrence, providing no correct answer.", "judge_latency_s": 2.15}
+{"qid": "q0114", "label": "Inc", "reason": "The system gave no answer despite the gold answers being American football and Ice hockey, thus failing to provide the required information.", "judge_latency_s": 1.6}
+{"qid": "q0113", "label": "PC", "reason": "The answer only mentions ice hockey and omits the other correct sport (baseball) for the other Doug Harvey.", "judge_latency_s": 2.0}
+{"qid": "q0117", "label": "Inc", "reason": "The answer provides no population figures despite the gold answers being 1,243 and 924, thus failing to supply the required information.", "judge_latency_s": 1.6}
+{"qid": "q0119", "label": "Inc", "reason": "The answer provides no population figures, missing both gold answers (4,624 and 2,097) and thus fails to answer the question.", "judge_latency_s": 1.49}
+{"qid": "q0116", "label": "Inc", "reason": "The system provides no answer despite known gold answers (Baseball and American football) and incorrectly claims insufficient evidence.", "judge_latency_s": 1.9}
+{"qid": "q0118", "label": "Inc", "reason": "The system refused to answer and claimed ambiguity instead of providing the known correct architects William E. Parsons and Carl A", "judge_latency_s": 1.97}
+{"qid": "q0112", "label": "PC", "reason": "The answer only gives the 1958 start date (and without month) and omits the second gold answer of June 1936.", "judge_latency_s": 2.97}
+{"qid": "q0121", "label": "Inc", "reason": "The system provided no answer despite the gold dates being known, thus failing to supply the required information.", "judge_latency_s": 1.85}
+{"qid": "q0124", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known, thus failing to provide the required median ages.", "judge_latency_s": 1.69}
+{"qid": "q0125", "label": "Inc", "reason": "The answer gives an incorrect war (Tigray War) and does not mention the First or Second Boer Wars, which are the gold answers.", "judge_latency_s": 1.59}
+{"qid": "q0120", "label": "PC", "reason": "The answer includes one gold answer (Eddie Valiant) but omits the other gold answer (Roger Rabbit), making it incomplete.", "judge_latency_s": 2.32}
+{"qid": "q0107", "label": "Inc", "reason": "The answer only gives the UK and omits Australia, and incorrectly adds India as a 100 Squadron, introducing a non‑gold answer.", "judge_latency_s": 3.91}
+{"qid": "q0115", "label": "Inc", "reason": "The answer gives an incorrect genre (film noir/crime drama) for the 1958 film instead of the gold gangster thriller, thus providing misinformation.", "judge_latency_s": 2.87}
+{"qid": "q0127", "label": "Inc", "reason": "The answer gives incorrect population numbers (≈53,000 and ≈315,000) that do not match any of the gold answers (81,615 and 963,022).", "judge_latency_s": 1.75}
+{"qid": "q0123", "label": "PC", "reason": "The answer mentions the actor Peter Bergman but omits the writer and comedian Peter Bergman, so it is incomplete.", "judge_latency_s": 2.5}
+{"qid": "q0126", "label": "Inc", "reason": "The answer provides no gold artists (Bradley Joseph or Joe McElderry) and incorrectly claims ambiguity, failing to give the required answer.", "judge_latency_s": 2.07}
+{"qid": "q0128", "label": "Inc", "reason": "The answer provides no gold answer and incorrectly claims insufficient evidence despite known correct parties being Liberal-Progressives and Quebec Liberal Party", "judge_latency_s": 1.76}
+{"qid": "q0131", "label": "FC", "reason": "The answer lists both the play and the film, matching all gold answers and includes no misinformation.", "judge_latency_s": 1.68}
+{"qid": "q0134", "label": "Inc", "reason": "The system gave no dates, failing to provide the required gold answers.", "judge_latency_s": 1.31}
+{"qid": "q0122", "label": "Inc", "reason": "The answer gives an incorrect kuna introduction date, omits the 26 July 1941 date, and adds unrelated Euro information.", "judge_latency_s": 3.11}
+{"qid": "q0132", "label": "Inc", "reason": "The answer provides unrelated meanings (Rolled Steel Joist, Regional Senior Judge) and does not include any of the gold answers (Richard Speight Jr or Rock Street Journal).", "judge_latency_s": 1.95}
+{"qid": "q0135", "label": "Inc", "reason": "The system abstains despite known gold answers, providing no population data.", "judge_latency_s": 1.72}
+{"qid": "q0137", "label": "Inc", "reason": "The system abstains and provides no gold answer despite the correct birth dates being known", "judge_latency_s": 1.8}
+{"qid": "q0142", "label": "Inc", "reason": "The answer provides no gold answers (Pakistan and Peru) and refuses to answer despite the information being available.", "judge_latency_s": 1.32}
+{"qid": "q0140", "label": "Inc", "reason": "The answer provides no gold answer and claims insufficient evidence despite known correct professions being available", "judge_latency_s": 1.53}
+{"qid": "q0133", "label": "Inc", "reason": "The answer does not mention the required artists John Hartford or Westlife, providing only a vague statement without the gold answers.", "judge_latency_s": 2.45}
+{"qid": "q0139", "label": "Inc", "reason": "The system refused to provide the known gold answers (741 and 472) and gave no answer, which is incorrect behavior when the information is available.", "judge_latency_s": 2.08}
+{"qid": "q0136", "label": "Inc", "reason": "The answer omits the gold dates (1972, 1970) and provides incorrect founding years (1923, 1945)", "judge_latency_s": 2.36}
+{"qid": "q0141", "label": "Inc", "reason": "The system gave no answer despite known correct sports (Tennis, Baseball, Football) being available", "judge_latency_s": 1.8}
+{"qid": "q0144", "label": "Inc", "reason": "The system gave no population figures despite the gold answers being known (681 and 2,355), thus failing to provide the required answer.", "judge_latency_s": 1.39}
+{"qid": "q0143", "label": "Inc", "reason": "The answer gives a population (1,531) that matches neither of the gold values (3,292 or 533) and does not include any correct answer.", "judge_latency_s": 1.79}
+{"qid": "q0145", "label": "Inc", "reason": "The answer states Heubach is in the chemical pigments industry, which does not match any of the gold answers (porcelain-headed bisque dolls or underwear manufacturers).", "judge_latency_s": 1.8}
+{"qid": "q0147", "label": "Inc", "reason": "The answer provides no population figures, missing both gold answers (120,000 and 40,147).", "judge_latency_s": 1.35}
+{"qid": "q0146", "label": "Inc", "reason": "The answer gives 2003, which is neither gold (1866 nor 2004) and omits the 1866 date, thus providing incorrect information.", "judge_latency_s": 1.77}
+{"qid": "q0130", "label": "PC", "reason": "The answer mentions Telugu but omits the other gold language Hindi, making it incomplete.", "judge_latency_s": 3.79}
+{"qid": "q0129", "label": "Inc", "reason": "The answer includes incorrect locations and omits the gold answer Hamlin, West Virginia", "judge_latency_s": 3.88}
+{"qid": "q0138", "label": "Inc", "reason": "The system refused to provide any answer despite the gold answers (Quarterback and Linebacker) being available.", "judge_latency_s": 2.9}
+{"qid": "q0148", "label": "Inc", "reason": "The answer provides an incorrect broadcast format (Classic Hits) that does not match any gold answer and is not a known misinformation value.", "judge_latency_s": 1.78}
+{"qid": "q0151", "label": "Inc", "reason": "The system provides no birth date despite known correct answers, effectively refusing to answer.", "judge_latency_s": 1.59}
+{"qid": "q0150", "label": "Inc", "reason": "The answer gives entirely incorrect creators and does not include any of the gold answers Missy \"Misdemeanor\" Elliott or Peter Gabriel.", "judge_latency_s": 1.9}
+{"qid": "q0155", "label": "Inc", "reason": "The system answered 'Coldplay', which is neither of the gold answers (Ian Brown or Mike Oldfield) and is therefore incorrect.", "judge_latency_s": 1.78}
+{"qid": "q0157", "label": "Inc", "reason": "The answer provides no gold dates and incorrectly states there is no release date, contradicting the known correct dates", "judge_latency_s": 1.62}
+{"qid": "q0154", "label": "Inc", "reason": "The system provided no founding date despite the known correct answers (1989 and 1981), thus failing to supply any gold answer.", "judge_latency_s": 1.8}
+{"qid": "q0153", "label": "PC", "reason": "The answer includes one correct artist (John Coltrane) but omits the other gold answer (The Boo Radleys).", "judge_latency_s": 1.89}
+{"qid": "q0149", "label": "Inc", "reason": "The system answer does not mention either gold artist (Shae Jones or the Go-Go's) and provides an unrelated response.", "judge_latency_s": 2.75}
+{"qid": "q0156", "label": "Inc", "reason": "The answer fails to mention either of the correct artists (Anthrax or Joe Jackson) and provides unrelated, vague information instead.", "judge_latency_s": 2.31}
+{"qid": "q0158", "label": "Inc", "reason": "The answer gives Phormio as husband, which is neither of the gold answers (Cleonymus or Cleombrotus II) and is factually incorrect.", "judge_latency_s": 1.92}
+{"qid": "q0159", "label": "Inc", "reason": "The answer gives no gold professions (Singer, Badminton player) and instead lists incorrect ones (actress, golfer).", "judge_latency_s": 1.9}
+{"qid": "q0164", "label": "Inc", "reason": "The system abstains and provides no gold answer despite the correct professions being known", "judge_latency_s": 1.44}
+{"qid": "q0165", "label": "Inc", "reason": "The answer gives Rajendra Chola I, which does not match any of the gold answers (Kulothunga Chola I or Karunakara Tondaiman) and is factually incorrect.", "judge_latency_s": 1.54}
+{"qid": "q0163", "label": "Inc", "reason": "The system abstains and provides no size information, missing the gold answer(s) and thus is incorrect.", "judge_latency_s": 2.25}
+{"qid": "q0166", "label": "Inc", "reason": "The system gave no answer despite the gold answers being American football and Baseball, thus failing to provide the required information.", "judge_latency_s": 1.45}
+{"qid": "q0152", "label": "PC", "reason": "The answer includes Zamoskvoretskaya line but omits the other gold answer, Koltsevaya line, making it incomplete.", "judge_latency_s": 3.14}
+{"qid": "q0162", "label": "Inc", "reason": "The answer includes an incorrect profession (photographer) and fails to provide the gold answer 'Writer' while only partially matching the gold answer 'Basketball player'", "judge_latency_s": 2.35}
+{"qid": "q0169", "label": "Inc", "reason": "The system gave no answer despite the known correct owners, missing both gold answers.", "judge_latency_s": 1.47}
+{"qid": "q0170", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known, thus failing to provide the required professions.", "judge_latency_s": 1.5}
+{"qid": "q0172", "label": "Inc", "reason": "The system gave no answer despite known correct sports (middle distance running and ice hockey) being available.", "judge_latency_s": 1.46}
+{"qid": "q0168", "label": "PC", "reason": "The answer includes one correct gold artist (Timbaland) but omits the other valid gold answer (Twelve Gauge Valentine).", "judge_latency_s": 2.07}
+{"qid": "q0171", "label": "Inc", "reason": "The answer gives incorrect establishment dates and does not include any of the gold answers (1874 or 1893‑1896).", "judge_latency_s": 1.83}
+{"qid": "q0180", "label": "Inc", "reason": "The system answered New York, which is neither of the gold answers (Missouri or Texas) and provides no correct information.", "judge_latency_s": 1.34}
+{"qid": "q0181", "label": "FC", "reason": "The answer correctly lists both the novel and the film, matching all gold answers without any incorrect information.", "judge_latency_s": 1.34}
+{"qid": "q0174", "label": "PC", "reason": "The answer correctly identifies Robin Wright as an actress but omits her director role and fails to mention the separate Robin Wright who is an author and journalist.", "judge_latency_s": 2.24}
+{"qid": "q0173", "label": "Inc", "reason": "The answer provides 'Romance' as the genre, which does not match any of the gold answers (Studio album, Film) and omits the required answers.", "judge_latency_s": 2.36}
+{"qid": "q0179", "label": "Inc", "reason": "The answer fails to mention the gold locations (Portland, Jamaica and Butte County, California) and instead lists unrelated places.", "judge_latency_s": 1.87}
+{"qid": "q0177", "label": "Inc", "reason": "The answer fails to mention the gold artists Doro and Slaughter and instead provides unrelated, incorrect information.", "judge_latency_s": 2.13}
+{"qid": "q0182", "label": "Inc", "reason": "The system gave no answer despite known correct dates (1912 and 1874), providing an insufficient‑evidence refusal instead of the gold answers.", "judge_latency_s": 1.99}
+{"qid": "q0161", "label": "Inc", "reason": "The answer mentions only a play and adds incorrect mediums (novels/stories) while omitting the film, thus providing false information.", "judge_latency_s": 4.77}
+{"qid": "q0178", "label": "Inc", "reason": "The answer gives an incorrect establishment date (October 10, 1806) and omits both correct dates (September 22, 1804 and August 26, 1849).", "judge_latency_s": 2.55}
+{"qid": "q0176", "label": "Inc", "reason": "The system answered 'Garbage', which is neither of the gold answers (Placebo or Sandra Bernhard) and is factually incorrect.", "judge_latency_s": 2.73}
+{"qid": "q0184", "label": "Inc", "reason": "The answer provides no population figures despite gold answers of 70 and 4, thus failing to supply the required information.", "judge_latency_s": 1.94}
+{"qid": "q0189", "label": "FC", "reason": "The answer correctly states Punjabi, matching the gold answer without any incorrect information", "judge_latency_s": 1.16}
+{"qid": "q0183", "label": "Inc", "reason": "The system answer gives Ginuwine, which is neither a gold answer (T-ara nor Miyavi) nor a listed misinformation, thus it is factually incorrect.", "judge_latency_s": 2.2}
+{"qid": "q0186", "label": "Inc", "reason": "The answer provides no sport information, missing both gold answers (volleyball and middle-distance running events).", "judge_latency_s": 1.74}
+{"qid": "q0175", "label": "Inc", "reason": "The answer includes an incorrect artist (Michelangelo) and omits the gold answer Massimo Stanzione", "judge_latency_s": 3.66}
+{"qid": "q0187", "label": "Inc", "reason": "The answer provides a population (5,311) that matches neither of the gold values (11,012 or 3,998) and does not acknowledge the correct alternatives.", "judge_latency_s": 1.86}
+{"qid": "q0188", "label": "Inc", "reason": "The answer gives an incorrect date (August 10, 1819) that does not match any of the gold answers (29 March 1814 or 16 March 1818).", "judge_latency_s": 2.1}
+{"qid": "q0185", "label": "Inc", "reason": "The answer gives an incorrect director (William Girdler) and fails to provide the correct directors Brian Trenchard‑Smith and Jon Hewitt.", "judge_latency_s": 2.7}
+{"qid": "q0167", "label": "Inc", "reason": "The answer only gives 'novel', omitting the required 'film' and presents a known misinformation value as the sole answer", "judge_latency_s": 5.12}
+{"qid": "q0193", "label": "Inc", "reason": "The answer provides an incorrect construction year (1867) and omits both correct years 1875 and 1856", "judge_latency_s": 1.51}
+{"qid": "q0191", "label": "Inc", "reason": "The answer gives unrelated user groups instead of the gold answers indicating the airport is city- or county-owned public-use", "judge_latency_s": 1.98}
+{"qid": "q0194", "label": "Inc", "reason": "The system gave no dates, missing both gold answers (1861–1862 and 1850)", "judge_latency_s": 1.71}
+{"qid": "q0195", "label": "FC", "reason": "The answer mentions both football (soccer) and basketball, matching all gold answers without adding incorrect information.", "judge_latency_s": 2.04}
+{"qid": "q0190", "label": "Inc", "reason": "The answer gives wrong formation years (1921, 1941) and omits the correct gold answers 1918 and 1990", "judge_latency_s": 2.82}
+{"qid": "q0201", "label": "Inc", "reason": "The system did not provide any of the gold architect names and claimed insufficient evidence despite known correct answers.", "judge_latency_s": 1.22}
+{"qid": "q0192", "label": "Inc", "reason": "The answer provides an incorrect region (Gallia Narbonensis/Provence) that does not match any of the gold answers (Friuli-Venezia Giulia or Lombardy).", "judge_latency_s": 2.39}
+{"qid": "q0200", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known (1900 and June 11, 1963).", "judge_latency_s": 1.62}
+{"qid": "q0196", "label": "FC", "reason": "The answer correctly mentions both Paris and Lyon as cities with a 1st arrondissement and provides no incorrect information.", "judge_latency_s": 1.98}
+{"qid": "q0198", "label": "Inc", "reason": "The system refused to provide any of the known correct sports (cross-country skiing and weightlifting) despite them being available.", "judge_latency_s": 1.95}
+{"qid": "q0197", "label": "Inc", "reason": "The answer gives incorrect founding dates (1861 and 1887) that do not match any of the gold answers (January 1 1877 and 1904).", "judge_latency_s": 2.11}
+{"qid": "q0204", "label": "Inc", "reason": "The answer provides no birth date despite known correct dates, thus failing to give any gold answer", "judge_latency_s": 1.55}
+{"qid": "q0205", "label": "Inc", "reason": "The answer gives incorrect establishment dates and omits the gold answer of September/Fall 2010, presenting misinformation as facts.", "judge_latency_s": 1.67}
+{"qid": "q0208", "label": "Inc", "reason": "The system gave no population figures, missing both gold answers (837 and 2,764)", "judge_latency_s": 1.33}
+{"qid": "q0207", "label": "Inc", "reason": "The system answered with The New Division, which is neither of the gold answers (Brad or Quicksand) and is factually incorrect.", "judge_latency_s": 1.76}
+{"qid": "q0160", "label": "PC", "reason": "The answer includes the gold composers Mozart and Brahms but adds other composers, so it is not fully correct.", "judge_latency_s": 8.43}
+{"qid": "q0210", "label": "Inc", "reason": "The system gave no median income values, failing to provide the gold answers $31,250 and $34,753", "judge_latency_s": 1.47}
+{"qid": "q0209", "label": "Inc", "reason": "The system gave no answer despite known correct professions (trombonist and water polo player), thus failing to provide the gold answers.", "judge_latency_s": 1.58}
+{"qid": "q0206", "label": "Inc", "reason": "The answer does not provide the gold mediums (Film, Series TV) and instead gives unrelated interpretations, failing to give any correct answer.", "judge_latency_s": 2.32}
+{"qid": "q0211", "label": "Inc", "reason": "The answer provides no gold birth dates and claims insufficient evidence, failing to supply the required dates", "judge_latency_s": 1.7}
+{"qid": "q0202", "label": "Inc", "reason": "The system answered Hot Chocolate, which is incorrect and not one of the gold answers (Roxy Music or Show of Hands).", "judge_latency_s": 2.74}
+{"qid": "q0199", "label": "Inc", "reason": "The answer gives an incorrect population range (10,000‑15,000) and does not include either gold answer (37,935 or ~8,400).", "judge_latency_s": 3.41}
+{"qid": "q0213", "label": "Inc", "reason": "The answer provides no establishment dates, missing both gold answers (August 1998 and Fall of 1964)", "judge_latency_s": 1.8}
+{"qid": "q0215", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known, thus failing to provide the required information.", "judge_latency_s": 1.55}
+{"qid": "q0212", "label": "Inc", "reason": "The answer provides no gold values (55,145 or 150,699) and instead gives incorrect and misinformation values", "judge_latency_s": 1.96}
+{"qid": "q0217", "label": "FC", "reason": "The answer lists both gold answers (tennis and golf) and adds no incorrect information.", "judge_latency_s": 1.39}
+{"qid": "q0203", "label": "Inc", "reason": "The answer omits the gold year 1858 and adds incorrect years (1859, 1900) while only partially matching the gold answer 1860", "judge_latency_s": 3.63}
+{"qid": "q0228", "label": "Inc", "reason": "The system did not provide the gold answers (Artist, Game designer) and claimed insufficient evidence, which is incorrect.", "judge_latency_s": 1.08}
+{"qid": "q0216", "label": "Inc", "reason": "The system gave no answer and asked for clarification, failing to provide any of the known gold answers.", "judge_latency_s": 2.22}
+{"qid": "q0225", "label": "Inc", "reason": "The system does not provide any of the gold positions (Defensive Midfielder, Winger) and instead claims insufficient evidence, which is incorrect.", "judge_latency_s": 1.23}
+{"qid": "q0227", "label": "Inc", "reason": "The system did not provide any of the gold answers (Hilario Davide Jr, Jejomar Binay) and incorrectly claimed insufficient evidence.", "judge_latency_s": 1.47}
+{"qid": "q0223", "label": "Inc", "reason": "The answer provides no rank, ignoring the gold answers of Generalmajor and Lieutenant general, and incorrectly claims insufficient evidence.", "judge_latency_s": 1.74}
+{"qid": "q0224", "label": "PC", "reason": "The answer mentions football (soccer) but omits the other gold answer, rugby league, making it incomplete.", "judge_latency_s": 1.76}
+{"qid": "q0214", "label": "Inc", "reason": "The system abstains and does not provide the known gold answers (all-boys, all-girls), which is considered incorrect when the answer is available.", "judge_latency_s": 3.33}
+{"qid": "q0221", "label": "Inc", "reason": "The answer gives an incorrect artist (The B-52's) that is not among the gold answers and is not a listed misinformation value.", "judge_latency_s": 2.22}
+{"qid": "q0230", "label": "Inc", "reason": "The answer provides no gold answer despite the known professions, thus failing to supply the required information.", "judge_latency_s": 1.5}
+{"qid": "q0219", "label": "Inc", "reason": "The answer provides an incorrect population (2,103) and does not include either of the gold values (2,104 or 2,051).", "judge_latency_s": 2.52}
+{"qid": "q0218", "label": "Inc", "reason": "The answer gives incorrect population numbers (11,541 and 6,531) that do not match any of the gold answers (5,390 and 6,669).", "judge_latency_s": 2.74}
+{"qid": "q0229", "label": "Inc", "reason": "The answer provides an incorrect date (1922) and does not include either of the gold dates (24 February 1919 or 4 March 1918).", "judge_latency_s": 2.07}
+{"qid": "q0220", "label": "Inc", "reason": "The answer fails to give the gold modern names (Adra, Avdira) and instead incorrectly claims the Thracian Abdera is still called Abdera, providing no correct answer.", "judge_latency_s": 2.96}
+{"qid": "q0226", "label": "PC", "reason": "The answer provides only the 2009 release date, omitting the other gold answer of July 4, 2000", "judge_latency_s": 2.79}
+{"qid": "q0232", "label": "Inc", "reason": "The system gave no gold answer despite known correct parties (Democrat and Republican) and claimed insufficient evidence, which is an incorrect response.", "judge_latency_s": 1.88}
+{"qid": "q0234", "label": "Inc", "reason": "The answer lists incorrect artists (The Jam, The Go-Go's) and omits the gold answers The Killers and The Who", "judge_latency_s": 1.84}
+{"qid": "q0233", "label": "Inc", "reason": "The answer provides no gold answer and incorrectly claims insufficient evidence, failing to give the required years 1859 and 1861.", "judge_latency_s": 1.96}
+{"qid": "q0237", "label": "Inc", "reason": "The system provides no answer despite the gold answers being known, thus failing to supply the required professions", "judge_latency_s": 1.79}
+{"qid": "q0239", "label": "Inc", "reason": "The answer fails to mention either Gin Wigmore or Peter Murphy, providing no correct artist for the album", "judge_latency_s": 1.63}
+{"qid": "q0240", "label": "FC", "reason": "The answer correctly states both gender compositions (boys and girls) matching the gold answers without any incorrect information.", "judge_latency_s": 1.63}
+{"qid": "q0236", "label": "Inc", "reason": "The system answer gives 1968, which matches neither gold answer (1872, 1888) nor the known misinformation, thus it is incorrect.", "judge_latency_s": 2.01}
+{"qid": "q0222", "label": "PC", "reason": "The answer gives the butterfly zoo function but omits the domestic building function, so it is incomplete.", "judge_latency_s": 4.08}
+{"qid": "q0243", "label": "Inc", "reason": "The answer gives an incorrect artist (The New Mastersounds) and does not mention the gold answers Joey Cape or Greg Koch.", "judge_latency_s": 1.52}
+{"qid": "q0241", "label": "Inc", "reason": "The answer gives 1861, which matches neither of the gold dates (1867, 1743) and is not a listed misinformation value.", "judge_latency_s": 1.85}
+{"qid": "q0235", "label": "Inc", "reason": "The answer gives incorrect population figures (≈31,000 and ≈450,000) instead of the gold values 16,337 and 321,493", "judge_latency_s": 2.4}
+{"qid": "q0238", "label": "Inc", "reason": "The system gave no answer despite known gold population values, thus failing to provide the required information.", "judge_latency_s": 2.23}
+{"qid": "q0244", "label": "Inc", "reason": "The system gave no answer despite the known gold answers (Chess and Cycling), thus failing to provide the required information.", "judge_latency_s": 1.72}
+{"qid": "q0242", "label": "FC", "reason": "The answer correctly identifies both the railway and road (motorway) tunnels, covering all gold answers without introducing misinformation.", "judge_latency_s": 2.37}
+{"qid": "q0248", "label": "Inc", "reason": "The system gave no answer despite known correct professions (photographer and Catholic priest), thus failing to provide the gold answers.", "judge_latency_s": 1.4}
+{"qid": "q0250", "label": "Inc", "reason": "The answer provides no gold answer (Bob Evans or Mark Wills) and thus fails to supply the required information.", "judge_latency_s": 1.34}
+{"qid": "q0254", "label": "Inc", "reason": "The system abstains and provides no answer despite the known correct population values (495 and 612) being available.", "judge_latency_s": 1.22}
+{"qid": "q0247", "label": "Inc", "reason": "The system refused to provide the known correct sports (soccer and American football), thus failing to give any gold answer.", "judge_latency_s": 1.98}
+{"qid": "q0245", "label": "Inc", "reason": "The answer gives B.J. Thomas instead of the gold answers Andy Williams and Johnny Mathis, providing incorrect information.", "judge_latency_s": 2.33}
+{"qid": "q0246", "label": "Inc", "reason": "The answer omits the correct composers (Balakirev and Beethoven) and provides unrelated, incorrect composers, thus failing to give any gold answer.", "judge_latency_s": 2.09}
+{"qid": "q0249", "label": "Inc", "reason": "The answer does not provide either of the gold establishment dates (1968, 1891) and instead gives an unrelated date, thus failing to supply the correct information.", "judge_latency_s": 1.79}
+{"qid": "q0251", "label": "FC", "reason": "The answer correctly states the News/Talk format, matching the gold answer without any incorrect information.", "judge_latency_s": 1.65}
+{"qid": "q0253", "label": "Inc", "reason": "The system abstains and provides no gold answer despite the known birthplaces being Havana, Cuba and San Antonio, Texas", "judge_latency_s": 1.82}
+{"qid": "q0231", "label": "Inc", "reason": "The answer adds an extra medium (radio) not listed in the gold answers, introducing an incorrect value.", "judge_latency_s": 4.82}
+{"qid": "q0252", "label": "Inc", "reason": "The system abstains and provides no answer despite the known correct values (15 and 10) being available.", "judge_latency_s": 2.4}
+{"qid": "q0256", "label": "PC", "reason": "The answer only gives 'drama' and omits the other gold answer 'documentary film', making it incomplete.", "judge_latency_s": 2.25}
+{"qid": "q0257", "label": "Inc", "reason": "The answer gives an incorrect figure (over 5,000) and omits the second gold answer of 16 clubs", "judge_latency_s": 2.63}
+{"qid": "q0263", "label": "Inc", "reason": "The answer provides no establishment date, missing both gold answers and thus fails to answer the question.", "judge_latency_s": 1.6}
+{"qid": "q0264", "label": "FC", "reason": "The answer correctly identifies Ibanag as both a language and an ethnolinguistic minority, matching all gold answers without introducing misinformation.", "judge_latency_s": 1.61}
+{"qid": "q0261", "label": "Inc", "reason": "The system refused to provide the known correct dates (1996 and 2009) despite them being available.", "judge_latency_s": 2.01}
+{"qid": "q0266", "label": "FC", "reason": "The answer provides both gold answers (Kenny Loggins and Blake Shelton) and adds no incorrect information.", "judge_latency_s": 1.69}
+{"qid": "q0267", "label": "Inc", "reason": "The answer fails to mention the correct locations (Frankfort, Kentucky and Rocky Mount, Virginia) and instead provides unrelated, incorrect locations.", "judge_latency_s": 1.91}
+{"qid": "q0258", "label": "Inc", "reason": "The system abstains and provides no answer despite the known correct birth dates, failing to supply any gold answer.", "judge_latency_s": 3.03}
+{"qid": "q0259", "label": "PC", "reason": "The answer only gives the 1924 founding year for one Phi Delta Gamma and omits the second gold answer (April 25, 1942) and the exact June 7 date.", "judge_latency_s": 3.06}
+{"qid": "q0269", "label": "PC", "reason": "The answer correctly identifies Siraya as an indigenous people but omits the second gold answer that Siraya also refers to a language.", "judge_latency_s": 1.9}
+{"qid": "q0268", "label": "Inc", "reason": "The answer provides an incorrect genre (comedy-drama) and fails to mention the correct gold answers (thriller film and death metal band).", "judge_latency_s": 2.19}
+{"qid": "q0271", "label": "Inc", "reason": "The system refused to provide the known population values (838 and 726) despite them being available, resulting in an incorrect response.", "judge_latency_s": 1.97}
+{"qid": "q0262", "label": "PC", "reason": "The answer includes the correct sports (golf and tennis) but also adds badminton, an incorrect extra value.", "judge_latency_s": 3.22}
+{"qid": "q0272", "label": "Inc", "reason": "The system abstained and gave no rank, failing to provide the gold answers (Rear admiral and Vice Admiral).", "judge_latency_s": 1.75}
+{"qid": "q0273", "label": "Inc", "reason": "The answer gives no gold artists (Dean Martin, Elvis Presley) and provides an incorrect artist, failing to address the question.", "judge_latency_s": 1.86}
+{"qid": "q0260", "label": "Inc", "reason": "The answer gives wrong individuals and birth years (1754 and 1834) instead of the gold dates 24 June 1630 and 16 April 1720.", "judge_latency_s": 4.04}
+{"qid": "q0278", "label": "Inc", "reason": "The system answer provides an incorrect location (Lake City, Florida) that does not match any of the gold answers.", "judge_latency_s": 1.49}
+{"qid": "q0276", "label": "Inc", "reason": "The system gave Yolanda Adams as the artist, which is neither of the gold answers (Gala, Joyce Sims) and is factually incorrect.", "judge_latency_s": 1.81}
+{"qid": "q0274", "label": "Inc", "reason": "The answer provides no gold answer (administrative district or coal mine) and claims insufficient evidence, thus failing to answer the question.", "judge_latency_s": 2.07}
+{"qid": "q0255", "label": "Inc", "reason": "The answer fails to mention the gold rivers (Green River and Snake River) and instead gives incorrect tributaries (Elk River and Salmon River).", "judge_latency_s": 5.0}
+{"qid": "q0275", "label": "Inc", "reason": "The answer provides an incorrect artist (Tye Tribbett) and fails to mention the gold answers Family Brown and Jermaine Jackson", "judge_latency_s": 2.18}
+{"qid": "q0277", "label": "Inc", "reason": "The system refused to answer despite the gold answers being known, providing no correct information.", "judge_latency_s": 1.98}
+{"qid": "q0282", "label": "Inc", "reason": "The answer provides no gold professions and claims insufficient evidence despite known correct answers.", "judge_latency_s": 1.17}
+{"qid": "q0283", "label": "Inc", "reason": "The answer provides rugby league, which is neither of the gold answers (football nor rugby union) and contains incorrect information.", "judge_latency_s": 1.58}
+{"qid": "q0281", "label": "Inc", "reason": "The answer does not provide the gold formats (documentary film, period drama film) and instead claims insufficient knowledge.", "judge_latency_s": 2.1}
+{"qid": "q0284", "label": "Inc", "reason": "The answer provides no location, missing both gold answers (Chester Springs, PA and Northern Tunbridge, VT).", "judge_latency_s": 1.66}
+{"qid": "q0287", "label": "Inc", "reason": "The answer states the interior is white, cream, or pale yellow, which contradicts the gold answer of purple to purple‑brown or violet.", "judge_latency_s": 1.57}
+{"qid": "q0291", "label": "Inc", "reason": "The system abstains and gives no answer despite the gold meanings being known, thus failing to provide the required information.", "judge_latency_s": 1.32}
+{"qid": "q0292", "label": "Inc", "reason": "The system abstains and provides no answer, missing both gold answers (Golf and Baseball).", "judge_latency_s": 1.32}
+{"qid": "q0290", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known (1954 and 1900‑1904)", "judge_latency_s": 1.72}
+{"qid": "q0288", "label": "Inc", "reason": "The system refused to provide the known correct sports (football and racing driving) despite gold answers being available, resulting in an incorrect response.", "judge_latency_s": 1.85}
+{"qid": "q0289", "label": "Inc", "reason": "The system refused to provide any of the known correct sports (football and rugby league) despite them being available, which is an incorrect response.", "judge_latency_s": 1.89}
+{"qid": "q0286", "label": "Inc", "reason": "The answer provides incorrect aircraft types (Boeing 727 and 707) and does not include the gold answers Tupolev Tu-104A or Airbus A310-324.", "judge_latency_s": 2.37}
+{"qid": "q0285", "label": "PC", "reason": "The answer correctly identifies the two series and their release years but omits the specific dates (28 September) required for a fully correct response.", "judge_latency_s": 2.69}
+{"qid": "q0295", "label": "Inc", "reason": "The answer provides no population figures, omitting the gold answers of 1,473 and 106", "judge_latency_s": 1.39}
+{"qid": "q0270", "label": "Inc", "reason": "The answer only gives 1793, omits the gold answer May 1758, and adds incorrect dates (1685, 1694) not in the gold set.", "judge_latency_s": 5.42}
+{"qid": "q0293", "label": "Inc", "reason": "The answer gives the genre of a novel (crime/heist) instead of the gold answers rock music and comedy-drama caper film", "judge_latency_s": 2.32}
+{"qid": "q0279", "label": "Inc", "reason": "The answer adds an incorrect director (Bille August) for a non‑gold version, introducing false information beyond the correct directors John M. Stahl and Douglas Sirk.", "judge_latency_s": 4.11}
+{"qid": "q0294", "label": "Inc", "reason": "The system refused to provide the known professions (Judge and Cricketer) despite them being available, resulting in an incorrect non‑answer.", "judge_latency_s": 1.91}
+{"qid": "q0280", "label": "Inc", "reason": "The answer omits the gold answer Irma Thomas, provides only a vague list and suggests unrelated artists, failing to give the correct artist(s)", "judge_latency_s": 4.14}
+{"qid": "q0302", "label": "Inc", "reason": "The answer provides no dates, missing all gold answers and thus fails to answer the question.", "judge_latency_s": 1.28}
+{"qid": "q0298", "label": "PC", "reason": "The answer includes one correct director (Marc Forster) but omits the other gold answer (Eric Bross).", "judge_latency_s": 1.79}
+{"qid": "q0265", "label": "PC", "reason": "The answer mentions Division I-A and Division III (the gold answers) but does not explicitly state they are the divisions of the 1978 season and adds extra division information, making it incomplete.", "judge_latency_s": 7.12}
+{"qid": "q0300", "label": "Inc", "reason": "The answer provides a birth year (1773) that does not match any of the gold dates and is therefore incorrect.", "judge_latency_s": 1.72}
+{"qid": "q0296", "label": "Inc", "reason": "The system answered 'mystery/crime' which does not match the gold genres 'Film noir' or 'Erotic thriller'", "judge_latency_s": 2.27}
+{"qid": "q0297", "label": "Inc", "reason": "The system gives no opening date despite the gold answers being known, thus failing to provide any correct answer.", "judge_latency_s": 2.03}
+{"qid": "q0304", "label": "Inc", "reason": "The system gave no answer and did not provide any of the gold authors, thus failing to supply the required information.", "judge_latency_s": 1.15}
+{"qid": "q0303", "label": "Inc", "reason": "The system abstains and provides no courtesy name, missing the known gold answers", "judge_latency_s": 1.71}
+{"qid": "q0299", "label": "PC", "reason": "The answer mentions the politician correctly but fails to include the bishop/divine profession, making it incomplete.", "judge_latency_s": 2.54}
+{"qid": "q0310", "label": "Inc", "reason": "The system abstains and provides no death dates, missing all gold answers.", "judge_latency_s": 1.4}
+{"qid": "q0306", "label": "Inc", "reason": "The answer provides a population (≈1,100) that does not match any of the gold answers (158, 2,397, 3,000) and fails to list the required values.", "judge_latency_s": 1.81}
+{"qid": "q0305", "label": "Inc", "reason": "The answer provides no gold dates and fails to supply any of the required birth dates for the Empress Borjigit entities.", "judge_latency_s": 2.1}
+{"qid": "q0309", "label": "Inc", "reason": "The answer only includes Vocal Cord Dysfunction and adds unrelated incorrect meanings, omitting the gold answers Vibrational circular dichroism and Voice command device", "judge_latency_s": 1.72}
+{"qid": "q0308", "label": "PC", "reason": "The answer includes Mozart and Joseph Haydn but omits the third gold answer, Michael Haydn", "judge_latency_s": 1.84}
+{"qid": "q0307", "label": "Inc", "reason": "The answer provides an incorrect creator (David Kynaston) and does not include any of the gold answers (Sue Townsend, Nick Lowe, Ferdinand Fairfax).", "judge_latency_s": 1.93}
+{"qid": "q0314", "label": "Inc", "reason": "The answer provides no gold dates and claims insufficient evidence, failing to supply any of the required correct build years", "judge_latency_s": 1.4}
+{"qid": "q0313", "label": "Inc", "reason": "The system provides no birth date, refusing to answer despite the gold answers being known", "judge_latency_s": 1.49}
+{"qid": "q0318", "label": "Inc", "reason": "The answer provides no gold answer and claims insufficient evidence despite known correct directors.", "judge_latency_s": 1.13}
+{"qid": "q0317", "label": "Inc", "reason": "The system provided no birth date, missing all gold answers", "judge_latency_s": 1.5}
+{"qid": "q0301", "label": "Inc", "reason": "The system gave no answer despite gold answers being available, thus failing to provide the required information.", "judge_latency_s": 3.48}
+{"qid": "q0311", "label": "Inc", "reason": "The answer provides incorrect alternative names (Abelia and Duranta erecta) and does not include any of the gold answers (Flame acanthus, Chuparosa/chiparosa, Spider-net Grevillea).", "judge_latency_s": 2.45}
+{"qid": "q0319", "label": "Inc", "reason": "The answer provides no gold directors and lists incorrect ones, failing to include any of the correct answers.", "judge_latency_s": 1.55}
+{"qid": "q0320", "label": "Inc", "reason": "The system gave no answer despite known correct sports (darts, snooker, football) being available.", "judge_latency_s": 1.73}
+{"qid": "q0312", "label": "Inc", "reason": "The answer gives Emperor Xianzong, a known misinformation value, instead of the correct father Emperor Muzong (or the other gold answers).", "judge_latency_s": 2.77}
+{"qid": "q0323", "label": "Inc", "reason": "The answer provides no gold dates and claims insufficient evidence despite known correct birth dates being available.", "judge_latency_s": 1.53}
+{"qid": "q0322", "label": "Inc", "reason": "The system refused to provide any of the known correct sports (American football, Baseball, Cycling) despite them being available.", "judge_latency_s": 1.84}
+{"qid": "q0329", "label": "Inc", "reason": "The answer provides no gold-listed artists and gives an unrelated artist, failing to include any correct answer", "judge_latency_s": 1.41}
+{"qid": "q0325", "label": "Inc", "reason": "The answer provides no gold birth dates and merely claims insufficient evidence, failing to supply any of the required correct values.", "judge_latency_s": 1.74}
+{"qid": "q0324", "label": "PC", "reason": "The answer includes gymnastics and bowling but omits the third gold answer, SAT testing, making it incomplete.", "judge_latency_s": 1.81}
+{"qid": "q0321", "label": "Inc", "reason": "The answer provides an incorrect artist (Saint Motel) and does not include any of the gold answer artists (Jump5, Peter Andre, R.E.M).", "judge_latency_s": 2.35}
+{"qid": "q0331", "label": "Inc", "reason": "The answer provides no birth date, missing all gold answers and thus fails to supply the required information.", "judge_latency_s": 1.63}
+{"qid": "q0315", "label": "Inc", "reason": "The answer omits Abingdon, Illinois and incorrectly refers to \"Abingdon School\" in Oxfordshire, providing misinformation rather than the required Abingdon High School locations.", "judge_latency_s": 3.79}
+{"qid": "q0334", "label": "Inc", "reason": "The system gave no gold answer and claimed insufficient evidence, missing all required creators (Clinton Sparks, Symphony X, Gregory Berns).", "judge_latency_s": 1.2}
+{"qid": "q0328", "label": "Inc", "reason": "The answer provides no gold dates (1660, 1544–1547, 1923) and gives an incorrect construction period for a different church.", "judge_latency_s": 2.43}
+{"qid": "q0330", "label": "Inc", "reason": "The answer gives wrong establishment dates (1901, 1900) and does not include any of the gold answer dates (1964, 21 December 1906, 1917).", "judge_latency_s": 2.28}
+{"qid": "q0332", "label": "Inc", "reason": "The answer provides no population figures, missing all gold answers (7,899, 3,870, 536) and thus fails to answer the question.", "judge_latency_s": 1.99}
+{"qid": "q0327", "label": "Inc", "reason": "The answer provides incorrect population estimates and omits two of the three gold values, failing to match any of the required answers.", "judge_latency_s": 2.93}
+{"qid": "q0333", "label": "Inc", "reason": "The system answered 1918, which does not match any of the gold answers (30 May 1945, 1 August 1917, 1952) and provides no correct information.", "judge_latency_s": 1.8}
+{"qid": "q0335", "label": "Inc", "reason": "The answer provides no gold-listed unit types and claims insufficient evidence, failing to give any of the required answers.", "judge_latency_s": 1.72}
+{"qid": "q0337", "label": "PC", "reason": "The answer includes only one of the three correct consul years (58 BC) and omits the other gold answers (112 BC and 148 BC).", "judge_latency_s": 1.88}
+{"qid": "q0339", "label": "Inc", "reason": "The system refused to answer and did not provide any of the gold answers (2016, 2010, 1990-91 season).", "judge_latency_s": 1.99}
+{"qid": "q0338", "label": "Inc", "reason": "The answer provides an incorrect broadcast date (11 November 1965) that matches none of the gold answers (7 July 1965, 1959, 1943)", "judge_latency_s": 2.04}
+{"qid": "q0326", "label": "Inc", "reason": "The answer only gives the 487th Fighter Squadron, omits the Air Expeditionary Wing and Bombardment Squadron, and adds an incorrect Parachute Infantry Battalion.", "judge_latency_s": 3.73}
+{"qid": "q0344", "label": "Inc", "reason": "The system gave no dates, missing all gold answers and providing no correct information.", "judge_latency_s": 1.19}
+{"qid": "q0316", "label": "Inc", "reason": "The answer provides an incorrect genre (romantic drama) and omits the required documentary and comedy genres, thus committing to wrong information.", "judge_latency_s": 5.18}
+{"qid": "q0345", "label": "Inc", "reason": "The system gives no answer despite the gold dates being known, thus failing to provide any required gold answer.", "judge_latency_s": 1.36}
+{"qid": "q0342", "label": "Inc", "reason": "The answer provides no construction date, refusing to give any of the gold answers despite them being available.", "judge_latency_s": 1.92}
+{"qid": "q0346", "label": "PC", "reason": "The answer includes only Joni Mitchell, omitting the other gold answers Marina Prior and Willie Nelson", "judge_latency_s": 1.48}
+{"qid": "q0343", "label": "FC", "reason": "The answer lists all three gold years (1870, 1882, 1848) and adds no incorrect information.", "judge_latency_s": 1.93}
+{"qid": "q0347", "label": "Inc", "reason": "The answer provides no gold answer and fails to name any of the required candidates", "judge_latency_s": 1.38}
+{"qid": "q0340", "label": "Inc", "reason": "The answer gives incorrect formation years for all listed divisions and does not include any of the gold answers (late 1914, 1 May 1943, 1952).", "judge_latency_s": 2.62}
+{"qid": "q0336", "label": "Inc", "reason": "The answer gives unrelated genres (novel, documentary) and omits all gold answers (rock album, opera, 243-year cycle).", "judge_latency_s": 3.19}
+{"qid": "q0356", "label": "Inc", "reason": "The answer provides no gold answer and claims insufficient evidence despite known correct answers.", "judge_latency_s": 0.99}
+{"qid": "q0354", "label": "PC", "reason": "The answer includes two of the three gold artists (The Beatles and Joe Cocker) but omits Lu Elliott, making it incomplete.", "judge_latency_s": 1.29}
+{"qid": "q0352", "label": "Inc", "reason": "The system gave no gold answer despite known correct answers, thus failing to provide the required information.", "judge_latency_s": 1.42}
+{"qid": "q0353", "label": "Inc", "reason": "The system gives no population information despite the gold answers being known, thus failing to provide any correct answer.", "judge_latency_s": 1.4}
+{"qid": "q0348", "label": "PC", "reason": "The answer includes only the 1982 Lebanon War, omitting the Italo-Turkish War and World War II gold answers", "judge_latency_s": 2.15}
+{"qid": "q0349", "label": "Inc", "reason": "The answer provides an incorrect population (25,311) that does not match any of the gold answers (909, 25,139, 1,636)", "judge_latency_s": 2.21}
+{"qid": "q0350", "label": "Inc", "reason": "The answer does not provide any of the required locations (Raymond, Stoneham, Contoocook Village) and instead claims ambiguity without giving the gold answers.", "judge_latency_s": 1.97}
+{"qid": "q0351", "label": "Inc", "reason": "The answer gives 1995, which matches neither any gold answer nor a known misinformation value, thus it is factually incorrect.", "judge_latency_s": 1.79}
+{"qid": "q0359", "label": "Inc", "reason": "The system provides no gold answer and claims ambiguity, failing to list the required artists.", "judge_latency_s": 1.23}
+{"qid": "q0341", "label": "PC", "reason": "The answer includes the correct 1569 date but omits the other gold dates 1609 and 1670, making it incomplete.", "judge_latency_s": 3.25}
+{"qid": "q0360", "label": "Inc", "reason": "The answer provides no establishment dates, missing all gold answers (1961, 1922, 1985).", "judge_latency_s": 1.57}
+{"qid": "q0357", "label": "Inc", "reason": "The system refused to provide any of the known birth dates despite the gold answers being available", "judge_latency_s": 1.96}
+{"qid": "q0358", "label": "Inc", "reason": "The answer provides no founding dates from the gold answers and merely requests clarification, failing to supply any correct information.", "judge_latency_s": 1.96}
+{"qid": "q0366", "label": "Inc", "reason": "The system gave no birth date despite the gold answers providing three specific dates, thus failing to supply the required information.", "judge_latency_s": 1.34}
+{"qid": "q0361", "label": "Inc", "reason": "The system provided a population (1,131) that does not match any of the gold answers (186, 61, 316) and thus is factually incorrect.", "judge_latency_s": 2.04}
+{"qid": "q0368", "label": "Inc", "reason": "The system answered KISS, which is not one of the gold answer artists (Butthole Surfers, Rheostatics, Garth Brooks).", "judge_latency_s": 1.4}
+{"qid": "q0363", "label": "Inc", "reason": "The system refused to provide any of the known correct sports (Football, Basketball, Cricket) despite them being available, resulting in an incorrect response.", "judge_latency_s": 1.9}
+{"qid": "q0369", "label": "Inc", "reason": "The system gave no birth date, missing all gold answers", "judge_latency_s": 1.55}
+{"qid": "q0364", "label": "Inc", "reason": "The system refused to provide any of the known birth dates despite the gold answers being available", "judge_latency_s": 1.99}
+{"qid": "q0355", "label": "PC", "reason": "The answer gives only a partial correct date (1992) and omits the other gold answers (December 1991 and 1997).", "judge_latency_s": 3.27}
+{"qid": "q0370", "label": "Inc", "reason": "The answer provides incorrect population figures and omits all gold answers, failing to give any of the correct values.", "judge_latency_s": 1.98}
+{"qid": "q0371", "label": "PC", "reason": "The answer includes two of the three gold dates (1840 and 1987) but omits the 1866 date, so it is incomplete.", "judge_latency_s": 1.88}
+{"qid": "q0374", "label": "Inc", "reason": "The system gave no answer despite gold dates being available, thus failing to provide any correct information.", "judge_latency_s": 1.2}
+{"qid": "q0378", "label": "Inc", "reason": "The answer provides no founding date, missing all gold answers.", "judge_latency_s": 1.11}
+{"qid": "q0372", "label": "Inc", "reason": "The answer provides an incorrect creator (Jeffrey S. White) and fails to include any of the gold answers (Richard Marx, Steve Kloves, Moira Walley-Beckett).", "judge_latency_s": 2.4}
+{"qid": "q0375", "label": "Inc", "reason": "The answer does not mention any of the gold artists (Joey Baron, Zoot Sims, Chet Atkins) and provides unrelated, vague information.", "judge_latency_s": 1.89}
+{"qid": "q0381", "label": "Inc", "reason": "The system gives no gold answer and claims insufficient evidence, failing to provide any of the required main characters.", "judge_latency_s": 1.31}
+{"qid": "q0376", "label": "Inc", "reason": "The answer provides no gold population values and incorrectly claims insufficient evidence, failing to supply any of the required numbers", "judge_latency_s": 2.05}
+{"qid": "q0365", "label": "Inc", "reason": "The answer gives only a founding date (~1261) and omits all gold completion dates (1755, 1586, 1250s).", "judge_latency_s": 3.45}
+{"qid": "q0377", "label": "Inc", "reason": "The answer fails to mention any of the gold artists (Eartha Kitt, Tom Lehrer, Cowboys International) and provides unrelated incorrect examples.", "judge_latency_s": 2.06}
+{"qid": "q0379", "label": "FC", "reason": "The answer lists all three gold dates (1932, 1984, 2028) with no incorrect information.", "judge_latency_s": 1.88}
+{"qid": "q0362", "label": "Inc", "reason": "The answer gives an incorrect population estimate and fails to provide any of the gold answers (5,601, 324, or 10‑16 years old).", "judge_latency_s": 4.19}
+{"qid": "q0385", "label": "Inc", "reason": "The answer omits all gold artists and provides unrelated incorrect examples", "judge_latency_s": 1.58}
+{"qid": "q0373", "label": "PC", "reason": "The answer only mentions the Farmer-Labor Party, omitting the other gold‑standard parties (Republican and Democratic).", "judge_latency_s": 3.18}
+{"qid": "q0384", "label": "Inc", "reason": "The answer provides no formation date despite gold answers being available, thus failing to give the correct information.", "judge_latency_s": 1.68}
+{"qid": "q0386", "label": "Inc", "reason": "The system gave no answer despite the gold dates being known, thus failing to provide any required information.", "judge_latency_s": 1.5}
+{"qid": "q0367", "label": "PC", "reason": "The answer mentions neo‑Nazism (related to National Socialism) but omits the other gold answers (Conservative, Right‑wing) and adds extra detail, making it incomplete.", "judge_latency_s": 4.29}
+{"qid": "q0382", "label": "Inc", "reason": "The answer fails to mention any of the gold locations (Kuantan, Cheras, Johor) and instead gives an incorrect location (Malacca) and vague unrelated information.", "judge_latency_s": 2.59}
+{"qid": "q0389", "label": "Inc", "reason": "The answer provides no gold-listed artists and claims insufficient evidence, failing to give any of the correct album artists.", "judge_latency_s": 1.42}
+{"qid": "q0383", "label": "PC", "reason": "The answer includes two of the three gold directors (Michael Curtiz and Tony Richardson) but omits the third (J. Searle Dawley).", "judge_latency_s": 2.49}
+{"qid": "q0388", "label": "Inc", "reason": "The answer provides no service dates, ignoring the three gold answer periods that were available.", "judge_latency_s": 1.88}
+{"qid": "q0392", "label": "Inc", "reason": "The system abstains and provides no gold answer despite known correct dates, which is incorrect behavior.", "judge_latency_s": 1.64}
+{"qid": "q0390", "label": "Inc", "reason": "The answer provides incorrect population figures and omits all gold answer values, failing to supply any correct information.", "judge_latency_s": 1.79}
+{"qid": "q0387", "label": "Inc", "reason": "The answer gives incorrect population numbers for all entities and does not include any of the gold answers (2,454; 3,995; 205).", "judge_latency_s": 2.65}
+{"qid": "q0399", "label": "Inc", "reason": "The system gave no answer and claimed insufficient evidence, failing to provide any of the gold answers (Pritam, Raghu, Shalini).", "judge_latency_s": 1.24}
+{"qid": "q0397", "label": "Inc", "reason": "The answer fails to provide any of the required gold answers (Kangerlussuaq Airport, Saphenofemoral junction, StarFlyer) and offers unrelated speculation.", "judge_latency_s": 1.59}
+{"qid": "q0391", "label": "Inc", "reason": "The answer provides no gold genres and suggests documentary/horror, which are incorrect and include known misinformation.", "judge_latency_s": 2.42}
+{"qid": "q0394", "label": "Inc", "reason": "The answer provides no gold population values and incorrectly claims no information, contradicting the known correct figures", "judge_latency_s": 2.23}
+{"qid": "q0398", "label": "Inc", "reason": "The answer provides no construction date despite the gold answers being known, effectively refusing to answer.", "judge_latency_s": 1.94}
+{"qid": "q0393", "label": "Inc", "reason": "The system answered that Chilperic's father was Chlodomer, which is neither a gold answer nor a listed misinformation value.", "judge_latency_s": 2.47}
+{"qid": "q0400", "label": "Inc", "reason": "The answer provides no of the required locations (Cushing, OK; Searcy, AR; Urbana, OH) and thus fails to give any gold answer.", "judge_latency_s": 1.75}
+{"qid": "q0401", "label": "Inc", "reason": "The system provides no answer despite known gold answers, incorrectly claiming no information about the plant species.", "judge_latency_s": 1.8}
+{"qid": "q0405", "label": "Inc", "reason": "The answer provides no dates, missing all three gold answers.", "judge_latency_s": 1.41}
+{"qid": "q0402", "label": "Inc", "reason": "The answer fails to mention any of the gold artists (McCoy Tyner, Sanctuary, Hans Zimmer) and provides only vague, unrelated information.", "judge_latency_s": 2.44}
+{"qid": "q0404", "label": "Inc", "reason": "The answer gives no dates and claims ambiguity, failing to provide any of the required gold answers.", "judge_latency_s": 2.21}
+{"qid": "q0407", "label": "Inc", "reason": "The answer gives incorrect construction years (1914 and 1905) and fails to provide any of the gold answer dates (1912, 1913, 1918‑1919).", "judge_latency_s": 1.81}
+{"qid": "q0395", "label": "PC", "reason": "The answer includes one gold year (1102) but omits the other gold years (1101, 1105), adds uncertain and irrelevant dates, thus is incomplete and hedges with incorrect values.", "judge_latency_s": 3.72}
+{"qid": "q0411", "label": "Inc", "reason": "The system did not provide any of the required gold answer years and instead asked for clarification, failing to answer the question.", "judge_latency_s": 1.66}
+{"qid": "q0412", "label": "Inc", "reason": "The system refused to provide any of the known correct population values despite them being available", "judge_latency_s": 1.66}
+{"qid": "q0406", "label": "PC", "reason": "The answer gives only the 1940 formation year, missing the other two gold answers (1974 and 1981).", "judge_latency_s": 2.25}
+{"qid": "q0403", "label": "PC", "reason": "The answer only gives the 1808 date, omitting the other gold dates (1784 and 1848) and thus is incomplete.", "judge_latency_s": 2.85}
+{"qid": "q0409", "label": "Inc", "reason": "The answer gives wrong population figures and omits the correct gold values of 1,624, 48, and 255", "judge_latency_s": 1.98}
+{"qid": "q0408", "label": "PC", "reason": "The answer mentions the Halloween character (a gold answer) but omits the other gold answers (American football and baseball), making it incomplete.", "judge_latency_s": 2.56}
+{"qid": "q0414", "label": "Inc", "reason": "The answer provides no gold birth years and incorrectly claims insufficient evidence despite known correct values", "judge_latency_s": 1.77}
+{"qid": "q0413", "label": "PC", "reason": "The answer only provides the physicist profession, missing the chaplain and naturalist/anatomist gold answers", "judge_latency_s": 2.49}
+{"qid": "q0380", "label": "Inc", "reason": "The answer only mentions Bono, omits Jeremy Camp and Ava DuVernay, and adds an unrelated creator (Rye Rye), providing incorrect information.", "judge_latency_s": 6.99}
+{"qid": "q0417", "label": "Inc", "reason": "The system provides no population figures despite the gold answers being known, thus failing to give any correct answer.", "judge_latency_s": 1.64}
+{"qid": "q0410", "label": "Inc", "reason": "The answer provides no gold answer (Viu, Biu Kingdom, Meir Berlin) and incorrectly states there is no distinct ancient name.", "judge_latency_s": 3.05}
+{"qid": "q0425", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known, thus failing to provide any of the required states", "judge_latency_s": 1.07}
+{"qid": "q0418", "label": "Inc", "reason": "The answer gives incorrect population figures for all locations and omits the gold values (2,100; 4,843; 2,070).", "judge_latency_s": 2.0}
+{"qid": "q0423", "label": "Inc", "reason": "The system gave no birth date despite the gold answers being known, thus failing to provide any correct answer", "judge_latency_s": 1.66}
+{"qid": "q0420", "label": "PC", "reason": "The answer includes Rachmaninoff and Tchaikovsky but omits the third gold answer, Mykola Leontovych", "judge_latency_s": 1.87}
+{"qid": "q0396", "label": "PC", "reason": "The answer mentions the correct affiliations (NBC, ABC) but hedges, omits the required channel number \"5\", and adds an incorrect affiliation (CBS), making it only partially correct.", "judge_latency_s": 5.91}
+{"qid": "q0421", "label": "Inc", "reason": "The answer gives incorrect mascots (Wolverines, Wildcats) and does not include any of the gold answers (eagle, Mustang, Eagles).", "judge_latency_s": 2.16}
+{"qid": "q0427", "label": "Inc", "reason": "The answer provides no dates, missing all gold answers (2010, 1913, 1986)", "judge_latency_s": 1.23}
+{"qid": "q0426", "label": "Inc", "reason": "The system answer gives 1877, which matches none of the gold answers (1932, 1880s, 1886) and is not a listed misinformation value, thus it is incorrect.", "judge_latency_s": 1.83}
+{"qid": "q0422", "label": "Inc", "reason": "The answer provides no gold states (Nebraska, Michigan, Iowa) and instead gives incorrect locations, thus contradicting the correct answer.", "judge_latency_s": 2.28}
+{"qid": "q0419", "label": "Inc", "reason": "The answer provides incorrect directors (e.g., Robert Clouse) and fails to mention any of the gold-listed directors Chukiat Sakveerakul, Ng See-yuen, or Giorgio Serafini.", "judge_latency_s": 2.55}
+{"qid": "q0416", "label": "Inc", "reason": "The answer gives incorrect opening dates (1968 and ~1869‑1870) and fails to provide any of the gold dates (Sept 24 1936, 1998, 19 Jan 1871).", "judge_latency_s": 2.99}
+{"qid": "q0415", "label": "Inc", "reason": "The answer mentions only baseball (a gold answer) and adds an incorrect sport (golf) while omitting American football and powerlifting, thus providing false information.", "judge_latency_s": 3.76}
+{"qid": "q0428", "label": "FC", "reason": "The answer lists all three gold‑standard sports (American football, basketball, BMX riding) and adds no incorrect information.", "judge_latency_s": 1.81}
+{"qid": "q0431", "label": "Inc", "reason": "The system gave no founding date despite the gold answers being known, thus failing to provide any correct answer.", "judge_latency_s": 1.56}
+{"qid": "q0430", "label": "PC", "reason": "The answer provides one correct expansion (International Geophysical Year) but omits the other valid meanings (Israel Gay Youth and Immunoglobulin Y).", "judge_latency_s": 1.87}
+{"qid": "q0429", "label": "Inc", "reason": "The system provided no birth date despite the gold answers being known, thus failing to supply any correct information.", "judge_latency_s": 2.01}
+{"qid": "q0424", "label": "PC", "reason": "The answer mentions only one of the gold dates (the signer’s death in 1787) and lacks the exact date and the other two required dates, making it incomplete.", "judge_latency_s": 3.31}
+{"qid": "q0433", "label": "Inc", "reason": "The answer fails to mention any of the gold answers (state anthem, TV series, 2015 film) and provides unrelated and incorrect information.", "judge_latency_s": 2.1}
+{"qid": "q0434", "label": "Inc", "reason": "The answer provides no gold-listed artists and incorrectly claims the title refers to a Journey song, thus failing to supply the correct information.", "judge_latency_s": 2.13}
+{"qid": "q0437", "label": "Inc", "reason": "The answer provides an incorrect birth date (1524) and omits all gold answer dates", "judge_latency_s": 1.81}
+{"qid": "q0432", "label": "Inc", "reason": "The answer does not list any of the required gold genres (action-comedy film, science fiction novel, traditional nature documentary) and provides unrelated information.", "judge_latency_s": 2.63}
+{"qid": "q0439", "label": "Inc", "reason": "The answer fails to mention any of the gold locations and instead cites an incorrect district in Norristown, Pennsylvania.", "judge_latency_s": 2.02}
+{"qid": "q0442", "label": "Inc", "reason": "The system refused to provide any of the known birth dates despite the gold answers being available.", "judge_latency_s": 1.93}
+{"qid": "q0436", "label": "Inc", "reason": "The answer fails to mention any of the gold units and provides unrelated, incorrect unit types", "judge_latency_s": 2.39}
+{"qid": "q0435", "label": "Inc", "reason": "The system answer provides 11,611, which does not match any of the gold answers (370, 3,046, or 2,500) and fails to include them.", "judge_latency_s": 2.46}
+{"qid": "q0447", "label": "Inc", "reason": "The system gave no birth date, missing all gold answers and refusing to answer despite available correct information.", "judge_latency_s": 1.27}
+{"qid": "q0445", "label": "Inc", "reason": "The system does not provide any of the gold population values and instead claims insufficient evidence, which is incorrect given the available gold answers.", "judge_latency_s": 1.53}
+{"qid": "q0438", "label": "Inc", "reason": "The answer gives basketball (a known misinformation) and omits the gold answers speed skating and gambling, thus providing incorrect information.", "judge_latency_s": 2.63}
+{"qid": "q0444", "label": "Inc", "reason": "The system refused to answer despite known gold answers, providing no correct affiliation and thus failing to meet the required answer", "judge_latency_s": 2.0}
+{"qid": "q0449", "label": "Inc", "reason": "The system gave no birth date, missing all gold answers", "judge_latency_s": 1.24}
+{"qid": "q0440", "label": "PC", "reason": "The answer mentions the economist but fails to provide the other gold professions (actor and freelance broadcaster), making it incomplete.", "judge_latency_s": 2.78}
+{"qid": "q0443", "label": "Inc", "reason": "The answer provides no gold genres and gives unrelated, incorrect genre information", "judge_latency_s": 2.58}
+{"qid": "q0448", "label": "Inc", "reason": "The answer gives an incorrect construction date (1695) that does not match any of the gold answers", "judge_latency_s": 1.8}
+{"qid": "q0441", "label": "Inc", "reason": "The answer does not include any of the gold answers and provides unrelated formats instead", "judge_latency_s": 3.2}
+{"qid": "q0450", "label": "Inc", "reason": "The answer gives 2002, which matches none of the gold answers (1980, 2010, 1989) and is therefore incorrect.", "judge_latency_s": 1.83}
+{"qid": "q0452", "label": "Inc", "reason": "The system provides no answer despite known correct directors, thus failing to supply any gold answer.", "judge_latency_s": 1.74}
+{"qid": "q0459", "label": "Inc", "reason": "The answer provides no location and claims insufficient evidence, missing all gold answers.", "judge_latency_s": 1.09}
+{"qid": "q0455", "label": "Inc", "reason": "The answer provides no population figures, missing all gold answers and thus fails to answer the question.", "judge_latency_s": 1.53}
+{"qid": "q0458", "label": "Inc", "reason": "The system gave no dates, ignoring the three correct gold answers, thus failing to provide the required information.", "judge_latency_s": 1.28}
+{"qid": "q0453", "label": "Inc", "reason": "The answer provides no establishment dates, missing all gold answers (1878, around 1797, 1970s)", "judge_latency_s": 1.73}
+{"qid": "q0451", "label": "Inc", "reason": "The answer gives unrelated spouses and omits all gold answers (John II Orsini, John VIII Palaiologos, Andronikos III Palaiologos).", "judge_latency_s": 2.0}
+{"qid": "q0457", "label": "Inc", "reason": "The system gives no birth date despite three known correct answers, thus failing to provide any gold answer", "judge_latency_s": 1.59}
+{"qid": "q0446", "label": "Inc", "reason": "The answer gives wrong locations (Brazil and US) and omits the gold locations Messina, Sicily and Lucca and Pisa, only partially matching the decade", "judge_latency_s": 3.3}
+{"qid": "q0454", "label": "Inc", "reason": "The system answer gives 541, which does not match any of the gold answers (205, 956, 142) and is therefore incorrect.", "judge_latency_s": 1.98}
+{"qid": "q0462", "label": "Inc", "reason": "The system gave no birth date despite gold answers being available, thus failing to provide any correct information.", "judge_latency_s": 1.25}
+{"qid": "q0460", "label": "Inc", "reason": "The system provided no birth date despite gold answers being available, thus failing to give any correct answer.", "judge_latency_s": 1.64}
+{"qid": "q0464", "label": "Inc", "reason": "The system provides no answer despite the gold answers being known, thus failing to supply any required date.", "judge_latency_s": 1.24}
+{"qid": "q0466", "label": "Inc", "reason": "The system provides no profession answer despite gold answers being available, thus failing to give the required information.", "judge_latency_s": 1.12}
+{"qid": "q0465", "label": "Inc", "reason": "The answer provides no gold dates and claims insufficient evidence despite the known correct launch dates being available.", "judge_latency_s": 1.34}
+{"qid": "q0456", "label": "PC", "reason": "The answer includes one correct gold answer (Tate Taylor) but omits the other two required directors, making it incomplete.", "judge_latency_s": 2.69}
+{"qid": "q0471", "label": "Inc", "reason": "The answer provides no gold dates and claims insufficient evidence, failing to supply any of the required answers.", "judge_latency_s": 1.41}
+{"qid": "q0468", "label": "Inc", "reason": "The system refused to provide any of the known correct aircraft types, which is an incorrect response when gold answers are available.", "judge_latency_s": 1.62}
+{"qid": "q0463", "label": "PC", "reason": "The answer provides only the 200‑lap value, omitting the other correct lengths (225 laps and 175 laps) required for a fully correct response.", "judge_latency_s": 2.23}
+{"qid": "q0473", "label": "Inc", "reason": "The answer provides no gold median age values and claims insufficient evidence, failing to supply any of the correct answers.", "judge_latency_s": 1.65}
+{"qid": "q0479", "label": "Inc", "reason": "The system gave no birth date despite the gold answers being known, thus failing to provide the required information.", "judge_latency_s": 1.08}
+{"qid": "q0469", "label": "Inc", "reason": "The answer gives incorrect feast days (June 16 and January 20) and does not include any of the gold dates (7 Oct, 30 Oct, 16 Jan).", "judge_latency_s": 2.15}
+{"qid": "q0467", "label": "Inc", "reason": "The answer provides an incorrect birth date (18 August 1875) that does not match any of the gold answers.", "judge_latency_s": 2.37}
+{"qid": "q0461", "label": "Inc", "reason": "The answer omits the gold location Verona, New York and adds an incorrect location (Verona, Ohio), thus committing to a false value.", "judge_latency_s": 3.29}
+{"qid": "q0470", "label": "Inc", "reason": "The answer gives no gold locations and provides incorrect ones (Grand Rapids, Michigan and Opa‑Locka, Florida) instead of Fulton, Illinois; Hudsonville, Michigan; or Barrie, Ontario.", "judge_latency_s": 2.32}
+{"qid": "q0476", "label": "Inc", "reason": "The answer provides no gold dates and incorrectly claims there is no single building date, failing to supply any of the required answers", "judge_latency_s": 1.71}
+{"qid": "q0475", "label": "Inc", "reason": "The answer lists only incorrect construction dates and does not include any of the gold answers (1902, 1912-1914, 1907).", "judge_latency_s": 1.86}
+{"qid": "q0477", "label": "Inc", "reason": "The answer provides only incorrect dates and does not include any of the gold answers (1880, 1840-1843, 1912).", "judge_latency_s": 1.74}
+{"qid": "q0480", "label": "Inc", "reason": "The system abstains and provides no population figure despite the gold answers being available", "judge_latency_s": 1.41}
+{"qid": "q0472", "label": "Inc", "reason": "The answer provides an incorrect opening date (30 April 2010 vs. gold 27 April 2010) and omits the other two gold dates", "judge_latency_s": 2.61}
+{"qid": "q0474", "label": "Inc", "reason": "The system gave 24 September 1896, which does not match any of the gold answers (1969, 1979, 28 April 1948)", "judge_latency_s": 2.59}
+{"qid": "q0478", "label": "Inc", "reason": "The system gave no birth date despite the gold answers providing three correct dates, thus failing to supply the required information.", "judge_latency_s": 2.0}
+{"qid": "q0484", "label": "Inc", "reason": "The system gave no answer despite the gold answers being known, thus failing to provide any correct artist.", "judge_latency_s": 1.31}
+{"qid": "q0493", "label": "Inc", "reason": "The answer provides no gold answer and claims insufficient evidence despite known correct actors.", "judge_latency_s": 1.11}
+{"qid": "q0485", "label": "Inc", "reason": "The answer gives no genre and claims insufficient evidence, failing to provide any of the gold answer options", "judge_latency_s": 1.58}
+{"qid": "q0483", "label": "Inc", "reason": "The answer only gives Elvis Presley, omits the required Ray Peterson and The Sandpipers, and adds an incorrect artist (Ray C. Walker).", "judge_latency_s": 2.12}
+{"qid": "q0486", "label": "Inc", "reason": "The system answered Aaron Carter, which is not any of the gold answers (Elvis Presley, Devo, Baz Luhrmann) and is incorrect.", "judge_latency_s": 1.69}
+{"qid": "q0481", "label": "Inc", "reason": "The answer includes an incorrect location (Chesapeake, Virginia) and omits two gold-standard locations, providing insufficient and erroneous information.", "judge_latency_s": 2.42}
+{"qid": "q0492", "label": "Inc", "reason": "The answer provides no gold dates and refuses to give the required information.", "judge_latency_s": 1.49}
+{"qid": "q0489", "label": "Inc", "reason": "The system provides no answer despite the gold answers being known, thus failing to supply any correct information.", "judge_latency_s": 1.69}
+{"qid": "q0490", "label": "Inc", "reason": "The answer provides vague estimates and no gold population figures (25,038, 66,495, 254,137), thus fails to give the correct answer.", "judge_latency_s": 1.7}
+{"qid": "q0491", "label": "Inc", "reason": "The system abstains and provides no gold answer despite the ranks being known, which is an incorrect response.", "judge_latency_s": 1.87}
+{"qid": "q0488", "label": "Inc", "reason": "The system gave no gold answer and incorrectly claimed no information, missing all correct sports (Football, Rugby league, Bodybuilding).", "judge_latency_s": 2.02}
+{"qid": "q0482", "label": "Inc", "reason": "The answer gives the correct director for the 1951 film but incorrectly names the 1995 director as Avramas Abraham instead of Darrell Roodt.", "judge_latency_s": 2.83}
+{"qid": "q0496", "label": "Inc", "reason": "The answer provides incorrect countries (Bolivia and Costa Rica) and fails to mention any of the gold answers (Brazil, Honduras, Guatemala).", "judge_latency_s": 1.63}
+{"qid": "q0495", "label": "Inc", "reason": "The system gave no gold answer and refused to answer, despite the correct numbers (291, 48, 272) being available.", "judge_latency_s": 1.81}
+{"qid": "q0499", "label": "Inc", "reason": "The system abstains and provides no birth date, missing all gold answers.", "judge_latency_s": 1.12}
+{"qid": "q0487", "label": "PC", "reason": "The answer provides two of the three correct dates (1603 and 1703) but omits the third gold answer (1691), making it incomplete.", "judge_latency_s": 2.58}
+{"qid": "q0498", "label": "Inc", "reason": "The answer provides the misinformation value 1868 and does not include any of the correct founding years (1912, 1897, 1878).", "judge_latency_s": 1.31}
+{"qid": "q0497", "label": "Inc", "reason": "The system answer provides no historical period, missing all gold answers.", "judge_latency_s": 1.78}
+{"qid": "q0494", "label": "PC", "reason": "The answer mentions two of the three launch dates (1871 and 1906) but omits the 1811 launch and lacks the specific day-month details, making it incomplete.", "judge_latency_s": 2.42}

@@ -1,0 +1,1091 @@
+% ------------------------------------------------------------------
+% NAACL 2027 System Demonstrations -- DocResolve: outline / skeleton
+% Paste into Overleaf next to acl.sty + acl_natbib.bst (ACL template).
+% Page budget (6 pages + references; Limitations/Ethics do not count):
+%   Abstract 0.25 | Introduction 0.75 | Related Work 0.5
+%   System Architecture 1.5 | System Demonstration 1.5
+%   Empirical Evaluation 1.25 | Conclusion 0.25
+% Every \todo{} is a note to ourselves; remove before submission.
+% One metric vocabulary everywhere: the LLM judge's FC (fully correct, the
+% paper's "accuracy") and Inc (incorrect). No set-EM / containment in the text.
+%
+% FIGURE AND TABLE PLAN (where, what, how it is made)
+%   Fig 1  Introduction, one column   result view screenshot, annotated 1-5
+%   Fig 2  Architecture, full width   method diagram (TikZ below, no image)
+%   Fig 3  Demonstration, full width  reader: answer doc + dissent doc side by
+%                                     side with highlights; corroboration strip
+%   Fig 4  Demonstration, one column  governance override before/after (2 panels)
+%   Fig 5  Evaluation, one column     FC vs Inc scatter, RAMDocs
+%                                     (figures/fig_tradeoff_ramdocs.pdf)
+%   Fig 6  Evaluation, full width     decision mix per system, both benchmarks
+%                                     (figures/fig_decisions.pdf)
+%   Fig 7  Evaluation, one column     RAMDocs FC on items with / without
+%                                     planted misinformation (figures/fig_slices_ramdocs.pdf)
+%   Fig 8  Evaluation or appendix     CONFLICTS FC by conflict type, heatmap
+%                                     (figures/fig_conflict_types.pdf)
+%   Tab 1  Evaluation, full width     judge FC / Inc, systems x three generators
+%                                     (tables/table_main.tex from make_tables.py)
+%   Tab 2  Evaluation, full width     behaviour under the main generator
+%   Charts are produced by paper/figures/make_charts.py from results_external/.
+% ------------------------------------------------------------------
+\documentclass[11pt]{article}
+\usepackage[final]{acl}           % demo track is not anonymous: authors shown
+                                  % (use [review] only if the call asks for line numbers)
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage{listings}
+\graphicspath{{figures/}}
+
+% ---- verbatim prompt boxes (appendix) ----------------------------------
+\lstdefinestyle{prompt}{
+  basicstyle=\ttfamily\scriptsize, columns=fullflexible, keepspaces=true,
+  breaklines=true, breakindent=0pt, breakautoindent=false,
+  frame=single, framerule=0.3pt, rulecolor=\color{boxline},
+  backgroundcolor=\color{boxfill}, xleftmargin=4pt, xrightmargin=4pt,
+  aboveskip=4pt, belowskip=8pt, showstringspaces=false,
+  literate={->}{{$\rightarrow$}}2}
+
+% ---- one-line switch for the system name -------------------------
+\newcommand{\sysname}{DocResolve}   % decided 24 Nov 2026
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\tbd}{\textcolor{red}{--}}   % number not yet available
+% ---- the three generator models (column groups of Table 1) ---------
+\newcommand{\genA}{Nemotron 3.5 Super}
+\newcommand{\genB}{Qwen 3.8 27B}
+\newcommand{\genC}{Gemma 4 31B}
+
+% ---- colours shared by the diagram and the UI ------------------------
+\definecolor{support}{HTML}{1F7A4D}   % committed answer / supporting evidence
+\definecolor{dissent}{HTML}{B7791F}   % flagged dissent
+\definecolor{context}{HTML}{6B7280}   % retrieved, not cited
+\definecolor{boxfill}{HTML}{F4F7F5}
+\definecolor{boxline}{HTML}{9BB4A4}
+
+% ---- "forks up" pitchfork before the affiliation --------------------------
+% Uses the official ASU pitchfork if figures/asu_pitchfork.png (or .pdf) is in
+% the project (download it from the ASU Brand Library, Sparky's pitchfork, PNG);
+% otherwise falls back to a small pitchfork drawn in TikZ.
+\definecolor{asumaroon}{HTML}{8C1D40}
+\newcommand{\forksupdrawn}{%
+  \raisebox{-0.18ex}{\begin{tikzpicture}[x=1ex, y=1ex, line cap=round, line join=round,
+      asumaroon, line width=0.16ex]
+    \draw (0.5,0) -- (0.5,1.05);                         % handle
+    \draw (0,1.6) -- (0,0.95) .. controls (0,0.75) and (1,0.75) .. (1,0.95) -- (1,1.6); % outer tines
+    \draw (0.5,1.05) -- (0.5,1.75);                      % centre tine
+  \end{tikzpicture}}%
+}
+% The mark sits on its own centred line of the author block, so it does not
+% pull the affiliation text off centre. \logoheight sets its size.
+\newlength{\logoheight}\setlength{\logoheight}{2.9ex}   % about 1.5x the text height
+\newcommand{\forksup}{%
+  \IfFileExists{figures/Arizona-State-Sun-Devils-logo.png}%
+    {\includegraphics[height=\logoheight]{Arizona-State-Sun-Devils-logo.png}}%
+    {\IfFileExists{figures/asu_pitchfork.png}%
+      {\includegraphics[height=\logoheight]{asu_pitchfork.png}}%
+      {\scalebox{1.8}{\forksupdrawn}}}%
+}
+
+\title{\sysname: Conflict-Aware Question Answering\\that Answers and Flags the Dissent}
+
+% logo inline, vertically centred on the text, small gap before the name
+\newcommand{\asuaffil}{\raisebox{-0.3\height}{\forksup}\hspace{0.45em}Arizona State University}
+
+\author{Gaurav Najpande \qquad Vivek Gupta \\
+        \asuaffil \\
+        \texttt{\{gnajpand, vgupt140\}@asu.edu}}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\begin{abstract}
+Retrieval-augmented question answering assumes that the retrieved passages
+agree. In real document collections they do not: policies are superseded,
+drafts and summaries lag their sources, and neighbouring scopes report
+different values. Faced with disagreement, current systems either follow
+the most repeated value or refuse to answer. We present \sysname{}, an
+open-source system that commits to an answer, flags the dissent, and shows
+why one value won. A fixed resolution order (governance, corroboration by
+distinct documents, internal consistency, declared tie) is stated to the
+generator; every cited claim is a verbatim quote, validated against the
+retrieved chunk and highlighted at the sentence in the original PDF, Word
+or text file; a reviewer can override a document's status and watch the
+answer re-evaluate. On the RAMDocs and CONFLICTS benchmarks with three
+open-weight generators, answering and flagging recovers the accuracy that
+refusing on conflict gives up and adopts less misinformation than plain
+retrieval-augmented generation \todo{one number pair from Table 1 once v2
+lands}. The package, server and interface run against any
+OpenAI-compatible endpoint. Demo: \todo{URL}. Video: \todo{URL}.
+\end{abstract}
+
+% ==================================================================
+\section{Introduction}
+\todo{0.75 page. Figure 1 sits here.}
+
+A quality manager asks what the defect-rate threshold is for a supplier
+tier. Six documents answer. The active policy bulletin says 0.72\%; an
+operations handbook, two training summaries, a draft revision and an audit
+note for a neighbouring tier all say 1.00\%. Nothing in the collection is
+wrong by accident: the summaries were correct when written, the draft is a
+proposal, the audit note belongs to a different scope. This is the normal
+state of an organisational knowledge base, not an edge case, and the public
+conflict benchmarks show the same structure in open-domain text, where
+Wikipedia-style sources disagree because of ambiguity, staleness or
+fabrication \citep{wang2025ramdocs,cattan2025conflicts}.
+
+Retrieval-augmented generation (RAG) handles this situation in one of two
+ways, and both are wrong for the person asking. The common one is the
+\emph{silent majority}: the generator follows the value that appears most
+often in its context, which is exactly how superseded and copied values
+beat the one authoritative source. The conflict-aware alternative is
+\emph{refusal}: systems that detect disagreement and abstain are safe, but
+they abstain on precisely the questions that made someone open the
+knowledge base. Our own refuse-on-conflict variant, evaluated in
+Section~\ref{sec:eval}, gives up a substantial share of its correct answers
+this way \todo{points, Table 1}.
+
+A practitioner needs neither. They need a committed answer, the dissent
+made visible rather than averaged away, the reason the system preferred one
+value over another, and the exact sentence each claim came from, so that
+the decision can be checked in seconds and overruled when the system is
+wrong about a document. \sysname{} is built around that requirement
+(Figure~\ref{fig:teaser}). It retrieves with a hybrid index, scores chunks
+with governance signals inferred from the documents themselves, guarantees
+that every competing value reaches the generator, and asks the generator
+to resolve the disagreement in a fixed, stated order: governance first,
+then corroboration counted in distinct documents, then internal
+consistency, and only then a declared tie. The output is a structured
+decision whose citations are verbatim quotes, validated against the
+retrieved text and mapped to character spans in the original file.
+
+This paper makes four contributions.
+(1) An \emph{answer-and-flag} resolution policy with a fixed rule order and
+verbatim-quote validation, which commits where plain RAG drifts and answers
+where refuse-on-conflict systems abstain.
+(2) An evidence-review interface that renders the committed answer, the
+flagged dissent, how many distinct documents back each competing value,
+and sentence-level highlights in the original PDF, Word or text file, with
+reviewer overrides of document status that re-run the pipeline.
+(3) A pip-installable package and server that run the same pipeline over an
+upload, a dropped folder or a server-side path, against any
+OpenAI-compatible model.
+(4) An evaluation on two public conflict benchmarks with three open-weight
+generators against plain, hybrid and refuse-on-conflict RAG and three
+off-the-shelf RAG frameworks, scored automatically and by an LLM judge
+whose protocol we release.
+
+\begin{figure}[t]
+  \centering
+  \fbox{\parbox{0.95\columnwidth}{\centering\vspace{2.2cm}\todo{Fig 1: result
+  view screenshot. Crop to the answer card: (1) decision badge, (2) answer,
+  (3) resolution rule, (4) corroboration strip 0.72\% $\times$1 green vs
+  1.00\% $\times$5 amber, (5) citations coloured by role.}\vspace{2.2cm}}}
+  \caption{\sysname{} on a question whose sources disagree: a committed
+  answer, the rule that decided it, how many documents back each competing
+  value, and the dissent flagged rather than hidden.}
+  \label{fig:teaser}
+\end{figure}
+
+% ==================================================================
+\section{Related Work}
+\todo{0.5 page; cite, do not survey. Re-check for 2026 demo papers on the
+same topic before submission.}
+
+\paragraph{Knowledge conflicts in RAG.}
+\citet{xu2024survey} separate conflicts between the model's memory and its
+context from conflicts \emph{within} the retrieved context; we address the
+latter. Benchmarks that make inter-context disagreement the object of
+evaluation include WikiContradict \citep{hou2024wikicontradict}, ConflictBank
+\citep{su2024conflictbank}, RAMDocs \citep{wang2025ramdocs}, which mixes
+ambiguity, misinformation and noise in one retrieval set, and CONFLICTS
+\citep{cattan2025conflicts}, which labels real web results with a five-type
+taxonomy and a required behaviour per type. We evaluate on the last two.
+Methods proposed for these settings optimise the answer: multi-agent debate
+with one agent per document \citep{wang2025ramdocs}, consolidation of
+internal and external knowledge \citep{wang2024astute}, conflict-driven
+summarisation \citep{care2025}, detect-then-resolve pipelines
+\citep{conflictrag2026}, isolate-then-aggregate decoding
+\citep{xiang2024robustrag} and contrastive decoding that trusts the
+context \citep{shi2024cad}. None of them ships an interface in which a
+person can see why one value won and overrule the system; the only
+demonstration-track toolkit with conflict handling we know of, KMatrix-2
+\citep{kmatrix2}, exposes resolution strategies but returns an answer
+rather than a decision with attributed dissent.
+
+\paragraph{Evidence attribution.}
+Citation-augmented generation and its evaluation \citep{gao2023alce} verify
+whether cited passages entail the claims after the fact. We take the
+stricter position that a citation is a verbatim quote: the generator must
+copy the sentence, the validator checks it against the retrieved chunk
+under normalised matching, one repair round is allowed, and unverifiable
+quotes are dropped rather than shown. Because quotes are exact, each one
+maps to a character span in the source file and to a page in a PDF, which
+is what makes sentence-level highlighting possible without re-searching
+the document.
+
+\paragraph{Governance signals and RAG frameworks.}
+Enterprise document collections carry authority, status and recency cues
+that open-domain retrieval ignores; prior work weights sources by estimated
+reliability \citep{rarag2024} or by trust propagated from human feedback
+\citep{trustprop2026}. Closest to our setting is SentryLine
+\citep{kumar-etal-2026-sentryline}, which answers clinical questions over
+versioned guideline documents with inline citations and detects drift
+between versions; there the documents come from one authority and the
+question is which version applies, whereas here the sources are many and
+disagree, and the question is which one should win. We infer status,
+document type and authority from the document text, apply them only to
+chunks that are already relevant, and let a reviewer correct them.
+Off-the-shelf stacks such as LlamaIndex \citep{llamaindex} and Rankify
+\citep{rankify2026}, which we use as baselines, treat the corpus as
+internally consistent.
+
+% ==================================================================
+\section{System Architecture}
+\todo{1.5 pages. Figure 2 (method diagram) at the top of the section.}
+
+\begin{figure*}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  node distance=5mm and 6mm,
+  stage/.style={draw=boxline, fill=boxfill, rounded corners=2pt, align=center,
+                minimum height=14mm, text width=24mm, inner sep=2pt},
+  io/.style={stage, fill=white, dashed},
+  ui/.style={stage, draw=support, fill=support!8, text width=30mm},
+  rule/.style={draw=boxline, fill=white, rounded corners=1pt, align=center,
+               text width=20mm, minimum height=6mm, inner sep=1pt, font=\sffamily\scriptsize},
+  arr/.style={-{Stealth[length=2mm]}, thick, draw=context},
+  lbl/.style={font=\sffamily\scriptsize, text=context, align=center},
+]
+% ---- main pipeline, left to right ------------------------------------
+\node[io] (docs) {Documents\\[-1pt]{\scriptsize upload $\cdot$ folder $\cdot$ server path\\PDF, Word, text, Markdown}};
+\node[stage, right=of docs] (meta) {Document\\metadata\\[-1pt]{\scriptsize status, type, authority, scope\\(inferred, overridable)}};
+\node[stage, right=of meta] (retr) {Hybrid\\retrieval\\[-1pt]{\scriptsize BM25 + dense, RRF\\top-30 chunks}};
+\node[stage, right=of retr] (score) {Governance\\scoring\\[-1pt]{\scriptsize semantic + gate$\times$\\(authority, scope)}};
+\node[stage, right=of score] (div) {Conflict\\diversification\\[-1pt]{\scriptsize one chunk per\\distinct claim, 8 kept}};
+\node[stage, right=of div, text width=28mm] (gen) {Answer-and-flag\\generation\\[-1pt]{\scriptsize corroboration summary\\in the prompt}};
+\node[stage, right=of gen] (val) {Validation\\[-1pt]{\scriptsize decision allowed,\\quotes verbatim,\\one repair}};
+\node[ui, right=of val] (ui) {Evidence review\\[-1pt]{\scriptsize answer $\cdot$ \textcolor{dissent}{dissent}\\corroboration counts\\highlighted sentences\\in the original file}};
+\foreach \a/\b in {docs/meta, meta/retr, retr/score, score/div, div/gen, gen/val, val/ui}
+  \draw[arr] (\a) -- (\b);
+% ---- resolution order under the generator -----------------------------
+\node[rule, below=9mm of gen.south west, anchor=north west, xshift=-14mm] (r1) {1. governance\\active authoritative\\source wins};
+\node[rule, right=2mm of r1] (r2) {2. corroboration\\distinct documents\\per value};
+\node[rule, right=2mm of r2] (r3) {3. consistency\\of the source};
+\node[rule, right=2mm of r3] (r4) {4. tie\\declared, both\\values shown};
+\foreach \a/\b in {r1/r2, r2/r3, r3/r4} \draw[arr, thin] (\a) -- (\b);
+\begin{scope}[on background layer]
+  \node[draw=boxline, dashed, rounded corners=2pt, fit=(r1)(r4), inner sep=3pt] (rules) {};
+\end{scope}
+\node[lbl, above=0.5mm of rules.north west, anchor=south west] {resolution order, fixed and stated to the model};
+\draw[arr, thin] (rules.north -| gen.south) -- (gen.south);
+% ---- reviewer override loop ---------------------------------------------
+\draw[arr, draw=dissent, dashed] (ui.south) -- ++(0,-22mm) -| (meta.south)
+  node[lbl, pos=0.25, below, text=dissent] {reviewer overrides a document's status $\rightarrow$ re-index, re-evaluate};
+% ---- output legend on the right ------------------------------------------
+\node[lbl, below=1mm of ui] {decision $\in$ \{answered, answered-with-dissent,\\unresolved, insufficient, needs-information\}};
+\end{tikzpicture}}
+\caption{\sysname{} pipeline. Documents enter with inferred governance
+metadata; hybrid retrieval and governance-weighted scoring select chunks;
+conflict diversification guarantees the generator sees every competing
+value; generation follows a fixed resolution order and must quote verbatim;
+validation repairs or downgrades invalid outputs; the interface shows the
+committed answer with its dissent and lets a reviewer override document
+status, which re-runs the pipeline.}
+\label{fig:pipeline}
+\end{figure*}
+
+Figure~\ref{fig:pipeline} shows the pipeline. A question passes through
+hybrid retrieval, governance-weighted scoring, conflict diversification,
+answer-and-flag generation and validation; the interface renders the
+result and feeds reviewer overrides back into the document metadata. The
+same code path serves the benchmarks, the command line and the
+demonstration server.
+
+\subsection{Ingestion and retrieval}
+A collection is created from uploaded files, a dropped folder with its
+structure preserved, or a server-side folder path such as a mounted share
+or a knowledge-base export. PDF, Word, plain text and Markdown are parsed
+into paragraph- and sentence-aligned chunks that keep their character
+offsets and, for PDFs, their page, so that any cited sentence can later be
+located in the original file. The folder path becomes part of the document
+identifier shown in every citation. Tables inside documents are read as
+text in document order; query-independent table normalisation
+\citep{najpande-etal-2026-quiett} and structure-aware context pruning for
+tables \citep{titiya-etal-2026-captr} are complementary and not applied
+here.
+
+Retrieval is hybrid. A BM25 ranking \citep{robertson2009bm25} and a dense
+ranking over bge-small embeddings \citep{xiao2023bge} are fused with
+reciprocal rank fusion \citep{cormack2009rrf}, and the fused top-30 chunks
+go forward. The lexical half matters in governed collections, where the
+tokens that distinguish the right document are identifiers rather than
+meanings: a tier name, a certification code, a fiscal quarter, a date.
+Section~\ref{sec:eval} shows that the hybrid index helps only in
+combination with the resolution policy below; on its own it is a small
+change to plain RAG.
+
+\subsection{Governance scoring}
+\label{sec:scoring}
+For each document the system infers a \emph{status} (active and
+authoritative, active, draft, superseded, archived or unknown), a
+\emph{document type} (policy, bulletin, handbook, summary, memo and so on)
+and a scalar \emph{authority} from phrases in the document's header window,
+such as a supersession notice, a draft marker or an effective date. A
+\emph{scope} score measures how closely the opening sentences of the chunk's
+document match the question. These signals are heuristics and are
+presented to the generator as inferred, never as fact. A reviewer can
+override status and type; the override is stored beside the inferred value
+and shown to the generator as a reviewer decision.
+
+Each retrieved chunk is scored as
+\[
+s \;=\; 0.3\cdot\text{semantic} \;+\; g\cdot\big(0.5\cdot\text{authority}
+\;+\; 0.2\cdot\text{scope}\big),
+\]
+where $g\in[0,1]$ is a relevance gate that equals one for chunks whose
+semantic similarity is within a margin of 0.10 of the most similar chunk
+and fades linearly to zero at that margin. The gate exists because an
+authoritative document about an unrelated topic would otherwise outrank
+every relevant passage on authority alone. On the public benchmarks, whose
+documents carry no governance phrases, authority is zero for every chunk
+and the scorer reduces to semantic ranking, so the governance rule is
+exercised by the demonstration corpus rather than by the tables.
+
+\subsection{Conflict diversification}
+Plain top-$k$ selection shows the generator eight restatements of the
+majority value and hides the minority one, which is how stale values win.
+\sysname{} instead extracts the numeric or categorical claim each chunk
+makes about the question, groups chunks by normalised claim, keeps the
+best-scoring chunk per distinct claim, and then fills the remaining slots
+up to eight by score. Chunks that carry no extractable claim are kept as
+ordinary context. The effect is a guarantee: every competing value that
+retrieval found is in front of the generator, each represented once. The
+pipeline also computes a \emph{corroboration summary}, the number of
+distinct documents, not chunks, that state each value, which is given to
+the generator as a counting aid to be verified against the passages.
+
+\subsection{Answer-and-flag generation}
+\label{sec:policy}
+The generator receives the question, optional case context, the selected
+chunks with their inferred signals, and the corroboration summary. It is
+asked to resolve disagreement in a fixed order that is stated in the prompt
+(Appendix~\ref{app:prompts}): (1) \emph{governance}: a passage that is
+explicitly superseded, out of scope or supporting context does not compete;
+(2) \emph{corroboration}: among competing passages, prefer the value
+supported by more distinct documents; (3) \emph{consistency}: prefer the
+value that agrees with the other facts in the evidence and comes from a
+more specific, internally consistent passage; (4) \emph{tie}: only when the
+competing values are equally supported and steps 1 and 3 do not separate
+them, declare an unresolved conflict. When the generator commits under
+rule 2 or 3, the decision is still \emph{answered}, but the dissent is
+marked: the rejected passage is cited with the role \emph{conflicting} and
+the explanation names the rejected value and why it lost.
+% v2 (if the H200 rerun lands): rule 2 applies to factual claims only;
+% evaluative disagreements without a governance signal are reported as
+% unresolved with both positions in the answer, and factual ties are broken
+% by consistency and then by the model's own knowledge, stated openly.
+% Update this paragraph and Appendix A together.
+
+The output is a JSON object with one of four decisions, \emph{answered},
+\emph{unresolved conflict}, \emph{needs information} or \emph{insufficient
+evidence}; short answers; a readable answer; the selected source; an
+explanation; a conflict flag; and a list of citations, each with a chunk
+identifier, a verbatim quote and a role (governing, supporting,
+superseded, different scope, conflicting or uncertain). The interface
+labels an answered decision whose conflict flag is set as \emph{answered,
+dissent flagged}. The refuse-on-conflict ablation in Section~\ref{sec:eval}
+uses the same schema with rule 2 removed, so that any disagreement that
+governance does not settle becomes an unresolved conflict.
+
+\subsection{Validation and attribution}
+A response is accepted only if its decision is one of the four, every cited
+chunk was actually retrieved, and every quote is found verbatim in its
+chunk under normalised matching (whitespace, quotation marks and dashes
+unified, markup stripped). A response that fails is sent back once with the
+specific problems listed; if the repair also fails, unverifiable citations
+are dropped and the decision is downgraded to the most conservative one the
+surviving citations support. The generator never shows the user a sentence
+that is not in the document.
+
+Because quotes are exact, each verified citation is mapped to character
+offsets within its chunk and within the full document, with ellipsis
+segments allowed, and to a page for PDFs. The interface only marks these
+ranges; it never searches the text again. Citation roles travel with the
+spans, so a supporting sentence and a dissenting sentence are coloured
+differently wherever they appear.
+
+% ==================================================================
+\section{System Demonstration}
+\todo{1.5 pages. Figures 3 and 4. The video follows this walkthrough.}
+
+\sysname{} ships as a Python package with a command-line interface, a FastAPI
+server and a browser interface. The server exposes the pipeline over REST
+(collections, documents, questions, document metadata and overrides) and
+runs against any OpenAI-compatible chat endpoint and either a local
+sentence-transformer or a hosted embedding model. The interface described
+here is the demonstration's main object.
+
+\subsection{Interface}
+The workspace has three regions (Figure~\ref{fig:reader}): the collection
+tree on the left, the result card in the centre and the reader on the right.
+
+\paragraph{Result card.}
+The card opens with a decision badge, for instance \emph{Answered, dissent
+flagged}, followed by the answer, the model-reported confidence and a
+resolution panel that names the rule that decided (governance,
+corroboration, consistency or tie) with a one-sentence account of why. Below
+it, the \emph{corroboration strip} lists every competing value retrieval
+found and the number of distinct documents backing each: the committed value
+in green, the rest in amber. The citations follow, coloured by role, each
+with its verbatim quote and its document path.
+
+\paragraph{Reader.}
+Clicking a citation opens the document beside the card with the cited
+sentence highlighted and the chunk boundary drawn, so the reader can see
+what the model saw and what surrounded it. \emph{Compare side by side} opens
+the dissenting document underneath with its own sentence highlighted. The
+text view is the default; an \emph{Original} tab renders the actual PDF page
+through a text layer, or the Word file, with the same highlight placed on
+the real page.
+
+\paragraph{Governance in the loop.}
+The collection tree shows each file with its inferred status and type and a
+control to override them. An override re-indexes the document, adjusts its
+authority, is recorded with the collection, and is shown to the generator as
+a reviewer decision on the next question. The user does not edit prompts or
+weights; they state a fact about a document, and the system re-evaluates.
+
+\paragraph{Record.}
+A footer reports the model, retrieval mode, policy and latency, and a
+\emph{Download record} action exports the question, the decision, the
+resolution, every citation with its spans, and the document metadata in
+force at the time, so a decision can be audited later or attached to a
+ticket.
+
+\begin{figure*}[t]
+  \centering
+  \fbox{\parbox{0.97\textwidth}{\centering\vspace{3cm}\todo{Fig 3: full
+  workspace screenshot. Left: result card with corroboration strip. Right:
+  reader with the policy bulletin (0.72\% sentence in green) above the
+  operations handbook (1.00\% sentence in amber), chunk boundary visible.
+  Annotate the Original tab.}\vspace{3cm}}}
+  \caption{The evidence review. The committed value and the dissenting value
+  are each traced to the sentence they come from, shown side by side in the
+  source documents.}
+  \label{fig:reader}
+\end{figure*}
+
+\subsection{User workflow}
+A session follows five steps, which the video reproduces in order.
+(1) Create a collection and add documents by uploading files, dropping a
+folder, or typing the path of a folder the server can reach; the tree fills
+with every file and its inferred status and type.
+(2) Ask a question, optionally with case context such as a date, a region
+or an employee category, and receive a committed answer with the dissent
+flagged.
+(3) Open the cited sentences in the original files and compare the
+dissenting document side by side.
+(4) If a document's inferred status is wrong, override it; the answer is
+re-evaluated and the override is recorded.
+(5) Download the record.
+
+\subsection{Illustrative examples}
+\paragraph{Governance decides.}
+In the opening example, five documents give a defect-rate threshold of
+1.00\% and one active policy bulletin gives 0.72\%. Plain RAG, in our runs,
+answers 1.00\%. \sysname{} answers 0.72\%, names governance as the deciding
+rule, and shows 1.00\% backed by five documents as flagged dissent, with the
+handbook sentence that carries it one click away.
+
+\paragraph{Corroboration decides.}
+The reviewer marks the bulletin as superseded (Figure~\ref{fig:override}).
+On the next question the governance rule no longer separates the values,
+corroboration does, and the answer moves to 1.00\% by five documents, with
+0.72\% now the flagged dissent and the override visible in the technical
+details. The same evidence, read under a corrected fact about one document,
+yields a different committed answer, and the user can see exactly which
+rule changed the outcome.
+
+\paragraph{Mixed formats.}
+A remote-work policy in PDF allows three days a week on page~2; a 2024 FAQ
+in Word says two. The system answers three days by governance and the
+reader highlights both sentences on their real pages, one in the PDF text
+layer and one in the rendered Word file.
+
+\paragraph{Walkthrough corpus.}
+The demonstration ships with a fictional policy pack of 180 documents:
+fifteen questions, each with twelve documents comprising one authoritative
+source and typed distractors (superseded version, draft, secondary summary,
+neighbouring scope, background note). It exists so that a visitor can
+exercise every rule in a few minutes; it is not part of the evaluation.
+
+\begin{figure}[t]
+  \centering
+  \fbox{\parbox{0.95\columnwidth}{\centering\vspace{1.8cm}\todo{Fig 4: two
+  stacked panels. Top: bulletin active, answer 0.72\%, rule governance.
+  Bottom: bulletin set to superseded by reviewer, answer 1.00\%, rule
+  corroboration, 5 documents.}\vspace{1.8cm}}}
+  \caption{A reviewer override changes which rule decides. The dissent stays
+  visible in both cases.}
+  \label{fig:override}
+\end{figure}
+
+% ==================================================================
+\section{Empirical Evaluation}
+\label{sec:eval}
+\todo{1.25 pages. Tables 1 and 2, Figures 5 to 7; Figure 8 to the appendix
+if space is short.}
+
+\subsection{Existing datasets}
+\begin{itemize}
+  \item RAMDocs \citep{wang2025ramdocs}: 500 questions whose retrieved
+        documents mix ambiguity, noise and planted misinformation; a fully
+        correct answer lists every gold answer and no planted value.
+        CONFLICTS \citep{cattan2025conflicts}: 458 questions over real web
+        results, each annotated with a conflict type and the behaviour that
+        type requires (answer directly, consolidate, present both sides,
+        prefer the current value, ignore the misinformation); a fully correct
+        answer follows that behaviour. Neither benchmark carries governance
+        metadata, so the governance rule is inert here and the comparison
+        isolates retrieval, diversification and the resolution policy.
+  \item \textbf{Metric.} One judge grades every answer as fully correct,
+        partially correct or incorrect. We report \textbf{FC}, the share of
+        fully correct answers, as accuracy, and \textbf{Inc}, the share of
+        incorrect answers, as the error that matters: an answer that commits
+        to a wrong value. Partially correct answers are the remainder. Both
+        benchmarks also ship string-matching scores; we do not use them,
+        because they credit a hedged answer that happens to mention the gold
+        string.
+\end{itemize}
+
+\subsection{Baselines and metrics}
+\begin{itemize}
+  \item \textbf{Generators.} \genA, \genB, \genC; local bge-small embeddings;
+        identical prompts and decoding within a column group. \todo{temperature,
+        max tokens, endpoints.}
+  \item \textbf{Systems.} \sysname{} (hybrid retrieval, answer-and-flag with
+        the type-conditioned resolution of Section~\ref{sec:policy});
+        ablations: the same policy committing on every conflict (v1), dense
+        retrieval with answer-and-flag, and hybrid or dense retrieval with
+        refuse-on-conflict (the latter is the original strict system);
+        controls: hybrid RAG and dense RAG with the same retriever and no
+        policy, and closed-book; off-the-shelf: LlamaIndex ($k{=}2,8$) and
+        Rankify, each with the same embedder and generator.
+  \item \textbf{LLM judge.} Three-way grading (fully correct / partially
+        correct / incorrect, the convention of \citealp{kumar-etal-2026-sentryline})
+        by gpt-oss-120b, an open-weight judge outside all three generators'
+        model families, self-hosted with vLLM at temperature~0; every row
+        judged once with the protocol of Appendix~\ref{app:judge}. Sanity
+        check: agreement with an earlier GLM-5.3-Flash judge on the Nemotron
+        rows. \todo{numbers from compare\_with\_glm.py.}
+  \item \textbf{Development split.} Policy variants were compared on a seeded
+        sample of 100 questions per benchmark (seed 2026) under one decision
+        rule fixed before each run; the variant reported as \sysname{} is the
+        one that passed. All numbers in the tables are on the remaining
+        questions (400 RAMDocs, 358 CONFLICTS) for every system, baselines
+        included. \todo{tables still show the full set until the dev ids
+        arrive.}
+\end{itemize}
+
+\subsection{Results}
+Table~\ref{tab:main} is the headline: every system under each generator,
+the share of fully correct and of incorrect answers per benchmark as graded
+by the judge. Table~\ref{tab:behaviour} explains the headline for the main
+generator: how often each system commits to a wrong value, how often it
+refuses, and what it costs. Figure~\ref{fig:tradeoff} shows the same
+trade-off in one picture; Figure~\ref{fig:decisions} the decision mix;
+Figure~\ref{fig:slices} where the gain comes from. \todo{Table 2 and the
+figures are still the automatic Nemotron numbers; regenerate from the judge
+files on the test split.}
+
+% ---------------- Table 1: accuracy across three generators ----------
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+% resizebox is a hard guarantee against overflowing \textwidth; at the
+% current content it scales by ~1.0, so the font stays footnotesize.
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+ & \multicolumn{2}{c}{\genA} & \multicolumn{2}{c}{\genB} & \multicolumn{2}{c}{\genC} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS \\
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$
+ & FC$\uparrow$\,/\,Inc$\downarrow$ & FC$\uparrow$\,/\,Inc$\downarrow$ \\
+\midrule
+\input{tables/table_main}
+\bottomrule
+\end{tabular}}
+\caption{Judge-scored results under three generators. Each cell is the share
+of answers an LLM judge (gpt-oss-120b) graded \emph{fully correct} (FC,
+higher is better) and \emph{incorrect} (Inc, lower is better); the remainder
+is partially correct. RAMDocs: 500 questions whose documents mix ambiguity,
+noise and planted misinformation; fully correct means every gold answer and
+no planted value. CONFLICTS: 458 questions over real web results, graded
+against the behaviour the question's conflict type requires.
+\textbf{Rows.} \sysname{}: hybrid retrieval, governance scoring, conflict
+diversification and the answer-and-flag policy (commit on factual conflicts,
+present both sides on opinion conflicts, flag the dissent).
+\emph{Ablations} remove one design choice at a time: \emph{v1} is the same
+policy before the opinion rule, committing on every conflict; \emph{dense
+retrieval} replaces the BM25+dense hybrid with dense only;
+\emph{refuse-on-conflict} declines to answer whenever governance does not
+settle a disagreement (the original strict system).
+\emph{Controls} use the same embedder and generator with no conflict
+handling: \emph{Hybrid RAG} and \emph{Vanilla RAG} feed the top retrieved
+chunks to a plain answer prompt; \emph{Direct CoT} answers from the model's
+own knowledge with a step-by-step prompt and no documents.
+\emph{Off-the-shelf frameworks} run their default pipelines on the same
+documents and generator: \emph{LlamaIndex} with its default top-$k$ of 2 and
+with $k{=}8$ to match our context size; \emph{Rankify} with its monoT5
+reranker over all passages. Retrieval, prompts and decoding are identical
+within a column group; only the generator changes across groups. Best FC and
+best Inc per column in bold. \todo{Numbers are the full set; switch to
+\texttt{make\_tables.py --split test} once the dev-split ids arrive, and fill
+the \sysname{} row from the type-conditioned run. Shorten this caption before
+submission.}}
+\label{tab:main}
+\end{table*}
+
+% ---------------- Table 2: behaviour under the main generator -----------
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+ & \multicolumn{2}{c}{refused} & \multicolumn{2}{c}{invalid outputs} & \multicolumn{2}{c}{latency (s)} \\
+ & \multicolumn{2}{c}{(of 500 / 458)} & \multicolumn{2}{c}{after repair} & \multicolumn{2}{c}{per question} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & RAMDocs & CONFL. & RAMDocs & CONFL. & RAMDocs & CONFL. \\
+\midrule
+\textbf{\sysname{}}                        & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
+\addlinespace[2pt]
+\quad v1: commit on every conflict         &  45 &  30 & 0 &  1 & 37 & 57 \\
+\quad v1 with dense retrieval              &  45 &  35 & 1 &  0 & 51 & 75 \\
+\quad refuse-on-conflict, hybrid retrieval &  96 & 122 & 0 &  2 & 54 & 65 \\
+\quad refuse-on-conflict, dense retrieval  &  99 & 155 & 0 & 39 & 33 & 40 \\
+\addlinespace[2pt]
+\quad Hybrid RAG                           &  44 &  29 & 1 &  0 & 25 & 51 \\
+\quad Vanilla RAG (dense retrieval)        &  39 & 114 & 5 & 88 & 31 & 41 \\
+\quad Direct CoT (no retrieval)            & 191 &  46 & 0 &  0 & 21 & 40 \\
+\addlinespace[2pt]
+\quad LlamaIndex, $k{=}2$ / $k{=}8$        & -- & -- & -- & -- & 55 / 12 & 4 / 128 \\
+\quad Rankify                              & -- & -- & -- & -- & 45 & 22 \\
+\bottomrule
+\end{tabular}}
+\caption{Behaviour behind the headline, main generator (\genA).
+\emph{Refused}: unresolved-conflict, insufficient-evidence and
+needs-information decisions. \emph{Invalid outputs}: responses that still
+failed schema or quote validation after one repair. Off-the-shelf frameworks
+return free text, so they have no decisions or validation. Closed-book
+``refuses'' by saying it does not know. \todo{fill the \sysname{} row from
+the type-conditioned run; consider splitting \emph{refused} into
+unresolved-conflict and insufficient-evidence.}}
+\label{tab:behaviour}
+\end{table*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_tradeoff_ramdocs}
+  \caption{RAMDocs: FC against Inc, one point per system (\genA). The
+  answer-and-flag systems are the only ones that gain accuracy without
+  committing to wrong values more often. \todo{regenerate from the judge
+  files on the test split.}}
+  \label{fig:tradeoff}
+\end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_decisions}
+  \caption{Decision mix per system on both benchmarks (\genA). Refuse-on-conflict
+  turns a fifth to a third of the questions into refusals; \sysname{} answers
+  them and marks the dissent instead.}
+  \label{fig:decisions}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_slices_ramdocs}
+  \caption{RAMDocs FC on questions with and without planted misinformation
+  (\genA). On clean questions every system is within a few points; the
+  difference is on the questions where sources disagree. \todo{regenerate
+  from the judge files on the test split.}}
+  \label{fig:slices}
+\end{figure}
+
+\todo{Analysis paragraphs, all in FC / Inc: (1) where the points come from on
+CONFLICTS per conflict type: opinion questions are where committing loses and
+presenting both sides wins, no-conflict questions are where refusals cost;
+(2) RAMDocs: refusals are never fully correct, and the type-conditioned policy
+keeps committing on factual conflicts; (3) the ablation that answers factual
+ties by background knowledge (A+C) raises Inc by turning partially correct
+multi-answer items into single wrong values, which is why the system does not
+do it; (4) cost: one extra generation call at most, 57 s vs 51 s on CONFLICTS.}
+
+% ==================================================================
+\section{Conclusion}
+Document collections disagree with themselves, and a question-answering
+system that hides the disagreement, by majority or by refusal, is not
+helping the person who asked. \sysname{} commits to an answer under a
+stated resolution order, flags the dissent with the count of documents
+behind each value, and ties every claim to a sentence a reviewer can open
+in the original file and, when the system is wrong about a document,
+correct. On two public conflict benchmarks with three generators, the
+policy recovers the accuracy that refusing on conflict gives up while
+adopting less misinformation than plain RAG \todo{one sentence of numbers}.
+The package, server and interface are released under \todo{licence} at
+\todo{repository}; a hosted demonstration and a video are at \todo{URLs}.
+
+% ==================================================================
+\section*{Limitations}
+The governance signals are heuristics over document text. The public
+benchmarks contain no supersession notices, drafts or effective dates, so
+on them the authority term is zero and the governance rule is exercised
+only by the demonstration corpus, which we wrote. The tables therefore
+measure the resolution policy, the diversification step and the hybrid
+index, not the governance scoring, and the demonstration corpus is
+evidence of behaviour, not of accuracy.
+
+Correctness is scored by a single LLM judge, chosen from outside every
+generator's model family, with the protocol and prompts released
+(Appendix~\ref{app:judge}). Other judges may move the numbers; we report
+agreement with a second judge on a subset \todo{once available}. Both
+benchmarks define correct behaviour in a particular way, listing all
+answers for ambiguity on RAMDocs and presenting both sides for conflicting
+opinions on CONFLICTS, and our policy was revised once to respect those
+definitions; the earlier policy is kept as an ablation row.
+\todo{keep or drop depending on v2.}
+
+Claim extraction for diversification is strongest on numeric and
+short categorical values; for entity-valued disagreements the corroboration
+summary is often empty and the generator counts for itself. The system is
+English-only. Sentence highlighting in PDFs requires a text layer, so
+scanned and some two-column PDFs fall back to the text view. Latency is
+tens of seconds per question with a hosted generator, mostly from the
+repair round; this suits review workflows, not chat.
+
+\section*{Ethics Statement}
+The benchmarks are public and contain no personal data beyond what is
+already in their Wikipedia-derived and web-derived passages. The
+demonstration corpus is fictional: companies, people, products and
+policies are invented, and any resemblance to real entities is accidental.
+\sysname{} surfaces disagreement instead of hiding it, but a committed
+answer remains a model output: the resolution rules are heuristics, the
+governance signals are inferred, and the generator can be wrong while
+quoting correctly. The interface is designed so that a person checks the
+cited sentences before acting, and the exported record makes that check
+auditable. The system should not be used to make consequential decisions
+about individuals without such review.
+
+\section*{Acknowledgements}
+\todo{compute (H200), funding, the EMNLP workshop lineage if desired.}
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+% ==================================================================
+\appendix
+\section{Prompts}
+\label{app:prompts}
+All prompts are reproduced verbatim from the released code
+(\texttt{docuinsight/core.py}). Every system below receives the same user turn
+(Appendix~\ref{app:user-turn}) and must return the same JSON schema, so rows
+differ only in the system prompt, the retriever and the policy. Decoding is
+greedy (temperature 0) with a 16\,384-token completion budget for every
+generator.
+
+\subsection{\sysname{}: answer-and-flag system prompt}
+\label{app:prompt-flag}
+\begin{lstlisting}[style=prompt]
+You answer questions using only the supplied evidence passages and optional case context.
+Read full passages, including conditions and exceptions. Never infer organizational authority
+as verified fact: status, document type, authority scores, and scope similarity are inferred
+signals only; scope similarity is not proof of applicability. Never invent precedence.
+
+Choose exactly one decision:
+- answered: evidence supports a direct answer, including its conditions and exceptions.
+- unresolved_conflict: applicable passages disagree AND the competing values are equally
+  supported (see the tie rule below).
+- needs_information: relevant rules exist, but essential facts about this case are missing.
+- insufficient_evidence: retrieved passages do not support an answer.
+
+Resolving disagreement, in order:
+1. Governance: a passage that is explicitly superseded, out of scope, or supporting context
+   does not compete. A document saying it "supersedes" earlier documents is not itself superseded.
+2. Corroboration: among the passages that do compete, prefer the value supported by more
+   independent documents (different filenames). Treat the "Corroboration" summary, when
+   supplied, as a count aid only; verify it against the passages.
+3. Consistency: prefer the value that agrees with the other facts in the evidence (dates,
+   places, names, totals) and that comes from a more specific, internally consistent passage.
+4. Tie rule: only if the competing values are supported by the same number of independent
+   documents and steps 1 and 3 do not separate them, choose unresolved_conflict.
+
+When you commit under step 2 or 3, the decision is answered, conflict_detected is true, the
+dissenting passage is cited with treatment "conflicting", and the explanation names the
+rejected value and why it lost. short_answers must contain only the committed answer(s), never
+the rejected value. If the question is ambiguous because several distinct entities share the
+same name, give the correct answer for each entity; that is not a conflict.
+
+Return JSON only:
+{
+  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
+  "answer": "Readable answer with all important conditions and exceptions; mention flagged dissent briefly.",
+  "short_answers": ["each distinct final answer as a short span; for an unresolved conflict, each competing answer"],
+  "citations": [
+    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
+     "treatment": "governing|supporting|superseded|different_scope|conflicting|uncertain",
+     "explanation": "brief plain-language treatment"}
+  ],
+  "explanation": "Brief explanation of this decision, including how any conflict was resolved.",
+  "missing_information": [],
+  "clarification_question": null,
+  "selected_source": null,
+  "conflict_detected": false,
+  "confidence": "high|medium|low"
+}
+For unresolved conflicts, cite each materially competing passage and explain its treatment;
+selected_source must be null. For needs_information, list the missing facts and ask a useful
+clarification question. Use an empty citation list if evidence cannot support any citation.
+When the decision is answered, selected_source must be the filename of the governing passage the
+answer is taken from (never null). selected_source must exactly match a supplied filename and
+appear in citations. Numeric claim metadata is a search aid, never a citation or proof.
+\end{lstlisting}
+
+\subsection{Refuse-on-conflict system prompt (ablation)}
+\label{app:prompt-strict}
+Identical to Appendix~\ref{app:prompt-flag} except for the decision list and
+the absence of the resolution order; the JSON schema and the closing
+instructions are the same. The differing block:
+\begin{lstlisting}[style=prompt]
+Choose exactly one decision:
+- answered: evidence supports a direct answer, including its conditions and exceptions.
+- unresolved_conflict: applicable evidence disagrees and documented precedence does not resolve it.
+- needs_information: relevant rules exist, but essential facts about this case are missing.
+- insufficient_evidence: retrieved passages do not support an answer.
+
+Do not force a winner between equally applicable conflicting passages. Distinguish different
+scope, explicitly superseded material, supporting context, and uncertain applicability. A
+document saying it "supersedes" earlier documents is not itself superseded.
+\end{lstlisting}
+
+\subsection{Plain RAG system prompt (controls)}
+\label{app:prompt-baseline}
+Used by the dense-RAG and hybrid-RAG controls: same schema, no governance or
+conflict guidance, and the evidence blocks omit the inferred signal lines.
+\begin{lstlisting}[style=prompt]
+You answer questions using only the supplied evidence passages and optional case context.
+Read the passages and answer the question as directly as you can from them. If the passages
+disagree, use your best judgment about which answer the evidence supports.
+
+Return JSON only:
+{
+  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
+  "answer": "Readable answer.",
+  "short_answers": ["each distinct final answer as a short span"],
+  "citations": [
+    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
+     "treatment": "supporting|conflicting",
+     "explanation": "brief plain-language note"}
+  ],
+  "explanation": "Brief explanation of this answer.",
+  "missing_information": [],
+  "clarification_question": null,
+  "selected_source": "filename of the passage the answer is taken from, or null",
+  "conflict_detected": false,
+  "confidence": "high|medium|low"
+}
+Use "answered" whenever the passages support an answer. When the decision is answered,
+selected_source must be the filename of the passage the answer is taken from (never null); it must
+exactly match a supplied filename and must also appear in citations.
+\end{lstlisting}
+
+\subsection{Closed-book system prompt (control)}
+\label{app:prompt-closedbook}
+No passages are supplied. The prompt is few-shot chain-of-thought; the three
+worked examples (a single answer, an ambiguous name with one answer per
+entity, and an honest ``unknown'') follow the schema below and are in the
+code.
+\begin{lstlisting}[style=prompt]
+You answer questions from your own knowledge. No documents are provided.
+Think step by step first: identify what the question refers to, recall what you know, check whether the
+name could refer to several distinct things, and decide how confident you are. Then give the answer.
+
+Rules:
+- If the question is ambiguous because several distinct entities share the same name, give the correct answer
+  for each entity and list each one in short_answers with the entity in parentheses.
+- If you do not know, say so: set decision to "insufficient_evidence" and leave short_answers empty.
+  Do not guess a specific value you cannot recall.
+- short_answers holds each distinct final answer as a short span (a name, a number, a date, a phrase).
+
+Return the reasoning, then JSON only:
+{
+  "reasoning": "step-by-step thinking",
+  "decision": "answered|insufficient_evidence",
+  "answer": "Readable answer.",
+  "short_answers": ["short span", "..."],
+  "confidence": "high|medium|low"
+}
+\end{lstlisting}
+
+\subsection{User turn, evidence block and corroboration summary}
+\label{app:user-turn}
+The user turn is built identically for every retrieval-based row. Angle
+brackets mark values filled per question; the signal lines are omitted for the
+plain-RAG controls, and the corroboration summary is appended only under the
+answer-and-flag policy (and only when at least two competing numeric claims
+exist among the retrieved chunks).
+\begin{lstlisting}[style=prompt]
+Question: <question>
+
+Case context (user-provided, potentially incomplete):
+<JSON object; {} when none>
+
+Retrieved Evidence:
+
+Evidence 1 (chunk <k>):
+Chunk ID: <chunk_id>
+Document ID: <document_id>
+Filename: <filename>
+Inferred status: <active_authoritative|active|draft|superseded|archived|unknown>
+Inferred type: <policy|contract|guidance|memo|faq|...>
+Inferred authority signal: <0.000-1.000>
+Scope similarity (not proof of applicability): <0.000-1.000>
+Location: <page p, section s | chunk reference only>
+
+Content:
+<chunk text, truncated at 6000 characters>
+
+--------------------------------------------------------------------------------
+
+Evidence 2 (chunk <k>):
+...
+
+Corroboration (numeric claims, distinct documents; count aid only):
+- <value A>: <n> documents
+- <value B>: <n> document
+
+Analyze the evidence and provide your answer in JSON format.
+\end{lstlisting}
+
+\subsection{Repair turn}
+\label{app:repair}
+When the validator rejects an output (disallowed decision, a quote that is not
+verbatim in the cited chunk, an unknown treatment, or a \texttt{selected\_source}
+that is not a cited filename), the rejection reason is appended to the same
+user turn and the model is called once more. If the second output still fails,
+the answer is kept and only the unverifiable citations are dropped (``salvage'');
+the count of dropped citations is reported.
+\begin{lstlisting}[style=prompt]
+Your previous JSON response was rejected for this reason: <validator reason> Return the complete corrected JSON only. Every citation quote must be copied verbatim from the Content of the passage whose Chunk ID you cite, every treatment must be one of the allowed values, and selected_source must be a cited filename.
+\end{lstlisting}
+\section{Resolution rules}
+\todo{Pseudo-code of governance $\rightarrow$ corroboration $\rightarrow$
+consistency $\rightarrow$ tie, and how corroboration counts are computed
+(distinct documents, committed or cited values only, bare years excluded).}
+\section{Results by conflict type}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_conflict_types}
+  \caption{CONFLICTS FC by annotated conflict type and system (\genA).
+  \todo{regenerate from the judge files on the test split, all three
+  generators if space allows.}}
+  \label{fig:types}
+\end{figure}
+\section{Example outputs}
+\todo{One RAMDocs and one CONFLICTS item: question, retrieved values, the
+system's decision and citations, next to plain RAG and refuse-on-conflict.}
+\section{LLM-as-a-judge protocol}
+\label{app:judge}
+Every row is graded once by a single open-weight judge served locally with
+vLLM, with greedy decoding and a 4\,096-token completion budget (reasoning
+models may think; the \texttt{<think>} block is stripped before parsing).
+The judge sees the question, the gold answer(s), the expected behaviour for
+the situation, the system's decision label and its answer. It never sees the
+retrieved documents, so it grades the answer, not the retrieval.
+\todo{name the judge and report agreement with the earlier GLM judge on the
+six shared rows and with gold on the labelled subset.}
+
+\subsection{System prompt}
+\begin{lstlisting}[style=prompt]
+You are an impartial grader for a question-answering system that reads several retrieved documents, some of which may disagree. You compare the system's answer with the gold answer(s) and grade it with exactly one label:
+
+FC  (fully correct): every gold answer is given as the answer, no incorrect value is presented as the answer or as an equally valid possibility, and the required behaviour for the situation is followed.
+PC  (partially correct): the answer contains the gold answer(s) but is incomplete, hedges between the gold answer and an incorrect value without committing, or follows the required behaviour only partly. Nothing stated is factually wrong.
+Inc (incorrect): the answer commits to an incorrect value, contradicts the gold answer, fails to give any gold answer, refuses or abstains although the gold answer was available, or clearly violates the required behaviour.
+
+Grade substance only, not style or length. Minor differences in wording, formatting, units or precision that preserve the meaning do not count against the answer. Return JSON only, on one line: {"label": "FC" | "PC" | "Inc", "reason": "one sentence"}
+\end{lstlisting}
+
+\subsection{Per-item user turn, RAMDocs}
+\begin{lstlisting}[style=prompt]
+Question: <question>
+Situation: the retrieved documents may mix correct information, misinformation and noise. If the question is ambiguous because several distinct entities share a name, each gold answer belongs to one entity and all of them must be given for FC. Known misinformation values are listed; presenting one of them as the answer is Inc, presenting it as an unresolved alternative alongside the gold answer is PC.
+Gold answer(s): <gold 1> | <gold 2> | ...
+Known misinformation value(s): <wrong 1> | <wrong 2> | ...
+System decision label: <answered|unresolved_conflict|insufficient_evidence|needs_information>
+System answer:
+<predicted answer, or "(no answer given)">
+Grade the system answer.
+\end{lstlisting}
+
+\subsection{Per-item user turn, CONFLICTS}
+\begin{lstlisting}[style=prompt]
+Question: <question>
+Situation: <conflict type>. Required behaviour: <behaviour for that type, Table below>
+Gold answer: <reference answer>   (or: "(no reference answer; grade the required behaviour and factual consistency with the situation only)")
+System decision label: <decision>
+System answer:
+<predicted answer>
+Grade the system answer.
+\end{lstlisting}
+The decision label line is omitted for the off-the-shelf frameworks, which
+return free text.
+
+\subsection{Expected behaviour per CONFLICTS conflict type}
+These strings are the ones inserted into the judge prompt; the expected
+decision is also the target of the automatic decision-match metric.
+\begin{center}\small
+\begin{tabular}{@{}p{0.27\columnwidth} p{0.14\columnwidth} p{0.5\columnwidth}@{}}
+\toprule
+Conflict type & Expected decision & Required behaviour given to the judge \\
+\midrule
+No conflict & answered & The sources agree; the response should give the single supported answer directly. \\
+Complementary information & answered & The sources give different but compatible pieces of information (e.g.\ the answer differs by place, interpretation or sub-question); the response should answer by combining or distinguishing them rather than picking one and ignoring the rest. \\
+Conflicting opinions and research outcomes & unresolved conflict & The sources genuinely disagree (opinions, contested research); the response should present the competing positions neutrally and not commit to one as the answer. \\
+Conflict due to outdated information & answered & Some sources are out of date; the response should prefer the most recent information and give that as the answer, optionally noting that older sources differ. \\
+Conflict due to misinformation & answered & Some sources are false; the response should ignore the misinformation and give the correct answer. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Parsing and bookkeeping}
+The judge's reply is parsed as JSON after stripping code fences; a reply
+without one of the three labels is retried and, if still unlabelled, counted
+in \texttt{n\_unlabelled} and excluded from the percentages. Verdicts are
+checkpointed per item, so an interrupted run resumes without re-grading.
+Per-run summaries report FC / PC / Inc overall and broken down by conflict
+type (CONFLICTS), by whether a reference answer exists, and by the system's
+decision label.
+\section{Hyperparameters and reproduction}
+Generation: temperature 0, completion budget 16\,384 tokens, one repair call
+at most. Judge: temperature 0, completion budget 4\,096 tokens. Retrieval:
+BM25 and bge-small-en-v1.5 dense scores fused by reciprocal rank, 30
+candidates, 8 chunks after diversification. Scoring weights: 0.3 semantic,
+gate $\times$ (0.5 authority + 0.2 scope).
+\todo{chunk sizes, model ids and endpoints for \genB{} and \genC{}, seeds,
+and the \texttt{evaluate\_external.py} command line for every row.}
+
+\end{document}

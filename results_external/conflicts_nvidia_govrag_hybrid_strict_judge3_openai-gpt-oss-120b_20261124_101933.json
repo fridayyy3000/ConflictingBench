@@ -1,0 +1,97 @@
+{
+  "source_details": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_nvidia_govrag_hybrid_strict_details_20261124_101933.csv",
+  "dataset": "conflicts",
+  "tag": "conflicts_nvidia_govrag_hybrid_strict",
+  "stamp": "20261124_101933",
+  "judge_model": "openai/gpt-oss-120b",
+  "n": 458,
+  "n_labelled": 458,
+  "n_unlabelled": 0,
+  "FC": 70.31,
+  "PC": 6.77,
+  "Inc": 22.93,
+  "mean_judge_latency_s": 2.16,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 87.83,
+      "PC": 5.22,
+      "Inc": 6.96
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "n_labelled": 5,
+      "FC": 40.0,
+      "PC": 0.0,
+      "Inc": 60.0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "n_labelled": 62,
+      "FC": 66.13,
+      "PC": 1.61,
+      "Inc": 32.26
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "n_labelled": 115,
+      "FC": 53.91,
+      "PC": 1.74,
+      "Inc": 44.35
+    },
+    "No conflict": {
+      "n": 161,
+      "n_labelled": 161,
+      "FC": 72.05,
+      "PC": 13.66,
+      "Inc": 14.29
+    }
+  },
+  "by_reference": {
+    "no_reference": {
+      "n": 221,
+      "n_labelled": 221,
+      "FC": 71.04,
+      "PC": 3.62,
+      "Inc": 25.34
+    },
+    "with_reference": {
+      "n": 237,
+      "n_labelled": 237,
+      "FC": 69.62,
+      "PC": 9.7,
+      "Inc": 20.68
+    }
+  },
+  "by_decision": {
+    "answered": {
+      "n": 336,
+      "n_labelled": 336,
+      "FC": 70.83,
+      "PC": 8.93,
+      "Inc": 20.24
+    },
+    "insufficient_evidence": {
+      "n": 16,
+      "n_labelled": 16,
+      "FC": 0.0,
+      "PC": 0.0,
+      "Inc": 100.0
+    },
+    "needs_information": {
+      "n": 25,
+      "n_labelled": 25,
+      "FC": 64.0,
+      "PC": 4.0,
+      "Inc": 32.0
+    },
+    "unresolved_conflict": {
+      "n": 81,
+      "n_labelled": 81,
+      "FC": 83.95,
+      "PC": 0.0,
+      "Inc": 16.05
+    }
+  }
+}

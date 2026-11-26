@@ -1,0 +1,107 @@
+{
+  "total": 458,
+  "decisions": {
+    "answered": 404,
+    "insufficient_evidence": 21,
+    "unresolved_conflict": 31,
+    "needs_information": 2
+  },
+  "decision_match_rate": 75.33,
+  "validation_errors": 21,
+  "repairs_used": 126,
+  "items_with_dropped_citations": 34,
+  "mean_latency_s": 30.84,
+  "decision_match_ci95": [
+    71.2,
+    79.0
+  ],
+  "answer_correct": 75.95,
+  "answer_correct_n": 237,
+  "judge_adherent": null,
+  "judge_adherent_ci95": null,
+  "judge_n": 0,
+  "by_conflict_type": {
+    "Complementary information": {
+      "n": 115,
+      "decision_match": 96.52,
+      "decisions": {
+        "answered": 111,
+        "unresolved_conflict": 1,
+        "needs_information": 1,
+        "insufficient_evidence": 2
+      },
+      "answer_correct": 57.14,
+      "answer_correct_n": 7,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to misinformation": {
+      "n": 5,
+      "decision_match": 100.0,
+      "decisions": {
+        "answered": 5
+      },
+      "answer_correct": 100.0,
+      "answer_correct_n": 5,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflict due to outdated information": {
+      "n": 62,
+      "decision_match": 90.32,
+      "decisions": {
+        "answered": 56,
+        "insufficient_evidence": 4,
+        "unresolved_conflict": 1,
+        "needs_information": 1
+      },
+      "answer_correct": 66.13,
+      "answer_correct_n": 62,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "Conflicting opinions and research outcomes": {
+      "n": 115,
+      "decision_match": 23.48,
+      "decisions": {
+        "answered": 86,
+        "unresolved_conflict": 27,
+        "insufficient_evidence": 2
+      },
+      "answer_correct": 50.0,
+      "answer_correct_n": 2,
+      "judge_adherent": null,
+      "judge_n": 0
+    },
+    "No conflict": {
+      "n": 161,
+      "decision_match": 90.68,
+      "decisions": {
+        "insufficient_evidence": 13,
+        "answered": 146,
+        "unresolved_conflict": 2
+      },
+      "answer_correct": 80.12,
+      "answer_correct_n": 161,
+      "judge_adherent": null,
+      "judge_n": 0
+    }
+  },
+  "dataset": "conflicts",
+  "mode": "govrag",
+  "provider": "local",
+  "run_label": "gemma4-31b",
+  "base_url": "http://localhost:8001/v1",
+  "thinking": false,
+  "generation_model": "google/gemma-4-31B-it",
+  "judge_model": null,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "sample": null,
+  "seed": 0,
+  "limit": null,
+  "task_hint": "",
+  "govrag_retrieval": "hybrid",
+  "govrag_policy": "answer_and_flag",
+  "details_csv": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_gemma4-31b_govrag_hybrid_answerandflag_details_20261126_041632.csv",
+  "run_log": "/mnt/data1/gnajpand/conflictbench_h200/results_external/conflicts_gemma4-31b_govrag_hybrid_answerandflag_run_20261126_041632.log"
+}

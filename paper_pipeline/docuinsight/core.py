@@ -1710,19 +1710,27 @@ class GovRAGGemini:
         region=None,
         api_key=None,
         use_llm=True,
+        embedder=None,
+        generator=None,
     ):
-        """Create a query-ready GOV-RAG instance from stored chunk embeddings."""
+        """Create a query-ready GOV-RAG instance from stored chunk embeddings.
+
+        ``embedder`` / ``generator`` are drop-in providers, exactly as in
+        ``__init__``; without them the Gemini classes are used.
+        """
         print("\nInitializing GOV-RAG from persisted index...")
 
         obj = cls.__new__(cls)
         obj.use_llm = use_llm
-        obj.embedder = GeminiEmbedder(project_id=project_id, region=region, api_key=api_key)
+        obj.embedder = embedder or GeminiEmbedder(project_id=project_id, region=region, api_key=api_key)
 
-        if obj.use_llm:
+        if not obj.use_llm:
+            obj.generator = None
+        elif generator is not None:
+            obj.generator = generator
+        else:
             print("\nInitializing Gemini generator for final resolution...")
             obj.generator = GeminiGenerator(project_id=project_id, region=region, api_key=api_key)
-        else:
-            obj.generator = None
 
         obj.documents = []
         obj.doc_meta = {}

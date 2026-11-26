@@ -17,3 +17,10 @@ python-docx==1.1.2
 
 # HTTP client for testing
 requests>=2.31.0
+
+# NVIDIA / local provider path (GOVRAG_PROVIDER=nvidia, the default when NVIDIA_API_KEY is set)
+openai>=1.40
+sentence-transformers>=3.0
+rank-bm25>=0.2.2
+# Word -> HTML rendering for the reader pane's "Original" view
+mammoth>=1.8
