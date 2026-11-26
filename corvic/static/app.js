@@ -724,7 +724,7 @@
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `docuinsight-record-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.json`;
+    link.download = `docresolve-record-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.json`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -1156,7 +1156,7 @@
       insufficient_evidence: { decision: "insufficient_evidence", decision_label: "insufficient_evidence", answer: "The collection does not contain enough information to answer this question.", short_answers: [], explanation: "No retrieved passage supports a conclusion.", citations: [], top_sources: [], confidence: "low", resolution: { rule: "none", summary: "No value was committed.", committed_values: [], corroboration: [] } },
     };
     if (!fixtures[name]) return false;
-    document.title = `DocuInsight — Local UI fixture: ${name}`;
+    document.title = `DocResolve — Local UI fixture: ${name}`;
     renderResult({ ...fixtures[name], pipeline: { retrieval: "hybrid", policy: "answer_and_flag" }, model: "fixture", latency_s: 0 }, true);
     return true;
   }

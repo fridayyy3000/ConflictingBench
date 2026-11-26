@@ -167,7 +167,7 @@ ALLOW_CREDENTIALS = "*" not in ALLOWED_ORIGINS
 # ============================================================
 
 app = FastAPI(
-    title="GOV-RAG API",
+    title="DocResolve API",
     description="Authority-aware RAG with conflict resolution",
     version="2.0.0",
 )
