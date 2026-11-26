@@ -67,14 +67,22 @@
 \definecolor{boxfill}{HTML}{F4F7F5}
 \definecolor{boxline}{HTML}{9BB4A4}
 
+% ---- a small "forks up" pitchfork drawn in TikZ (not the trademarked logo) ----
+\definecolor{asumaroon}{HTML}{8C1D40}
+\newcommand{\forksup}{%
+  \raisebox{-0.18ex}{\begin{tikzpicture}[x=1ex, y=1ex, line cap=round, line join=round,
+      asumaroon, line width=0.16ex]
+    \draw (0.5,0) -- (0.5,1.05);                         % handle
+    \draw (0,1.6) -- (0,0.95) .. controls (0,0.75) and (1,0.75) .. (1,0.95) -- (1,1.6); % outer tines
+    \draw (0.5,1.05) -- (0.5,1.75);                      % centre tine
+  \end{tikzpicture}}%
+}
+
 \title{\sysname: Conflict-Aware Question Answering\\that Answers and Flags the Dissent}
 
-\author{Gaurav Najpande \\
-        Arizona State University \\
-        \texttt{\todo{asurite}@asu.edu} \And
-        Vivek Gupta \\
-        Arizona State University \\
-        \texttt{\todo{asurite}@asu.edu}}
+\author{Gaurav Najpande \qquad Vivek Gupta \\
+        \forksup\ Arizona State University \\
+        \texttt{\{gnajpand, vgupt140\}@asu.edu}}
 
 \begin{document}
 \maketitle
