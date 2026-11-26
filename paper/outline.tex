@@ -6,7 +6,8 @@
 %   System Architecture 1.5 | System Demonstration 1.5
 %   Empirical Evaluation 1.25 | Conclusion 0.25
 % Every \todo{} is a note to ourselves; remove before submission.
-% [auto] = automatic metric from the Mac runs; [judge] = from the H200 run.
+% One metric vocabulary everywhere: the LLM judge's FC (fully correct, the
+% paper's "accuracy") and Inc (incorrect). No set-EM / containment in the text.
 %
 % FIGURE AND TABLE PLAN (where, what, how it is made)
 %   Fig 1  Introduction, one column   result view screenshot, annotated 1-5
@@ -14,17 +15,17 @@
 %   Fig 3  Demonstration, full width  reader: answer doc + dissent doc side by
 %                                     side with highlights; corroboration strip
 %   Fig 4  Demonstration, one column  governance override before/after (2 panels)
-%   Fig 5  Evaluation, one column     accuracy vs misinformation scatter, RAMDocs
+%   Fig 5  Evaluation, one column     FC vs Inc scatter, RAMDocs
 %                                     (figures/fig_tradeoff_ramdocs.pdf)
 %   Fig 6  Evaluation, full width     decision mix per system, both benchmarks
 %                                     (figures/fig_decisions.pdf)
-%   Fig 7  Evaluation, one column     RAMDocs set-EM on items with / without
+%   Fig 7  Evaluation, one column     RAMDocs FC on items with / without
 %                                     planted misinformation (figures/fig_slices_ramdocs.pdf)
-%   Fig 8  Evaluation or appendix     CONFLICTS accuracy by conflict type, heatmap
+%   Fig 8  Evaluation or appendix     CONFLICTS FC by conflict type, heatmap
 %                                     (figures/fig_conflict_types.pdf)
-%   Tab 1  Evaluation, full width     accuracy, systems x three generators
+%   Tab 1  Evaluation, full width     judge FC / Inc, systems x three generators
+%                                     (tables/table_main.tex from make_tables.py)
 %   Tab 2  Evaluation, full width     behaviour under the main generator
-%   Tab 3  Evaluation (after judging) FC / PC / Inc per system and generator
 %   Charts are produced by paper/figures/make_charts.py from results_external/.
 % ------------------------------------------------------------------
 \documentclass[11pt]{article}
@@ -546,14 +547,24 @@ if space is short.}
 
 \subsection{Existing datasets}
 \begin{itemize}
-  \item RAMDocs (500 questions; ambiguity, noise and misinformation mixed per
-        question; metric: set exact match over the gold answer set, plus
-        \emph{misinformation-in-answer}). CONFLICTS (458 questions;
-        expert-annotated conflict types with an expected behaviour per type;
-        metric: answer containment and decision match). Neither carries
-        governance metadata, so the governance rule is inert here and the
-        comparison isolates retrieval + policy. \todo{say this plainly; it
-        pre-empts the obvious reviewer question.}
+  \item RAMDocs \citep{wang2025ramdocs}: 500 questions whose retrieved
+        documents mix ambiguity, noise and planted misinformation; a fully
+        correct answer lists every gold answer and no planted value.
+        CONFLICTS \citep{cattan2025conflicts}: 458 questions over real web
+        results, each annotated with a conflict type and the behaviour that
+        type requires (answer directly, consolidate, present both sides,
+        prefer the current value, ignore the misinformation); a fully correct
+        answer follows that behaviour. Neither benchmark carries governance
+        metadata, so the governance rule is inert here and the comparison
+        isolates retrieval, diversification and the resolution policy.
+  \item \textbf{Metric.} One judge grades every answer as fully correct,
+        partially correct or incorrect. We report \textbf{FC}, the share of
+        fully correct answers, as accuracy, and \textbf{Inc}, the share of
+        incorrect answers, as the error that matters: an answer that commits
+        to a wrong value. Partially correct answers are the remainder. Both
+        benchmarks also ship string-matching scores; we do not use them,
+        because they credit a hedged answer that happens to mention the gold
+        string.
 \end{itemize}
 
 \subsection{Baselines and metrics}
@@ -581,8 +592,8 @@ if space is short.}
         rule fixed before each run; the variant reported as \sysname{} is the
         one that passed. All numbers in the tables are on the remaining
         questions (400 RAMDocs, 358 CONFLICTS) for every system, baselines
-        included; full-set numbers are in Appendix~\ref{app:auto}.
-        \todo{tables still show the full set until the dev ids arrive.}
+        included. \todo{tables still show the full set until the dev ids
+        arrive.}
 \end{itemize}
 
 \subsection{Results}
@@ -631,45 +642,46 @@ ids arrive, and fill the \sysname{} row from the type-conditioned run.}}
 \centering
 \small
 \setlength{\tabcolsep}{5pt}
-\begin{tabular}{@{}l c cc cc cc@{}}
+\begin{tabular}{@{}l cc cc cc@{}}
 \toprule
- & misinfo in & \multicolumn{2}{c}{refused} & \multicolumn{2}{c}{invalid outputs} & \multicolumn{2}{c}{latency (s)} \\
- & answer$\downarrow$ & \multicolumn{2}{c}{(of 500 / 458)} & \multicolumn{2}{c}{after repair} & \multicolumn{2}{c}{per question} \\
-\cmidrule(lr){2-2} \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
- & RAMDocs & RAMDocs & CONFL. & RAMDocs & CONFL. & RAMDocs & CONFL. \\
+ & \multicolumn{2}{c}{refused} & \multicolumn{2}{c}{invalid outputs} & \multicolumn{2}{c}{latency (s)} \\
+ & \multicolumn{2}{c}{(of 500 / 458)} & \multicolumn{2}{c}{after repair} & \multicolumn{2}{c}{per question} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & RAMDocs & CONFL. & RAMDocs & CONFL. & RAMDocs & CONFL. \\
 \midrule
-\textbf{\sysname{}}                        & 23.8 &  45 &  30 & 0 &  1 & 37 & 57 \\
+\textbf{\sysname{}}                        & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
 \addlinespace[2pt]
-\quad dense retrieval, answer-and-flag     & \textbf{23.0} &  45 &  35 & 1 &  0 & 51 & 75 \\
-\quad hybrid retrieval, refuse-on-conflict & 36.6 &  96 & 122 & 0 &  2 & 54 & 65 \\
-\quad dense retrieval, refuse-on-conflict  & 35.0 &  99 & 155 & 0 & 39 & 33 & 40 \\
+\quad answer-and-flag, commit on every conflict (v1) &  45 &  30 & 0 &  1 & 37 & 57 \\
+\quad dense retrieval, answer-and-flag (v1) &  45 &  35 & 1 &  0 & 51 & 75 \\
+\quad hybrid retrieval, refuse-on-conflict &  96 & 122 & 0 &  2 & 54 & 65 \\
+\quad dense retrieval, refuse-on-conflict  &  99 & 155 & 0 & 39 & 33 & 40 \\
 \addlinespace[2pt]
-\quad hybrid RAG                           & 26.2 &  44 &  29 & 1 &  0 & 25 & 51 \\
-\quad dense RAG                            & 26.0 &  39 & 114 & 5 & 88 & 31 & 41 \\
-\quad closed-book                          &  3.6 & 191 &  46 & 0 &  0 & 21 & 40 \\
+\quad hybrid RAG                           &  44 &  29 & 1 &  0 & 25 & 51 \\
+\quad dense RAG                            &  39 & 114 & 5 & 88 & 31 & 41 \\
+\quad closed-book                          & 191 &  46 & 0 &  0 & 21 & 40 \\
 \addlinespace[2pt]
-\quad LlamaIndex, $k{=}2$ / $k{=}8$        & 34.4 / 37.8 & -- & -- & -- & -- & 55 / 12 & 4 / 128 \\
-\quad Rankify                              & 28.6 & -- & -- & -- & -- & 45 & 22 \\
+\quad LlamaIndex, $k{=}2$ / $k{=}8$        & -- & -- & -- & -- & 55 / 12 & 4 / 128 \\
+\quad Rankify                              & -- & -- & -- & -- & 45 & 22 \\
 \bottomrule
 \end{tabular}
-\caption{What the headline hides, main generator (\genA). \emph{Misinfo in
-answer}: share of RAMDocs answers that present a planted wrong value as the
-answer. \emph{Refused}: unresolved-conflict + insufficient-evidence +
+\caption{Behaviour behind the headline, main generator (\genA).
+\emph{Refused}: unresolved-conflict, insufficient-evidence and
 needs-information decisions. \emph{Invalid outputs}: responses that still
 failed schema or quote validation after one repair. Off-the-shelf frameworks
 return free text, so they have no decisions or validation. Closed-book
-``refuses'' by saying it does not know. \todo{consider splitting
-\emph{refused} into unresolved-conflict (\sysname{}: 36 / 8) and
-insufficient-evidence.}}
+``refuses'' by saying it does not know. \todo{fill the \sysname{} row from
+the type-conditioned run; consider splitting \emph{refused} into
+unresolved-conflict and insufficient-evidence.}}
 \label{tab:behaviour}
 \end{table*}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig_tradeoff_ramdocs}
-  \caption{RAMDocs: accuracy against misinformation-in-answer, one point per
-  system (\genA). The answer-and-flag systems are the only ones that gain
-  accuracy without repeating planted misinformation more often.}
+  \caption{RAMDocs: FC against Inc, one point per system (\genA). The
+  answer-and-flag systems are the only ones that gain accuracy without
+  committing to wrong values more often. \todo{regenerate from the judge
+  files on the test split.}}
   \label{fig:tradeoff}
 \end{figure}
 
@@ -685,20 +697,21 @@ insufficient-evidence.}}
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig_slices_ramdocs}
-  \caption{RAMDocs set-EM on questions with and without planted misinformation
+  \caption{RAMDocs FC on questions with and without planted misinformation
   (\genA). On clean questions every system is within a few points; the
-  difference is entirely on the questions where sources disagree.}
+  difference is on the questions where sources disagree. \todo{regenerate
+  from the judge files on the test split.}}
   \label{fig:slices}
 \end{figure}
 
-\todo{Analysis paragraphs: (1) the strict system's deficit is the refusal
-policy, not retrieval (misinfo slice 22.9 $\rightarrow$ 36.6; paired wins
-39/18 vs plain RAG, 54/17 vs strict [auto]); (2) the CONFLICTS 74.7 vs 77.2
-gap against hybrid RAG is real and must be discussed: containment counts a
-refusal that mentions the gold value as a hit (hybrid refuse-on-conflict
-reaches 76.0 while refusing 122 times), which is why the judge's FC / Inc
-columns carry the final claim; (3) cost: one extra generation call at most,
-57 s vs 51 s on CONFLICTS.}
+\todo{Analysis paragraphs, all in FC / Inc: (1) where the points come from on
+CONFLICTS per conflict type: opinion questions are where committing loses and
+presenting both sides wins, no-conflict questions are where refusals cost;
+(2) RAMDocs: refusals are never fully correct, and the type-conditioned policy
+keeps committing on factual conflicts; (3) the ablation that answers factual
+ties by background knowledge (A+C) raises Inc by turning partially correct
+multi-answer items into single wrong values, which is why the system does not
+do it; (4) cost: one extra generation call at most, 57 s vs 51 s on CONFLICTS.}
 
 % ==================================================================
 \section{Conclusion}
@@ -960,45 +973,13 @@ Your previous JSON response was rejected for this reason: <validator reason> Ret
 \todo{Pseudo-code of governance $\rightarrow$ corroboration $\rightarrow$
 consistency $\rightarrow$ tie, and how corroboration counts are computed
 (distinct documents, committed or cited values only, bare years excluded).}
-\section{Automatic metrics and full-set results}
-\label{app:auto}
-Table~\ref{tab:auto} reports the automatic metrics that do not need a judge:
-on RAMDocs, strict set exact match over the gold answer set and the share of
-answers that present a planted wrong value; on CONFLICTS, containment of the
-reference answer for the items that have one. They are reported for
-completeness and for comparison with prior work; the judge-based numbers in
-Table~\ref{tab:main} are the paper's headline because containment credits
-hedged and partial answers.
-
-\begin{table*}[t]
-\centering
-\small
-\setlength{\tabcolsep}{5pt}
-\begin{tabular}{@{}l cc cc cc@{}}
-\toprule
- & \multicolumn{2}{c}{\genA} & \multicolumn{2}{c}{\genB} & \multicolumn{2}{c}{\genC} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
- & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS & RAMDocs & CONFLICTS \\
- & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$
- & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$
- & set-EM$\uparrow$ / misinfo$\downarrow$ & contain.$\uparrow$ \\
-\midrule
-\input{tables/table_auto}
-\bottomrule
-\end{tabular}
-\caption{Automatic metrics, same systems and generators as Table~\ref{tab:main}.
-\emph{set-EM}: the answer set equals the gold set. \emph{misinfo}: a planted
-wrong value appears in the answer (closed-book is lowest only because it
-rarely answers). \emph{contain.}: the reference answer string appears in the
-response. Best per column in bold.}
-\label{tab:auto}
-\end{table*}
-
 \section{Results by conflict type}
 \begin{figure}[h]
   \centering
   \includegraphics[width=\columnwidth]{fig_conflict_types}
-  \caption{CONFLICTS accuracy by annotated conflict type and system (\genA).}
+  \caption{CONFLICTS FC by annotated conflict type and system (\genA).
+  \todo{regenerate from the judge files on the test split, all three
+  generators if space allows.}}
   \label{fig:types}
 \end{figure}
 \section{Example outputs}
