@@ -81,61 +81,80 @@
 
 % ==================================================================
 \begin{abstract}
-\todo{0.25 page, about 150 words, four sentences.}
-(1) Problem: in real document collections the retrieved passages disagree
-(superseded policies, drafts, summaries that lag the source, neighbouring
-scopes); RAG systems either pick a value silently, usually the majority one,
-or refuse to answer.
-(2) System: \sysname{} commits to an answer, flags the dissent, shows how
-many independent documents back each competing value, and traces every
-claim to a highlighted sentence in the original file; a reviewer can
-override a document's status and watch the answer re-evaluate.
-(3) Evidence: on RAMDocs and CONFLICTS with the same generator, the
-answer-and-flag policy recovers the accuracy lost by refusing on conflict
-(RAMDocs set-EM 45.6 vs 38.2 for refuse-on-conflict and 41.4 for plain RAG
-[auto]; misinformation-in-answer 23.8 vs 35.0 [auto]) \todo{replace with
-judge FC/Inc once available}.
-(4) Availability: open-source, \texttt{pip install docresolve}, runs
-against any OpenAI-compatible endpoint; demo at \todo{URL}; video at
-\todo{URL}.
+Retrieval-augmented question answering assumes that the retrieved passages
+agree. In real document collections they do not: policies are superseded,
+drafts and summaries lag their sources, and neighbouring scopes report
+different values. Faced with disagreement, current systems either follow
+the most repeated value or refuse to answer. We present \sysname{}, an
+open-source system that commits to an answer, flags the dissent, and shows
+why one value won. A fixed resolution order (governance, corroboration by
+distinct documents, internal consistency, declared tie) is stated to the
+generator; every cited claim is a verbatim quote, validated against the
+retrieved chunk and highlighted at the sentence in the original PDF, Word
+or text file; a reviewer can override a document's status and watch the
+answer re-evaluate. On the RAMDocs and CONFLICTS benchmarks with three
+open-weight generators, answering and flagging recovers the accuracy that
+refusing on conflict gives up and adopts less misinformation than plain
+retrieval-augmented generation \todo{one number pair from Table 1 once v2
+lands}. The package, server and interface run against any
+OpenAI-compatible endpoint. Demo: \todo{URL}. Video: \todo{URL}.
 \end{abstract}
 
 % ==================================================================
 \section{Introduction}
 \todo{0.75 page. Figure 1 sits here.}
-\begin{itemize}
-  \item Opening scene: one question, five documents, four different numbers
-        (the Meridian Forge defect-rate example from the demo: 0.72\% in the
-        active bulletin vs 1.00\% in five summaries, drafts and an
-        out-of-scope audit note). This is the normal state of an enterprise
-        knowledge base, not an edge case.
-  \item Two failure modes of conventional RAG under conflicting evidence:
-        (a) \emph{silent majority}: the generator follows the most repeated
-        value, which is how stale and wrong values win; (b) \emph{refusal}:
-        conflict-aware systems that abstain whenever sources disagree are
-        safe but useless for the questions people actually ask. Our own
-        refuse-on-conflict variant loses 7 points of set-EM on RAMDocs to
-        this [auto].
-  \item What a practitioner needs instead: a committed answer, the dissent
-        made visible, a reason the system chose one value over another, and
-        the exact sentence each claim came from so the decision can be
-        checked in seconds.
-  \item Contributions, four bullets:
-        (1) an \emph{answer-and-flag} resolution policy with a fixed rule
-        order (governance $\rightarrow$ corroboration by distinct documents
-        $\rightarrow$ internal consistency $\rightarrow$ declared tie) and
-        verbatim-quote validation;
-        (2) an evidence-review interface that renders the committed answer,
-        the flagged dissent, per-value corroboration counts and
-        sentence-level highlights in the original PDF/Word/text file, with
-        reviewer overrides of document status;
-        (3) a pip-installable package and server that run the same pipeline
-        over a folder, an upload, or a server-side path, against any
-        OpenAI-compatible model;
-        (4) an evaluation on two public conflict benchmarks and three
-        generators against plain, hybrid and refuse-on-conflict RAG and
-        off-the-shelf frameworks, with an LLM-judge protocol.
-\end{itemize}
+
+A quality manager asks what the defect-rate threshold is for a supplier
+tier. Six documents answer. The active policy bulletin says 0.72\%; an
+operations handbook, two training summaries, a draft revision and an audit
+note for a neighbouring tier all say 1.00\%. Nothing in the collection is
+wrong by accident: the summaries were correct when written, the draft is a
+proposal, the audit note belongs to a different scope. This is the normal
+state of an organisational knowledge base, not an edge case, and the public
+conflict benchmarks show the same structure in open-domain text, where
+Wikipedia-style sources disagree because of ambiguity, staleness or
+fabrication \citep{wang2025ramdocs,cattan2025conflicts}.
+
+Retrieval-augmented generation (RAG) handles this situation in one of two
+ways, and both are wrong for the person asking. The common one is the
+\emph{silent majority}: the generator follows the value that appears most
+often in its context, which is exactly how superseded and copied values
+beat the one authoritative source. The conflict-aware alternative is
+\emph{refusal}: systems that detect disagreement and abstain are safe, but
+they abstain on precisely the questions that made someone open the
+knowledge base. Our own refuse-on-conflict variant, evaluated in
+Section~\ref{sec:eval}, gives up a substantial share of its correct answers
+this way \todo{points, Table 1}.
+
+A practitioner needs neither. They need a committed answer, the dissent
+made visible rather than averaged away, the reason the system preferred one
+value over another, and the exact sentence each claim came from, so that
+the decision can be checked in seconds and overruled when the system is
+wrong about a document. \sysname{} is built around that requirement
+(Figure~\ref{fig:teaser}). It retrieves with a hybrid index, scores chunks
+with governance signals inferred from the documents themselves, guarantees
+that every competing value reaches the generator, and asks the generator
+to resolve the disagreement in a fixed, stated order: governance first,
+then corroboration counted in distinct documents, then internal
+consistency, and only then a declared tie. The output is a structured
+decision whose citations are verbatim quotes, validated against the
+retrieved text and mapped to character spans in the original file.
+
+This paper makes four contributions.
+(1) An \emph{answer-and-flag} resolution policy with a fixed rule order and
+verbatim-quote validation, which commits where plain RAG drifts and answers
+where refuse-on-conflict systems abstain.
+(2) An evidence-review interface that renders the committed answer, the
+flagged dissent, how many distinct documents back each competing value,
+and sentence-level highlights in the original PDF, Word or text file, with
+reviewer overrides of document status that re-run the pipeline.
+(3) A pip-installable package and server that run the same pipeline over an
+upload, a dropped folder or a server-side path, against any
+OpenAI-compatible model.
+(4) An evaluation on two public conflict benchmarks with three open-weight
+generators against plain, hybrid and refuse-on-conflict RAG and three
+off-the-shelf RAG frameworks, scored automatically and by an LLM judge
+whose protocol we release.
 
 \begin{figure}[t]
   \centering
@@ -151,25 +170,50 @@ against any OpenAI-compatible endpoint; demo at \todo{URL}; video at
 
 % ==================================================================
 \section{Related Work}
-\todo{0.5 page, three paragraphs; cite, do not survey.}
-\begin{itemize}
-  \item \textbf{Conflict-aware RAG.} Taxonomies and benchmarks: CONFLICTS
-        (Cattan et al.\ 2025), ConflictBank, RAMDocs / MADAM-RAG (Wang et
-        al.\ 2025), ConfRAG (ACL 2026). Methods: multi-agent debate
-        (MADAM-RAG), conflict-driven summarisation (CARE-RAG),
-        detect-classify-resolve pipelines (ConflictRAG), transparent conflict
-        handling (TCR, AAAI 2026). Position: these optimise the answer; none
-        ship an interface where a person can see \emph{why} one value won
-        and overrule it. \todo{re-check for 2026 demos on the same topic.}
-  \item \textbf{Evidence attribution.} Verbatim quoting and post-hoc
-        citation checking (\todo{ALCE, quote-verification work}). We require
-        verbatim quotes, validate them against the retrieved chunk, repair
-        once, and map them to character spans in the source document.
-  \item \textbf{Governance-aware retrieval.} Authority, recency and
-        provenance signals in enterprise search and document QA
-        (\todo{cites}); off-the-shelf stacks (LlamaIndex, Rankify, Open
-        WebUI), also our baselines, treat the corpus as consistent.
-\end{itemize}
+\todo{0.5 page; cite, do not survey. Re-check for 2026 demo papers on the
+same topic before submission.}
+
+\paragraph{Knowledge conflicts in RAG.}
+\citet{xu2024survey} separate conflicts between the model's memory and its
+context from conflicts \emph{within} the retrieved context; we address the
+latter. Benchmarks that make inter-context disagreement the object of
+evaluation include WikiContradict \citep{hou2024wikicontradict}, ConflictBank
+\citep{su2024conflictbank}, RAMDocs \citep{wang2025ramdocs}, which mixes
+ambiguity, misinformation and noise in one retrieval set, and CONFLICTS
+\citep{cattan2025conflicts}, which labels real web results with a five-type
+taxonomy and a required behaviour per type. We evaluate on the last two.
+Methods proposed for these settings optimise the answer: multi-agent debate
+with one agent per document \citep{wang2025ramdocs}, consolidation of
+internal and external knowledge \citep{wang2024astute}, conflict-driven
+summarisation \citep{care2025}, detect-then-resolve pipelines
+\citep{conflictrag2026}, isolate-then-aggregate decoding
+\citep{xiang2024robustrag} and contrastive decoding that trusts the
+context \citep{shi2024cad}. None of them ships an interface in which a
+person can see why one value won and overrule the system; the only
+demonstration-track toolkit with conflict handling we know of, KMatrix-2
+\citep{kmatrix2}, exposes resolution strategies but returns an answer
+rather than a decision with attributed dissent.
+
+\paragraph{Evidence attribution.}
+Citation-augmented generation and its evaluation \citep{gao2023alce} verify
+whether cited passages entail the claims after the fact. We take the
+stricter position that a citation is a verbatim quote: the generator must
+copy the sentence, the validator checks it against the retrieved chunk
+under normalised matching, one repair round is allowed, and unverifiable
+quotes are dropped rather than shown. Because quotes are exact, each one
+maps to a character span in the source file and to a page in a PDF, which
+is what makes sentence-level highlighting possible without re-searching
+the document.
+
+\paragraph{Governance signals and RAG frameworks.}
+Enterprise document collections carry authority, status and recency cues
+that open-domain retrieval ignores; prior work weights sources by estimated
+reliability \citep{rarag2024} or by trust propagated from human feedback
+\citep{trustprop2026}. We infer status, document type and authority from
+the document text, apply them only to chunks that are already relevant, and
+let a reviewer correct them. Off-the-shelf stacks such as LlamaIndex
+\citep{llamaindex} and Rankify \citep{rankify2026}, which we use as
+baselines, treat the corpus as internally consistent.
 
 % ==================================================================
 \section{System Architecture}
@@ -228,88 +272,169 @@ status, which re-runs the pipeline.}
 \label{fig:pipeline}
 \end{figure*}
 
-\subsection{Retrieval}
-\begin{itemize}
-  \item Inputs: file upload, whole-folder upload with paths kept, or a
-        server-side folder path (mounted share, export); PDF, Word, text,
-        Markdown. Folder structure becomes the document path shown in
-        citations. Chunking is paragraph/sentence based; chunk and page
-        offsets are kept for highlighting.
-  \item Hybrid retrieval: BM25 and dense (bge-small) fused by reciprocal rank,
-        top-30. Why hybrid: policy and version identifiers (``Tier-B'',
-        ``Q4-certified'', dates) are lexical; the ablation shows the gain is
-        real only on top of the answer-and-flag policy [auto: 45.6 vs 43.6].
-\end{itemize}
+Figure~\ref{fig:pipeline} shows the pipeline. A question passes through
+hybrid retrieval, governance-weighted scoring, conflict diversification,
+answer-and-flag generation and validation; the interface renders the
+result and feeds reviewer overrides back into the document metadata. The
+same code path serves the benchmarks, the command line and the
+demonstration server.
 
-\subsection{Authority and scope scoring}
-\begin{itemize}
-  \item Per-document metadata inferred from text: \emph{status}
-        (active-authoritative, active, draft, superseded, archived, unknown),
-        \emph{document type}, an \emph{authority} score, scope cues.
-        Reviewer overrides are stored next to the inferred values and shown
-        to the model as ``set by reviewer''.
-  \item Score $= 0.3\cdot\text{semantic} + g\cdot(0.5\cdot\text{authority} +
-        0.2\cdot\text{scope})$; the gate $g$ applies governance weight only
-        when the chunk carries governance signals, so on corpora without them
-        (the public benchmarks) the scorer degrades to semantic ranking.
-        \todo{state exactly as implemented in \texttt{core.py}.}
-\end{itemize}
+\subsection{Ingestion and retrieval}
+A collection is created from uploaded files, a dropped folder with its
+structure preserved, or a server-side folder path such as a mounted share
+or a knowledge-base export. PDF, Word, plain text and Markdown are parsed
+into paragraph- and sentence-aligned chunks that keep their character
+offsets and, for PDFs, their page, so that any cited sentence can later be
+located in the original file. The folder path becomes part of the document
+identifier shown in every citation.
 
-\subsection{Conflict resolution}
-\begin{itemize}
-  \item Conflict diversification: group chunks by the numeric/categorical
-        claim they make, keep one chunk per distinct claim first, then fill
-        to 8, so the generator always sees the competing values rather than
-        eight copies of the majority one.
-  \item Prompt receives chunks with status, type, authority and a
-        \emph{corroboration summary} (how many distinct documents state each
-        value). Resolution order, fixed and stated: (1) governance;
-        (2) corroboration by distinct documents, not repeated chunks of one
-        document; (3) internal consistency; (4) a declared tie.
-  \item Output schema: decision $\in$ \{answered, answered-with-dissent,
-        unresolved-conflict, insufficient-evidence, needs-information\},
-        short answer(s), explanation, resolution rule, citations with
-        verbatim quotes and roles (support / dissent / context).
-\end{itemize}
+Retrieval is hybrid. A BM25 ranking \citep{robertson2009bm25} and a dense
+ranking over bge-small embeddings \citep{xiao2023bge} are fused with
+reciprocal rank fusion \citep{cormack2009rrf}, and the fused top-30 chunks
+go forward. The lexical half matters in governed collections, where the
+tokens that distinguish the right document are identifiers rather than
+meanings: a tier name, a certification code, a fiscal quarter, a date.
+Section~\ref{sec:eval} shows that the hybrid index helps only in
+combination with the resolution policy below; on its own it is a small
+change to plain RAG.
 
-\subsection{Dissent attribution}
-\begin{itemize}
-  \item Validation: allowed decision, every quote verbatim in its chunk under
-        normalised matching; one repair round; salvage to the most
-        conservative valid decision if repair fails. Invalid outputs after
-        repair: 0 and 1 for \sysname{} vs 5 and 88 for plain RAG [auto].
-  \item Span location: each verified quote is mapped to character offsets in
-        the chunk and in the full document (ellipsis segments allowed), and
-        to a page for PDFs; the interface only marks ranges, it never
-        re-searches text. Citations carry a role so support and dissent are
-        coloured differently everywhere.
-\end{itemize}
+\subsection{Governance scoring}
+\label{sec:scoring}
+For each document the system infers a \emph{status} (active and
+authoritative, active, draft, superseded, archived or unknown), a
+\emph{document type} (policy, bulletin, handbook, summary, memo and so on)
+and a scalar \emph{authority} from phrases in the document's header window,
+such as a supersession notice, a draft marker or an effective date. A
+\emph{scope} score measures how closely the opening sentences of the chunk's
+document match the question. These signals are heuristics and are
+presented to the generator as inferred, never as fact. A reviewer can
+override status and type; the override is stored beside the inferred value
+and shown to the generator as a reviewer decision.
+
+Each retrieved chunk is scored as
+\[
+s \;=\; 0.3\cdot\text{semantic} \;+\; g\cdot\big(0.5\cdot\text{authority}
+\;+\; 0.2\cdot\text{scope}\big),
+\]
+where $g\in[0,1]$ is a relevance gate that equals one for chunks whose
+semantic similarity is within a margin of 0.10 of the most similar chunk
+and fades linearly to zero at that margin. The gate exists because an
+authoritative document about an unrelated topic would otherwise outrank
+every relevant passage on authority alone. On the public benchmarks, whose
+documents carry no governance phrases, authority is zero for every chunk
+and the scorer reduces to semantic ranking, so the governance rule is
+exercised by the demonstration corpus rather than by the tables.
+
+\subsection{Conflict diversification}
+Plain top-$k$ selection shows the generator eight restatements of the
+majority value and hides the minority one, which is how stale values win.
+\sysname{} instead extracts the numeric or categorical claim each chunk
+makes about the question, groups chunks by normalised claim, keeps the
+best-scoring chunk per distinct claim, and then fills the remaining slots
+up to eight by score. Chunks that carry no extractable claim are kept as
+ordinary context. The effect is a guarantee: every competing value that
+retrieval found is in front of the generator, each represented once. The
+pipeline also computes a \emph{corroboration summary}, the number of
+distinct documents, not chunks, that state each value, which is given to
+the generator as a counting aid to be verified against the passages.
+
+\subsection{Answer-and-flag generation}
+\label{sec:policy}
+The generator receives the question, optional case context, the selected
+chunks with their inferred signals, and the corroboration summary. It is
+asked to resolve disagreement in a fixed order that is stated in the prompt
+(Appendix~\ref{app:prompts}): (1) \emph{governance}: a passage that is
+explicitly superseded, out of scope or supporting context does not compete;
+(2) \emph{corroboration}: among competing passages, prefer the value
+supported by more distinct documents; (3) \emph{consistency}: prefer the
+value that agrees with the other facts in the evidence and comes from a
+more specific, internally consistent passage; (4) \emph{tie}: only when the
+competing values are equally supported and steps 1 and 3 do not separate
+them, declare an unresolved conflict. When the generator commits under
+rule 2 or 3, the decision is still \emph{answered}, but the dissent is
+marked: the rejected passage is cited with the role \emph{conflicting} and
+the explanation names the rejected value and why it lost.
+% v2 (if the H200 rerun lands): rule 2 applies to factual claims only;
+% evaluative disagreements without a governance signal are reported as
+% unresolved with both positions in the answer, and factual ties are broken
+% by consistency and then by the model's own knowledge, stated openly.
+% Update this paragraph and Appendix A together.
+
+The output is a JSON object with one of four decisions, \emph{answered},
+\emph{unresolved conflict}, \emph{needs information} or \emph{insufficient
+evidence}; short answers; a readable answer; the selected source; an
+explanation; a conflict flag; and a list of citations, each with a chunk
+identifier, a verbatim quote and a role (governing, supporting,
+superseded, different scope, conflicting or uncertain). The interface
+labels an answered decision whose conflict flag is set as \emph{answered,
+dissent flagged}. The refuse-on-conflict ablation in Section~\ref{sec:eval}
+uses the same schema with rule 2 removed, so that any disagreement that
+governance does not settle becomes an unresolved conflict.
+
+\subsection{Validation and attribution}
+A response is accepted only if its decision is one of the four, every cited
+chunk was actually retrieved, and every quote is found verbatim in its
+chunk under normalised matching (whitespace, quotation marks and dashes
+unified, markup stripped). A response that fails is sent back once with the
+specific problems listed; if the repair also fails, unverifiable citations
+are dropped and the decision is downgraded to the most conservative one the
+surviving citations support. The generator never shows the user a sentence
+that is not in the document.
+
+Because quotes are exact, each verified citation is mapped to character
+offsets within its chunk and within the full document, with ellipsis
+segments allowed, and to a page for PDFs. The interface only marks these
+ranges; it never searches the text again. Citation roles travel with the
+spans, so a supporting sentence and a dissenting sentence are coloured
+differently wherever they appear.
 
 % ==================================================================
 \section{System Demonstration}
-\todo{1.5 pages. Figures 3 and 4. Write as a walkthrough the video follows.}
+\todo{1.5 pages. Figures 3 and 4. The video follows this walkthrough.}
+
+\sysname{} ships as a Python package with a command-line interface, a FastAPI
+server and a browser interface. The server exposes the pipeline over REST
+(collections, documents, questions, document metadata and overrides) and
+runs against any OpenAI-compatible chat endpoint and either a local
+sentence-transformer or a hosted embedding model. The interface described
+here is the demonstration's main object.
 
 \subsection{Interface}
-\begin{itemize}
-  \item \textbf{Evidence review.} Decision badge (``Answered $\cdot$ dissent
-        flagged''), the answer, model-reported confidence, the resolution
-        panel (rule + one-sentence summary), the corroboration strip (each
-        competing value, number of distinct documents, green for the
-        committed value, amber for the rest), citations coloured by role.
-  \item \textbf{Where the answer comes from.} Clicking a citation opens the
-        document beside the results with the cited sentence highlighted and
-        chunk boundaries drawn; ``Compare side by side'' opens the dissenting
-        document underneath. Text view by default; an Original tab renders
-        the actual PDF page (pdf.js text layer) or the Word file with the
-        same highlight.
-  \item \textbf{Governance in the loop.} The document tree shows inferred
-        status and type per file with dropdowns to override; an override
-        re-indexes, nudges the authority score, and is shown to the model as
-        a reviewer decision.
-  \item \textbf{Record.} Footer with model, retrieval, policy, latency; a
-        ``Download record'' export (question, decision, resolution, citations
-        with spans, document metadata) for audit.
-\end{itemize}
+The workspace has three regions (Figure~\ref{fig:reader}): the collection
+tree on the left, the result card in the centre and the reader on the right.
+
+\paragraph{Result card.}
+The card opens with a decision badge, for instance \emph{Answered, dissent
+flagged}, followed by the answer, the model-reported confidence and a
+resolution panel that names the rule that decided (governance,
+corroboration, consistency or tie) with a one-sentence account of why. Below
+it, the \emph{corroboration strip} lists every competing value retrieval
+found and the number of distinct documents backing each: the committed value
+in green, the rest in amber. The citations follow, coloured by role, each
+with its verbatim quote and its document path.
+
+\paragraph{Reader.}
+Clicking a citation opens the document beside the card with the cited
+sentence highlighted and the chunk boundary drawn, so the reader can see
+what the model saw and what surrounded it. \emph{Compare side by side} opens
+the dissenting document underneath with its own sentence highlighted. The
+text view is the default; an \emph{Original} tab renders the actual PDF page
+through a text layer, or the Word file, with the same highlight placed on
+the real page.
+
+\paragraph{Governance in the loop.}
+The collection tree shows each file with its inferred status and type and a
+control to override them. An override re-indexes the document, adjusts its
+authority, is recorded with the collection, and is shown to the generator as
+a reviewer decision on the next question. The user does not edit prompts or
+weights; they state a fact about a document, and the system re-evaluates.
+
+\paragraph{Record.}
+A footer reports the model, retrieval mode, policy and latency, and a
+\emph{Download record} action exports the question, the decision, the
+resolution, every citation with its spans, and the document metadata in
+force at the time, so a decision can be audited later or attached to a
+ticket.
 
 \begin{figure*}[t]
   \centering
@@ -325,35 +450,48 @@ status, which re-runs the pipeline.}
 \end{figure*}
 
 \subsection{User workflow}
-\begin{enumerate}
-  \item Create a collection; upload files, drop a folder, or type a server
-        folder path (a mounted share or knowledge-base export). The tree
-        shows every file with its inferred status and type.
-  \item Ask a question, optionally with case context (date, region, employee
-        category). Get the committed answer with the dissent flagged.
-  \item Open the cited sentences in the original files; compare the
-        dissenting document side by side.
-  \item Disagree with a document's status? Override it; the answer is
-        re-evaluated and the override is recorded.
-  \item Download the record.
-\end{enumerate}
+A session follows five steps, which the video reproduces in order.
+(1) Create a collection and add documents by uploading files, dropping a
+folder, or typing the path of a folder the server can reach; the tree fills
+with every file and its inferred status and type.
+(2) Ask a question, optionally with case context such as a date, a region
+or an employee category, and receive a committed answer with the dissent
+flagged.
+(3) Open the cited sentences in the original files and compare the
+dissenting document side by side.
+(4) If a document's inferred status is wrong, override it; the answer is
+re-evaluated and the override is recorded.
+(5) Download the record.
 
 \subsection{Illustrative examples}
-\begin{itemize}
-  \item \textbf{Governance decides.} Meridian Forge defect rate: five
-        documents say 1.00\%, one active bulletin says 0.72\%; the system
-        answers 0.72\% by governance and shows 1.00\% $\times$5 as dissent.
-  \item \textbf{Corroboration decides.} Mark the bulletin superseded: the
-        answer moves to 1.00\% by corroboration (5 documents), dissent still
-        flagged, override shown in technical details (Figure~\ref{fig:override}).
-  \item \textbf{Mixed formats.} Remote-work policy (PDF, page 2) vs a 2024 FAQ
-        (Word): 3 days vs 2 days, resolved by governance, each sentence
-        highlighted on the real page.
-  \item \textbf{Walkthrough corpus.} The 180-document fictional policy pack
-        (15 questions $\times$ 12 documents, each with an authoritative source
-        and typed distractors: superseded, draft, secondary summary,
-        neighbouring scope, background note). Demo only; not in the tables.
-\end{itemize}
+\paragraph{Governance decides.}
+In the opening example, five documents give a defect-rate threshold of
+1.00\% and one active policy bulletin gives 0.72\%. Plain RAG, in our runs,
+answers 1.00\%. \sysname{} answers 0.72\%, names governance as the deciding
+rule, and shows 1.00\% backed by five documents as flagged dissent, with the
+handbook sentence that carries it one click away.
+
+\paragraph{Corroboration decides.}
+The reviewer marks the bulletin as superseded (Figure~\ref{fig:override}).
+On the next question the governance rule no longer separates the values,
+corroboration does, and the answer moves to 1.00\% by five documents, with
+0.72\% now the flagged dissent and the override visible in the technical
+details. The same evidence, read under a corrected fact about one document,
+yields a different committed answer, and the user can see exactly which
+rule changed the outcome.
+
+\paragraph{Mixed formats.}
+A remote-work policy in PDF allows three days a week on page~2; a 2024 FAQ
+in Word says two. The system answers three days by governance and the
+reader highlights both sentences on their real pages, one in the PDF text
+layer and one in the rendered Word file.
+
+\paragraph{Walkthrough corpus.}
+The demonstration ships with a fictional policy pack of 180 documents:
+fifteen questions, each with twelve documents comprising one authoritative
+source and typed distractors (superseded version, draft, secondary summary,
+neighbouring scope, background note). It exists so that a visitor can
+exercise every rule in a few minutes; it is not part of the evaluation.
 
 \begin{figure}[t]
   \centering
@@ -368,6 +506,7 @@ status, which re-runs the pipeline.}
 
 % ==================================================================
 \section{Empirical Evaluation}
+\label{sec:eval}
 \todo{1.25 pages. Tables 1 and 2, Figures 5 to 7; Figure 8 to the appendix
 if space is short.}
 
@@ -530,33 +669,58 @@ columns carry the final claim; (3) cost: one extra generation call at most,
 
 % ==================================================================
 \section{Conclusion}
-\todo{0.25 page. Contributions in three sentences, then the three
-limitations that matter most, then availability: \texttt{pip install
-docresolve}, CLI, server, any OpenAI-compatible endpoint, licence,
-repository, demo and video URLs.}
+Document collections disagree with themselves, and a question-answering
+system that hides the disagreement, by majority or by refusal, is not
+helping the person who asked. \sysname{} commits to an answer under a
+stated resolution order, flags the dissent with the count of documents
+behind each value, and ties every claim to a sentence a reviewer can open
+in the original file and, when the system is wrong about a document,
+correct. On two public conflict benchmarks with three generators, the
+policy recovers the accuracy that refusing on conflict gives up while
+adopting less misinformation than plain RAG \todo{one sentence of numbers}.
+The package, server and interface are released under \todo{licence} at
+\todo{repository}; a hosted demonstration and a video are at \todo{URLs}.
 
 % ==================================================================
 \section*{Limitations}
-\todo{Required section, outside the page budget. Be concrete.}
-\begin{itemize}
-  \item Governance signals are inferred from document text; on the public
-        benchmarks they are absent, so the governance rule is evaluated only
-        through the demo corpus, not the tables.
-  \item One judge; results may shift with other judges. The judge is
-        open-weight and the protocol is released.
-  \item Highlighting in PDFs depends on a text layer; scanned or two-column
-        PDFs fall back to the text view.
-  \item Latency of roughly a minute per question with the hosted generator;
-        acceptable for review workflows, not for chat.
-  \item English only; numeric and categorical conflicts are the ones the
-        diversification step detects best.
-\end{itemize}
+The governance signals are heuristics over document text. The public
+benchmarks contain no supersession notices, drafts or effective dates, so
+on them the authority term is zero and the governance rule is exercised
+only by the demonstration corpus, which we wrote. The tables therefore
+measure the resolution policy, the diversification step and the hybrid
+index, not the governance scoring, and the demonstration corpus is
+evidence of behaviour, not of accuracy.
+
+Correctness is scored by a single LLM judge, chosen from outside every
+generator's model family, with the protocol and prompts released
+(Appendix~\ref{app:judge}). Other judges may move the numbers; we report
+agreement with a second judge on a subset \todo{once available}. Both
+benchmarks define correct behaviour in a particular way, listing all
+answers for ambiguity on RAMDocs and presenting both sides for conflicting
+opinions on CONFLICTS, and our policy was revised once to respect those
+definitions; the earlier policy is kept as an ablation row.
+\todo{keep or drop depending on v2.}
+
+Claim extraction for diversification is strongest on numeric and
+short categorical values; for entity-valued disagreements the corroboration
+summary is often empty and the generator counts for itself. The system is
+English-only. Sentence highlighting in PDFs requires a text layer, so
+scanned and some two-column PDFs fall back to the text view. Latency is
+tens of seconds per question with a hosted generator, mostly from the
+repair round; this suits review workflows, not chat.
 
 \section*{Ethics Statement}
-\todo{Short: no personal data in the benchmarks or the demo pack; the
-fictional pack contains invented companies; the system surfaces
-disagreement rather than hiding it, but a committed answer is still a
-model output and the interface is built so a person checks it.}
+The benchmarks are public and contain no personal data beyond what is
+already in their Wikipedia-derived and web-derived passages. The
+demonstration corpus is fictional: companies, people, products and
+policies are invented, and any resemblance to real entities is accidental.
+\sysname{} surfaces disagreement instead of hiding it, but a committed
+answer remains a model output: the resolution rules are heuristics, the
+governance signals are inferred, and the generator can be wrong while
+quoting correctly. The interface is designed so that a person checks the
+cited sentences before acting, and the exported record makes that check
+auditable. The system should not be used to make consequential decisions
+about individuals without such review.
 
 \section*{Acknowledgements}
 \todo{compute (H200), funding, the EMNLP workshop lineage if desired.}
