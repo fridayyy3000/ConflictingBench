@@ -1,0 +1,400 @@
+--- a/corvic/pipeline/gov_rag_gemini.py
++++ b/corvic/pipeline/gov_rag_gemini.py
+@@ -162,6 +162,235 @@
+ answer is taken from (never null). selected_source must exactly match a supplied filename and
+ appear in citations. Numeric claim metadata is a search aid, never a citation or proof."""
+ 
++# GOV-RAG "two-stage" policy, stage 2. Stage 1 drafts an answer with the plain
++# BASELINE_SYSTEM_PROMPT over the governance-ranked passages; this prompt then
++# audits that draft against the evidence and the governance signals. The draft
++# stands unless the evidence gives a concrete governance reason to change it,
++# so the audit adds citations and conflict flags without re-deciding answers
++# the plain reader already got right.
++SYSTEM_PROMPT_VERIFY = """You audit a draft answer against the supplied evidence passages and optional case context.
++The draft was written by a reader who saw the same passages but no governance signals.
++Read full passages, including conditions and exceptions. Never infer organizational authority
++as verified fact: status, document type, authority scores, and scope similarity are inferred
++signals only; scope similarity is not proof of applicability. Never invent precedence.
++
++Keep the draft's answer and short_answers unchanged unless one of these holds:
++1. Governance: the draft relies on a passage that is explicitly superseded or out of scope
++   while an applicable passage gives a different value. A document saying it "supersedes"
++   earlier documents is not itself superseded.
++2. Corroboration: the draft's value is contradicted by more independent documents (different
++   filenames) than support it.
++3. Unsupported: the draft's value does not appear in, and cannot be read from, any passage.
++4. Genuine tie: applicable passages give different values, each supported by the same number of
++   independent documents, and nothing in the evidence separates them. Only then choose
++   unresolved_conflict and give each competing value in short_answers.
++If none holds, the decision is answered with the draft's short_answers. If a passage disagrees
++but loses under rule 1 or 2, keep or adopt the winning value, set conflict_detected to true,
++cite the dissenting passage with treatment "conflicting", and name the rejected value in the
++explanation. When you change the draft, say which rule applied and why.
++
++Return JSON only:
++{
++  "decision": "answered|unresolved_conflict|needs_information|insufficient_evidence",
++  "answer": "Readable answer with all important conditions and exceptions; mention flagged dissent briefly.",
++  "short_answers": ["each distinct final answer as a short span; for an unresolved conflict, each competing answer"],
++  "citations": [
++    {"chunk_id": "exact supplied chunk id", "quote": "verbatim excerpt from that passage",
++     "treatment": "governing|supporting|superseded|different_scope|conflicting|uncertain",
++     "explanation": "brief plain-language treatment"}
++  ],
++  "explanation": "Brief explanation: draft kept or changed, and how any conflict was resolved.",
++  "missing_information": [],
++  "clarification_question": null,
++  "selected_source": null,
++  "conflict_detected": false,
++  "confidence": "high|medium|low"
++}
++For unresolved conflicts, cite each materially competing passage and explain its treatment;
++selected_source must be null. Use an empty citation list if evidence cannot support any citation.
++When the decision is answered, selected_source must be the filename of the governing passage the
++answer is taken from (never null). selected_source must exactly match a supplied filename and
++appear in citations. Numeric claim metadata is a search aid, never a citation or proof."""
++
++
++def build_verify_prompt(question, candidates, draft, context=None):
++    """Stage-2 user turn: the evidence with governance signals, plus the stage-1 draft."""
++    draft_view = {k: draft.get(k) for k in ("decision", "answer", "short_answers", "selected_source")}
++    return (build_user_prompt(question, candidates, context=context, include_signals=True, corroboration=True)
++            .rsplit("Analyze the evidence", 1)[0]
++            + "Draft answer to audit:\n" + json.dumps(draft_view, ensure_ascii=True)
++            + "\n\nAudit the draft against the evidence and return the final answer in JSON format.")
++
++
++# GOV-RAG "answer-and-flag v2" (changes A + C on top of answer-and-flag):
++# A: corroboration decides only factual claims; competing opinions,
++#    recommendations or research outcomes that governance does not separate
++#    are an unresolved_conflict laid out neutrally with sources named.
++# C: factual ties do not abstain; they are broken by consistency, then by
++#    background knowledge stated openly, with the dissent cited as conflicting.
++# Built from SYSTEM_PROMPT_ANSWER_AND_FLAG by exact replacements so nothing
++# else differs; the asserts fail loudly if the base prompt ever changes.
++def _build_answer_and_flag_v2(base):
++    swaps = [
++        ("""- unresolved_conflict: applicable passages disagree AND the competing values are equally
++  supported (see the tie rule below).""",
++         """- unresolved_conflict: applicable passages give competing opinions, recommendations or research
++  outcomes that can legitimately differ, and governance does not separate them. A disagreement
++  about a factual claim is never an unresolved_conflict."""),
++        ("""2. Corroboration: among the passages that do compete, prefer the value supported by more
++   independent documents (different filenames). Treat the "Corroboration" summary, when
++   supplied, as a count aid only; verify it against the passages.
++3. Consistency: prefer the value that agrees with the other facts in the evidence (dates,
++   places, names, totals) and that comes from a more specific, internally consistent passage.
++4. Tie rule: only if the competing values are supported by the same number of independent
++   documents and steps 1 and 3 do not separate them, choose unresolved_conflict.
++
++When you commit under step 2 or 3, the decision is answered, conflict_detected is true, the
++dissenting passage is cited with treatment "conflicting", and the explanation names the
++rejected value and why it lost. short_answers must contain only the committed answer(s), never
++the rejected value.""",
++         """2. Kind of disagreement: a factual claim is a number, date, name, place or event that has one
++   true value. Opinions, recommendations and research outcomes can legitimately differ.
++3. Opinions, recommendations, research outcomes: if step 1 does not separate them, do not pick
++   a side and do not count documents. Choose unresolved_conflict, lay out each position
++   neutrally in the answer naming the sources (filenames) that hold it, cite each with
++   treatment "conflicting", and list each position in short_answers.
++4. Factual claims, corroboration: prefer the value supported by more independent documents
++   (different filenames). Treat the "Corroboration" summary, when supplied, as a count aid
++   only; verify it against the passages.
++5. Factual ties: do not abstain. Break the tie by consistency: prefer the value that agrees with
++   the other facts in the evidence (dates, places, names, totals) and that comes from a more
++   specific, internally consistent passage. If that does not separate them, use your background
++   knowledge and say so openly in the answer and explanation.
++
++When you commit under step 4 or 5, the decision is answered, conflict_detected is true, the
++dissenting passage is cited with treatment "conflicting", and the explanation names the
++rejected value and why it lost. short_answers must contain exactly one committed value for the
++conflict, never the rejected value."""),
++    ]
++    for old, new in swaps:
++        assert base.count(old) == 1, "answer-and-flag base prompt changed; rebuild v2"
++        base = base.replace(old, new)
++    return base
++
++
++SYSTEM_PROMPT_ANSWER_AND_FLAG_V2 = _build_answer_and_flag_v2(SYSTEM_PROMPT_ANSWER_AND_FLAG)
++
++
++# GOV-RAG "answer-and-flag A" (change A alone on top of answer-and-flag; C reverted):
++# corroboration decides only factual claims; competing opinions, recommendations
++# or research outcomes that governance does not separate are an
++# unresolved_conflict laid out neutrally with sources named. Factual ties keep
++# the original tie rule (abstain as unresolved_conflict), and the original
++# short_answers wording is kept. Same exact-replacement construction as v2.
++def _build_answer_and_flag_a(base):
++    swaps = [
++        ("""- unresolved_conflict: applicable passages disagree AND the competing values are equally
++  supported (see the tie rule below).""",
++         """- unresolved_conflict: applicable passages give competing opinions, recommendations or research
++  outcomes that governance does not separate, or competing factual values that are equally
++  supported (see the tie rule below)."""),
++        ("""2. Corroboration: among the passages that do compete, prefer the value supported by more
++   independent documents (different filenames). Treat the "Corroboration" summary, when
++   supplied, as a count aid only; verify it against the passages.
++3. Consistency: prefer the value that agrees with the other facts in the evidence (dates,
++   places, names, totals) and that comes from a more specific, internally consistent passage.
++4. Tie rule: only if the competing values are supported by the same number of independent
++   documents and steps 1 and 3 do not separate them, choose unresolved_conflict.
++
++When you commit under step 2 or 3,""",
++         """2. Kind of disagreement: a factual claim is a number, date, name, place or event that has one
++   true value. Opinions, recommendations and research outcomes can legitimately differ.
++3. Opinions, recommendations, research outcomes: if step 1 does not separate them, do not pick
++   a side and do not count documents. Choose unresolved_conflict, lay out each position
++   neutrally in the answer naming the sources (filenames) that hold it, cite each with
++   treatment "conflicting", and list each position in short_answers.
++4. Factual claims, corroboration: among the passages that do compete, prefer the value
++   supported by more independent documents (different filenames). Treat the "Corroboration"
++   summary, when supplied, as a count aid only; verify it against the passages.
++5. Factual claims, consistency: prefer the value that agrees with the other facts in the
++   evidence (dates, places, names, totals) and that comes from a more specific, internally
++   consistent passage.
++6. Factual tie rule: only if the competing factual values are supported by the same number of
++   independent documents and steps 1 and 5 do not separate them, choose unresolved_conflict.
++
++When you commit under step 4 or 5,"""),
++    ]
++    for old, new in swaps:
++        assert base.count(old) == 1, "answer-and-flag base prompt changed; rebuild A"
++        base = base.replace(old, new)
++    return base
++
++
++SYSTEM_PROMPT_ANSWER_AND_FLAG_A = _build_answer_and_flag_a(SYSTEM_PROMPT_ANSWER_AND_FLAG)
++
++
++# GOV-RAG "answer-and-flag final" = A' + B + E + E' (BRIEF_final_policy.md incl. Revision 1), one prompt
++# for every generator. Built from the A prompt by exact replacements:
++# B (prompt part): when passages do not disagree and one addresses the question, answer it.
++#   (B's retrieval part, ranking conflict-free questions by retrieval score, is in
++#   GovRAGGemini.query; salvage after the single repair is run_generation's default.)
++# E: the answer field holds the committed value(s) only; a rejected value may appear only in a
++#   final sentence that marks it as rejected; the dissent lives in the explanation and in the
++#   "conflicting" citation. Step numbers follow the A prompt (factual commits are steps 4 and 5).
++def _build_answer_and_flag_final(a_prompt):
++    swaps = [
++        # A' (Revision 1): unresolved_conflict is evaluative-only; factual disagreements are
++        # always resolved. The brief numbers the tie rule "step 4" with steps 2/3 as
++        # corroboration/consistency (base prompt); in the A prompt those are steps 6, 4 and 5.
++        ("""- unresolved_conflict: applicable passages give competing opinions, recommendations or research
++  outcomes that governance does not separate, or competing factual values that are equally
++  supported (see the tie rule below).""",
++         """- unresolved_conflict: the competing passages disagree on a matter of opinion,
++  recommendation, interpretation or research outcome that can legitimately differ, and no
++  governance signal separates them. A disagreement about a fact (a number, date, name, place,
++  event or attribute) is never an unresolved conflict."""),
++        ("""6. Factual tie rule: only if the competing factual values are supported by the same number of
++   independent documents and steps 1 and 5 do not separate them, choose unresolved_conflict.""",
++         """6. Factual disagreements are always resolved: apply steps 4 and 5; if the counts are equal and
++   step 5 does not separate the values, commit to the value from the more specific, internally
++   consistent passage and set confidence to "low". Never resolve a disagreement from your own
++   knowledge: the committed value must appear in a supplied passage. If the passages describe
++   different entities that share a name, that is not a disagreement: give each entity its own
++   value."""),
++        ("""- insufficient_evidence: retrieved passages do not support an answer.
++""",
++         """- insufficient_evidence: retrieved passages do not support an answer.
++
++When the passages do not disagree and at least one of them addresses the question, answer it;
++insufficient_evidence is for passages that are off-topic, not for passages that are merely brief.
++"""),
++        ("""When you commit under step 4 or 5, the decision is answered, conflict_detected is true, the
++dissenting passage is cited with treatment "conflicting", and the explanation names the
++rejected value and why it lost. short_answers must contain only the committed answer(s), never
++the rejected value. If the question is ambiguous because several distinct entities share the
++same name, give the correct answer for each entity; that is not a conflict.""",
++         """When you commit under step 4 or 5, the decision is answered, conflict_detected is true, the
++dissenting passage is cited with treatment "conflicting", and the explanation names the
++rejected value and why it lost. The "answer" field states the committed answer(s) only. Do not
++list a rejected value in the answer as an additional figure, another possibility, or a
++qualification in parentheses; a reader of the answer alone must see one value per entity. If
++you mention a rejected value in the answer at all, do it in a separate final sentence that
++says it is rejected and why, for example: "One source gives 12,345; that figure is rejected
++because it is contradicted by the other documents." short_answers must contain only the
++committed answer(s), never the rejected value. If the question is ambiguous because several
++distinct entities share the same name, give the correct answer for each entity; that is not a
++conflict, and each entity's value is committed in the same way."""),
++        ("""  "answer": "Readable answer with all important conditions and exceptions; mention flagged dissent briefly.",""",
++         """  "answer": "Readable committed answer with all important conditions and exceptions. No rejected values except in a final sentence that marks them as rejected.","""),
++        ("""  "explanation": "Brief explanation of this decision, including how any conflict was resolved.",""",
++         """  "explanation": "Brief explanation of this decision, including how any conflict was resolved and which value was rejected.",
++  "rejected_values": ["each value you rejected when resolving a factual disagreement, as a short span; empty if none"],"""),
++    ]
++    for old, new in swaps:
++        assert a_prompt.count(old) == 1, "answer-and-flag A prompt changed; rebuild final"
++        a_prompt = a_prompt.replace(old, new)
++    return a_prompt
++
++
++SYSTEM_PROMPT_ANSWER_AND_FLAG_FINAL = _build_answer_and_flag_final(SYSTEM_PROMPT_ANSWER_AND_FLAG_A)
++
++
+ # Plain evidence-grounded RAG prompt used by the ``baseline`` mode. Same output
+ # schema so results are directly comparable, but no governance guidance: the
+ # model is simply asked to answer from the retrieved passages.
+@@ -408,7 +637,65 @@
+     return True
+ 
+ 
+-def run_generation(complete, system_prompt, user_prompt, candidates, max_repairs=1):
++_REJECTION_WORDS = re.compile(r"reject|contradict", re.I)
++
++
++def _norm_value_text(text):
++    return re.sub(r"\s+", " ", (text or "").lower().replace(",", "")).strip()
++
++
++def _value_in(value, text):
++    """True when the normalized value occurs in the normalized text as a whole token span."""
++    v, t = _norm_value_text(value), _norm_value_text(text)
++    return bool(v) and re.search(r"(?<![\w.])" + re.escape(v) + r"(?![\w])", t) is not None
++
++
++def rejected_values(result, candidates):
++    """E' (Revision 1, value source as decided by the user on 26 Nov): values the model itself
++    treats as rejected: the values it lists in "rejected_values", plus, for every citation with
++    treatment "conflicting", the normalized numeric claim of that chunk unless a governing or
++    supporting cited chunk carries the same claim; minus any value that appears in short_answers
++    (committed). The corroboration-summary values of the brief's
++    version are not used: on Gemma RAMDocs they flagged 140 answers for incidental numbers
++    (mostly years) against 11 for planted values."""
++    by_id = {c.chunk_id: c for c in candidates}
++    values = {v for v in (result.get("rejected_values") or []) if isinstance(v, str) and v.strip()}
++    cited = [(c.get("treatment"), by_id.get(c.get("chunk_id"))) for c in result.get("citations") or []]
++    # A conflicting chunk's extracted number is rejected only if no governing/supporting chunk the
++    # model cited carries the same number (the extractor often returns a shared year, e.g. "1979").
++    kept = {normalize_claim(cand.claim) for t, cand in cited if cand is not None and t in ("governing", "supporting")}
++    for t, cand in cited:
++        if t == "conflicting" and cand is not None and normalize_claim(cand.claim) not in kept | {"NO_CLAIM"}:
++            values.add(normalize_claim(cand.claim))
++    committed = [s for s in (result.get("short_answers") or []) if isinstance(s, str)]
++    return sorted(v for v in values if not any(_value_in(v, s) for s in committed))
++
++
++def committed_answer_violation(result, candidates):
++    """Return the first rejected value the answer names outside a rejecting sentence, or None.
++    Applies to decision == "answered" only."""
++    if result.get("decision") != "answered":
++        return None
++    answer = result.get("answer") or ""
++    sents = [x for x in re.split(r"(?<=[.!?])\s+", answer) if x.strip()]
++    for value in rejected_values(result, candidates):
++        holding = [x for x in sents if _value_in(value, x)]
++        if holding and not all(_REJECTION_WORDS.search(x) for x in holding):
++            return value
++    return None
++
++
++def rebuild_committed_answer(result):
++    """E' fallback: the answer becomes the committed values, one sentence per value."""
++    values = [s.strip().rstrip(".") for s in (result.get("short_answers") or []) if isinstance(s, str) and s.strip()]
++    rebuilt = dict(result)
++    if values:
++        rebuilt["answer"] = " ".join(f"{v}." for v in values)
++    rebuilt["answer_rebuilt"] = True
++    return rebuilt
++
++
++def run_generation(complete, system_prompt, user_prompt, candidates, max_repairs=1, enforce_committed=False):
+     """Run a chat completion, validate it, and give the model one chance to
+     repair a rejected output.
+ 
+@@ -428,9 +715,25 @@
+             validated = generation_failure("Generation returned invalid JSON; no answer was selected.")
+         else:
+             validated = validate_generation_result(parsed, candidates)
++        pending = None  # E': a valid result whose answer still names a rejected value
++        if enforce_committed and not validated.get("validation_error"):
++            value = committed_answer_violation(validated, candidates)
++            if value is not None:
++                pending = validated
++                validated = generation_failure(
++                    f"The answer names a rejected value ({value}). The answer must state the committed "
++                    f"value(s) only; remove {value} from the answer or move it to one final sentence that "
++                    "says it is rejected and why. Keep short_answers unchanged.")
+         validated["repair_attempts"] = attempt
+         if not validated.get("validation_error"):
++            if enforce_committed:
++                validated["answer_rebuilt"] = False
+             return validated
++        if attempt == max_repairs and pending is not None:
++            rebuilt = rebuild_committed_answer(pending)
++            rebuilt["repair_attempts"] = attempt
++            print("REBUILT: answer still named a rejected value after the repair")
++            return rebuilt
+         if attempt == max_repairs:
+             # Last resort: keep the answer but drop the citations that could
+             # not be verified, rather than discarding a well-formed answer over
+@@ -440,6 +743,11 @@
+                 if not salvaged.get("validation_error"):
+                     salvaged["repair_attempts"] = attempt
+                     print(f"SALVAGED: dropped {salvaged.get('dropped_citations', 0)} unverifiable citation(s)")
++                    if enforce_committed:
++                        if committed_answer_violation(salvaged, candidates) is not None:
++                            salvaged = rebuild_committed_answer(salvaged)
++                        else:
++                            salvaged["answer_rebuilt"] = False
+                     return salvaged
+             return validated
+         print(f"REPAIR: asking the model to fix a rejected output ({validated['reason']})")
+@@ -693,7 +1001,9 @@
+         )
+ 
+     answer = result.get("answer")
+-    if not isinstance(answer, str) or not answer.strip():
++    # insufficient_evidence replaces the answer text below, so a null answer
++    # there is a valid abstention, not an unreadable one (Gemma emits that).
++    if decision != "insufficient_evidence" and (not isinstance(answer, str) or not answer.strip()):
+         return generation_failure("Generation returned no readable answer.")
+     if decision == "insufficient_evidence":
+         answer = "The retrieved evidence does not support a reliable answer."
+@@ -710,10 +1020,16 @@
+     if decision == "insufficient_evidence":
+         short_answers = []
+ 
++    rejected = result.get("rejected_values") or []
++    if not isinstance(rejected, list):
++        rejected = [rejected]
++    rejected = [str(v).strip() for v in rejected if str(v).strip()]
++
+     return {
+         "decision": decision,
+         "answer": answer.strip(),
+         "short_answers": short_answers,
++        "rejected_values": rejected,
+         "citations": verified_citations,
+         "reason": str(explanation),
+         "explanation": str(explanation),
+@@ -1857,7 +2173,15 @@
+         retrieval_mode = {"baseline": "baseline_semantic", "hybrid": "baseline_hybrid_rrf"}.get(mode, "unified_govrag")
+         if mode == "govrag":
+             retrieval_mode = f"unified_govrag_{retrieval}_{policy}"
+-        if baseline:
++        # Change B (answer_and_flag_final only): the retrieved evidence is conflict-free when
++        # its claim-bearing candidates carry at most one distinct normalized claim. Such
++        # questions are ranked by retrieval score exactly as the baseline branch ranks them
++        # (fused score in hybrid mode, cosine otherwise) instead of the authority-weighted
++        # final_score, with no claim diversification.
++        conflict_free = None
++        if mode == "govrag" and policy == "answer_and_flag_final":
++            conflict_free = len(group_by_claim([c for c in candidates if c.claim])) <= 1
++        if baseline or conflict_free:
+             # Plain RAG controls: rank by retrieval score only (cosine, or the
+             # BM25+dense fusion score in hybrid mode), keep top-K.
+             for candidate in candidates:
+@@ -1913,7 +2237,10 @@
+                 "dropped_citations": int(llm_result.get("dropped_citations", 0) or 0),
+                 "method": "llm",
+                 "retrieval_mode": retrieval_mode,
+-                "candidates": [asdict(x) for x in diversified]
++                "candidates": [asdict(x) for x in diversified],
++                **({"conflict_free": conflict_free} if conflict_free is not None else {}),
++                **({"answer_rebuilt": bool(llm_result.get("answer_rebuilt", False))}
++                   if policy == "answer_and_flag_final" else {}),
+             }
+         else:
+             failed = generation_failure(

@@ -1,0 +1,89 @@
+--- a/corvic/pipeline/providers.py
++++ b/corvic/pipeline/providers.py
+@@ -316,14 +316,17 @@
+             system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_V2
+         elif policy == "answer_and_flag_a":
+             system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_A
++        elif policy == "answer_and_flag_final":
++            system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_FINAL
+         else:
+             system_prompt = core.SYSTEM_PROMPT
+         user_prompt = core.build_user_prompt(
+             question, candidates, context=context, include_signals=not baseline,
+-            corroboration=(not baseline and policy in ("answer_and_flag", "answer_and_flag_v2", "answer_and_flag_a")),
++            corroboration=(not baseline and policy in ("answer_and_flag", "answer_and_flag_v2", "answer_and_flag_a", "answer_and_flag_final")),
+         )
+         try:
+-            return core.run_generation(self._chat, system_prompt, user_prompt, candidates)
++            return core.run_generation(self._chat, system_prompt, user_prompt, candidates,
++                                       enforce_committed=(not baseline and policy == "answer_and_flag_final"))
+         except Exception as exc:  # noqa: BLE001
+             print(f"ERROR: generation failed: {exc}")
+             return core.generation_failure("Generation failed; no answer was selected.")
+--- a/corvic/evaluate_external.py
++++ b/corvic/evaluate_external.py
+@@ -353,6 +353,10 @@
+         "latency_s": round(result.get("_latency_s", 0.0), 2),
+         "reason": result.get("reason"),
+     }
++    if "conflict_free" in result:  # answer_and_flag_final only; other runs keep their columns
++        row["conflict_free"] = bool(result["conflict_free"])
++    if "answer_rebuilt" in result:  # answer_and_flag_final only (E', Revision 1)
++        row["answer_rebuilt"] = bool(result["answer_rebuilt"])
+ 
+     if dataset == "ramdocs":
+         # Official protocol (MADAM-RAG): the predicted answer set must contain
+@@ -477,9 +481,9 @@
+                              "rankify (Rankify toolkit: monoT5 reranker + basic-rag generator) | openwebui (stock Open WebUI over REST)")
+     parser.add_argument("--govrag-retrieval", choices=["dense", "hybrid"], default="dense",
+                         help="govrag mode only: first-stage retrieval (hybrid = BM25+dense RRF, as the hybrid control)")
+-    parser.add_argument("--govrag-policy", choices=["strict", "answer_and_flag", "answer_and_flag_v2", "answer_and_flag_a", "two_stage"], default="strict",
++    parser.add_argument("--govrag-policy", choices=["strict", "answer_and_flag", "answer_and_flag_v2", "answer_and_flag_a", "answer_and_flag_final", "two_stage"], default="strict",
+                         help="govrag mode only: conflict policy (strict = abstain on unresolved; answer_and_flag = commit to the better-corroborated value and flag dissent; "
+-                             "answer_and_flag_v2 = corroboration only for factual claims, opinions -> neutral unresolved_conflict, factual ties broken by consistency then stated background knowledge; answer_and_flag_a = change A of v2 only (opinions -> neutral unresolved_conflict, corroboration for factual claims, original factual tie rule); two_stage = plain draft, then a governance audit that keeps the draft unless the evidence gives a reason to change it)")
++                             "answer_and_flag_v2 = corroboration only for factual claims, opinions -> neutral unresolved_conflict, factual ties broken by consistency then stated background knowledge; answer_and_flag_a = change A of v2 only (opinions -> neutral unresolved_conflict, corroboration for factual claims, original factual tie rule); answer_and_flag_final = A + B + E (BRIEF_final_policy.md): no refusal on conflict-free evidence, committed answer separated from the dissent; two_stage = plain draft, then a governance audit that keeps the draft unless the evidence gives a reason to change it)")
+     parser.add_argument("--generation-model", default=None)
+     parser.add_argument("--embed-model", default="BAAI/bge-small-en-v1.5")
+     parser.add_argument("--judge", action="store_true", help="CONFLICTS: LLM-judge behaviour adherence")
+@@ -488,6 +492,7 @@
+     parser.add_argument("--task-hint", default=None, help="Override the per-dataset instruction appended to each question ('' to disable)")
+     parser.add_argument("--limit", type=int, default=None, help="First N items")
+     parser.add_argument("--sample", type=int, default=None, help="Random N items (with --seed)")
++    parser.add_argument("--qids-file", default=None, help="Run only the qids listed in this file (whitespace-separated)")
+     parser.add_argument("--seed", type=int, default=0)
+     parser.add_argument("--workers", type=int, default=1, help="Parallel questions (API-bound)")
+     parser.add_argument("--output-dir", default=str(RESULTS_DIR))
+@@ -514,6 +519,12 @@
+     items = load_ramdocs(data_path) if args.dataset == "ramdocs" else load_conflicts(data_path, args.conflicts_text_field)
+     if args.sample:
+         items = random.Random(args.seed).sample(items, min(args.sample, len(items)))
++    if args.qids_file:
++        wanted = set(Path(args.qids_file).read_text(encoding="utf-8").split())
++        items = [it for it in items if it.qid in wanted]
++        missing = wanted - {it.qid for it in items}
++        if missing:
++            raise SystemExit(f"--qids-file: {len(missing)} qids not in the dataset: {sorted(missing)[:5]}")
+     if args.limit:
+         items = items[: args.limit]
+ 
+@@ -523,7 +534,10 @@
+     tag = f"{args.dataset}_{args.run_label or args.provider}_{args.mode}"
+     if args.mode == "govrag" and (args.govrag_retrieval != "dense" or args.govrag_policy != "strict"):
+         # Variant runs get their own tag so the strict/dense GOV-RAG files stay the ablation row.
+-        tag += f"_{args.govrag_retrieval}_{args.govrag_policy.replace('_', '')}"
++        # answer_and_flag_final keeps its "_final" suffix (tag *_govrag_hybrid_answerandflag_final,
++        # as the brief names it); every other policy drops its underscores as before.
++        pol_tag = "answerandflag_final" if args.govrag_policy == "answer_and_flag_final" else args.govrag_policy.replace('_', '')
++        tag += f"_{args.govrag_retrieval}_{pol_tag}"
+     detail_csv = output_dir / f"{tag}_details_{stamp}.csv"
+     metrics_json = output_dir / f"{tag}_metrics_{stamp}.json"
+     log_path = output_dir / f"{tag}_run_{stamp}.log"
+@@ -634,7 +648,7 @@
+         "thinking": getattr(generator, "enable_thinking", None),
+         "generation_model": getattr(generator, "model", None),
+         "judge_model": args.judge_model if judge else None,
+-        "embed_model": args.embed_model, "sample": args.sample, "seed": args.seed, "limit": args.limit,
++        "embed_model": args.embed_model, "sample": args.sample, "seed": args.seed, "limit": args.limit, "qids_file": args.qids_file,
+         "task_hint": TASK_HINTS.get(args.dataset, "") if args.task_hint is None else args.task_hint,
+         "govrag_retrieval": args.govrag_retrieval if args.mode == "govrag" else None,
+         "govrag_policy": args.govrag_policy if args.mode == "govrag" else None,

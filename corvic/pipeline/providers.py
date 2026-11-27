@@ -306,18 +306,65 @@ class OpenAICompatGenerator:
         # Imported lazily to avoid a circular import at module load time.
         from pipeline import gov_rag_gemini as core
 
+        if not baseline and policy == "two_stage":
+            return self._generate_two_stage(core, question, candidates, context)
         if baseline:
             system_prompt = core.BASELINE_SYSTEM_PROMPT
         elif policy == "answer_and_flag":
             system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG
+        elif policy == "answer_and_flag_v2":
+            system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_V2
+        elif policy == "answer_and_flag_a":
+            system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_A
+        elif policy == "answer_and_flag_final":
+            system_prompt = core.SYSTEM_PROMPT_ANSWER_AND_FLAG_FINAL
         else:
             system_prompt = core.SYSTEM_PROMPT
         user_prompt = core.build_user_prompt(
             question, candidates, context=context, include_signals=not baseline,
-            corroboration=(not baseline and policy == "answer_and_flag"),
+            corroboration=(not baseline and policy in ("answer_and_flag", "answer_and_flag_v2", "answer_and_flag_a", "answer_and_flag_final")),
         )
         try:
-            return core.run_generation(self._chat, system_prompt, user_prompt, candidates)
+            return core.run_generation(self._chat, system_prompt, user_prompt, candidates,
+                                       enforce_committed=(not baseline and policy == "answer_and_flag_final"))
         except Exception as exc:  # noqa: BLE001
             print(f"ERROR: generation failed: {exc}")
             return core.generation_failure("Generation failed; no answer was selected.")
+
+    def _generate_two_stage(self, core, question, candidates, context):
+        """Stage 1: plain draft over the governance-ranked passages. Stage 2:
+        governance audit of that draft. If the audit output fails validation
+        the validated draft is returned, so the audit can add flags but a
+        formatting failure never costs the answer."""
+        try:
+            draft = core.run_generation(
+                self._chat, core.BASELINE_SYSTEM_PROMPT,
+                core.build_user_prompt(question, candidates, context=context, include_signals=False),
+                candidates,
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"ERROR: generation failed: {exc}")
+            return core.generation_failure("Generation failed; no answer was selected.")
+        draft_ok = not draft.get("validation_error")
+        if not draft_ok:
+            # The audit then answers from the evidence on its own.
+            print("TWO_STAGE: draft_failed")
+            draft = {"decision": "insufficient_evidence", "answer": None, "short_answers": [], "selected_source": None}
+        try:
+            audited = core.run_generation(
+                self._chat, core.SYSTEM_PROMPT_VERIFY,
+                core.build_verify_prompt(question, candidates, draft, context=context),
+                candidates,
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"ERROR: audit generation failed: {exc}")
+            audited = core.generation_failure("Audit generation failed.")
+        if audited.get("validation_error"):
+            print(f"TWO_STAGE: audit_failed -> {'draft' if draft_ok else 'failure'}")
+            return draft if draft_ok else audited
+        same = sorted(s.lower() for s in audited.get("short_answers", [])) == \
+            sorted(s.lower() for s in draft.get("short_answers", []))
+        status = "kept" if same and audited.get("decision") == draft.get("decision") else "changed"
+        print(f"TWO_STAGE: {status} draft={draft.get('decision')}:{draft.get('short_answers')} "
+              f"final={audited.get('decision')}:{audited.get('short_answers')}")
+        return audited
