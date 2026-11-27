@@ -161,3 +161,86 @@ rsync -av h200:/mnt/data1/gnajpand/conflictbench_h200/results_external/ ~/Docume
 Six judged runs under the `_final` tag with the thinking setting recorded; the hedging-item
 check numbers; the comparison table; the patch and README. No change to baselines, strict,
 datasets, decision labels, judge prompts or temperatures. Nothing printed from `.env`.
+
+---
+
+# Revision 1 (26 Nov, after the failed pre-check)
+
+Your pre-check report is right on the cause: A's `unresolved_conflict` wording lets a factual
+disagreement count as a tie, Gemma calls 3-against-2 a tie, and E is a prompt sentence that
+only applies on the commit path and that Gemma follows about a quarter of the time. Two
+changes, then one more pre-check with a hard stop.
+
+## A′: unresolved is evaluative-only
+
+In the final prompt, replace A's definition of `unresolved_conflict` and the related text with:
+
+```
+- unresolved_conflict: the competing passages disagree on a matter of opinion,
+  recommendation, interpretation or research outcome that can legitimately differ, and no
+  governance signal separates them. A disagreement about a fact (a number, date, name, place,
+  event or attribute) is never an unresolved conflict.
+```
+
+and replace the tie rule (step 4) with:
+
+```
+4. Factual disagreements are always resolved: apply steps 2 and 3; if the counts are equal and
+   step 3 does not separate the values, commit to the value from the more specific, internally
+   consistent passage and set confidence to "low". Never resolve a disagreement from your own
+   knowledge: the committed value must appear in a supplied passage. If the passages describe
+   different entities that share a name, that is not a disagreement: give each entity its own
+   value.
+```
+
+Keep A's evaluative branch exactly as it is (both positions presented neutrally in the answer,
+`short_answers` empty, dissenting passages cited as `conflicting`). Keep B and keep E's prompt
+text from the first part of this brief.
+
+## E′: enforce E in the validator
+
+In `_validate_generation_result` (line ~583 on the Mac), after the existing checks pass, add
+one more:
+
+1. Collect the rejected values: for every citation with treatment `conflicting`, the
+   normalized claim of that chunk (reuse `normalize_claim` / the claim extraction that
+   `diversify_conflicts` already runs; for non-numeric claims use the chunk's extracted
+   value string). Add every value in the corroboration summary that does not appear in
+   `short_answers`. Drop any value that does appear in `short_answers` (it is committed, not
+   rejected).
+2. If `decision == "answered"` and the `answer` text contains a rejected value (numbers after
+   normalization, strings case-insensitive), the result is invalid with the reason:
+   `The answer names a rejected value (<value>). The answer must state the committed value(s)
+   only; remove <value> from the answer or move it to one final sentence that says it is
+   rejected and why. Keep short_answers unchanged.` This goes through the existing single
+   repair turn like any other validation failure.
+3. If the repair still names the value and the sentence containing it does not contain
+   "reject" or "contradict", salvage: keep the decision, `short_answers`, citations and
+   explanation, and rebuild `answer` as the committed values, one sentence per entity when the
+   explanation names entities, otherwise `"<value>."`. Record `answer_rebuilt: true` in the
+   result dict so it reaches the details CSV, and report the count.
+
+The interface shows the dissent from the `conflicting` citations and the corroboration strip,
+so nothing the user sees is removed; the answer field just stops hedging. This check applies to
+every generator identically and does not look at gold or planted values.
+
+## Pre-check 2
+
+Same protocol, one pass, no tuning. Two item sets, Gemma, hybrid retrieval,
+`answer_and_flag_final` with A′ and E′:
+
+1. The 127 RAMDocs items above. Required: FC at least 50 of 127 (was 0, then 13); among the
+   103 items Variant 3 answered, `short_answers` unchanged on at least 85; answers naming a
+   `wrong_answers` value without a rejecting sentence at most 15; `answer_rebuilt` on at most
+   30.
+2. 40 CONFLICTS items of type "Conflicting opinions and research outcomes": the first 40 qids
+   where the Gemma A-only run was FC. Required: at least 32 stay `unresolved_conflict` and
+   FC. This is the guard that A′ did not lose A's gain.
+
+Report both tables as before, with five PC answers and judge reasons if set 1 falls short.
+
+## Stop rule
+
+If pre-check 2 passes both sets, start the six full runs as planned (Gemma RAMDocs first) and
+judge them. If it fails either set, stop for good: do not iterate further, write the patch and
+README for the record, and tell me. The paper then uses the current table.
